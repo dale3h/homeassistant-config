@@ -1,0 +1,30 @@
+################################################################
+## Automation / Home Assistant Startup
+################################################################
+
+################################################
+## Startup Notification
+################################################
+
+- alias: Startup Notification
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+  action:
+    service: notify.pushover
+    data:
+      message: Home Assistant started
+      data:
+        sound: bugle
+
+################################################
+## Rebuild Customize on Startup
+################################################
+
+# - alias: Rebuild Customize on Startup
+#   trigger:
+#     platform: event
+#     event_type: homeassistant_start
+#   action:
+#     - delay: '00:01:00'
+#     - service: shell_command.rebuild_customize

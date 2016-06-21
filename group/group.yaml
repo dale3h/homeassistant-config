@@ -1,0 +1,53 @@
+################################################################
+## Group
+################################################################
+
+media_player:
+  name: Media Player
+  entities:
+    - media_player.iphone
+    - media_player.my_aftm_2
+    - media_player.my_aftm
+
+network_devices:
+  name: Network Devices
+  entities:
+    - device_tracker.aladdin_connect
+    - device_tracker.echo_kitchen
+    - device_tracker.echo_bathroom
+    - device_tracker.echo_garage
+    - device_tracker.ecobee3
+    - device_tracker.firetv1
+    - device_tracker.firetv2
+    - device_tracker.firetv3
+    - device_tracker.harmonyhub
+    - device_tracker.htpc
+    - device_tracker.lg_tv
+    - device_tracker.limitlessled
+    - device_tracker.oak1
+    - device_tracker.philipshue
+    - device_tracker.smartthings
+    - device_tracker.starbase
+    - device_tracker.workshop
+
+system:
+  name: System
+  entities:
+    - sensor.cpu_temperature
+    - updater.updater
+
+weather:
+  name: Weather
+  entities:
+    - sun.sun
+
+scenes:
+  name: Scenes
+  entities:
+    - scene.arrival
+    - scene.departure
+    - scene.evening
+    - scene.morning
+    - scene.night
+    - scene.sexy_time
+    - scene.startup

@@ -1,0 +1,96 @@
+################################################################
+## Scene
+################################################################
+
+################################################
+## Startup
+################################################
+
+- name: Startup
+  entities:
+    light.garage:
+      state: on
+      brightness: 255
+      rgb_color: [255, 255, 255]
+
+################################################
+## Arrival
+################################################
+
+- name: Arrival
+  entities:
+    group.hue_lights:
+      state: on
+      brightness: 255
+      color_temp: 362
+      rgb_color: [255, 200, 118]
+      xy_color: [0.457, 0.4098]
+    light.garage:
+      state: on
+      brightness: 255
+      rgb_color: [255, 255, 255]
+
+################################################
+## Departure
+################################################
+
+- name: Departure
+  entities:
+    group.hue_lights:
+      state: off
+    light.garage:
+      state: off
+
+################################################
+## Morning
+################################################
+
+# - name: Morning
+#   entities:
+#     light.counter:
+#       state: on
+#       brightness: 255
+#     light.living_room:
+#       state: on
+#       brightness: 128
+#       rgb_color: [255, 255, 255]
+
+################################################
+## Evening
+################################################
+
+# - name: Evening
+#   entities:
+#     light.counter:
+#       state: on
+#       brightness: 255
+#     light.living_room:
+#       state: on
+#       brightness: 64
+#       rgb_color: [255, 255, 255]
+
+################################################
+## Night
+################################################
+
+# - name: Night
+#   entities:
+#     light.counter:
+#       state: off
+#     light.living_room:
+#       state: off
+
+################################################
+## Sexy Time
+################################################
+
+- name: Sexy Time
+  entities:
+    group.hue_bedroom:
+      state: on
+      brightness: 32
+      color_temp: 454
+      rgb_color: [212, 89, 250]
+      xy_color: [0.3351, 0.1338]
+    group.hue_lights:
+      state: off

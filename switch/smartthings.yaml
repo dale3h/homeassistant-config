@@ -1,0 +1,11 @@
+################################################################
+## Light / SmartThings
+################################################################
+
+- platform: mqtt
+  name: Pepper Fan
+  state_topic: smartthings/Pepper Fan/switch
+  command_topic: smartthings/Pepper Fan/switch
+  payload_on: 'on'
+  payload_off: 'off'
+  retain: true

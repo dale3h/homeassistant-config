@@ -1,0 +1,114 @@
+################################################################
+## Sensor / SmartThings
+################################################################
+
+################################################
+## Pepper Fan
+################################################
+
+- platform: mqtt
+  name: Pepper Fan Power
+  state_topic: smartthings/Pepper Fan/power
+  unit_of_measurement: 'W'
+
+################################################
+## Front Door
+################################################
+
+- platform: mqtt
+  name: Front Door Battery
+  state_topic: smartthings/Front Door/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: Front Door Temperature
+  state_topic: smartthings/Front Door/temperature
+  unit_of_measurement: '°F'
+
+- platform: mqtt
+  name: Front Door Acceleration
+  state_topic: smartthings/Front Door/acceleration
+
+- platform: mqtt
+  name: Front Door Contact
+  state_topic: smartthings/Front Door/contact
+
+- platform: mqtt
+  name: Front Door Three Axis
+  state_topic: smartthings/Front Door/threeAxis
+
+################################################
+## Pantry Door
+################################################
+
+- platform: mqtt
+  name: Pantry Door Battery
+  state_topic: smartthings/Pantry Door/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: Pantry Door Temperature
+  state_topic: smartthings/Pantry Door/temperature
+  unit_of_measurement: '°F'
+
+- platform: mqtt
+  name: Pantry Door Acceleration
+  state_topic: smartthings/Pantry Door/acceleration
+
+- platform: mqtt
+  name: Pantry Door Contact
+  state_topic: smartthings/Pantry Door/contact
+
+- platform: mqtt
+  name: Pantry Door Three Axis
+  state_topic: smartthings/Pantry Door/threeAxis
+
+################################################
+## Garage Entry Door
+################################################
+
+- platform: mqtt
+  name: Garage Entry Door Battery
+  state_topic: smartthings/Garage Entry Door/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: Garage Entry Door Temperature
+  state_topic: smartthings/Garage Entry Door/temperature
+  unit_of_measurement: '°F'
+
+- platform: mqtt
+  name: Garage Entry Door Contact
+  state_topic: smartthings/Garage Entry Door/contact
+
+################################################
+## Hallway Motion
+################################################
+
+- platform: mqtt
+  name: Hallway Motion Battery
+  state_topic: smartthings/Hallway Motion/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: Hallway Motion Temperature
+  state_topic: smartthings/Hallway Motion/temperature
+  unit_of_measurement: '°F'
+
+- platform: mqtt
+  name: Hallway Motion Motion
+  state_topic: smartthings/Hallway Motion/motion
+
+################################################
+## Iris Smart Button
+################################################
+
+- platform: mqtt
+  name: Smart Button Battery
+  state_topic: smartthings/Iris Smart Button/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: Smart Button Temperature
+  state_topic: smartthings/Iris Smart Button/temperature
+  unit_of_measurement: '°F'

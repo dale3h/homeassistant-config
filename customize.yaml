@@ -1,0 +1,366 @@
+################################################################
+## Customize
+################################################################
+
+################################################
+## Device Tracker
+################################################
+
+device_tracker.dale3h_ipad:
+  icon: mdi:tablet-ipad
+
+device_tracker.dale3h_iphone:
+  icon: mdi:cellphone-iphone
+
+device_tracker.dale3h_macbookpro:
+  icon: mdi:laptop-mac
+
+device_tracker.jonathans_iphone:
+  icon: mdi:cellphone-iphone
+
+device_tracker.jonathans_macbookpro:
+  icon: mdi:laptop-mac
+
+device_tracker.jons_iphone:
+  icon: mdi:cellphone-iphone
+
+device_tracker.jons_laptop:
+  icon: mdi:laptop
+
+device_tracker.lyndees_ipad:
+  icon: mdi:tablet-ipad
+
+device_tracker.lyndees_iphone:
+  icon: mdi:cellphone-iphone
+
+device_tracker.lyndees_macbookpro:
+  icon: mdi:laptop-mac
+
+device_tracker.parkers_ipad:
+  icon: mdi:tablet-ipad
+
+device_tracker.tonyias_kindle:
+  icon: mdi:tablet-android
+
+device_tracker.tristans_ipad:
+  icon: mdi:tablet-ipad
+
+################################################
+## Group
+################################################
+
+group.all_devices:
+  haaska_hidden: true
+
+group.all_lights:
+  haaska_hidden: true
+
+group.all_switches:
+  haaska_hidden: true
+
+group.automation:
+  haaska_hidden: true
+  icon: mdi:settings
+
+group.automation_override:
+  haaska_hidden: true
+
+group.back_porch:
+  haaska_hidden: true
+
+group.dining_room:
+  haaska_hidden: true
+
+group.entryway:
+  haaska_hidden: true
+
+group.friends:
+  haaska_hidden: true
+
+group.front_porch:
+  haaska_hidden: true
+
+group.garage:
+  haaska_hidden: true
+
+group.guest_bathroom:
+  haaska_hidden: true
+
+group.guest_bedroom:
+  haaska_hidden: true
+
+group.guests:
+  haaska_hidden: true
+  icon: mdi:human-male-female
+
+group.hallway:
+  haaska_hidden: true
+
+group.home:
+  haaska_hidden: true
+  icon: mdi:home
+
+group.household:
+  haaska_hidden: true
+
+group.hue_lights:
+  haaska_hidden: true
+  icon: mdi:lightbulb
+
+group.kitchen:
+  haaska_hidden: true
+
+group.laundry_room:
+  haaska_hidden: true
+
+group.limitless_lights:
+  haaska_hidden: true
+  icon: mdi:lightbulb
+
+group.living_room:
+  haaska_hidden: true
+
+group.master_bathroom:
+  haaska_hidden: true
+
+group.master_bedroom:
+  haaska_hidden: true
+
+group.master_closet:
+  haaska_hidden: true
+
+group.media:
+  haaska_hidden: true
+  icon: mdi:play-circle-outline
+
+group.media_player:
+  haaska_hidden: true
+
+group.network_devices:
+  haaska_hidden: true
+
+group.parkers_closet:
+  haaska_hidden: true
+
+group.people:
+  haaska_hidden: true
+  icon: mdi:human-greeting
+
+group.person_courtney:
+  haaska_hidden: true
+  icon: mdi:human-female
+
+group.person_dale:
+  haaska_hidden: true
+  icon: mdi:human-male
+
+group.person_jon:
+  haaska_hidden: true
+  icon: mdi:human-male
+
+group.person_jonathan:
+  haaska_hidden: true
+  icon: mdi:human-male
+
+group.person_lyndee:
+  haaska_hidden: true
+  icon: mdi:human-female
+
+group.person_parker:
+  haaska_hidden: true
+  icon: mdi:human-child
+
+group.person_russell:
+  haaska_hidden: true
+  icon: mdi:human-male
+
+group.person_tonyia:
+  haaska_hidden: true
+  icon: mdi:human-female
+
+group.person_tristan:
+  haaska_hidden: true
+  icon: mdi:human-child
+
+group.scenes:
+  haaska_hidden: true
+
+group.scripts:
+  haaska_hidden: true
+  icon: mdi:script
+
+group.sensors:
+  haaska_hidden: true
+  icon: mdi:gauge
+
+group.system:
+  haaska_hidden: true
+
+group.weather:
+  haaska_hidden: true
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean.https_proxy:
+  haaska_hidden: true
+
+################################################
+## Light
+################################################
+
+light.back_porch:
+  haaska_hidden: true
+
+light.chandelier_1:
+  haaska_hidden: true
+
+light.chandelier_2:
+  haaska_hidden: true
+
+light.chandelier_3:
+  haaska_hidden: true
+
+light.dining_room_1:
+  haaska_hidden: true
+
+light.dining_room_2:
+  haaska_hidden: true
+
+light.entryway_1:
+  haaska_hidden: true
+
+light.entryway_2:
+  haaska_hidden: true
+
+light.front_porch:
+  haaska_hidden: true
+
+light.garage:
+  haaska_hidden: false
+  haaska_name: Garage
+
+light.guest_bathroom_1:
+  haaska_hidden: true
+
+light.guest_bathroom_2:
+  haaska_hidden: true
+
+light.guest_bedroom:
+  haaska_hidden: true
+
+light.hallway:
+  haaska_hidden: true
+
+light.laundry_room:
+  haaska_hidden: true
+
+light.living_room_1:
+  haaska_hidden: true
+
+light.living_room_2:
+  haaska_hidden: true
+
+light.master_bathroom_1:
+  haaska_hidden: true
+
+light.master_bathroom_2:
+  haaska_hidden: true
+
+light.master_bedroom_1:
+  haaska_hidden: true
+
+light.master_bedroom_2:
+  haaska_hidden: true
+
+light.master_closet:
+  haaska_hidden: true
+
+light.parkers_closet:
+  haaska_hidden: true
+
+light.range:
+  haaska_hidden: true
+
+light.sink:
+  haaska_hidden: true
+
+################################################
+## Media Player
+################################################
+
+media_player.my_aftm:
+  friendly_name: Bedroom Fire TV
+  haaska_hidden: true
+
+media_player.my_aftm_2:
+  friendly_name: Living Room Fire TV
+  haaska_hidden: true
+
+################################################
+## Scene
+################################################
+
+scene.arrival:
+  haaska_hidden: false
+  haaska_name: Arrival Scene
+
+scene.departure:
+  haaska_hidden: false
+  haaska_name: Departure Scene
+
+scene.sexy_time:
+  haaska_hidden: true
+  haaska_name: Sexy Time
+
+scene.startup:
+  haaska_hidden: true
+
+################################################
+## Script
+################################################
+
+script.hallway_motion_timed_128:
+  haaska_hidden: true
+  hidden: true
+
+script.hallway_motion_timed_255:
+  haaska_hidden: true
+  hidden: true
+
+script.hallway_motion_timed_64:
+  haaska_hidden: true
+  hidden: true
+
+script.hallway_motion_timer:
+  haaska_hidden: true
+  hidden: true
+
+script.rebuild_customize:
+  haaska_hidden: true
+  icon: mdi:settings
+
+script.restart_ha:
+  haaska_hidden: true
+  icon: mdi:power
+
+################################################
+## Sensor
+################################################
+
+sensor.pepper_fan_power:
+  icon: mdi:flash
+
+################################################
+## Switch
+################################################
+
+switch.pepper_fan:
+  haaska_hidden: false
+  haaska_name: Pepper Fan
+  icon: mdi:fan
+
+################################################################
+# Last Generated: Sat Jun 18 2016 02:33:40 GMT-0500 (CDT)
+################################################################

@@ -1,0 +1,54 @@
+################################################################
+## Group / People
+################################################################
+
+person_courtney:
+  name: Courtney
+  entities:
+    - device_tracker.courtneys_iphone
+
+person_dale:
+  name: Dale
+  entities:
+    - device_tracker.dale3h_iphone
+    - device_tracker.dale3h_ipad
+    - device_tracker.dale3h_macbookpro
+
+person_jonathan:
+  name: Jonathan
+  entities:
+    - device_tracker.jonathans_iphone
+    - device_tracker.jonathans_macbookpro
+
+person_jon:
+  name: Jon
+  entities:
+    - device_tracker.jons_iphone
+
+person_lyndee:
+  name: Lyndee
+  entities:
+    - device_tracker.lyndees_iphone
+    - device_tracker.lyndees_ipad
+    - device_tracker.lyndees_macbookpro
+
+person_parker:
+  name: Parker
+  entities:
+    - device_tracker.parkers_ipad
+
+person_russell:
+  name: Russell
+  entities:
+    - device_tracker.russells_iphone
+    - device_tracker.russells_ipad
+
+person_tonyia:
+  name: Tonyia
+  entities:
+    - device_tracker.tonyias_kindle
+
+person_tristan:
+  name: Tristan
+  entities:
+    - device_tracker.tristans_ipad

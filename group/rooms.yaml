@@ -1,0 +1,110 @@
+################################################################
+## Group / Rooms
+################################################################
+
+back_porch:
+  name: Back Porch
+  entities:
+    - light.back_porch
+
+dining_room:
+  name: Dining Room
+  entities:
+    - light.dining_room_1
+    - light.dining_room_2
+
+entryway:
+  name: Entryway
+  entities:
+    - light.entryway_1
+    - light.entryway_2
+    - sensor.front_door_contact
+    - sensor.front_door_temperature
+
+front_porch:
+  name: Front Porch
+  entities:
+    - light.front_porch
+
+garage:
+  name: Garage
+  entities:
+    - light.garage
+    - sensor.garage_entry_door_contact
+    - sensor.garage_entry_door_temperature
+
+guest_bathroom:
+  name: Guest Bathroom
+  entities:
+    - light.guest_bathroom_1
+    - light.guest_bathroom_2
+
+guest_bedroom:
+  name: Guest Bedroom
+  entities:
+    - light.guest_bedroom
+    - sensor.guest_bedroom_temperature
+    - sensor.guest_bedroom_occupancy
+
+hallway:
+  name: Hallway
+  entities:
+    - light.hallway
+    - sensor.home_humidity
+    - sensor.home_occupancy
+    - sensor.home_temperature
+    - sensor.hallway_motion_motion
+    - sensor.hallway_motion_temperature
+
+kitchen:
+  name: Kitchen
+  entities:
+    - light.chandelier_1
+    - light.chandelier_2
+    - light.chandelier_3
+    - light.range
+    - light.sink
+    - switch.pepper_fan
+    - sensor.pepper_fan_power
+
+laundry_room:
+  name: Laundry Room
+  entities:
+    - light.laundry_room
+
+living_room:
+  name: Living Room
+  entities:
+    - light.living_room_1
+    - light.living_room_2
+    - sensor.living_room_temperature
+    - sensor.living_room_occupancy
+    - media_player.my_aftm_2
+
+master_bathroom:
+  name: Master Bathroom
+  entities:
+    - light.master_bathroom_1
+    - light.master_bathroom_2
+
+master_bedroom:
+  name: Master Bedroom
+  entities:
+    - light.master_bedroom_1
+    - light.master_bedroom_2
+    - light.master_bathroom_1
+    - light.master_bathroom_2
+    - light.master_closet
+    - sensor.master_bedroom_temperature
+    - sensor.master_bedroom_occupancy
+    - media_player.my_aftm
+
+master_closet:
+  name: Master Closet
+  entities:
+    - light.master_closet
+
+parkers_closet:
+  name: "Parker's Closet"
+  entities:
+    - light.parkers_closet

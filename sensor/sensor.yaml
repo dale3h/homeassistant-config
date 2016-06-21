@@ -1,0 +1,24 @@
+################################################################
+## Sensor
+################################################################
+
+- platform: command_line
+  name: CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) }}'
+
+# - platform: template
+#   sensors:
+#     time_brightness:
+#       friendly_name: Time Based Brightness
+#       condition: time
+#       after: '15:00:00'
+#       value_template: >-
+#         {%- if now.time < '01:00:00' %}
+#           1am
+#         {% elif now.time < '06:00:00' %}
+#           6am
+#         {% else %}
+#           {{ now.date }}
+#         {%- endif %}

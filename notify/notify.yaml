@@ -1,0 +1,19 @@
+################################################################
+## Notify
+################################################################
+
+- platform: pushover
+  name: pushover
+  api_key: !env_var PUSHOVER_API_KEY
+  user_key: !env_var PUSHOVER_USER_KEY
+
+- platform: telegram
+  name: telegram
+  api_key: !env_var TELEGRAM_API_KEY
+  chat_id: !env_var TELEGRAM_CHAT_ID
+
+- platform: syslog
+  name: syslog
+  facility: syslog
+  option: pid
+  priority: 4

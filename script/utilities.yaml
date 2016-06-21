@@ -1,0 +1,14 @@
+################################################################
+## Script / Utilities
+################################################################
+
+rebuild_customize:
+  alias: Rebuild Customize
+  sequence:
+    - service: shell_command.rebuild_customize
+    - service: homeassistant.restart
+
+restart_ha:
+  alias: Restart Home Assistant
+  sequence:
+    - service: homeassistant.restart

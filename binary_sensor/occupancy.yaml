@@ -1,0 +1,7 @@
+################################################################
+## Binary Sensor / Occupancy
+################################################################
+
+- platform: occupancy
+  name: Test Occupancy
+  entity_id: sensor.hallway_motion_motion

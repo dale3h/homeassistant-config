@@ -35,3 +35,18 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Other
+*.conf
+*.db
+*.log
+.HA_VERSION
+customize.yaml.backup
+home-assistant.db
+home-assistant.env
+home-assistant.log
+known_devices.yaml
+TODO.md
+components
+deps
+www

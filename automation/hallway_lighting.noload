@@ -1,0 +1,127 @@
+################################################################
+## Automation / Hallway Lighting
+################################################################
+
+# @todo UPDATE CONDITIONS
+
+################################################
+## Hallway Motion
+################################################
+
+# - alias: Hallway Light ON(255) when Hallway Motion is ACTIVE
+#   trigger:
+#     platform: state
+#     entity_id: sensor.hallway_motion_motion
+#     to: 'active'
+#   conditions:
+#     - condition: time
+#       after: '07:00'
+#       before: '22:00'
+#   action:
+#     service: script.hallway_motion_timed_255
+#
+# - alias: Hallway Light ON(64) when Hallway Motion is ACTIVE
+#   trigger:
+#     platform: state
+#     entity_id: sensor.hallway_motion_motion
+#     to: 'active'
+#   condition: or
+#   conditions:
+#     - condition: time
+#       before: '07:00'
+#     - condition: time
+#       after: '22:00'
+#   action:
+#     service: script.hallway_motion_timed_64
+
+################################################
+## Front Door
+################################################
+
+# - alias: Hallway Light ON(255) when Front Door is OPEN
+#   trigger:
+#     platform: state
+#     entity_id: sensor.front_door_contact
+#     to: 'open'
+#   conditions:
+#     - condition: time
+#       after: '07:00'
+#       before: '21:48'
+#   action:
+#     service: script.hallway_motion_timed_255
+#
+# - alias: Hallway Light ON(64) when Front Door is OPEN
+#   trigger:
+#     platform: state
+#     entity_id: sensor.front_door_contact
+#     to: 'open'
+#   condition: or
+#   conditions:
+#     - condition: time
+#       before: '07:00'
+#     - condition: time
+#       after: '22:00'
+#   action:
+#     service: script.hallway_motion_timed_64
+
+################################################
+## Garage Entry Door
+################################################
+
+# - alias: Hallway Light ON(255) when Garage Entry Door is OPEN
+#   trigger:
+#     platform: state
+#     entity_id: sensor.garage_entry_door_contact
+#     to: 'open'
+#   conditions:
+#     - condition: time
+#       after: '07:00'
+#       before: '22:00'
+#   action:
+#     service: script.hallway_motion_timed_255
+#
+# - alias: Hallway Light ON(64) when Garage Entry Door is OPEN
+#   trigger:
+#     platform: state
+#     entity_id: sensor.garage_entry_door_contact
+#     to: 'open'
+#   condition: or
+#   conditions:
+#     - condition: time
+#       before: '07:00'
+#     - condition: time
+#       after: '22:00'
+#   action:
+#     service: script.hallway_motion_timed_64
+
+################################################
+## Motion Alerts
+################################################
+
+# - alias: Hallway Motion Notification
+#   trigger:
+#     platform: state
+#     entity_id: sensor.hallway_motion_motion
+#     to: 'active'
+#   action:
+#     service: notify.pushover
+#     data:
+#       message: Hallway motion detected
+#
+# - alias: Front Door Notification
+#   trigger:
+#     platform: state
+#     entity_id: sensor.front_door_contact
+#   action:
+#     service: notify.pushover
+#     data_template:
+#       message: Front door {{ trigger.to_state.state }}
+#
+# - alias: Garage Entry Door Notification
+#   trigger:
+#     platform: state
+#     entity_id: sensor.garage_entry_door_contact
+#   action:
+#     service: notify.pushover
+#     data_template:
+#       message: Garage entry door {{ trigger.to_state.state }}

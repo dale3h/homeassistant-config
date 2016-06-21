@@ -1,0 +1,90 @@
+################################################################
+## Script / Select Timer
+################################################################
+
+zone_1_on:
+  alias: Zone 1 On
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.zone_1
+    - service: script.zone_1_timer_5m
+    - service: script.zone_1_timer_10m
+    - service: script.zone_1_timer_15m
+    - service: script.zone_1_timer_20m
+    - service: script.zone_1_timer_25m
+    - service: script.zone_1_timer_30m
+
+zone_1_off:
+  alias: Zone 1 Off
+  sequence:
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_5m
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_10m
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_15m
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_20m
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_25m
+    - service: script.turn_off
+      entity_id: script.zone_1_timer_30m
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.zone_1
+
+zone_1_timer_5m:
+  alias: Zone 1 Timer (5 Minutes)
+  sequence:
+    - condition: state
+      entity_id: input_select.zone_1_time_on
+      state: '00:05'
+    - delay:
+        seconds: 5
+    - service: script.zone_1_off
+
+zone_1_timer_10m:
+  alias: Zone 1 Timer (10 Minutes)
+  sequence:
+    - condition: state
+      entity_id: input_select.zone_1_time_on
+      state: '00:10'
+    - delay:
+        seconds: 10
+    - service: script.zone_1_off
+
+zone_1_timer_15m:
+  alias: Zone 1 Timer (15 Minutes)
+  sequence:
+    - condition: state
+      entity_id: input_select.zone_1_time_on
+      state: '00:15'
+    - delay:
+        seconds: 15
+    - service: script.zone_1_off
+
+zone_1_timer_20m:
+  alias: Zone 1 Timer (20 Minutes)
+  sequence:
+    - condition: state
+      entity_id: input_select.zone_1_time_on
+      state: '00:20'
+    - delay:
+        seconds: 20
+    - service: script.zone_1_off
+
+zone_1_timer_25m:
+  alias: Zone 1 Timer (25 Minutes)
+  sequence:
+    - condition: state
+      entity_id: input_select.zone_1_time_on
+      state: '00:25'
+    - delay:
+        seconds: 25
+    - service: script.zone_1_off
+
+zone_1_timer_30m:
+  alias: Zone 1 Timer (30 Minutes)
+  sequence:
+    - delay:
+        seconds: 30
+    - service: script.zone_1_off

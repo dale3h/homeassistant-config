@@ -1,0 +1,10 @@
+################################################################
+## Media Player
+################################################################
+
+- platform: plex
+
+# - platform: firetv
+#   host: localhost:5556
+#   device: default
+#   name: Living Room Fire TV

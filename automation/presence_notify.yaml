@@ -1,0 +1,81 @@
+################################################################
+## Automation / Presence Notify
+################################################################
+
+################################################
+## Courtney Presence Notification
+################################################
+
+- alias: Courtney Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_courtney
+  action:
+    service: notify.pushover
+    data_template:
+      message: Courtney changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+
+################################################
+## Dale Presence Notification
+################################################
+
+- alias: Dale Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_dale
+  action:
+    service: notify.pushover
+    data_template:
+      message: Dale changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+
+################################################
+## J Presence Notification
+################################################
+
+- alias: J Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_j
+  action:
+    service: notify.pushover
+    data_template:
+      message: J changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+
+################################################
+## Jon Presence Notification
+################################################
+
+- alias: Jon Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_jon
+  action:
+    service: notify.pushover
+    data_template:
+      message: Jon changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+
+################################################
+## Lyndee Presence Notification
+################################################
+
+- alias: Lyndee Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_lyndee
+  action:
+    service: notify.pushover
+    data_template:
+      message: Lyndee changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}
+
+################################################
+## Russell Presence Notification
+################################################
+
+- alias: Russell Presence Notification
+  trigger:
+    platform: state
+    entity_id: group.person_russell
+  action:
+    service: notify.pushover
+    data_template:
+      message: Russell changed from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}

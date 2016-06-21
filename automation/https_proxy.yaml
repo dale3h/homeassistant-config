@@ -1,0 +1,38 @@
+################################################################
+## Automation / HTTPS Proxy
+################################################################
+
+################################################
+## Start HTTPS Proxy (Manual)
+################################################
+
+- alias: Start HTTPS Proxy (Manual)
+  trigger:
+    platform: state
+    entity_id: input_boolean.https_proxy
+    to: 'on'
+  action:
+    service: shell_command.https_proxy_start
+
+################################################
+## Kill HTTPS Proxy (Manual)
+################################################
+
+- alias: Kill HTTPS Proxy (Manual)
+  trigger:
+    platform: state
+    entity_id: input_boolean.https_proxy
+    to: 'off'
+  action:
+    service: shell_command.https_proxy_kill
+
+################################################
+## Start HTTPS Proxy (Auto)
+################################################
+
+- alias: Start HTTPS Proxy (Auto)
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+  action:
+    service: shell_command.https_proxy_start

@@ -1,0 +1,11 @@
+################################################################
+## Device Tracker
+################################################################
+
+- platform: asuswrt
+  host: !env_var ASUSWRT_HOST
+  username: !env_var ASUSWRT_USERNAME
+  password: !env_var ASUSWRT_PASSWORD
+
+- platform: owntracks
+  max_gps_accuracy: 200

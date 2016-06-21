@@ -1,0 +1,14 @@
+################################################################
+## Logger
+################################################################
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+
+default: info
+logs:
+  homeassistant.components.device_tracker.asuswrt: warn
+  homeassistant.components.discovery: warn
+  homeassistant.components.http: warn
+  plexapi: warn
+  requests.packages.urllib3.connectionpool: warn
+#   homeassistant.core: warn

@@ -1,0 +1,21 @@
+{
+  "intents": [
+    {
+      "intent": "LocateIntent",
+      "slots": [
+        {
+          "name": "User",
+          "type": "AMAZON.US_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "WhereAreWeIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.HelpIntent",
+      "slots": []
+    }
+  ]
+}
