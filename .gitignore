@@ -48,5 +48,6 @@ home-assistant.log
 known_devices.yaml
 TODO.md
 components
+custom_components
 deps
 www
