@@ -4,7 +4,7 @@
 
 - platform: limitlessled
   bridges:
-    - host: 192.168.1.16
+    - host: !env_var LIMITLESSLED_HOST
       version: 5
       port: 8899
       groups:

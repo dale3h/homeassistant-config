@@ -3,6 +3,6 @@
 ################################################################
 
 - platform: hue
-  host: 192.168.1.211
+  host: !env_var HUE_HOST
   allow_unreachable: true
   filename: phue.conf
