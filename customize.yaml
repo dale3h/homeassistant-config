@@ -417,10 +417,6 @@ light.back_porch:
   friendly_name: Back Porch
   haaska_hidden: true
 
-light.master_bedroom_lamp_level_2:
-  friendly_name: Master Bedroom Lamp
-  haaska_hidden: true
-
 light.chandelier_1:
   friendly_name: Chandelier 1
   haaska_hidden: true
@@ -448,6 +444,10 @@ light.entryway_1:
 light.entryway_2:
   friendly_name: Entryway 2
   haaska_hidden: true
+
+light.entryway_lamp_level_3:
+  friendly_name: Entryway Lamp
+  haaska_hidden: false
 
 light.front_porch:
   friendly_name: Front Porch
@@ -485,10 +485,6 @@ light.living_room_2:
   friendly_name: Living Room 2
   haaska_hidden: true
 
-light.entryway_lamp_level_3:
-  friendly_name: Entryway Lamp
-  haaska_hidden: false
-
 light.master_bathroom_1:
   friendly_name: Master Bathroom 1
   haaska_hidden: true
@@ -503,6 +499,10 @@ light.master_bedroom_1:
 
 light.master_bedroom_2:
   friendly_name: Master Bedroom 2
+  haaska_hidden: true
+
+light.master_bedroom_lamp_level_2:
+  friendly_name: Master Bedroom Lamp
   haaska_hidden: true
 
 light.master_closet:
@@ -597,16 +597,6 @@ script.backup_config:
   haaska_hidden: false
   icon: mdi:backup-restore
 
-script.update_hass:
-  friendly_name: Update Home Assistant
-  haaska_hidden: false
-  icon: mdi:upload
-
-script.reload_config:
-  friendly_name: Reload Configuration
-  haaska_hidden: false
-  icon: mdi:refresh
-
 script.master_bedroom_motion_helper:
   friendly_name: Master Bedroom Motion Helper
   haaska_hidden: true
@@ -622,10 +612,20 @@ script.rebuild_customize:
   haaska_hidden: true
   icon: mdi:settings
 
+script.reload_config:
+  friendly_name: Reload Configuration
+  haaska_hidden: false
+  icon: mdi:refresh
+
 script.restart_ha:
   friendly_name: Restart Home Assistant
   haaska_hidden: true
   icon: mdi:power
+
+script.update_hass:
+  friendly_name: Update Home Assistant
+  haaska_hidden: false
+  icon: mdi:upload
 
 ################################################
 ## Sensor
@@ -924,6 +924,13 @@ thermostat.home:
   friendly_name: Home
 
 ################################################
+## Updater
+################################################
+
+updater.updater:
+  friendly_name: Update Available
+
+################################################
 ## Zone
 ################################################
 
@@ -939,5 +946,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Tue Aug 09 2016 02:05:10 GMT-0500 (CDT)
+# Last Generated: Sun Aug 14 2016 10:41:37 GMT-0500 (CDT)
 ################################################################
