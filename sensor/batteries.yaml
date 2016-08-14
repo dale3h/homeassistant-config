@@ -1,0 +1,17 @@
+################################################################
+## Sensor / Batteries
+################################################################
+
+- platform: template
+  sensors:
+    master_bathroom_battery_4:
+      value_template: '{{ states.binary_sensor.master_bathroom_sensor_4.attributes.battery_level }}'
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.master_bathroom_sensor_4
+      warnings: false
+
+#     iphone_battery:
+#       value_template: '{{ states.device_tracker.iphone.attributes.battery|int }}'
+#       unit_of_measurement: '%'
+#       entity_id: device_tracker.iphone.attributes
+#       warnings: false

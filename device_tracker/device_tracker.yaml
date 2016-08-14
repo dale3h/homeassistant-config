@@ -2,10 +2,34 @@
 ## Device Tracker
 ################################################################
 
+################################################
+## AsusWRT
+################################################
+
 - platform: asuswrt
   host: !env_var ASUSWRT_HOST
+  protocol: ssh
+  mode: router
   username: !env_var ASUSWRT_USERNAME
-  password: !env_var ASUSWRT_PASSWORD
+  ssh_key: !env_var ASUSWRT_SSH_KEY
 
-- platform: owntracks
-  max_gps_accuracy: 200
+################################################
+## Bluetooth
+################################################
+
+- platform: bluetooth_tracker
+
+################################################
+## iCloud
+################################################
+
+# - platform: icloud
+#   username: !env_var ICLOUD_USERNAME
+#   password: !env_var ICLOUD_PASSWORD
+
+################################################
+## OwnTracks
+################################################
+
+# - platform: owntracks
+#   max_gps_accuracy: 200

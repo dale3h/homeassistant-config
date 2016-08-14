@@ -1,0 +1,22 @@
+################################################################
+## Sensor / UPS
+################################################################
+
+- platform: apcupsd
+  resources:
+    - bcharge
+    - cumonbatt
+    - date
+    - linev
+    - loadpct
+    - nominv
+    - nompower
+    - numxfers
+    - outputv
+    - selftest
+    - starttime
+    - status
+    - timeleft
+    - tonbatt
+    - xoffbatt
+    - xonbatt

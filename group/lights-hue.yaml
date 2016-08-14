@@ -1,0 +1,30 @@
+################################################################
+## Group / Lights / Hue
+################################################################
+
+hue_lights:
+  name: Hue Lights
+  entities:
+    - light.chandelier_1
+    - light.chandelier_2
+    - light.chandelier_3
+    - light.dining_room_1
+    - light.dining_room_2
+    - light.entryway_1
+    - light.entryway_2
+    - light.front_porch
+    - light.guest_bathroom_1
+    - light.guest_bathroom_2
+    - light.guest_bedroom
+    - light.hallway
+    - light.laundry_room
+    - light.living_room_1
+    - light.living_room_2
+    - light.master_bathroom_1
+    - light.master_bathroom_2
+    - light.master_bedroom_1
+    - light.master_bedroom_2
+    - light.master_closet
+    - light.parkers_closet
+    - light.range
+    - light.sink

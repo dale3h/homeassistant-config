@@ -1,0 +1,12 @@
+################################################################
+## Shell Command / Utilities
+################################################################
+
+https_proxy_start: 'pm2 start hass-https-proxy'
+https_proxy_kill: 'pm2 stop hass-https-proxy'
+
+backup_config: '/home/pi/shell/backup_config.sh'
+rebuild_customize: 'hass-customizer'
+
+# Need to make this run in the background...it halts the restart
+update_hass: 'nohup /home/pi/shell/update_hass.sh </dev/null >/home/pi/shell/update_hass.log 2>&1 &'

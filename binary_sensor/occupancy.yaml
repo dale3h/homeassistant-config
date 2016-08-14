@@ -2,6 +2,24 @@
 ## Binary Sensor / Occupancy
 ################################################################
 
-- platform: occupancy
-  name: Test Occupancy
-  entity_id: sensor.hallway_motion_motion
+- platform: template
+  sensors:
+    guest_bedroom_occupancy:
+      value_template: "{{ states.sensor.guest_bedroom_occupancy.state == 'true' }}"
+      entity_id: sensor.guest_bedroom_occupancy
+      warnings: false
+
+    hallway_occupancy:
+      value_template: "{{ states.sensor.home_occupancy.state == 'true' }}"
+      entity_id: sensor.home_occupancy
+      warnings: false
+
+    living_room_occupancy:
+      value_template: "{{ states.sensor.living_room_occupancy.state == 'true' }}"
+      entity_id: sensor.living_room_occupancy
+      warnings: false
+
+    master_bedroom_occupancy:
+      value_template: "{{ states.sensor.master_bedroom_occupancy.state == 'true' }}"
+      entity_id: sensor.master_bedroom_occupancy
+      warnings: false

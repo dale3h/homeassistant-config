@@ -16,10 +16,9 @@ dining_room:
 entryway:
   name: Entryway
   entities:
+    - light.entryway_lamp_level_3
     - light.entryway_1
     - light.entryway_2
-    - sensor.front_door_contact
-    - sensor.front_door_temperature
 
 front_porch:
   name: Front Porch
@@ -30,8 +29,10 @@ garage:
   name: Garage
   entities:
     - light.garage
-    - sensor.garage_entry_door_contact
-    - sensor.garage_entry_door_temperature
+    - binary_sensor.parkers_closet_door_contact
+    - switch.garage_door
+    - garage_door.garage_door
+    - sensor.aladdin_connect
 
 guest_bathroom:
   name: Guest Bathroom
@@ -43,18 +44,12 @@ guest_bedroom:
   name: Guest Bedroom
   entities:
     - light.guest_bedroom
-    - sensor.guest_bedroom_temperature
-    - sensor.guest_bedroom_occupancy
 
 hallway:
   name: Hallway
   entities:
     - light.hallway
     - sensor.home_humidity
-    - sensor.home_occupancy
-    - sensor.home_temperature
-    - sensor.hallway_motion_motion
-    - sensor.hallway_motion_temperature
 
 kitchen:
   name: Kitchen
@@ -66,10 +61,14 @@ kitchen:
     - light.sink
     - switch.pepper_fan
     - sensor.pepper_fan_power
+    - sensor.kitchen_luminance_6
+    - sensor.kitchen_ultraviolet_6
 
 laundry_room:
   name: Laundry Room
   entities:
+    - binary_sensor.garage_entry_contact
+    - binary_sensor.garage_entry_acceleration
     - light.laundry_room
 
 living_room:
@@ -77,34 +76,25 @@ living_room:
   entities:
     - light.living_room_1
     - light.living_room_2
-    - sensor.living_room_temperature
-    - sensor.living_room_occupancy
     - media_player.my_aftm_2
-
-master_bathroom:
-  name: Master Bathroom
-  entities:
-    - light.master_bathroom_1
-    - light.master_bathroom_2
+    - switch.projector
+    - sensor.harmony_hub_activity
 
 master_bedroom:
   name: Master Bedroom
   entities:
+    - binary_sensor.closet_door_contact
     - light.master_bedroom_1
     - light.master_bedroom_2
     - light.master_bathroom_1
     - light.master_bathroom_2
     - light.master_closet
-    - sensor.master_bedroom_temperature
-    - sensor.master_bedroom_occupancy
+    - light.master_bedroom_lamp_level_2
     - media_player.my_aftm
+    - sensor.master_bathroom_luminance_4
+    - sensor.master_bathroom_ultraviolet_4
 
-master_closet:
-  name: Master Closet
-  entities:
-    - light.master_closet
-
-parkers_closet:
-  name: "Parker's Closet"
+parkers_bedroom:
+  name: "Parker's Bedroom"
   entities:
     - light.parkers_closet

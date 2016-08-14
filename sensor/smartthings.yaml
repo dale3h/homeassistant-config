@@ -7,108 +7,84 @@
 ################################################
 
 - platform: mqtt
-  name: Pepper Fan Power
-  state_topic: smartthings/Pepper Fan/power
+  name: pepper_fan_power
+  state_topic: smartthings/pepper_fan/power
   unit_of_measurement: 'W'
 
 ################################################
-## Front Door
+## Garage Entry
 ################################################
 
 - platform: mqtt
-  name: Front Door Battery
-  state_topic: smartthings/Front Door/battery
+  name: garage_entry_battery
+  state_topic: smartthings/garage_entry/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: Front Door Temperature
-  state_topic: smartthings/Front Door/temperature
+  name: garage_entry_temperature
+  state_topic: smartthings/garage_entry/temperature
   unit_of_measurement: '°F'
 
-- platform: mqtt
-  name: Front Door Acceleration
-  state_topic: smartthings/Front Door/acceleration
-
-- platform: mqtt
-  name: Front Door Contact
-  state_topic: smartthings/Front Door/contact
-
-- platform: mqtt
-  name: Front Door Three Axis
-  state_topic: smartthings/Front Door/threeAxis
+# - platform: mqtt
+#   name: garage_entry_position
+#   state_topic: smartthings/garage_entry/threeAxis
 
 ################################################
-## Pantry Door
+## Closet Door
 ################################################
 
 - platform: mqtt
-  name: Pantry Door Battery
-  state_topic: smartthings/Pantry Door/battery
+  name: closet_door_battery
+  state_topic: smartthings/closet_door/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: Pantry Door Temperature
-  state_topic: smartthings/Pantry Door/temperature
+  name: closet_door_temperature
+  state_topic: smartthings/closet_door/temperature
   unit_of_measurement: '°F'
 
-- platform: mqtt
-  name: Pantry Door Acceleration
-  state_topic: smartthings/Pantry Door/acceleration
-
-- platform: mqtt
-  name: Pantry Door Contact
-  state_topic: smartthings/Pantry Door/contact
-
-- platform: mqtt
-  name: Pantry Door Three Axis
-  state_topic: smartthings/Pantry Door/threeAxis
+# - platform: mqtt
+#   name: closet_door_position
+#   state_topic: smartthings/closet_door/threeAxis
 
 ################################################
-## Garage Entry Door
+## Parker's Closet Door
 ################################################
 
 - platform: mqtt
-  name: Garage Entry Door Battery
-  state_topic: smartthings/Garage Entry Door/battery
+  name: parkers_closet_door_battery
+  state_topic: smartthings/parkers_closet_door/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: Garage Entry Door Temperature
-  state_topic: smartthings/Garage Entry Door/temperature
+  name: parkers_closet_door_temperature
+  state_topic: smartthings/parkers_closet_door/temperature
   unit_of_measurement: '°F'
 
-- platform: mqtt
-  name: Garage Entry Door Contact
-  state_topic: smartthings/Garage Entry Door/contact
-
 ################################################
-## Hallway Motion
+## Master Bedroom Motion Sensor
 ################################################
 
 - platform: mqtt
-  name: Hallway Motion Battery
-  state_topic: smartthings/Hallway Motion/battery
+  name: master_bedroom_battery
+  state_topic: smartthings/master_bedroom_motion/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: Hallway Motion Temperature
-  state_topic: smartthings/Hallway Motion/temperature
+  name: master_bedroom_motion_temperature
+  state_topic: smartthings/master_bedroom_motion/temperature
   unit_of_measurement: '°F'
-
-- platform: mqtt
-  name: Hallway Motion Motion
-  state_topic: smartthings/Hallway Motion/motion
 
 ################################################
 ## Iris Smart Button
 ################################################
 
 - platform: mqtt
-  name: Smart Button Battery
-  state_topic: smartthings/Iris Smart Button/battery
+  name: network_cabinet_battery
+  state_topic: smartthings/network_cabinet/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: Smart Button Temperature
-  state_topic: smartthings/Iris Smart Button/temperature
+  name: network_cabinet_temperature
+  state_topic: smartthings/network_cabinet/temperature
   unit_of_measurement: '°F'

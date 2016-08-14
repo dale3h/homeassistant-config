@@ -1,8 +1,0 @@
-################################################################
-## Light / Hue
-################################################################
-
-- platform: hue
-  host: !env_var HUE_HOST
-  allow_unreachable: true
-  filename: phue.conf

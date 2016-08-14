@@ -1,0 +1,13 @@
+################################################################
+## Garage Door
+################################################################
+
+################################################
+## Aladdin Connect MQTT Bridge
+################################################
+
+- platform: mqtt
+  name: garage_door
+  state_topic: home-assistant/garage-door/state
+  command_topic: home-assistant/garage-door/command
+  retain: true

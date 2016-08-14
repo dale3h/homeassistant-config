@@ -1,0 +1,54 @@
+################################################################
+## Group / Views
+################################################################
+
+home:
+  name: Home
+  view: yes
+  entities:
+    - group.back_porch
+    - group.dining_room
+    - group.entryway
+    - group.front_porch
+    - group.garage
+    - group.guest_bedroom
+    - group.hallway
+    - group.hue_lights
+    - group.kitchen
+    - group.laundry_room
+    - group.living_room
+    - group.master_bedroom
+    - group.scripts
+
+household:
+  name: Household
+  view: yes
+  entities:
+    - group.person_dale
+    - group.guests
+
+sensors:
+  name: Sensors
+  view: yes
+  entities:
+    - group.weather
+    - group.batteries
+    - group.temperature
+    - group.motion
+    - group.occupancy
+    - group.ups
+
+media:
+  name: Media
+  view: yes
+  entities:
+    - group.media_components
+    - group.media_player
+
+automation:
+  name: Automation
+  view: yes
+  entities:
+    - group.automation_override
+    - group.scripts
+    - group.scenes

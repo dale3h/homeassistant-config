@@ -1,0 +1,31 @@
+################################################################
+## Automation / Laundry Room Lighting
+################################################################
+
+- alias: Laundry Room Light ON when Acceleration is ACTIVE
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_entry_contact
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.garage_entry_acceleration
+      to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.laundry_room, light.garage
+      data_template:
+        brightness: "{{ states('sensor.time_brightness')|int }}"
+
+- alias: Laundry Room Light OFF when Acceleration is INACTIVE
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_entry_contact
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.garage_entry_acceleration
+      to: 'off'
+  action:
+    - delay:
+        minutes: 5
+    - service: light.turn_off
+      entity_id: light.laundry_room, light.garage

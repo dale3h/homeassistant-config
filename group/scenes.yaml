@@ -1,0 +1,16 @@
+################################################################
+## Group / Scenes
+################################################################
+
+scenes:
+  name: Scenes
+  entities:
+    - scene.arrival
+    - scene.departure
+    - scene.evening
+    - scene.morning
+    - scene.night
+    - scene.sexy_time
+    - scene.startup
+    - scene.bedroom
+    - scene.dining

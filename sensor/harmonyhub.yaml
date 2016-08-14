@@ -1,0 +1,7 @@
+################################################################
+## Sensor / Harmony Hub
+################################################################
+
+- platform: command_line
+  name: harmony_hub_activity
+  command: 'harmonyhub-cli --hub=192.168.1.70 --read=status | cut -d "\"" -f2 | tail -n 1'

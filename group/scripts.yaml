@@ -1,0 +1,12 @@
+################################################################
+## Group / Scripts
+################################################################
+
+scripts:
+  name: Scripts
+  entities:
+    - script.backup_config
+    - script.reload_config
+    - script.update_hass
+    - script.rebuild_customize
+    - script.restart_ha

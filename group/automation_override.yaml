@@ -1,0 +1,11 @@
+################################################################
+## Group / Automation Override
+################################################################
+
+automation_override:
+  entities:
+    - input_boolean.https_proxy
+    - switch.sunrise_lighting
+    - switch.master_bedroom_motion
+    - switch.master_bathroom_motion
+    - switch.kitchen_motion

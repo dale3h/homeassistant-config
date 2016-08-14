@@ -5,25 +5,6 @@
 - platform: template
   sensors:
     aladdin_connect:
-      friendly_name: Aladdin Connect
-      value_template: >-
-        {%- if is_state('device_tracker.aladdin_connect', 'home') %}
-          online
-        {% else %}
-          offline
-        {%- endif %}
-
-# - platform: template
-#   sensors:
-#     time_brightness:
-#       friendly_name: Time Based Brightness
-#       condition: time
-#       after: '15:00:00'
-#       value_template: >-
-#         {%- if now.time < '01:00:00' %}
-#           1am
-#         {% elif now.time < '06:00:00' %}
-#           6am
-#         {% else %}
-#           {{ now.date }}
-#         {%- endif %}
+      value_template: "{{ 'online' if is_state('device_tracker.aladdin_connect', 'home') else 'offline' }}"
+      entity_id: device_tracker.aladdin_connect
+      warnings: false

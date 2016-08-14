@@ -1,0 +1,27 @@
+################################################################
+## Group / Network Devices
+################################################################
+
+network_devices:
+  name: Network Devices
+  entities:
+    - device_tracker.net_aladdin_connect
+    - device_tracker.net_echo_kitchen
+    - device_tracker.net_echo_bathroom
+    - device_tracker.net_echo_garage
+    - device_tracker.net_ecobee3
+    - device_tracker.net_firetv1
+    - device_tracker.net_firetv2
+    - device_tracker.net_firetv3
+    - device_tracker.net_harmonyhub
+    - device_tracker.net_htpc
+    - device_tracker.net_limitlessled
+    - device_tracker.net_oak1
+    - device_tracker.net_philipshue
+    - device_tracker.net_projector
+    - device_tracker.net_samsung_tv
+    - device_tracker.net_smartthings
+    - device_tracker.net_starbase
+    - device_tracker.net_workshop
+    - device_tracker.net_yamaha_rxv675
+    - device_tracker.net_yamaha_wifi_bridge

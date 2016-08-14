@@ -1,0 +1,9 @@
+################################################################
+## Sensor / System
+################################################################
+
+- platform: command_line
+  name: cpu_temperature
+  command: cat /sys/class/thermal/thermal_zone0/temp
+  unit_of_measurement: '°C'
+  value_template: '{{ value | multiply(0.001) }}'

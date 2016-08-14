@@ -1,0 +1,10 @@
+################################################################
+## iCloud
+################################################################
+
+dale:
+  username: !env_var ICLOUD_USERNAME
+  password: !env_var ICLOUD_PASSWORD
+  ignored_devices:
+    - dalesipad
+    - dalesmacbookpro

@@ -1,0 +1,26 @@
+################################################################
+## Shell Command / Harmony Hub
+################################################################
+
+################################################
+## harmonyHubCLI Documentation:
+##   https://github.com/sushilks/harmonyHubCLI
+################################################
+
+################################################
+## Yamaha AV Receiver
+################################################
+
+harmonyhub_raw: 'harmonyhub-cli --hub=192.168.1.70 {{ args }}'
+harmonyhub_device_command: 'harmonyhub-cli --hub=192.168.1.70 --device="{{ device }}" --command={{ command }}'
+harmonyhub_activity_command: 'harmonyhub-cli --hub=192.168.1.70 --actvity="{{ activity }}" --command={{ command }}'
+
+################################################
+## Epson Projector
+################################################
+
+
+################################################
+## Amazon Fire TV Stick
+################################################
+

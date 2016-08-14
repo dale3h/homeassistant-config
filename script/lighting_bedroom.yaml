@@ -1,0 +1,24 @@
+################################################################
+## Script / Master Bedroom Motion
+################################################################
+
+master_bedroom_motion_helper:
+  sequence:
+    - delay:
+        minutes: 5
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom_1, light.master_bedroom_2
+
+master_bedroom_motion_timer:
+  sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.master_bedroom_motion_helper
+    - service: light.turn_on
+      entity_id: light.master_bedroom_1, light.master_bedroom_2
+      data_template:
+        brightness: "{{ states('sensor.time_brightness')|int }}"
+    - service: script.turn_on
+      data:
+        entity_id: script.master_bedroom_motion_helper

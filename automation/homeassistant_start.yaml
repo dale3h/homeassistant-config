@@ -11,11 +11,10 @@
     platform: event
     event_type: homeassistant_start
   action:
-    service: notify.pushover
+    service: notify.telegram
     data:
-      message: Home Assistant started
-      data:
-        sound: bugle
+      title: ''
+      message: Home Assistant is now up and running.
 
 ################################################
 ## Rebuild Customize on Startup

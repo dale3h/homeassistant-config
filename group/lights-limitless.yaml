@@ -1,0 +1,8 @@
+################################################################
+## Group / Lights / Limitless
+################################################################
+
+limitless_lights:
+  name: Limitless Lights
+  entities:
+    - light.garage

@@ -2,7 +2,10 @@
 ## Zone
 ################################################################
 
-- name: Office
+- name: office
   latitude: 32.661021
   longitude: -97.286764
-  icon: mdi:city
+
+- name: parents
+  latitude: 33.102449
+  longitude: -95.095234

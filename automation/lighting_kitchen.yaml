@@ -1,0 +1,31 @@
+################################################################
+## Automation / Kitchen Lighting
+################################################################
+
+- alias: Kitchen Lights ON when Motion Active
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_sensor_6
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: switch.kitchen_motion
+    state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.range, light.sink, light.chandelier_1, light.chandelier_2, light.chandelier_3
+    data_template:
+      brightness: "{{ states('sensor.time_brightness')|int }}"
+
+- alias: Kitchen Lights OFF when Motion Inactive
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_sensor_6
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: switch.kitchen_motion
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.range, light.sink, light.chandelier_1, light.chandelier_2, light.chandelier_3

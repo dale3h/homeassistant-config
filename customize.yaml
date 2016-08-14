@@ -3,345 +3,627 @@
 ################################################################
 
 ################################################
+## Binary Sensor
+################################################
+
+binary_sensor.closet_door_contact:
+  friendly_name: Closet Door
+  sensor_class: opening
+
+binary_sensor.front_door_contact:
+  friendly_name: Front Door
+  sensor_class: opening
+
+binary_sensor.garage_entry_acceleration:
+  friendly_name: Garage Entry Acceleration
+  sensor_class: moving
+
+binary_sensor.garage_entry_contact:
+  friendly_name: Garage Entry Door
+  sensor_class: opening
+
+binary_sensor.guest_bedroom_occupancy:
+  friendly_name: Guest Bedroom Occupancy
+  sensor_class: motion
+
+binary_sensor.hallway_occupancy:
+  friendly_name: Hallway Occupancy
+  sensor_class: motion
+
+binary_sensor.kitchen_sensor_6:
+  friendly_name: Kitchen Motion
+  sensor_class: motion
+
+binary_sensor.living_room_occupancy:
+  friendly_name: Living Room Occupancy
+  sensor_class: motion
+
+binary_sensor.master_bathroom_sensor_4:
+  friendly_name: Master Bathroom Motion
+  sensor_class: motion
+
+binary_sensor.master_bedroom_motion:
+  friendly_name: Master Bedroom Motion
+  sensor_class: motion
+
+binary_sensor.master_bedroom_occupancy:
+  friendly_name: Master Bedroom Occupancy
+  sensor_class: motion
+
+binary_sensor.parkers_closet_door_contact:
+  friendly_name: "Parker's Closet Door"
+  sensor_class: opening
+
+################################################
+## Camera
+################################################
+
+camera.hitech_barn:
+  friendly_name: Barn
+
+camera.hitech_camper:
+  friendly_name: Camper
+
+camera.hitech_driveway:
+  friendly_name: Driveway
+
+camera.hitech_front_yard:
+  friendly_name: Front Yard
+
+################################################
 ## Device Tracker
 ################################################
 
-device_tracker.dale3h_ipad:
-  icon: mdi:tablet-ipad
+device_tracker.android2:
+  friendly_name: Android 2
+  icon: mdi:cellphone-android
 
-device_tracker.dale3h_iphone:
+device_tracker.courtneys_iphone:
+  friendly_name: Courtney (iPhone)
   icon: mdi:cellphone-iphone
 
-device_tracker.dale3h_macbookpro:
-  icon: mdi:laptop-mac
-
-device_tracker.jonathans_iphone:
+device_tracker.dales_iphone:
+  friendly_name: Dale (iPhone)
   icon: mdi:cellphone-iphone
 
-device_tracker.jonathans_macbookpro:
-  icon: mdi:laptop-mac
-
-device_tracker.jons_iphone:
+device_tracker.dales_iphone_bt:
+  friendly_name: Dale (BT)
   icon: mdi:cellphone-iphone
 
-device_tracker.jons_laptop:
-  icon: mdi:laptop
-
-device_tracker.lyndees_ipad:
-  icon: mdi:tablet-ipad
-
-device_tracker.lyndees_iphone:
+device_tracker.iphone:
+  friendly_name: Dale (iCloud)
   icon: mdi:cellphone-iphone
 
-device_tracker.lyndees_macbookpro:
-  icon: mdi:laptop-mac
+device_tracker.net_aladdin_connect:
+  friendly_name: Aladdin Connect
+  icon: mdi:glassdoor
 
-device_tracker.parkers_ipad:
-  icon: mdi:tablet-ipad
+device_tracker.net_echo_bathroom:
+  friendly_name: Bathroom Echo
+  icon: mdi:amazon
+
+device_tracker.net_echo_garage:
+  friendly_name: Garage Echo
+  icon: mdi:amazon
+
+device_tracker.net_echo_kitchen:
+  friendly_name: Kitchen Echo
+  icon: mdi:amazon
+
+device_tracker.net_ecobee3:
+  friendly_name: ecobee3
+  icon: mdi:nest-thermostat
+
+device_tracker.net_firetv1:
+  friendly_name: Fire TV Stick 1
+  icon: mdi:amazon
+
+device_tracker.net_firetv2:
+  friendly_name: Fire TV Stick 2
+  icon: mdi:amazon
+
+device_tracker.net_firetv3:
+  friendly_name: Fire TV Stick 3
+  icon: mdi:amazon
+
+device_tracker.net_harmonyhub:
+  friendly_name: Harmony Hub
+  icon: mdi:remote
+
+device_tracker.net_htpc:
+  friendly_name: HTPC
+  icon: mdi:windows
+
+device_tracker.net_limitlessled:
+  friendly_name: Limitless LED
+  icon: mdi:lightbulb
+
+device_tracker.net_oak1:
+  friendly_name: Oak 1
+  icon: mdi:chip
+
+device_tracker.net_philipshue:
+  friendly_name: Philips Hue
+  icon: mdi:lightbulb
+
+device_tracker.net_projector:
+  friendly_name: Projector
+  icon: mdi:projector
+
+device_tracker.net_samsung_tv:
+  friendly_name: Samsung TV
+  icon: mdi:television
+
+device_tracker.net_smartthings:
+  friendly_name: SmartThings
+  icon: mdi:cloud-circle
+
+device_tracker.net_starbase:
+  friendly_name: Starbase
+  icon: mdi:server-security
+
+device_tracker.net_workshop:
+  friendly_name: Workshop
+  icon: mdi:windows
+
+device_tracker.net_yamaha_rxv675:
+  friendly_name: Yamaha RX-V675
+  icon: mdi:music-box
+
+device_tracker.net_yamaha_wifi_bridge:
+  friendly_name: Yamaha WiFi Bridge
+  icon: mdi:wifi
+
+device_tracker.russells_iphone:
+  friendly_name: Russ (iPhone)
+  icon: mdi:cellphone-iphone
 
 device_tracker.tonyias_kindle:
+  friendly_name: Tonyia (Kindle)
   icon: mdi:tablet-android
 
-device_tracker.tristans_ipad:
-  icon: mdi:tablet-ipad
+device_tracker.unknown1:
+  friendly_name: Unknown 1
+  icon: mdi:help-circle
+
+device_tracker.unknown2:
+  friendly_name: Unknown 2
+  icon: mdi:help-circle
+
+################################################
+## Garage Door
+################################################
+
+garage_door.garage_door:
+  friendly_name: Garage Door
+  haaska_hidden: false
+  icon: mdi:glassdoor
 
 ################################################
 ## Group
 ################################################
 
 group.all_devices:
+  friendly_name: All Devices
+  haaska_hidden: true
+
+group.all_garage_doors:
+  friendly_name: All Garage Doors
   haaska_hidden: true
 
 group.all_lights:
+  friendly_name: All Lights
   haaska_hidden: true
 
 group.all_switches:
+  friendly_name: All Switches
   haaska_hidden: true
 
 group.automation:
+  friendly_name: Automation
   haaska_hidden: true
   icon: mdi:settings
 
 group.automation_override:
+  friendly_name: Automation Override
   haaska_hidden: true
 
 group.back_porch:
+  friendly_name: Back Porch
+  haaska_hidden: true
+
+group.batteries:
+  friendly_name: Batteries
   haaska_hidden: true
 
 group.dining_room:
+  friendly_name: Dining Room
   haaska_hidden: true
 
 group.entryway:
-  haaska_hidden: true
-
-group.friends:
+  friendly_name: Entryway
   haaska_hidden: true
 
 group.front_porch:
+  friendly_name: Front Porch
   haaska_hidden: true
 
 group.garage:
+  friendly_name: Garage
   haaska_hidden: true
 
 group.guest_bathroom:
+  friendly_name: Guest Bathroom
   haaska_hidden: true
 
 group.guest_bedroom:
+  friendly_name: Guest Bedroom
   haaska_hidden: true
 
 group.guests:
+  friendly_name: Guests
   haaska_hidden: true
   icon: mdi:human-male-female
 
 group.hallway:
+  friendly_name: Hallway
   haaska_hidden: true
 
 group.home:
+  friendly_name: Home
   haaska_hidden: true
   icon: mdi:home
 
 group.household:
+  friendly_name: Household
   haaska_hidden: true
+  icon: mdi:human-greeting
 
 group.hue_lights:
+  friendly_name: Hue Lights
   haaska_hidden: true
   icon: mdi:lightbulb
 
 group.kitchen:
+  friendly_name: Kitchen
   haaska_hidden: true
 
 group.laundry_room:
+  friendly_name: Laundry Room
   haaska_hidden: true
 
 group.limitless_lights:
+  friendly_name: Limitless Lights
   haaska_hidden: true
   icon: mdi:lightbulb
 
 group.living_room:
-  haaska_hidden: true
-
-group.master_bathroom:
+  friendly_name: Living Room
   haaska_hidden: true
 
 group.master_bedroom:
-  haaska_hidden: true
-
-group.master_closet:
+  friendly_name: Master Bedroom
   haaska_hidden: true
 
 group.media:
+  friendly_name: Media
   haaska_hidden: true
   icon: mdi:play-circle-outline
 
+group.media_components:
+  friendly_name: Media Components
+  haaska_hidden: true
+
 group.media_player:
+  friendly_name: Media Player
+  haaska_hidden: true
+
+group.motion:
+  friendly_name: Motion
   haaska_hidden: true
 
 group.network_devices:
+  friendly_name: Network Devices
   haaska_hidden: true
 
-group.parkers_closet:
+group.occupancy:
+  friendly_name: Occupancy
   haaska_hidden: true
 
-group.people:
+group.parkers_bedroom:
+  friendly_name: "Parker's Bedroom"
   haaska_hidden: true
-  icon: mdi:human-greeting
 
 group.person_courtney:
+  friendly_name: Courtney
   haaska_hidden: true
   icon: mdi:human-female
 
 group.person_dale:
+  friendly_name: Dale
   haaska_hidden: true
   icon: mdi:human-male
-
-group.person_jon:
-  haaska_hidden: true
-  icon: mdi:human-male
-
-group.person_jonathan:
-  haaska_hidden: true
-  icon: mdi:human-male
-
-group.person_lyndee:
-  haaska_hidden: true
-  icon: mdi:human-female
-
-group.person_parker:
-  haaska_hidden: true
-  icon: mdi:human-child
 
 group.person_russell:
+  friendly_name: Russell
   haaska_hidden: true
   icon: mdi:human-male
 
 group.person_tonyia:
+  friendly_name: Tonyia
   haaska_hidden: true
   icon: mdi:human-female
 
-group.person_tristan:
-  haaska_hidden: true
-  icon: mdi:human-child
-
 group.scenes:
+  friendly_name: Scenes
   haaska_hidden: true
 
 group.scripts:
+  friendly_name: Scripts
   haaska_hidden: true
   icon: mdi:script
+  order: 1
 
 group.sensors:
+  friendly_name: Sensors
   haaska_hidden: true
   icon: mdi:gauge
 
 group.system:
+  friendly_name: System
+  haaska_hidden: true
+
+group.temperature:
+  friendly_name: Temperature
+  haaska_hidden: true
+  icon: mdi:thermometer
+
+group.ups:
+  friendly_name: Battery Backup
   haaska_hidden: true
 
 group.weather:
+  friendly_name: Weather
   haaska_hidden: true
+
+################################################
+## Icloud
+################################################
+
+icloud.dale:
+  friendly_name: Dale
+
+################################################
+## Idevice
+################################################
+
+idevice.iphone:
+  friendly_name: iPhone
 
 ################################################
 ## Input Boolean
 ################################################
 
 input_boolean.https_proxy:
+  friendly_name: HTTPS Proxy
   haaska_hidden: true
+  icon: mdi:server-security
 
 ################################################
 ## Light
 ################################################
 
 light.back_porch:
+  friendly_name: Back Porch
+  haaska_hidden: true
+
+light.master_bedroom_lamp_level_2:
+  friendly_name: Master Bedroom Lamp
   haaska_hidden: true
 
 light.chandelier_1:
+  friendly_name: Chandelier 1
   haaska_hidden: true
 
 light.chandelier_2:
+  friendly_name: Chandelier 2
   haaska_hidden: true
 
 light.chandelier_3:
+  friendly_name: Chandelier 3
   haaska_hidden: true
 
 light.dining_room_1:
+  friendly_name: Dining Room 1
   haaska_hidden: true
 
 light.dining_room_2:
+  friendly_name: Dining Room 2
   haaska_hidden: true
 
 light.entryway_1:
+  friendly_name: Entryway 1
   haaska_hidden: true
 
 light.entryway_2:
+  friendly_name: Entryway 2
   haaska_hidden: true
 
 light.front_porch:
+  friendly_name: Front Porch
   haaska_hidden: true
 
 light.garage:
+  friendly_name: Garage
   haaska_hidden: false
-  haaska_name: Garage
 
 light.guest_bathroom_1:
+  friendly_name: Guest Bathroom 1
   haaska_hidden: true
 
 light.guest_bathroom_2:
+  friendly_name: Guest Bathroom 2
   haaska_hidden: true
 
 light.guest_bedroom:
+  friendly_name: Guest Bedroom
   haaska_hidden: true
 
 light.hallway:
+  friendly_name: Hallway
   haaska_hidden: true
 
 light.laundry_room:
+  friendly_name: Laundry Room
   haaska_hidden: true
 
 light.living_room_1:
+  friendly_name: Living Room 1
   haaska_hidden: true
 
 light.living_room_2:
+  friendly_name: Living Room 2
   haaska_hidden: true
 
+light.entryway_lamp_level_3:
+  friendly_name: Entryway Lamp
+  haaska_hidden: false
+
 light.master_bathroom_1:
+  friendly_name: Master Bathroom 1
   haaska_hidden: true
 
 light.master_bathroom_2:
+  friendly_name: Master Bathroom 2
   haaska_hidden: true
 
 light.master_bedroom_1:
+  friendly_name: Master Bedroom 1
   haaska_hidden: true
 
 light.master_bedroom_2:
+  friendly_name: Master Bedroom 2
   haaska_hidden: true
 
 light.master_closet:
+  friendly_name: Master Closet
   haaska_hidden: true
 
 light.parkers_closet:
+  friendly_name: "Parker's Closet"
   haaska_hidden: true
 
 light.range:
+  friendly_name: Range
   haaska_hidden: true
 
 light.sink:
+  friendly_name: Sink
   haaska_hidden: true
 
 ################################################
 ## Media Player
 ################################################
 
+media_player.bedroom_tv:
+  friendly_name: Bedroom TV
+
+media_player.iphone:
+  friendly_name: iPhone
+
+media_player.living_room_fire_tv:
+  friendly_name: Living Room Fire TV
+
 media_player.my_aftm:
-  friendly_name: Bedroom Fire TV
-  haaska_hidden: true
+  friendly_name: My Amazon Fire TV 1
 
 media_player.my_aftm_2:
-  friendly_name: Living Room Fire TV
-  haaska_hidden: true
+  friendly_name: My Amazon Fire TV 2
 
 ################################################
 ## Scene
 ################################################
 
 scene.arrival:
+  friendly_name: Arrival
   haaska_hidden: false
   haaska_name: Arrival Scene
+  icon: mdi:map-marker
+
+scene.bedroom:
+  friendly_name: Bedroom
+  haaska_hidden: false
+  haaska_name: Bedroom Scene
+  icon: mdi:hotel
 
 scene.departure:
+  friendly_name: Departure
   haaska_hidden: false
   haaska_name: Departure Scene
+  icon: mdi:map-marker-off
+
+scene.dining:
+  friendly_name: Dining
+  haaska_hidden: false
+  haaska_name: Dining Scene
+  icon: mdi:food
+
+scene.kitchen_motion_active:
+  friendly_name: Kitchen Motion Active
+  haaska_hidden: true
+  hidden: true
+
+scene.kitchen_motion_inactive:
+  friendly_name: Kitchen Motion Inactive
+  haaska_hidden: true
+  hidden: true
 
 scene.sexy_time:
+  friendly_name: Sexy Time
   haaska_hidden: true
   haaska_name: Sexy Time
+  icon: mdi:heart
 
 scene.startup:
-  haaska_hidden: true
+  friendly_name: Startup
+  icon: mdi:power-settings
 
 ################################################
 ## Script
 ################################################
 
-script.hallway_motion_timed_128:
+script.backup_config:
+  friendly_name: Backup Configuration
+  haaska_hidden: false
+  icon: mdi:backup-restore
+
+script.update_hass:
+  friendly_name: Update Home Assistant
+  haaska_hidden: false
+  icon: mdi:upload
+
+script.reload_config:
+  friendly_name: Reload Configuration
+  haaska_hidden: false
+  icon: mdi:refresh
+
+script.master_bedroom_motion_helper:
+  friendly_name: Master Bedroom Motion Helper
   haaska_hidden: true
   hidden: true
 
-script.hallway_motion_timed_255:
-  haaska_hidden: true
-  hidden: true
-
-script.hallway_motion_timed_64:
-  haaska_hidden: true
-  hidden: true
-
-script.hallway_motion_timer:
+script.master_bedroom_motion_timer:
+  friendly_name: Master Bedroom Motion Timer
   haaska_hidden: true
   hidden: true
 
 script.rebuild_customize:
+  friendly_name: Rebuild Customize
   haaska_hidden: true
   icon: mdi:settings
 
 script.restart_ha:
+  friendly_name: Restart Home Assistant
   haaska_hidden: true
   icon: mdi:power
 
@@ -349,18 +631,313 @@ script.restart_ha:
 ## Sensor
 ################################################
 
+sensor.aladdin_connect:
+  friendly_name: Aladdin Connect
+  icon: mdi:lan-connect
+
+sensor.closet_door_battery:
+  friendly_name: Closet Door Battery
+  icon: mdi:battery
+
+sensor.closet_door_temperature:
+  friendly_name: Closet Door Temperature
+  icon: mdi:thermometer
+
+sensor.cpu_temperature:
+  friendly_name: CPU Temperature
+  icon: mdi:thermometer
+
+sensor.front_door_battery:
+  friendly_name: Front Door Battery
+  icon: mdi:battery
+
+sensor.front_door_temperature:
+  friendly_name: Front Door Temperature
+  icon: mdi:thermometer
+
+sensor.garage_entry_battery:
+  friendly_name: Garage Entry Battery
+  icon: mdi:battery
+
+sensor.garage_entry_temperature:
+  friendly_name: Garage Entry Temperature
+  icon: mdi:thermometer
+
+sensor.guest_bedroom_occupancy:
+  friendly_name: Guest Bedroom Occupancy
+  hidden: true
+
+sensor.guest_bedroom_temperature:
+  friendly_name: Guest Bedroom Temperature
+  icon: mdi:thermometer
+
+sensor.harmony_hub_activity:
+  friendly_name: Harmony Hub Activity
+
+sensor.home_humidity:
+  friendly_name: Home Humidity
+  icon: mdi:water-percent
+
+sensor.home_occupancy:
+  friendly_name: Home Occupancy
+  hidden: true
+
+sensor.home_temperature:
+  friendly_name: Home Temperature
+  icon: mdi:thermometer
+
+sensor.iphone_battery:
+  friendly_name: iPhone Battery
+  icon: mdi:battery
+
+sensor.kitchen_alarm_level_6:
+  friendly_name: Kitchen Alarm Level
+  hidden: true
+
+sensor.kitchen_alarm_type_6:
+  friendly_name: Kitchen Alarm Type
+  hidden: true
+
+sensor.kitchen_burglar_6:
+  friendly_name: Kitchen Burglar
+  hidden: true
+
+sensor.kitchen_luminance_6:
+  friendly_name: Kitchen Luminance
+  icon: mdi:theme-light-dark
+
+sensor.kitchen_relative_humidity_6:
+  friendly_name: Kitchen Humidity
+  icon: mdi:water-percent
+
+sensor.kitchen_sourcenodeid_6:
+  friendly_name: Kitchen SourceNodeId
+  hidden: true
+
+sensor.kitchen_temperature_6:
+  friendly_name: Kitchen Temperature
+  icon: mdi:thermometer
+
+sensor.kitchen_ultraviolet_6:
+  friendly_name: Kitchen Ultraviolet
+  icon: mdi:sunglasses
+
+sensor.living_room_occupancy:
+  friendly_name: Living Room Occupancy
+  hidden: true
+
+sensor.living_room_temperature:
+  friendly_name: Living Room Temperature
+  icon: mdi:thermometer
+
+sensor.master_bathroom_alarm_level_4:
+  friendly_name: Master Bathroom Alarm Level
+  hidden: true
+
+sensor.master_bathroom_alarm_type_4:
+  friendly_name: Master Bathroom Alarm Type
+  hidden: true
+
+sensor.master_bathroom_battery_4:
+  friendly_name: Master Bathroom Battery
+  icon: mdi:battery
+
+sensor.master_bathroom_burglar_4:
+  friendly_name: Master Bathroom Burglar
+  hidden: true
+
+sensor.master_bathroom_luminance_4:
+  friendly_name: Master Bathroom Luminance
+  icon: mdi:theme-light-dark
+
+sensor.master_bathroom_relative_humidity_4:
+  friendly_name: Master Bathroom Humidity
+  icon: mdi:water-percent
+
+sensor.master_bathroom_sourcenodeid_4:
+  friendly_name: Master Bathroom SourceNodeId
+  hidden: true
+
+sensor.master_bathroom_temperature_4:
+  friendly_name: Master Bathroom Temperature
+  icon: mdi:thermometer
+
+sensor.master_bathroom_ultraviolet_4:
+  friendly_name: Master Bathroom Ultraviolet
+  icon: mdi:sunglasses
+
+sensor.master_bedroom_battery:
+  friendly_name: Master Bedroom Battery
+  icon: mdi:battery
+
+sensor.master_bedroom_motion_temperature:
+  friendly_name: Master Bedroom Temperature
+  icon: mdi:thermometer
+
+sensor.master_bedroom_occupancy:
+  friendly_name: Master Bedroom Occupancy
+  hidden: true
+
+sensor.master_bedroom_temperature:
+  friendly_name: Master Bedroom Temperature
+  icon: mdi:thermometer
+
+sensor.network_cabinet_battery:
+  friendly_name: Network Cabinet Battery
+  icon: mdi:battery
+
+sensor.network_cabinet_temperature:
+  friendly_name: Network Cabinet Temperature
+  icon: mdi:thermometer
+
+sensor.parkers_closet_door_battery:
+  friendly_name: "Parker's Closet Door Battery"
+  icon: mdi:battery
+
+sensor.parkers_closet_door_temperature:
+  friendly_name: "Parker's Closet Door Temperature"
+  icon: mdi:thermometer
+
 sensor.pepper_fan_power:
+  friendly_name: Pepper Fan Power
   icon: mdi:flash
+
+sensor.time_brightness:
+  friendly_name: Time Based Brightness
+  hidden: true
+
+sensor.ups_battery:
+  friendly_name: UPS Battery
+
+sensor.ups_input_voltage:
+  friendly_name: UPS Input Voltage
+
+sensor.ups_last_self_test:
+  friendly_name: UPS Last Self Test
+
+sensor.ups_load:
+  friendly_name: UPS Load
+
+sensor.ups_nominal_input_voltage:
+  friendly_name: UPS Nominal Input Voltage
+
+sensor.ups_nominal_output_power:
+  friendly_name: UPS Nominal Output Power
+
+sensor.ups_output_voltage:
+  friendly_name: UPS Output Voltage
+
+sensor.ups_startup_time:
+  friendly_name: UPS Startup Time
+
+sensor.ups_status:
+  friendly_name: UPS Status
+
+sensor.ups_status_date:
+  friendly_name: UPS Status Date
+
+sensor.ups_time_left:
+  friendly_name: UPS Time Left
+
+sensor.ups_time_on_battery:
+  friendly_name: UPS Time on Battery
+
+sensor.ups_total_time_on_battery:
+  friendly_name: UPS Total Time on Battery
+
+sensor.ups_transfer_count:
+  friendly_name: UPS Transfer Count
+
+sensor.ups_transfer_from_battery:
+  friendly_name: UPS Transfer from Battery
+
+sensor.ups_transfer_to_battery:
+  friendly_name: UPS Transfer to Battery
+
+sensor.weather_cloud_coverage:
+  friendly_name: Weather Cloud Coverage
+  icon: mdi:weather-partlycloudy
+
+sensor.weather_humidity:
+  friendly_name: Weather Humidity
+  icon: mdi:water-percent
+
+sensor.weather_precip_probability:
+  friendly_name: Weather Precip Probability
+  icon: mdi:water-percent
+
+sensor.weather_temperature:
+  friendly_name: Weather Temperature
+  icon: mdi:thermometer
+
+################################################
+## Sun
+################################################
+
+sun.sun:
+  friendly_name: Sun
 
 ################################################
 ## Switch
 ################################################
 
-switch.pepper_fan:
+switch.fire_tv:
+  friendly_name: Fire TV
   haaska_hidden: false
-  haaska_name: Pepper Fan
+  icon: mdi:amazon
+
+switch.kitchen_motion:
+  friendly_name: Kitchen Motion
+  haaska_hidden: false
+  icon: mdi:walk
+
+switch.master_bathroom_motion:
+  friendly_name: Bathroom Motion
+  haaska_hidden: false
+  icon: mdi:walk
+
+switch.master_bedroom_motion:
+  friendly_name: Bedroom Motion
+  haaska_hidden: false
+  icon: mdi:walk
+
+switch.pepper_fan:
+  friendly_name: Pepper Fan
+  haaska_hidden: false
   icon: mdi:fan
 
+switch.projector:
+  friendly_name: Projector
+  haaska_hidden: false
+  icon: mdi:projector
+
+switch.sunrise_lighting:
+  friendly_name: Sunrise Lighting
+  haaska_hidden: false
+  icon: mdi:weather-sunset-up
+
+################################################
+## Thermostat
+################################################
+
+thermostat.home:
+  friendly_name: Home
+
+################################################
+## Zone
+################################################
+
+zone.home:
+  friendly_name: Home
+
+zone.office:
+  friendly_name: Office
+  icon: mdi:city
+
+zone.parents:
+  friendly_name: Parents
+  icon: mdi:cow
+
 ################################################################
-# Last Generated: Sat Jun 18 2016 02:33:40 GMT-0500 (CDT)
+# Last Generated: Tue Aug 09 2016 02:05:10 GMT-0500 (CDT)
 ################################################################

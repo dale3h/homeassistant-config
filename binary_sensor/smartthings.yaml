@@ -1,0 +1,55 @@
+################################################################
+## Binary Sensor / SmartThings
+################################################################
+
+################################################
+## Garage Entry
+################################################
+
+- platform: mqtt
+  name: garage_entry_acceleration
+  state_topic: smartthings/garage_entry/acceleration
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  name: garage_entry_contact
+  state_topic: smartthings/garage_entry/contact
+  payload_on: 'open'
+  payload_off: 'closed'
+
+################################################
+## Closet Door
+################################################
+
+# - platform: mqtt
+#   name: closet_door_acceleration
+#   state_topic: smartthings/closet_door/acceleration
+#   payload_on: 'active'
+#   payload_off: 'inactive'
+
+- platform: mqtt
+  name: closet_door_contact
+  state_topic: smartthings/closet_door/contact
+  payload_on: 'open'
+  payload_off: 'closed'
+
+################################################
+## Parker's Closet Door
+################################################
+
+- platform: mqtt
+  name: parkers_closet_door_contact
+  state_topic: smartthings/parkers_closet_door/contact
+  payload_on: 'open'
+  payload_off: 'closed'
+
+################################################
+## Master Bedroom Motion Sensor
+################################################
+
+- platform: mqtt
+  name: master_bedroom_motion
+  state_topic: smartthings/master_bedroom_motion/motion
+  payload_on: 'active'
+  payload_off: 'inactive'

@@ -1,0 +1,16 @@
+################################################################
+## Automation / Presence Notification
+################################################################
+
+- alias: Occupant Presence Notification
+  trigger:
+    - platform: state
+      entity_id: group.person_courtney, group.person_dale, group.person_russell, group.person_tonyia
+  condition:
+    - condition: template
+      value_template: "{{ trigger.from_state.state != trigger.to_state.state  }}"
+  action:
+    - service: notify.telegram
+      data_template:
+        title: ''
+        message: "{{ trigger.from_state.attributes.friendly_name }} is {% if trigger.to_state.state == 'home' %}at home{% elif trigger.to_state.state == 'not_home' %}away{% else %}at {{ trigger.to_state.state }}{% endif %}."

@@ -1,0 +1,11 @@
+################################################################
+## Sensor / Weather
+################################################################
+
+- platform: forecast
+  api_key: !env_var FORECAST_API_KEY
+  monitored_conditions:
+    - precip_probability
+    - temperature
+    - cloud_cover
+    - humidity

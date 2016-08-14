@@ -1,0 +1,59 @@
+################################################################
+## Automation / Sun Lighting
+################################################################
+
+################################################
+## Front Porch
+################################################
+
+- trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:45:00'
+  action:
+    service: light.turn_on
+    entity_id: light.front_porch
+
+- trigger:
+    platform: time
+    after: '01:00:00'
+  action:
+    service: light.turn_off
+    entity_id: light.front_porch
+
+################################################
+## Dining Room
+################################################
+
+- trigger:
+    platform: sun
+    event: sunrise
+  condition:
+    condition: state
+    entity_id: switch.sunrise_lighting
+    state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.dining_room_1, light.dining_room_2
+    data:
+      brightness: 255
+      transition: 3600
+
+################################################
+## Master Bedroom
+################################################
+
+- trigger:
+    platform: sun
+    event: sunrise
+  condition:
+    condition: state
+    entity_id: switch.sunrise_lighting
+    state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.master_bedroom_1, light.master_bedroom_2
+    data:
+      brightness: 255
+      color_temp: 154
+      transition: 1800

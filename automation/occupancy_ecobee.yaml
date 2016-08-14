@@ -1,0 +1,39 @@
+################################################################
+## Automation / Home Assistant Startup
+################################################################
+
+- alias: Turn Hallway Light OFF when Unoccupied
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hallway_occupancy
+    to: 'false'
+  action:
+    service: light.turn_off
+    entity_id: light.hallway
+
+- alias: Turn Living Room Light OFF when Unoccupied
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_occupancy
+    to: 'false'
+  action:
+    service: light.turn_off
+    entity_id: light.living_room_1, light.living_room_2
+
+- alias: Turn Master Bedroom Light OFF when Unoccupied
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_occupancy
+    to: 'false'
+  action:
+    service: light.turn_off
+    entity_id: light.master_bedroom_1, light.master_bedroom_2
+
+- alias: Turn Guest Bedroom Light OFF when Unoccupied
+  trigger:
+    platform: state
+    entity_id: binary_sensor.guest_bedroom_occupancy
+    to: 'false'
+  action:
+    service: light.turn_off
+    entity_id: light.guest_bedroom

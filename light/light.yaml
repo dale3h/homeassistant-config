@@ -1,0 +1,26 @@
+################################################################
+## Light
+################################################################
+
+################################################
+## Philips Hue
+################################################
+
+- platform: hue
+  host: !env_var HUE_HOST
+  allow_unreachable: true
+  filename: phue.conf
+
+################################################
+## LimitlessLED
+################################################
+
+- platform: limitlessled
+  bridges:
+    - host: !env_var LIMITLESSLED_HOST
+      version: 5
+      port: 8899
+      groups:
+      - number: 1
+        type: rgbw
+        name: garage

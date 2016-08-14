@@ -1,0 +1,49 @@
+################################################################
+## Scene / Rooms
+################################################################
+
+################################################
+## Bedroom
+################################################
+
+- name: bedroom
+  entities:
+    light.master_bedroom_1:
+      state: on
+      brightness: 255
+      color_temp: 362
+      rgb_color: [255, 200, 118]
+      xy_color: [0.457, 0.4098]
+    light.master_bedroom_2:
+      state: on
+      brightness: 255
+      color_temp: 362
+      rgb_color: [255, 200, 118]
+      xy_color: [0.457, 0.4098]
+    group.hue_lights:
+      state: off
+    light.garage:
+      state: off
+
+################################################
+## Dining Room
+################################################
+
+- name: dining
+  entities:
+    light.dining_room_1:
+      state: on
+      brightness: 255
+      color_temp: 362
+      rgb_color: [255, 200, 118]
+      xy_color: [0.457, 0.4098]
+    light.dining_room_2:
+      state: on
+      brightness: 255
+      color_temp: 362
+      rgb_color: [255, 200, 118]
+      xy_color: [0.457, 0.4098]
+    group.hue_lights:
+      state: off
+    light.garage:
+      state: off

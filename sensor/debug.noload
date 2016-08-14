@@ -1,8 +1,0 @@
-################################################################
-## Sensor / Debug
-################################################################
-
-# - platform: mqtt
-#   name: front_door
-#   state_topic: sensors/front_door
-#   value_template: '{{ value_json }}'

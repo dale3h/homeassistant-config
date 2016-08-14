@@ -36,18 +36,24 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+# Python cache
+__pycache__
+*.pyc
+
 # Other
 *.conf
 *.db
 *.log
+*.noload
+*.txt
+*.sqlite
+*.xml
+*.backup
 .HA_VERSION
-customize.yaml.backup
-home-assistant.db
-home-assistant.env
-home-assistant.log
+home-assistant.*
 known_devices.yaml
-TODO.md
 components
 custom_components
+public_help
 deps
 www

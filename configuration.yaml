@@ -6,8 +6,9 @@ homeassistant:
   name: Home
   latitude: !env_var HOMEASSISTANT_LATITUDE
   longitude: !env_var HOMEASSISTANT_LONGITUDE
-  temperature_unit: F
+  elevation: !env_var HOMEASSISTANT_ELEVATION
   time_zone: America/Chicago
+  unit_system: imperial
   customize: !include customize.yaml
 
 conversation:
@@ -46,37 +47,40 @@ recorder:
 ################################################
 
 logger: !include logger.yaml
-# zwave: !include zwave.yaml
+zwave: !include zwave.yaml
+icloud: !include icloud.yaml
 
 ################################################
 ## Component Includes (Named)
 ################################################
 
 alexa:
-  intents: !include_dir_named alexa/
+  intents: !include_dir_named alexa
 
 ################################################
 ## Component Includes (Merge List)
 ################################################
 
-automation: !include_dir_merge_list automation/
-binary_sensor: !include_dir_merge_list binary_sensor/
-device_tracker: !include_dir_merge_list device_tracker/
-light: !include_dir_merge_list light/
-media_player: !include_dir_merge_list media_player/
-notify: !include_dir_merge_list notify/
-scene: !include_dir_merge_list scene/
-sensor: !include_dir_merge_list sensor/
-switch: !include_dir_merge_list switch/
-zone: !include_dir_merge_list zone/
+automation: !include_dir_merge_list automation
+binary_sensor: !include_dir_merge_list binary_sensor
+camera: !include_dir_merge_list camera
+device_tracker: !include_dir_merge_list device_tracker
+garage_door: !include_dir_merge_list garage_door
+light: !include_dir_merge_list light
+media_player: !include_dir_merge_list media_player
+notify: !include_dir_merge_list notify
+scene: !include_dir_merge_list scene
+sensor: !include_dir_merge_list sensor
+switch: !include_dir_merge_list switch
+zone: !include_dir_merge_list zone
 
 ################################################
 ## Component Includes (Merge Named)
 ################################################
 
-group: !include_dir_merge_named group/
-input_boolean: !include_dir_merge_named input_boolean/
-# input_select: !include_dir_merge_named input_select/
-# input_slider: !include_dir_merge_named input_slider/
-script: !include_dir_merge_named script/
-shell_command: !include_dir_merge_named shell_command/
+group: !include_dir_merge_named group
+input_boolean: !include_dir_merge_named input_boolean
+# input_select: !include_dir_merge_named input_select
+# input_slider: !include_dir_merge_named input_slider
+script: !include_dir_merge_named script
+shell_command: !include_dir_merge_named shell_command

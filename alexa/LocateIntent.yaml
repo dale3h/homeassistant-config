@@ -3,8 +3,9 @@
 ################################################################
 
 action:
-  service: notify.pushover
+  service: notify.telegram
   data:
+    title: ''
     message: Your location has been queried via Alexa.
 speech:
   type: plaintext

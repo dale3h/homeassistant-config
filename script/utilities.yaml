@@ -2,13 +2,22 @@
 ## Script / Utilities
 ################################################################
 
+backup_config:
+  sequence:
+    - service: shell_command.backup_config
+
 rebuild_customize:
-  alias: Rebuild Customize
   sequence:
     - service: shell_command.rebuild_customize
-    - service: homeassistant.restart
+
+reload_config:
+  sequence:
+    - service: homeassistant.reload_core_config
 
 restart_ha:
-  alias: Restart Home Assistant
   sequence:
     - service: homeassistant.restart
+
+update_hass:
+  sequence:
+    - service: shell_command.update_hass

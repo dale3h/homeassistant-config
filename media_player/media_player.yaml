@@ -1,10 +1,54 @@
 ################################################################
-## Media Player
+## Media Player / Fire TV
 ################################################################
 
-- platform: plex
+################################################
+## Fire TV
+################################################
 
 # - platform: firetv
 #   host: localhost:5556
 #   device: default
-#   name: Living Room Fire TV
+#   name: living_room_fire_tv
+
+################################################
+## Plex
+################################################
+
+- platform: plex
+
+################################################
+## Universal
+################################################
+
+# - platform: universal
+#   name: MEDIA_PLAYER_NAME
+#   children:
+#     - media_player.CHILD_1_ID
+#     - media_player.CHILD_2_ID
+#   commands:
+#     turn_on:
+#        service: SERVICE
+#        data: SERVICE_DATA
+#     turn_off:
+#        service: SERVICE
+#        data: SERVICE_DATA
+#     volume_up:
+#        service: SERVICE
+#        data: SERVICE_DATA
+#     volume_down:
+#        service: SERVICE
+#        data: SERVICE_DATA
+#     volume_mute:
+#        service: SERVICE
+#        data: SERVICE_DATA
+#   attributes:
+#     is_volume_muted: ENTITY_ID|ATTRIBUTE
+#     state: ENTITY_ID|ATTRIBUTE
+
+################################################
+## Yamaha
+################################################
+
+# - platform: yamaha
+#   name: living_room_receiver

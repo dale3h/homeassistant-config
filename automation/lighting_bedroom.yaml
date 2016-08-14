@@ -1,0 +1,15 @@
+################################################################
+## Automation / Master Bedroom Lighting
+################################################################
+
+- alias: Master Bedroom Light ON when Motion is ACTIVE
+  trigger:
+    platform: state
+    entity_id: binary_sensor.master_bedroom_motion
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: switch.master_bedroom_motion
+    state: 'on'
+  action:
+    service: script.master_bedroom_motion_timer

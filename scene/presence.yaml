@@ -1,0 +1,39 @@
+################################################################
+## Scene / Presence
+################################################################
+
+################################################
+## Arrival
+################################################
+
+- name: arrival
+  entities:
+    thermostat.home:
+      away_mode: off
+    light.laundry_room:
+      state: on
+      brightness: 255
+    light.dining_room_1:
+      state: on
+      brightness: 255
+    light.dining_room_2:
+      state: on
+      brightness: 255
+    light.entryway_lamp_level_3:
+      state: on
+      brightness: 255
+    light.garage:
+      state: on
+      brightness: 255
+      rgb_color: [255, 255, 255]
+
+################################################
+## Departure
+################################################
+
+- name: departure
+  entities:
+    thermostat.home:
+      away_mode: on
+    group.all_lights:
+      state: off

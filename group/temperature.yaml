@@ -1,0 +1,24 @@
+################################################################
+## Group / Temperature
+################################################################
+
+temperature:
+  name: Temperature
+  entities:
+    - sensor.cpu_temperature
+    - sensor.closet_door_temperature
+    - sensor.garage_entry_temperature
+    - sensor.parkers_closet_door_temperature
+    - sensor.master_bedroom_motion_temperature
+    - sensor.network_cabinet_temperature
+    - sensor.guest_bedroom_temperature
+    - sensor.home_temperature
+    - sensor.living_room_temperature
+    - sensor.master_bedroom_temperature
+    - sensor.master_bathroom_temperature_4
+    - sensor.kitchen_temperature_6
+    - sensor.weather_temperature
+    - sensor.home_humidity
+    - sensor.master_bathroom_relative_humidity_4
+    - sensor.kitchen_relative_humidity_6
+    - sensor.weather_humidity
