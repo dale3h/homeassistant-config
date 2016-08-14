@@ -1,0 +1,13 @@
+automation:
+  - alias: Denon likes Sonos
+    trigger:
+      platform: state
+      entity_id: media_player.wohnzimmer
+      to: 'playing'
+    condition:
+      condition: template
+      value_template: "{{ trigger.from_state != 'playing' }}"
+    action:
+      service: homeassistant.turn_on
+      entity_id:
+        - media_player.denon_avrx2000

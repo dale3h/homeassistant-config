@@ -34,9 +34,9 @@ ifttt:
   key: !env_var IFTTT_KEY
 
 mqtt:
-  broker: localhost
-  port: 1883
-  username: homeassistant
+  broker: !env_var MQTT_BROKER
+  port: !env_var MQTT_PORT
+  username: !env_var MQTT_USERNAME
   password: !env_var MQTT_PASSWORD
 
 recorder:

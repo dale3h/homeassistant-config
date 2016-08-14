@@ -1,0 +1,13 @@
+automation:
+  - alias: 'Getting up, turn Kodi up'
+    trigger:
+      platform: time
+      after: '07:00:00'
+    condition:
+      entity_id: media_player.bedroom_kodi
+      state: 'on'
+    action:
+      service: media_player.set_volume_level
+      data:
+        entity_id: media_player.bedroom_kodi
+        volume: 50

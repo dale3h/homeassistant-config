@@ -53,7 +53,5 @@ __pycache__
 home-assistant.*
 known_devices.yaml
 components
-custom_components
-public_help
 deps
 www

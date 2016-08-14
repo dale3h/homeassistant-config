@@ -1,0 +1,13 @@
+script:
+  maybe_send_notification:
+    alias: Maybe Send Alarm Notification
+    sequence:
+      - delay:
+          seconds: "{{ states.alarm_control_panel.your_wishes_are_my_command.attributes.trigger_time|int + 10 }}"
+      - condition: state
+        entity_id: alarm_control_panel.your_wishes_are_my_command
+        state: 'triggered'
+      - service: notify.pushover
+        data:
+          title: Alarm Triggered
+          message: Someone triggered your alarm system!!!

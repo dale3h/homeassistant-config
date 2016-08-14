@@ -1,0 +1,57 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: ##.####
+  longitude: ##.####
+  # Impacts weather/sunrise data
+  elevation: 253
+  # C for Celsius, F for Fahrenheit
+  temperature_unit: F
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Detroit
+  # CUSTOMIZE NEEDS TO BE NESTED UNDER "homeassistant:"
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Weather Prediction
+sensor:
+  platform: yr
+  monitored_conditions:
+    - temperature
+    - precipitation
+    - windSpeed
+    - windDirection
+    - humidity
+
+# Discover some devices automatically
+discovery:
+
+# View all events in a logbook
+logbook:
+
+# Checks for available updates
+updater:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Enables the frontend
+frontend:
+
+# Track the sun
+sun:
+
+# My Sensors Gateway
+mysensors:
+  gateways:
+    - device: '/dev/ttyUSB0'
+      persistence_file: 'path/mysensors.json'
+
+zwave:
+  usb_path: /dev/ttyUSB1

@@ -1,0 +1,47 @@
+input_boolean:
+  bedroom_light_flag:
+    name: Bedroom Light Flag
+    initial: off
+
+automation:
+  - alias: Event turns flag on
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        domain: homeassistant
+        service: turn_on
+        service_data:
+          entity_id: light.bedroom_light
+    action:
+      service: homeassistant.turn_on
+      entity_id: input_boolean.bedroom_light_flag
+
+  - alias: Event turns flag off
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        domain: homeassistant
+        service: turn_off
+        service_data:
+          entity_id: light.bedroom_light
+    action:
+      service: homeassistant.turn_off
+      entity_id: input_boolean.bedroom_light_flag
+
+  - alias: Light was turned on manually
+    trigger:
+      platform: state
+      entity_id: light.bedroom_light
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: input_boolean.bedroom_light_flag
+      state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.bedroom_light_flag
+      - service: notify.notify
+        data:
+          message: Bedroom light was turned on manually
