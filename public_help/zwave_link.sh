@@ -1,5 +1,8 @@
 #!/bin/bash
 
-sudo mkdir /srv/hass/src/open-zwave-control-panel/.backup
-sudo mv /srv/hass/src/open-zwave-control-panel/zw*.xml /srv/hass/src/open-zwave-control-panel/.backup
-sudo ln -s /home/hass/.homeassistant/zw*.xml /srv/hass/src/open-zwave-control-panel/
+OZWCP_PATH=/srv/hass/src/open-zwave-control-panel
+HASS_PATH=/home/hass/.homeassistant
+
+sudo mkdir $OZWCP_PATH/.backup
+sudo mv $OZWCP_PATH/zw*.xml $OZWCP_PATH/.backup
+sudo ln -s /zw*.xml $OZWCP_PATH/
