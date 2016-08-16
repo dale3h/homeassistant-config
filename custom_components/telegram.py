@@ -24,9 +24,9 @@ TELEGRAM = None
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
         vol.Required(CONF_API_KEY): str,
-#         vol.Required(CONF_CHAT_IDS): str,
-#         vol.Required(CONF_USERS): str,
-#         vol.Optional(CONF_ADMINS): str
+         vol.Required(CONF_CHAT_IDS): str,
+         vol.Required(CONF_USERS): str,
+         vol.Optional(CONF_ADMINS): str
     })
 }, extra=vol.ALLOW_EXTRA)
 
@@ -62,7 +62,7 @@ class TelegramBot(object):
 
         self._me = self._bot.getMe()
 
-        _LOGGER.info("Telegram bot is '%s'.", self._me.username)
+        _LOGGER.info("Telegram bot is '%s'.", self._me['username'])
 
     def handle(self, message):
         message = self.parse(message)
