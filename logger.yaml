@@ -6,6 +6,7 @@
 
 default: info
 logs:
+  custom_components.telegram: debug
   homeassistant.components.device_tracker.asuswrt: warn
   homeassistant.components.discovery: warn
   homeassistant.components.http: warn

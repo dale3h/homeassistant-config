@@ -25,9 +25,9 @@ updater:
 
 telegram:
   api_key: !env_var TELEGRAM_BOT_KEY
-#   chat_ids: !env_var TELEGRAM_CHAT_ID
-#   users: dale3h
-#   admins: dale3h
+  chat_ids: !env_var TELEGRAM_CHAT_ID
+  users: dale3h
+  admins: dale3h
 
 ecobee:
   api_key: !env_var ECOBEE_API_KEY

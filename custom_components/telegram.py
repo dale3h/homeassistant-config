@@ -24,9 +24,9 @@ TELEGRAM = None
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
         vol.Required(CONF_API_KEY): str,
-#         vol.Required(CONF_CHAT_IDS): str,
-#         vol.Required(CONF_USERS): str,
-#         vol.Optional(CONF_ADMINS): str
+        vol.Optional(CONF_CHAT_IDS): str,
+        vol.Optional(CONF_USERS): str,
+        vol.Optional(CONF_ADMINS): str
     })
 }, extra=vol.ALLOW_EXTRA)
 
@@ -47,9 +47,9 @@ class TelegramBot(object):
         users = conf.get(CONF_USERS)
         admins = conf.get(CONF_ADMINS)
 
-        _LOGGER.warning('Telegram Chat IDs: %s', chat_ids)
-        _LOGGER.warning('Telegram Users: %s', users)
-        _LOGGER.warning('Telegram Admins: %s', admins)
+        _LOGGER.debug('Telegram Chat IDs: %s', chat_ids)
+        _LOGGER.debug('Telegram Users: %s', users)
+        _LOGGER.debug('Telegram Admins: %s', admins)
 
         self._hass = hass
 
@@ -62,12 +62,17 @@ class TelegramBot(object):
 
         self._me = self._bot.getMe()
 
-        _LOGGER.info("Telegram bot is '%s'.", self._me.username)
+        username = self._me.get('username')
+
+        if username is not None:
+            _LOGGER.info("Telegram bot is '%s'.", self._me.get('username'))
+        else:
+            _LOGGER.warning('Could not get Telegram bot username.')
 
     def handle(self, message):
         message = self.parse(message)
 
-        _LOGGER.warning('Incoming Telegram: %s', message)
+        _LOGGER.debug('Incoming Telegram: %s', message)
 
         self._hass.bus.fire(EVENT_INCOMING_BOT_MESSAGE, message)
 

@@ -43,6 +43,7 @@ __pycache__
 # Other
 *.conf
 *.db
+*.db-journal
 *.log
 *.noload
 *.txt

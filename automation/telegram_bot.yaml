@@ -12,4 +12,4 @@
     - service: notify.telegram
       data_template:
         title: ''
-        message: "I rolled a die and got {{ [1, 2, 3, 4, 5, 6]|random }}."
+        message: "I rolled a die and got {{ range(1,7)|random }}."
