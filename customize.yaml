@@ -26,7 +26,7 @@ binary_sensor.guest_bedroom_occupancy:
   friendly_name: Guest Bedroom Occupancy
   sensor_class: motion
 
-binary_sensor.hallway_occupancy:
+binary_sensor.home_occupancy:
   friendly_name: Hallway Occupancy
   sensor_class: motion
 
@@ -71,6 +71,22 @@ camera.hitech_front_yard:
   friendly_name: Front Yard
 
 ################################################
+## Climate
+################################################
+
+climate.home:
+  friendly_name: Home
+
+################################################
+## Cover
+################################################
+
+cover.garage_door:
+  friendly_name: Garage Door
+  haaska_hidden: false
+  icon: mdi:glassdoor
+
+################################################
 ## Device Tracker
 ################################################
 
@@ -93,6 +109,10 @@ device_tracker.dales_iphone_bt:
 device_tracker.iphone:
   friendly_name: Dale (iCloud)
   icon: mdi:cellphone-iphone
+
+device_tracker.meagans_android:
+  friendly_name: Meagan (Android)
+  icon: mdi:cellphone-android
 
 device_tracker.net_aladdin_connect:
   friendly_name: Aladdin Connect
@@ -191,24 +211,15 @@ device_tracker.unknown2:
   icon: mdi:help-circle
 
 ################################################
-## Garage Door
-################################################
-
-garage_door.garage_door:
-  friendly_name: Garage Door
-  haaska_hidden: false
-  icon: mdi:glassdoor
-
-################################################
 ## Group
 ################################################
 
-group.all_devices:
-  friendly_name: All Devices
+group.all_covers:
+  friendly_name: All Covers
   haaska_hidden: true
 
-group.all_garage_doors:
-  friendly_name: All Garage Doors
+group.all_devices:
+  friendly_name: All Devices
   haaska_hidden: true
 
 group.all_lights:
@@ -343,6 +354,11 @@ group.person_dale:
   friendly_name: Dale
   haaska_hidden: true
   icon: mdi:human-male
+
+group.person_meagan:
+  friendly_name: Meagan
+  haaska_hidden: true
+  icon: mdi:human-female
 
 group.person_russell:
   friendly_name: Russell
@@ -527,18 +543,23 @@ light.sink:
 
 media_player.bedroom_tv:
   friendly_name: Bedroom TV
+  haaska_hidden: true
 
 media_player.iphone:
   friendly_name: iPhone
+  haaska_hidden: true
 
 media_player.living_room_fire_tv:
   friendly_name: Living Room Fire TV
+  haaska_hidden: true
 
 media_player.my_aftm:
   friendly_name: My Amazon Fire TV 1
+  haaska_hidden: true
 
 media_player.my_aftm_2:
   friendly_name: My Amazon Fire TV 2
+  haaska_hidden: true
 
 ################################################
 ## Scene
@@ -568,6 +589,10 @@ scene.dining:
   haaska_name: Dining Scene
   icon: mdi:food
 
+scene.goodnight:
+  friendly_name: Goodnight
+  haaska_hidden: true
+
 scene.kitchen_motion_active:
   friendly_name: Kitchen Motion Active
   haaska_hidden: true
@@ -596,6 +621,10 @@ script.backup_config:
   friendly_name: Backup Configuration
   haaska_hidden: false
   icon: mdi:backup-restore
+
+script.goodnight:
+  friendly_name: Goodnight
+  haaska_hidden: true
 
 script.master_bedroom_motion_helper:
   friendly_name: Master Bedroom Motion Helper
@@ -647,6 +676,22 @@ sensor.cpu_temperature:
   friendly_name: CPU Temperature
   icon: mdi:thermometer
 
+sensor.forecastio_cloud_coverage:
+  friendly_name: Cloud Coverage
+  icon: mdi:weather-partlycloudy
+
+sensor.forecastio_humidity:
+  friendly_name: Outside Humidity
+  icon: mdi:water-percent
+
+sensor.forecastio_precip_probability:
+  friendly_name: Precip Probability
+  icon: mdi:water-percent
+
+sensor.forecastio_temperature:
+  friendly_name: Outside Temperature
+  icon: mdi:thermometer
+
 sensor.front_door_battery:
   friendly_name: Front Door Battery
   icon: mdi:battery
@@ -663,10 +708,6 @@ sensor.garage_entry_temperature:
   friendly_name: Garage Entry Temperature
   icon: mdi:thermometer
 
-sensor.guest_bedroom_occupancy:
-  friendly_name: Guest Bedroom Occupancy
-  hidden: true
-
 sensor.guest_bedroom_temperature:
   friendly_name: Guest Bedroom Temperature
   icon: mdi:thermometer
@@ -677,10 +718,6 @@ sensor.harmony_hub_activity:
 sensor.home_humidity:
   friendly_name: Home Humidity
   icon: mdi:water-percent
-
-sensor.home_occupancy:
-  friendly_name: Home Occupancy
-  hidden: true
 
 sensor.home_temperature:
   friendly_name: Home Temperature
@@ -721,10 +758,6 @@ sensor.kitchen_temperature_6:
 sensor.kitchen_ultraviolet_6:
   friendly_name: Kitchen Ultraviolet
   icon: mdi:sunglasses
-
-sensor.living_room_occupancy:
-  friendly_name: Living Room Occupancy
-  hidden: true
 
 sensor.living_room_temperature:
   friendly_name: Living Room Temperature
@@ -773,10 +806,6 @@ sensor.master_bedroom_battery:
 sensor.master_bedroom_motion_temperature:
   friendly_name: Master Bedroom Temperature
   icon: mdi:thermometer
-
-sensor.master_bedroom_occupancy:
-  friendly_name: Master Bedroom Occupancy
-  hidden: true
 
 sensor.master_bedroom_temperature:
   friendly_name: Master Bedroom Temperature
@@ -854,22 +883,6 @@ sensor.ups_transfer_from_battery:
 sensor.ups_transfer_to_battery:
   friendly_name: UPS Transfer to Battery
 
-sensor.weather_cloud_coverage:
-  friendly_name: Weather Cloud Coverage
-  icon: mdi:weather-partlycloudy
-
-sensor.weather_humidity:
-  friendly_name: Weather Humidity
-  icon: mdi:water-percent
-
-sensor.weather_precip_probability:
-  friendly_name: Weather Precip Probability
-  icon: mdi:water-percent
-
-sensor.weather_temperature:
-  friendly_name: Weather Temperature
-  icon: mdi:thermometer
-
 ################################################
 ## Sun
 ################################################
@@ -911,17 +924,15 @@ switch.projector:
   haaska_hidden: false
   icon: mdi:projector
 
+switch.shower_mode:
+  friendly_name: Shower Mode
+  haaska_hidden: false
+  icon: mdi:water-pump
+
 switch.sunrise_lighting:
   friendly_name: Sunrise Lighting
   haaska_hidden: false
   icon: mdi:weather-sunset-up
-
-################################################
-## Thermostat
-################################################
-
-thermostat.home:
-  friendly_name: Home
 
 ################################################
 ## Updater
@@ -946,5 +957,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Sun Aug 14 2016 10:41:37 GMT-0500 (CDT)
+# Last Generated: Wed Aug 31 2016 13:37:43 GMT-0500 (CDT)
 ################################################################

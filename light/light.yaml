@@ -7,7 +7,7 @@
 ################################################
 
 - platform: hue
-  host: !env_var HUE_HOST
+  host: !secret hue_host
   allow_unreachable: true
   filename: phue.conf
 
@@ -17,7 +17,7 @@
 
 - platform: limitlessled
   bridges:
-    - host: !env_var LIMITLESSLED_HOST
+    - host: !secret limitlessled_host
       version: 5
       port: 8899
       groups:

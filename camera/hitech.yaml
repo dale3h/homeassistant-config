@@ -4,16 +4,16 @@
 
 - platform: generic
   name: hitech_driveway
-  still_image_url: !env_var CAMERA_HITECH_DRIVEWAY_URL
+  still_image_url: !secret camera_hitech_driveway_url
 
 - platform: generic
   name: hitech_front_yard
-  still_image_url: !env_var CAMERA_HITECH_FRONT_YARD_URL
+  still_image_url: !secret camera_hitech_front_yard_url
 
 - platform: generic
   name: hitech_barn
-  still_image_url: !env_var CAMERA_HITECH_BARN_URL
+  still_image_url: !secret camera_hitech_barn_url
 
 - platform: generic
   name: hitech_camper
-  still_image_url: !env_var CAMERA_HITECH_CAMPER_URL
+  still_image_url: !secret camera_hitech_camper_url

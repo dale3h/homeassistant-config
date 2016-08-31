@@ -5,7 +5,7 @@
 guests:
   name: Guests
   entities:
-    - group.person_courtney
+    - group.person_meagan
     - group.person_russell
     - group.person_tonyia
 
@@ -20,6 +20,11 @@ person_dale:
     - device_tracker.iphone
     - device_tracker.dales_iphone
     - device_tracker.dales_iphone_bt
+
+person_meagan:
+  name: Meagan
+  entities:
+    - device_tracker.meagans_android
 
 person_russell:
   name: Russell

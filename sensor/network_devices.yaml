@@ -7,4 +7,4 @@
     aladdin_connect:
       value_template: "{{ 'online' if is_state('device_tracker.aladdin_connect', 'home') else 'offline' }}"
       entity_id: device_tracker.aladdin_connect
-      warnings: false
+#       warnings: false

@@ -8,7 +8,7 @@
 
 - name: arrival
   entities:
-    thermostat.home:
+    climate.home:
       away_mode: off
     light.laundry_room:
       state: on
@@ -33,7 +33,7 @@
 
 - name: departure
   entities:
-    thermostat.home:
+    climate.home:
       away_mode: on
     group.all_lights:
       state: off

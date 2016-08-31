@@ -7,11 +7,11 @@
 ################################################
 
 - platform: asuswrt
-  host: !env_var ASUSWRT_HOST
+  host: !secret asuswrt_host
   protocol: ssh
   mode: router
-  username: !env_var ASUSWRT_USERNAME
-  ssh_key: !env_var ASUSWRT_SSH_KEY
+  username: !secret asuswrt_username
+  ssh_key: !secret asuswrt_ssh_key
 
 ################################################
 ## Bluetooth
@@ -24,8 +24,8 @@
 ################################################
 
 # - platform: icloud
-#   username: !env_var ICLOUD_USERNAME
-#   password: !env_var ICLOUD_PASSWORD
+#   username: !secret icloud_username
+#   password: !secret icloud_password
 
 ################################################
 ## OwnTracks

@@ -31,7 +31,7 @@ garage:
     - light.garage
     - binary_sensor.parkers_closet_door_contact
     - switch.garage_door
-    - garage_door.garage_door
+    - cover.garage_door
     - sensor.aladdin_connect
 
 guest_bathroom:

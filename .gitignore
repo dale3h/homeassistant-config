@@ -51,8 +51,10 @@ __pycache__
 *.xml
 *.backup
 .HA_VERSION
+home-assistant.env
 home-assistant.*
 known_devices.yaml
+secrets.yaml
 components
 deps
 www

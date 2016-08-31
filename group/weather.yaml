@@ -6,7 +6,7 @@ weather:
   name: Weather
   entities:
     - sun.sun
-    - sensor.weather_cloud_coverage
-    - sensor.weather_humidity
-    - sensor.weather_precip_probability
-    - sensor.weather_temperature
+    - sensor.forecastio_cloud_coverage
+    - sensor.forecastio_humidity
+    - sensor.forecastio_precip_probability
+    - sensor.forecastio_temperature

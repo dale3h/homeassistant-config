@@ -1,0 +1,21 @@
+################################################################
+## Automation / Shower Mode
+################################################################
+
+- alias: Shower Mode Enabled
+  trigger:
+    - platform: state
+      entity_id: switch.shower_mode
+      to: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.master_bathroom_motion
+    - service: light.turn_on
+      entity_id: light.master_bathroom_1, light.master_bathroom_2
+      data_template:
+        brightness: "{{ states('sensor.time_brightness')|int }}"
+    - delay: '00:30:00'
+    - service: switch.turn_on
+      entity_id: switch.master_bathroom_motion
+    - service: switch.turn_off
+      entity_id: switch.shower_mode

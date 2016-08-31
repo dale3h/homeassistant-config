@@ -1,0 +1,8 @@
+################################################################
+## Script / Goodnight
+################################################################
+
+goodnight:
+  sequence:
+    - service: scene.turn_on
+      entity_id: scene.goodnight

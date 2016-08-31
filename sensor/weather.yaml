@@ -3,7 +3,7 @@
 ################################################################
 
 - platform: forecast
-  api_key: !env_var FORECAST_API_KEY
+  api_key: !secret forecast_api_key
   monitored_conditions:
     - precip_probability
     - temperature

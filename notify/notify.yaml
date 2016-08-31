@@ -15,8 +15,8 @@
 
 - platform: pushover
   name: pushover
-  api_key: !env_var PUSHOVER_API_KEY
-  user_key: !env_var PUSHOVER_USER_KEY
+  api_key: !secret pushover_api_key
+  user_key: !secret pushover_user_key
 
 ################################################
 ## System Log
@@ -34,5 +34,5 @@
 
 - platform: telegram
   name: telegram
-  api_key: !env_var TELEGRAM_API_KEY
-  chat_id: !env_var TELEGRAM_CHAT_ID
+  api_key: !secret telegram_api_key
+  chat_id: !secret telegram_chat_id

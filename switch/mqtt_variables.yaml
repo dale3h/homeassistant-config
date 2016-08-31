@@ -33,3 +33,11 @@
   payload_on: 'on'
   payload_off: 'off'
   retain: true
+
+- platform: mqtt
+  name: shower_mode
+  state_topic: home-assistant/variable/shower_mode
+  command_topic: home-assistant/variable/shower_mode
+  payload_on: 'on'
+  payload_off: 'off'
+  retain: true

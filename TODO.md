@@ -1,5 +1,12 @@
 ## Todo
 
+* Remove possessive names and make singular
+* Add names for new entities
+* Automate Goodnight/Good Morning button
+  * After 9pm, trigger goodnight script (unless already triggered)
+  * After 5am, trigger good morning script (unless already triggered)
+  * After 10am, toggle bedroom motion
+* Move mqtt dash buttons to MQTT sensors
 * Move friendly_name and name to customize.yaml
   * group/people.yaml:  name: Guests
   * group/scripts.yaml:  name: Scripts

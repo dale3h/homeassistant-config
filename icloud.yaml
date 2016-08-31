@@ -3,8 +3,8 @@
 ################################################################
 
 dale:
-  username: !env_var ICLOUD_USERNAME
-  password: !env_var ICLOUD_PASSWORD
+  username: !secret icloud_username
+  password: !secret icloud_password
   ignored_devices:
     - dalesipad
     - dalesmacbookpro

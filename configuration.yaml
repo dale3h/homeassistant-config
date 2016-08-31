@@ -4,14 +4,14 @@
 
 homeassistant:
   name: Home
-  latitude: !env_var HOMEASSISTANT_LATITUDE
-  longitude: !env_var HOMEASSISTANT_LONGITUDE
-  elevation: !env_var HOMEASSISTANT_ELEVATION
+  latitude: !secret homeassistant_latitude
+  longitude: !secret homeassistant_longitude
+  elevation: !secret homeassistant_elevation
   time_zone: America/Chicago
   unit_system: imperial
   customize: !include customize.yaml
 
-conversation:
+# conversation:
 # discovery:
 frontend:
 history:
@@ -23,27 +23,29 @@ updater:
 ## Components (Non-Includes)
 ################################################
 
+apcupsd:
+
 telegram:
-  api_key: !env_var TELEGRAM_BOT_KEY
-  chat_ids: !env_var TELEGRAM_CHAT_ID
+  api_key: !secret telegram_bot_key
+  chat_ids: !secret telegram_chat_id
   users: dale3h
   admins: dale3h
 
 ecobee:
-  api_key: !env_var ECOBEE_API_KEY
+  api_key: !secret ecobee_api_key
   hold_temp: true
 
 http:
-  api_password: !env_var HTTP_API_PASSWORD
+  api_password: !secret http_api_password
 
 ifttt:
-  key: !env_var IFTTT_KEY
+  key: !secret ifttt_key
 
 mqtt:
-  broker: !env_var MQTT_BROKER
-  port: !env_var MQTT_PORT
-  username: !env_var MQTT_USERNAME
-  password: !env_var MQTT_PASSWORD
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
 
 recorder:
   purge_days: 7
@@ -70,8 +72,8 @@ alexa:
 automation: !include_dir_merge_list automation
 binary_sensor: !include_dir_merge_list binary_sensor
 camera: !include_dir_merge_list camera
+cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
-garage_door: !include_dir_merge_list garage_door
 light: !include_dir_merge_list light
 media_player: !include_dir_merge_list media_player
 notify: !include_dir_merge_list notify
