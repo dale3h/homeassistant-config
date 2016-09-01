@@ -3,9 +3,9 @@
 ################################################################
 
 - name: office
-  latitude: 32.661021
-  longitude: -97.286764
+  latitude: !secret office_latitude
+  longitude: !secret office_longitude
 
 - name: parents
-  latitude: 33.102449
-  longitude: -95.095234
+  latitude: !secret parents_latitude
+  longitude: !secret parents_longitude
