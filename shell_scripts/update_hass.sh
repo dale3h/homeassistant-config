@@ -1,0 +1,1 @@
+../../shell/update_hass.sh
