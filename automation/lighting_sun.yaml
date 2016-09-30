@@ -15,8 +15,9 @@
       entity_id: light.front_porch
 
 - trigger:
-    - platform: time
-      after: '01:00:00'
+    - platform: sun
+      event: sunrise
+      offset: '00:45:00'
   action:
     - service: light.turn_off
       entity_id: light.front_porch
@@ -65,6 +66,10 @@
 - trigger:
     - platform: time
       after: '06:00:00'
+  condition:
+    - condition: state
+      entity_id: group.person_dale
+      state: 'home'
   action:
     - service: light.turn_on
       entity_id: light.entryway_lamp_level_3
@@ -75,6 +80,9 @@
     - platform: time
       after: '06:15:00'
   condition:
+    - condition: state
+      entity_id: group.person_dale
+      state: 'home'
     - condition: state
       entity_id: light.entryway_lamp_level_3
       state: 'on'
@@ -89,6 +97,9 @@
       after: '06:30:00'
   condition:
     - condition: state
+      entity_id: group.person_dale
+      state: 'home'
+    - condition: state
       entity_id: light.entryway_lamp_level_3
       state: 'on'
   action:
@@ -102,6 +113,9 @@
       after: '06:45:00'
   condition:
     - condition: state
+      entity_id: group.person_dale
+      state: 'home'
+    - condition: state
       entity_id: light.entryway_lamp_level_3
       state: 'on'
   action:
@@ -114,6 +128,9 @@
     - platform: time
       after: '07:00:00'
   condition:
+    - condition: state
+      entity_id: group.person_dale
+      state: 'home'
     - condition: state
       entity_id: light.entryway_lamp_level_3
       state: 'on'

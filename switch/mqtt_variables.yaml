@@ -41,3 +41,11 @@
   payload_on: 'on'
   payload_off: 'off'
   retain: true
+
+- platform: mqtt
+  name: auto_garage_entry_lighting
+  state_topic: home-assistant/variable/auto_garage_entry_lighting
+  command_topic: home-assistant/variable/auto_garage_entry_lighting
+  payload_on: 'on'
+  payload_off: 'off'
+  retain: true

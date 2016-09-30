@@ -10,3 +10,4 @@ automation_override:
     - switch.master_bedroom_motion
     - switch.master_bathroom_motion
     - switch.shower_mode
+    - switch.auto_garage_entry_lighting

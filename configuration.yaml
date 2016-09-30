@@ -4,9 +4,9 @@
 
 homeassistant:
   name: Home
-  latitude: !secret homeassistant_latitude
-  longitude: !secret homeassistant_longitude
-  elevation: !secret homeassistant_elevation
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
   time_zone: America/Chicago
   unit_system: imperial
   customize: !include customize.yaml
@@ -54,9 +54,10 @@ recorder:
 ## Component Includes (Single File)
 ################################################
 
+emulated_hue: !include emulated_hue.yaml
+icloud: !include icloud.yaml
 logger: !include logger.yaml
 zwave: !include zwave.yaml
-icloud: !include icloud.yaml
 
 ################################################
 ## Component Includes (Named)

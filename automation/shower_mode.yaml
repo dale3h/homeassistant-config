@@ -15,7 +15,19 @@
       data_template:
         brightness: "{{ states('sensor.time_brightness')|int }}"
     - delay: '00:30:00'
-    - service: switch.turn_on
-      entity_id: switch.master_bathroom_motion
     - service: switch.turn_off
       entity_id: switch.shower_mode
+
+- alias: Shower Mode Disabled
+  trigger:
+    - platform: state
+      entity_id: switch.shower_mode
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.master_bathroom_motion
+    - condition: state
+      entity_id: binary_sensor.master_bathroom_sensor_4
+      state: 'off'
+    - service: light.turn_off
+      entity_id: light.master_bathroom_1, light.master_bathroom_2

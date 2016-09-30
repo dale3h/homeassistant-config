@@ -1,5 +1,5 @@
 ################################################################
-## Garage Door
+## Cover / Garage Door
 ################################################################
 
 ################################################
@@ -8,6 +8,11 @@
 
 - platform: mqtt
   name: garage_door
-  state_topic: home-assistant/garage-door/state
-  command_topic: home-assistant/garage-door/command
+  state_topic: home-assistant/cover/garage_door
+  command_topic: home-assistant/cover/garage_door/set
+  payload_open: 'open'
+  payload_close: 'close'
+  payload_stop: 'stop'
+  state_open: 'open'
+  state_closed: 'closed'
   retain: true

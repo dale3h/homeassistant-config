@@ -36,3 +36,12 @@
   name: telegram
   api_key: !secret telegram_api_key
   chat_id: !secret telegram_chat_id
+
+################################################
+## HTML5 Push Notifications
+################################################
+
+# - platform: html5
+#   name: html5
+#   gcm_api_key: !secret html5_api_key
+#   gcm_sender_id: !secret html5_sender_id

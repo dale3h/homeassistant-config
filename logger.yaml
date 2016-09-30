@@ -11,5 +11,5 @@ logs:
   homeassistant.components.discovery: warn
   homeassistant.components.http: warn
   plexapi: warn
-  requests.packages.urllib3.connectionpool: warn
+  requests.packages.urllib3.connectionpool: error
 #   homeassistant.core: warn

@@ -1,0 +1,10 @@
+#################################################################
+## Camera / Hikvision
+#################################################################
+
+- platform: mjpeg
+  name: driveway
+  mjpeg_url: !secret camera_home_driveway_url
+  username: !secret camera_home_driveway_username
+  password: !secret camera_home_driveway_password
+  authentication: basic

@@ -5,7 +5,7 @@
 - platform: template
   sensors:
     master_bathroom_battery_4:
-      value_template: '{{ states.binary_sensor.master_bathroom_sensor_4.attributes.battery_level }}'
+      value_template: "{{ states.binary_sensor.master_bathroom_sensor_4.attributes.battery_level if states.binary_sensor.master_bathroom_sensor_4 is not none else 'unknown' }}"
       unit_of_measurement: '%'
       entity_id: binary_sensor.master_bathroom_sensor_4
 #       warnings: false

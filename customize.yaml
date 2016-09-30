@@ -90,6 +90,14 @@ cover.garage_door:
 ## Device Tracker
 ################################################
 
+device_tracker.18b4304f98f7:
+  date_updated: '2016-09-21 18:54:26'
+  friendly_name: 18b4304f98f7
+
+device_tracker.44650d64c3e0:
+  date_updated: '2016-09-21 18:54:26'
+  friendly_name: 44650d64c3e0
+
 device_tracker.android2:
   friendly_name: Android 2
   icon: mdi:cellphone-android
@@ -106,9 +114,17 @@ device_tracker.dales_iphone_bt:
   friendly_name: Dale (BT)
   icon: mdi:cellphone-iphone
 
+device_tracker.dca9710306ec:
+  date_updated: '2016-09-21 18:54:26'
+  friendly_name: dca9710306ec
+
 device_tracker.iphone:
   friendly_name: Dale (iCloud)
   icon: mdi:cellphone-iphone
+
+device_tracker.lgtv:
+  date_updated: '2016-09-21 18:54:26'
+  friendly_name: LGTV
 
 device_tracker.meagans_android:
   friendly_name: Meagan (Android)
@@ -246,6 +262,11 @@ group.back_porch:
 group.batteries:
   friendly_name: Batteries
   haaska_hidden: true
+
+group.cameras:
+  friendly_name: Cameras
+  haaska_hidden: true
+  icon: mdi:camcorder
 
 group.dining_room:
   friendly_name: Dining Room
@@ -462,7 +483,7 @@ light.entryway_2:
   haaska_hidden: true
 
 light.entryway_lamp_level_3:
-  friendly_name: Entryway Lamp
+  friendly_name: Entry Lamp
   haaska_hidden: false
 
 light.front_porch:
@@ -559,6 +580,11 @@ media_player.my_aftm:
 
 media_player.my_aftm_2:
   friendly_name: My Amazon Fire TV 2
+  haaska_hidden: true
+
+media_player.plex_web_chrome:
+  date_updated: '2016-09-21 18:54:26'
+  friendly_name: Plex Web (Chrome)
   haaska_hidden: true
 
 ################################################
@@ -894,6 +920,11 @@ sun.sun:
 ## Switch
 ################################################
 
+switch.auto_garage_entry_lighting:
+  friendly_name: Automatic Garage Entry Lighting
+  haaska_hidden: false
+  icon: mdi:lightbulb
+
 switch.fire_tv:
   friendly_name: Fire TV
   haaska_hidden: false
@@ -921,7 +952,7 @@ switch.pepper_fan:
 
 switch.projector:
   friendly_name: Projector
-  haaska_hidden: false
+  haaska_hidden: true
   icon: mdi:projector
 
 switch.shower_mode:
@@ -957,5 +988,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Wed Aug 31 2016 13:37:43 GMT-0500 (CDT)
+# Last Generated: Wed Sep 21 2016 19:18:57 GMT-0500 (CDT)
 ################################################################
