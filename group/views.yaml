@@ -31,11 +31,8 @@ cameras:
   name: Cameras
   view: yes
   entities:
-    - camera.driveway
-    - camera.hitech_driveway
-    - camera.hitech_front_yard
-    - camera.hitech_barn
-    - camera.hitech_camper
+    - group.cameras_home
+    - group.cameras_hitech
 
 sensors:
   name: Sensors

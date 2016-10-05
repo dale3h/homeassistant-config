@@ -1,0 +1,38 @@
+################################################################
+## Automation / iCloud Failover
+################################################################
+
+- alias: iCloud Interval 1min if Dale AsusWRT is NOT_HOME and iCloud is HOME
+  trigger:
+    - platform: state
+      entity_id: device_tracker.dales_iphone
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: device_tracker.iphone
+      state: 'home'
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: dale
+        interval: 1
+
+- alias: iCloud Interval 30min if Dale AsusWRT is HOME and iCloud is HOME and interval < 30
+  trigger:
+    - platform: state
+      entity_id: device_tracker.dales_iphone
+      to: 'home'
+  condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.iphone
+        state: 'home'
+      - condition: numeric_state
+        entity_id: idevice.iphone
+        below: 30
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: dale
+        interval: 30

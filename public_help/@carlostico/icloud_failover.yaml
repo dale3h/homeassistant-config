@@ -1,0 +1,82 @@
+################################################################
+## Automation / iCloud Failover
+################################################################
+
+################################################
+## Carlos's iPhone
+################################################
+
+- alias: iCloud Interval 1min if Carlos Netgear is NOT_HOME and iCloud is HOME
+  trigger:
+    - platform: state
+      entity_id: device_tracker.carlossiphone_netgear
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: device_tracker.carlossiphone
+      state: 'home'
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: carlos
+        interval: 1
+
+- alias: iCloud Interval 30min if Carlos Netgear is HOME and iCloud is HOME and interval < 30
+  trigger:
+    - platform: state
+      entity_id: device_tracker.carlossiphone_netgear
+      to: 'home'
+  condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.carlossiphone
+        state: 'home'
+      - condition: numeric_state
+        entity_id: idevice.carlossiphone
+        below: 30
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: carlos
+        interval: 30
+
+################################################
+## Betzi's iPhone
+################################################
+
+- alias: iCloud Interval 1min if Betzi Netgear is NOT_HOME and iCloud is HOME
+  trigger:
+    - platform: state
+      entity_id: device_tracker.betzisiphone_netgear
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: device_tracker.betzisiphone
+      state: 'home'
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: betzi
+        interval: 1
+
+- alias: iCloud Interval 30min if Betzi Netgear is HOME and iCloud is HOME and interval < 30
+  trigger:
+    - platform: state
+      entity_id: device_tracker.betzisiphone_netgear
+      to: 'home'
+  condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: device_tracker.betzisiphone
+        state: 'home'
+      - condition: numeric_state
+        entity_id: idevice.betzisiphone
+        below: 30
+  action:
+    - service: icloud.setinterval
+      data:
+        accountname: betzi
+        interval: 30
+

@@ -1,0 +1,17 @@
+################################################################
+## Group / Cameras
+################################################################
+
+cameras_hitech:
+  name: Hitech Cameras
+  entities:
+    - camera.hitech_driveway
+    - camera.hitech_front_yard
+    - camera.hitech_barn
+    - camera.hitech_camper
+
+cameras_home:
+  name: Home Cameras
+  entities:
+    - camera.driveway
+    - camera.garage
