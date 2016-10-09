@@ -3,6 +3,135 @@
 ################################################################
 
 ################################################
+## Automation
+################################################
+
+automation.activate_arrival_scene:
+  friendly_name: Activate Arrival Scene
+
+automation.activate_departure_scene:
+  friendly_name: Activate Departure Scene
+
+automation.activate_goodnight_script:
+  friendly_name: Activate Goodnight Script
+
+automation.automation_10:
+  friendly_name: automation 10
+
+automation.automation_11:
+  friendly_name: automation 11
+
+automation.automation_12:
+  friendly_name: automation 12
+
+automation.automation_4:
+  friendly_name: automation 4
+
+automation.automation_5:
+  friendly_name: automation 5
+
+automation.automation_6:
+  friendly_name: automation 6
+
+automation.automation_7:
+  friendly_name: automation 7
+
+automation.automation_8:
+  friendly_name: automation 8
+
+automation.automation_9:
+  friendly_name: automation 9
+
+automation.backup_config_at_3am:
+  friendly_name: Backup Config at 3am
+
+automation.home_assistant_update_notification:
+  friendly_name: Home Assistant Update Notification
+
+automation.icloud_interval_1min_if_dale_asuswrt_is_not_home_and_icloud_is_home:
+  friendly_name: iCloud Interval 1min if Dale AsusWRT is NOT_HOME and iCloud is HOME
+
+automation.icloud_interval_30min_if_dale_asuswrt_is_home_and_icloud_is_home_and_interval__30:
+  friendly_name: >-
+    iCloud Interval 30min if Dale AsusWRT is HOME and iCloud is HOME and
+    interval < 30
+
+automation.kill_https_proxy_manual:
+  friendly_name: Kill HTTPS Proxy (Manual)
+
+automation.kitchen_lights_off_when_motion_inactive:
+  friendly_name: Kitchen Lights OFF when Motion Inactive
+
+automation.kitchen_lights_on_when_motion_active:
+  friendly_name: Kitchen Lights ON when Motion Active
+
+automation.laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed:
+  friendly_name: Laundry Room and Garage Lights OFF when Garage Entry Door is CLOSED
+
+automation.laundry_room_and_garage_lights_on_when_garage_entry_door_is_open:
+  friendly_name: Laundry Room and Garage Lights ON when Garage Entry Door is OPEN
+
+automation.master_bathroom_light_off_when_motion_inactive:
+  friendly_name: Master Bathroom Light OFF when Motion Inactive
+
+automation.master_bathroom_light_on_when_motion_active:
+  friendly_name: Master Bathroom Light ON when Motion Active
+
+automation.master_bedroom_light_on_when_motion_is_active:
+  friendly_name: Master Bedroom Light ON when Motion is ACTIVE
+
+automation.master_closet_light_off_when_door_is_closed:
+  friendly_name: Master Closet Light OFF when Door is CLOSED
+
+automation.master_closet_light_on_when_door_is_open:
+  friendly_name: Master Closet Light ON when Door is OPEN
+
+automation.occupant_presence_notification:
+  friendly_name: Occupant Presence Notification
+
+automation.parkers_closet_light_off_when_door_is_closed:
+  friendly_name: "Parker's Closet Light OFF when Door is CLOSED"
+
+automation.parkers_closet_light_on_when_door_is_open:
+  friendly_name: "Parker's Closet Light ON when Door is OPEN"
+
+automation.roll_a_die:
+  friendly_name: Roll a Die
+
+automation.shower_mode_disabled:
+  friendly_name: Shower Mode Disabled
+
+automation.shower_mode_enabled:
+  friendly_name: Shower Mode Enabled
+
+automation.start_https_proxy_auto:
+  friendly_name: Start HTTPS Proxy (Auto)
+
+automation.start_https_proxy_manual:
+  friendly_name: Start HTTPS Proxy (Manual)
+
+automation.startup_notification:
+  friendly_name: Startup Notification
+
+automation.toggle_master_bathroom_motion:
+  friendly_name: Toggle Master Bathroom Motion
+
+automation.toggle_master_bedroom_motion:
+  friendly_name: Toggle Master Bedroom Motion
+
+automation.turn_guest_bedroom_light_off_when_unoccupied:
+  friendly_name: Turn Guest Bedroom Light OFF when Unoccupied
+
+automation.turn_hallway_light_off_when_unoccupied:
+  friendly_name: Turn Hallway Light OFF when Unoccupied
+
+automation.turn_living_room_light_off_when_unoccupied:
+  friendly_name: Turn Living Room Light OFF when Unoccupied
+
+automation.turn_master_bedroom_light_off_when_unoccupied:
+  friendly_name: Turn Master Bedroom Light OFF when Unoccupied
+
+################################################
 ## Binary Sensor
 ################################################
 
@@ -58,6 +187,12 @@ binary_sensor.parkers_closet_door_contact:
 ## Camera
 ################################################
 
+camera.driveway:
+  friendly_name: driveway
+
+camera.garage:
+  friendly_name: garage
+
 camera.hitech_barn:
   friendly_name: Barn
 
@@ -91,12 +226,13 @@ cover.garage_door:
 ################################################
 
 device_tracker.18b4304f98f7:
-  date_updated: '2016-09-21 18:54:26'
   friendly_name: 18b4304f98f7
 
 device_tracker.44650d64c3e0:
-  date_updated: '2016-09-21 18:54:26'
   friendly_name: 44650d64c3e0
+
+device_tracker.50f5da81d269:
+  friendly_name: 50f5da81d269
 
 device_tracker.android2:
   friendly_name: Android 2
@@ -115,15 +251,19 @@ device_tracker.dales_iphone_bt:
   icon: mdi:cellphone-iphone
 
 device_tracker.dca9710306ec:
-  date_updated: '2016-09-21 18:54:26'
   friendly_name: dca9710306ec
+
+device_tracker.hadley_nevils_iphone_2:
+  friendly_name: Hadley Nevil’s iPhone (2)
+
+device_tracker.ipcam1:
+  friendly_name: IPCam1
 
 device_tracker.iphone:
   friendly_name: Dale (iCloud)
   icon: mdi:cellphone-iphone
 
 device_tracker.lgtv:
-  date_updated: '2016-09-21 18:54:26'
   friendly_name: LGTV
 
 device_tracker.meagans_android:
@@ -265,6 +405,16 @@ group.batteries:
 
 group.cameras:
   friendly_name: Cameras
+  haaska_hidden: true
+  icon: mdi:camcorder
+
+group.cameras_hitech:
+  friendly_name: Hitech Cameras
+  haaska_hidden: true
+  icon: mdi:camcorder
+
+group.cameras_home:
+  friendly_name: Home Cameras
   haaska_hidden: true
   icon: mdi:camcorder
 
@@ -583,7 +733,6 @@ media_player.my_aftm_2:
   haaska_hidden: true
 
 media_player.plex_web_chrome:
-  date_updated: '2016-09-21 18:54:26'
   friendly_name: Plex Web (Chrome)
   haaska_hidden: true
 
@@ -921,7 +1070,7 @@ sun.sun:
 ################################################
 
 switch.auto_garage_entry_lighting:
-  friendly_name: Automatic Garage Entry Lighting
+  friendly_name: Garage Lighting
   haaska_hidden: false
   icon: mdi:lightbulb
 
@@ -988,5 +1137,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Wed Sep 21 2016 19:18:57 GMT-0500 (CDT)
+# Last Generated: Sun Oct 09 2016 12:04:26 GMT-0500 (CDT)
 ################################################################
