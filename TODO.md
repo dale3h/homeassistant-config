@@ -1,5 +1,8 @@
 ## Todo
 
+* Update automation names
+* Removal redundant switches for automations
+* Clean up customize.yaml to remove old/outdated entities
 * Remove possessive names and make singular
 * Add names for new entities
 * Automate Goodnight/Good Morning button
