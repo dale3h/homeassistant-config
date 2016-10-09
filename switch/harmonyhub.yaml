@@ -2,16 +2,9 @@
 ## Switch / Harmony Hub
 ################################################################
 
-# - platform: command_line
-#   switches:
-#     fire_tv:
-#       command_on: 'harmonyhub-cli --hub=192.168.1.70 --activity="Watch Fire TV"'
-#       command_off: 'harmonyhub-cli --hub=192.168.1.70 --activity="PowerOff"'
-#       command_state: 'harmonyhub-cli --hub=192.168.1.70 --read=status | cut -d "\"" -f2 | tail -n 1'
-#       value_template: '{{ value == "Watch Fire TV" }}'
-
-#     projector:
-#       command_on: 'curl -sS -u EPSONWEB:123456 -H "Referer: http://192.168.1.179/cgi-bin/webconf.exe?page=13" http://192.168.1.179/cgi-bin/directsend?KEY=3B\&_=$(date +%s)'
-#       command_off: 'curl -sS -u EPSONWEB:123456 -H "Referer: http://192.168.1.179/cgi-bin/webconf.exe?page=13" http://192.168.1.179/cgi-bin/directsend?KEY=3B\&_=$(date +%s) && sleep 1s && curl -sS -u EPSONWEB:123456 -H "Referer: http://192.168.1.179/cgi-bin/webconf.exe?page=13" http://192.168.1.179/cgi-bin/directsend?KEY=3B\&_=$(date +%s)'
-#       command_state: 'curl -sS -u EPSONWEB:123456 -H "Referer: http://192.168.1.179/webconf/index2.html" http://192.168.1.179/cgi-bin/webconf.exe?page=01\&_=$(date +%s) | grep "Cannot make projector settings." | wc -l'
-#       value_template: '{{ value == "0" }}'
+- platform: mqtt
+  name: fire_tv
+  state_topic: harmony-api/hubs/harmony-hub/activities/watch-fire-tv/state
+  command_topic: harmony-api/hubs/harmony-hub/activities/watch-fire-tv/command
+  payload_on: 'on'
+  payload_off: 'off'
