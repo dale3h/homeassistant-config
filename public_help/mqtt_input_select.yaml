@@ -1,8 +1,33 @@
 # For this to work properly, your MQTT broker must be setup to handle persistence
 
+automation:
+  - alias: Input Select to MQTT
+    trigger:
+      - platform: state
+        entity_id: input_select.light_color_1, input_select.light_color_2, input_select.light_color_3, input_select.light_color_4, input_select.light_color_5, input_select.light_color_6, input_select.light_color_7
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "home-assistant/{{ trigger.entity_id|replace('.', '/') }}"
+          payload: "{{ trigger.to_state.state }}"
+          retain: true
+
+  - alias: MQTT to Input Select
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/input_select/+
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+          option: "{{ trigger.payload }}"
+
 input_select:
-  light_color:
-    name: Light Color
+  light_color_1:
+    name: Light Color 1
     initial: Red
     options:
       - Red
@@ -13,27 +38,74 @@ input_select:
       - Indigo
       - Violet
 
-automation:
-  - alias: Input Select to MQTT
-    trigger:
-      - platform: state
-        entity_id: input_select.light_color
-    action:
-      - service: mqtt.publish
-        data_template:
-          topic: home-assistant/input_select/light_color
-          payload: "{{ states('input_select.light_color') }}"
-          retain: true
+  light_color_2:
+    name: Light Color 2
+    initial: Orange
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
 
-  - alias: MQTT to Input Select
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/input_select/light_color
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload != states('input_slider.light_color') }}"
-    action:
-      - service: input_select.select_option
-        entity_id: input_select.light_color
-        data_template:
-          option: "{{ trigger.payload }}"
+  light_color_3:
+    name: Light Color 3
+    initial: Yellow
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+
+  light_color_4:
+    name: Light Color 4
+    initial: Green
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+
+  light_color_5:
+    name: Light Color 5
+    initial: Blue
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+
+  light_color_6:
+    name: Light Color 6
+    initial: Indigo
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+
+  light_color_7:
+    name: Light Color 7
+    initial: Violet
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
