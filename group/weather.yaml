@@ -3,7 +3,6 @@
 ################################################################
 
 weather:
-  name: Weather
   entities:
     - sun.sun
     - sensor.forecastio_cloud_coverage

@@ -3,7 +3,6 @@
 ################################################################
 
 cameras_hitech:
-  name: Hitech Cameras
   entities:
     - camera.hitech_driveway
     - camera.hitech_front_yard
@@ -11,7 +10,6 @@ cameras_hitech:
     - camera.hitech_camper
 
 cameras_home:
-  name: Home Cameras
   entities:
     - camera.driveway
     - camera.garage

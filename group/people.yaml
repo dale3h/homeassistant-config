@@ -3,35 +3,29 @@
 ################################################################
 
 guests:
-  name: Guests
   entities:
     - group.person_meagan
     - group.person_russell
     - group.person_tonyia
 
 person_courtney:
-  name: Courtney
   entities:
     - device_tracker.courtneys_iphone
 
 person_dale:
-  name: Dale
   entities:
     - device_tracker.iphone
     - device_tracker.dales_iphone
     - device_tracker.dales_iphone_bt
 
 person_meagan:
-  name: Meagan
   entities:
     - device_tracker.meagans_android
 
 person_russell:
-  name: Russell
   entities:
     - device_tracker.russells_iphone
 
 person_tonyia:
-  name: Tonyia
   entities:
     - device_tracker.tonyias_kindle

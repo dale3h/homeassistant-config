@@ -3,7 +3,6 @@
 ################################################################
 
 scripts:
-  name: Scripts
   entities:
     - script.backup_config
     - script.reload_config

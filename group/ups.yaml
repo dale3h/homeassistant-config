@@ -3,7 +3,6 @@
 ################################################################
 
 ups:
-  name: Battery Backup
   entities:
     - sensor.ups_battery
     - sensor.ups_input_voltage

@@ -3,7 +3,6 @@
 ################################################################
 
 hue_lights:
-  name: Hue Lights
   entities:
     - light.chandelier_1
     - light.chandelier_2

@@ -3,7 +3,6 @@
 ################################################################
 
 media_player:
-  name: Media Player
   entities:
     - media_player.iphone
     - media_player.my_aftm_2

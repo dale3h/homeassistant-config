@@ -3,7 +3,6 @@
 ################################################################
 
 batteries:
-  name: Batteries
   entities:
     - sensor.closet_door_battery
     - sensor.garage_entry_battery

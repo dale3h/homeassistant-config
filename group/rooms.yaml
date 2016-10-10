@@ -3,56 +3,48 @@
 ################################################################
 
 back_porch:
-  name: Back Porch
   entities:
     - light.back_porch
 
 dining_room:
-  name: Dining Room
   entities:
     - light.dining_room_1
     - light.dining_room_2
 
 entryway:
-  name: Entryway
   entities:
     - light.entryway_lamp_level_3
     - light.entryway_1
     - light.entryway_2
 
 front_porch:
-  name: Front Porch
   entities:
     - light.front_porch
 
 garage:
-  name: Garage
   entities:
     - light.garage
-    - binary_sensor.parkers_closet_door_contact
     - switch.garage_door
     - cover.garage_door
     - sensor.aladdin_connect
+    - binary_sensor.garage_entry_contact
+    - binary_sensor.garage_entry_acceleration
 
 guest_bathroom:
-  name: Guest Bathroom
   entities:
     - light.guest_bathroom_1
     - light.guest_bathroom_2
 
 guest_bedroom:
-  name: Guest Bedroom
   entities:
     - light.guest_bedroom
 
 hallway:
-  name: Hallway
   entities:
     - light.hallway
     - sensor.home_humidity
 
 kitchen:
-  name: Kitchen
   entities:
     - light.chandelier_1
     - light.chandelier_2
@@ -65,14 +57,10 @@ kitchen:
     - sensor.kitchen_ultraviolet_6
 
 laundry_room:
-  name: Laundry Room
   entities:
-    - binary_sensor.garage_entry_contact
-    - binary_sensor.garage_entry_acceleration
     - light.laundry_room
 
 living_room:
-  name: Living Room
   entities:
     - light.living_room_1
     - light.living_room_2
@@ -81,7 +69,6 @@ living_room:
     - sensor.harmony_hub_activity
 
 master_bedroom:
-  name: Master Bedroom
   entities:
     - binary_sensor.closet_door_contact
     - light.master_bedroom_1
@@ -95,6 +82,6 @@ master_bedroom:
     - sensor.master_bathroom_ultraviolet_4
 
 parkers_bedroom:
-  name: "Parker's Bedroom"
   entities:
     - light.parkers_closet
+    - binary_sensor.parkers_closet_door_contact

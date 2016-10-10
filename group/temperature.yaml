@@ -3,7 +3,6 @@
 ################################################################
 
 temperature:
-  name: Temperature
   entities:
     - sensor.cpu_temperature
     - sensor.closet_door_temperature

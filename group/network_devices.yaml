@@ -3,7 +3,6 @@
 ################################################################
 
 network_devices:
-  name: Network Devices
   entities:
     - device_tracker.net_aladdin_connect
     - device_tracker.net_echo_kitchen

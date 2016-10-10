@@ -3,7 +3,6 @@
 ################################################################
 
 system:
-  name: System
   entities:
     - sensor.cpu_temperature
     - updater.updater

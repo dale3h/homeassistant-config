@@ -3,7 +3,6 @@
 ################################################################
 
 home:
-  name: Home
   view: yes
   entities:
     - group.back_porch
@@ -21,21 +20,18 @@ home:
     - group.scripts
 
 household:
-  name: Household
   view: yes
   entities:
     - group.person_dale
     - group.guests
 
 cameras:
-  name: Cameras
   view: yes
   entities:
     - group.cameras_home
     - group.cameras_hitech
 
 sensors:
-  name: Sensors
   view: yes
   entities:
     - group.weather
@@ -46,14 +42,12 @@ sensors:
     - group.ups
 
 media:
-  name: Media
   view: yes
   entities:
     - group.media_components
     - group.media_player
 
 automation:
-  name: Automation
   view: yes
   entities:
     - group.automation_override

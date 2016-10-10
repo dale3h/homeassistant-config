@@ -3,7 +3,6 @@
 ################################################################
 
 media_components:
-  name: Media Components
   entities:
     - switch.projector
     - switch.fire_tv
