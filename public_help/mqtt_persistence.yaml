@@ -67,6 +67,18 @@ automation:
           payload: "{{ trigger.to_state.state }}"
           retain: true
 
+  - alias: Persistence from MQTT (Automation)
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/automation/+
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
+    action:
+      - service_template: "automation.turn_{{ trigger.payload|lower }}"
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+
   - alias: Persistence from MQTT (Input Boolean)
     trigger:
       - platform: mqtt
@@ -87,7 +99,7 @@ automation:
       - condition: template
         value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
     action:
-      - service_template: input_select.select_option
+      - service: input_select.select_option
         data_template:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
           option: "{{ trigger.payload }}"
@@ -100,7 +112,7 @@ automation:
       - condition: template
         value_template: "{{ trigger.payload|float != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
     action:
-      - service_template: input_slider.select_value
+      - service: input_slider.select_value
         data_template:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
           value: "{{ trigger.payload|float }}"
