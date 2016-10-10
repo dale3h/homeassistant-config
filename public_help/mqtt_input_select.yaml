@@ -1,0 +1,39 @@
+# For this to work properly, your MQTT broker must be setup to handle persistence
+
+input_select:
+  light_color:
+    name: Light Color
+    initial: Red
+    options:
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Indigo
+      - Violet
+
+automation:
+  - alias: Input Select to MQTT
+    trigger:
+      - platform: state
+        entity_id: input_select.light_color
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: home-assistant/input_select/light_color
+          payload: "{{ states('input_select.light_color') }}"
+          retain: true
+
+  - alias: MQTT to Input Select
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/input_select/light_color
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload != states('input_slider.light_color') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.light_color
+        data_template:
+          option: "{{ trigger.payload }}"
