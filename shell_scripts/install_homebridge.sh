@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_HOME=/home/pi
-HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.test.json
+HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
 IP_ADDRESS=$(ifconfig | awk -F':' '/inet addr/&&!/127.0.0.1/{split($2,_," ");print _[1]}')
 
 echo "Homebridge Simple Installer for Raspberry Pi and Home Assistant"
