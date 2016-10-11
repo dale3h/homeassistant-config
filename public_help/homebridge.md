@@ -3,7 +3,9 @@
 ## Preparation
 
 `sudo apt-get update`
+
 `sudo apt-get upgrade`
+
 `sudo apt-get install -y git make`
 
 ## Node.js
@@ -19,6 +21,7 @@
 ### Confirm Installation
 
 `npm --version`
+
 `node --version`
 
 ## Dependencies
@@ -42,9 +45,13 @@ This will give you a command to run...run that command.
 ### Install Homebridge and dependencies
 
 `sudo npm install -g --unsafe-perm homebridge hap-nodejs node-gyp`
+
 `cd /usr/lib/node_modules/homebridge/`
+
 `sudo npm install --unsafe-perm bignum`
+
 `cd /usr/lib/node_modules/hap-nodejs/node_modules/mdns`
+
 `sudo node-gyp BUILDTYPE=Release rebuild`
 
 ### Install Homebridge plugin for Home Assistant
@@ -54,7 +61,9 @@ This will give you a command to run...run that command.
 ### Configure Homebridge
 
 `mkdir -p ~/.homebridge`
+
 `touch ~/.homebridge/config.json`
+
 `nano ~/.homebridge/config.json`
 
 Copy/paste this config and edit to include your details (Home Assistant URL, password, and supported types):
@@ -90,7 +99,9 @@ Copy/paste this config and edit to include your details (Home Assistant URL, pas
 ### Add Homebridge to PM2
 
 `cd ~/.homebridge`
+
 `pm2 start homebridge`
+
 `pm2 save`
 
 ### Pair with iOS
