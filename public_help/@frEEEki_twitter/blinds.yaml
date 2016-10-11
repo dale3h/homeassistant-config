@@ -1,0 +1,63 @@
+################################################################
+## Automatische Rolladen steuerung aktiviert/deaktiviert
+################################################################
+
+- alias: Rollos automatisch Wohnzimmer
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.wohnzimmer_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.wohnzimmer_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.wohnzimmer_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq1103138
+
+- alias: Rollos automatisch Esszimmer
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.esszimmer_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.esszimmer_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.esszimmer_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq0730256
+
+- alias: Rollos automatisch Kueche Tuer
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.kueche_tuer_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.kueche_tuer_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.kueche_tuer_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq1103051
+
+- alias: Rollos automatisch Kueche Fenster
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.kueche_fenster_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.kueche_fenster_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.kueche_fenster_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq0728486
+
+- alias: Rollos automatisch Badezimmer
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.badezimmer_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.badezimmer_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.badezimmer_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq1103174
+
+- alias: Rollos automatisch Buero
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.buero_timeup') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.buero_timedown') == states('sensor.time') }}"
+  action:
+    - service_template: "cover.{{ 'open' if states('input_select.buero_timeup') == states('sensor.time') else 'close' }}_cover"
+      entity_id: cover.meq0731167

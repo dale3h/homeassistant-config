@@ -9,17 +9,17 @@
 - alias: Persistence to MQTT
   trigger:
     - platform: state
-      entity_id: automation.good_morning_lights, automation.good_night_lights
+      entity_id: automation.rollos_automatisch_wohnzimmer, input_select.wohnzimmer_timeup, input_select.wohnzimmer_timedown
     - platform: state
-      entity_id: input_boolean.notify_arrival, input_boolean.notify_departure
+      entity_id: automation.rollos_automatisch_esszimmer, input_select.esszimmer_timeup, input_select.esszimmer_timedown
     - platform: state
-      entity_id: input_select.light_color_1, input_select.light_color_2
+      entity_id: automation.rollos_automatisch_kueche_tuer, input_select.kueche_tuer_timeup, input_select.kueche_tuer_timedown
     - platform: state
-      entity_id: input_slider.bedroom_brightness, input_slider.hallway_brightness
+      entity_id: automation.rollos_automatisch_kueche_fenster, input_select.kueche_fenster_timeup, input_select.kueche_fenster_timedown
     - platform: state
-      entity_id: light.bedroom, light.hallway
+      entity_id: automation.rollos_automatisch_badezimmer, input_select.badezimmer_timeup, input_select.badezimmer_timedown
     - platform: state
-      entity_id: switch.bedroom_fan, switch.living_room_fan
+      entity_id: automation.rollos_automatisch_buero, input_select.buero_timeup, input_select.buero_timedown
   action:
     - service: mqtt.publish
       data_template:
