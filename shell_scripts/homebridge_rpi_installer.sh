@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install by running:
+# wget -Nnv https://raw.githubusercontent.com/dale3h/homeassistant-config/master/shell_scripts/homebridge_rpi_installer.sh && bash homebridge_rpi_installer.sh
+
 USER_HOME=/home/pi
 HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
 
