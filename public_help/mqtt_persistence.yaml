@@ -1,118 +1,68 @@
 ################################################################
-## MQTT Persistence
+## Automation / MQTT Persistence
 ################################################################
 
-input_boolean:
-  notify_arrival:
-    name: Notify on Arrival
-    initial: on
+- alias: Persistence to MQTT
+  trigger:
+    - platform: state
+      entity_id: automation.good_morning_lights, automation.good_night_lights
+    - platform: state
+      entity_id: input_boolean.notify_arrival, input_boolean.notify_departure
+    - platform: state
+      entity_id: input_select.light_color_1, input_select.light_color_2
+    - platform: state
+      entity_id: input_slider.bedroom_brightness, input_slider.hallway_brightness
+    - platform: state
+      entity_id: light.bedroom, light.hallway
+    - platform: state
+      entity_id: switch.bedroom_fan, switch.living_room_fan
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "home-assistant/{{ trigger.entity_id|replace('.', '/') }}"
+        payload: "{{ trigger.to_state.state }}"
+        retain: true
 
-  notify_departure:
-    name: Notify on Departure
-    initial: on
+- alias: Persistence from MQTT (Binary)
+  trigger:
+    - platform: mqtt
+      topic: home-assistant/automation/+
+    - platform: mqtt
+      topic: home-assistant/input_boolean/+
+    - platform: mqtt
+      topic: home-assistant/light/+
+    - platform: mqtt
+      topic: home-assistant/switch/+
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
+  action:
+    - service_template: "{{ trigger.topic.split('/')[1] }}.turn_{{ trigger.payload|lower }}"
+      data_template:
+        entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
 
-input_select:
-  light_color_1:
-    name: Light Color 1
-    initial: Red
-    options:
-      - Red
-      - Orange
-      - Yellow
-      - Green
-      - Blue
-      - Indigo
-      - Violet
+- alias: Persistence from MQTT (Select Option)
+  trigger:
+    - platform: mqtt
+      topic: home-assistant/input_select/+
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
+  action:
+    - service_template: "{{ trigger.topic.split('/')[1] }}.select_option"
+      data_template:
+        entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+        option: "{{ trigger.payload }}"
 
-  light_color_2:
-    name: Light Color 2
-    initial: Orange
-    options:
-      - Red
-      - Orange
-      - Yellow
-      - Green
-      - Blue
-      - Indigo
-      - Violet
-
-input_slider:
-  bedroom_brightness:
-    name: Bedroom Brightness
-    initial: 254
-    min: 0
-    max: 254
-    step: 1
-
-  hallway_brightness:
-    name: Hallway Brightness
-    initial: 254
-    min: 0
-    max: 254
-    step: 1
-
-automation:
-  - alias: Persistence to MQTT
-    trigger:
-      - platform: state
-        entity_id: input_boolean.notify_arrival, input_boolean.notify_departure
-      - platform: state
-        entity_id: input_select.light_color_1, input_select.light_color_2
-      - platform: state
-        entity_id: input_slider.bedroom_brightness, input_slider.hallway_brightness
-    action:
-      - service: mqtt.publish
-        data_template:
-          topic: "home-assistant/{{ trigger.entity_id|replace('.', '/') }}"
-          payload: "{{ trigger.to_state.state }}"
-          retain: true
-
-  - alias: Persistence from MQTT (Automation)
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/automation/+
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
-    action:
-      - service_template: "automation.turn_{{ trigger.payload|lower }}"
-        data_template:
-          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-
-  - alias: Persistence from MQTT (Input Boolean)
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/input_boolean/+
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
-    action:
-      - service_template: "input_boolean.turn_{{ trigger.payload|lower }}"
-        data_template:
-          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-
-  - alias: Persistence from MQTT (Input Select)
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/input_select/+
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
-    action:
-      - service: input_select.select_option
-        data_template:
-          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-          option: "{{ trigger.payload }}"
-
-  - alias: Persistence from MQTT (Input Slider)
-    trigger:
-      - platform: mqtt
-        topic: home-assistant/input_slider/+
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload|float != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
-    action:
-      - service: input_slider.select_value
-        data_template:
-          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-          value: "{{ trigger.payload|float }}"
+- alias: Persistence from MQTT (Select Value)
+  trigger:
+    - platform: mqtt
+      topic: home-assistant/input_slider/+
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload|float != states(trigger.topic|replace('home-assistant/', '')|replace('/', '.')) }}"
+  action:
+    - service_template: "{{ trigger.topic.split('/')[1] }}.select_value"
+      data_template:
+        entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+        value: "{{ trigger.payload|float }}"
