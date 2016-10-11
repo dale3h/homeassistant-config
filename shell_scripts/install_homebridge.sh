@@ -4,7 +4,7 @@ USER_HOME=/home/pi
 HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
 
 echo "Homebridge Simple Installer for Raspberry Pi and Home Assistant"
-echo "Copyright(c) 2016 Dale Higgs <dale3h@gmail.com>"
+echo "Copyright(c) 2016 Dale Higgs <https://gitter.im/dale3h>"
 echo
 
 echo "Running apt-get preparation"
