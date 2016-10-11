@@ -69,7 +69,7 @@ HOMEBRIDGE_NAME=Homebridge
 HOMEBRIDGE_PORT=51826
 
 HEX_CHARS=0123456789ABCDEF
-RANDOM_MAC=$( for i in {1..6} ; do echo -n ${HEX_CHARS:$(( $RANDOM % 16 )):1} ; done | sed -e 's/\(..\)/-\1/g' )
+RANDOM_MAC=$( for i in {1..6} ; do echo -n ${HEX_CHARS:$(( $RANDOM % 16 )):1} ; done | sed -e 's/\(..\)/:\1/g' )
 HOMEBRIDGE_USERNAME=CC:22:3D$RANDOM_MAC
 
 HOMEBRIDGE_PIN=$(printf "%03d-%02d-%03d" $(($RANDOM % 999)) $(($RANDOM % 99)) $(($RANDOM % 999)))
