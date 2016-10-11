@@ -2,7 +2,6 @@
 
 USER_HOME=/home/pi
 HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
-IP_ADDRESS=$(ifconfig | awk -F':' '/inet addr/&&!/127.0.0.1/{split($2,_," ");print _[1]}')
 
 echo "Homebridge Simple Installer for Raspberry Pi and Home Assistant"
 echo "Copyright(c) 2016 Dale Higgs <dale3h@gmail.com>"
@@ -39,6 +38,7 @@ sudo npm install -g homebridge-homeassistant
 echo "Setting up Homebridge config"
 mkdir -p $USER_HOME/.homebridge
 
+IP_ADDRESS=$(ifconfig | awk -F':' '/inet addr/&&!/127.0.0.1/{split($2,_," ");print _[1]}')
 echo -n "Enter your Home Assistant IP: [$IP_ADDRESS] "
 read HOMEASSISTANT_IP
 if [ ! "$HOMEASSISTANT_IP" ]; then
@@ -62,16 +62,25 @@ if [ "$HOMEASSISTANT_HTTPS" == 'y' ] || [ "$HOMEASSISTANT_HTTPS" == 'Y' ]; then
     HOMEASSISTANT_PROTOCOL=https
 fi
 
+HOMEBRIDGE_NAME=Homebridge
+HOMEBRIDGE_PORT=51826
+
+HEX_CHARS=0123456789ABCDEF
+RANDOM_MAC=$( for i in {1..6} ; do echo -n ${HEX_CHARS:$(( $RANDOM % 16 )):1} ; done | sed -e 's/\(..\)/-\1/g' )
+HOMEBRIDGE_USERNAME=CC:22:3D$RANDOM_MAC
+
+HOMEBRIDGE_PIN=$(printf "%03d-%02d-%03d" $(($RANDOM % 999)) $(($RANDOM % 99)) $(($RANDOM % 999)))
+
 cat > $HOMEBRIDGE_CONF <<EOF
 {
   "bridge": {
-    "name": "Homebridge",
-    "username": "CC:22:3D:E3:CE:30",
-    "port": 51826,
-    "pin": "031-45-154"
+    "name": "${HOMEBRIDGE_NAME}",
+    "username": "${HOMEBRIDGE_USERNAME}",
+    "port": ${HOMEBRIDGE_PORT},
+    "pin": "${HOMEBRIDGE_PIN}"
   },
 
-  "description": "This is an example configuration file for Home Assistant.",
+  "description": "This is an example configuration file for Homebridge that includes the Home Assistant plugin.",
 
   "accessories": [
   ],
@@ -107,11 +116,11 @@ echo "You should be able to scan the code with your iOS device to pair it."
 echo
 echo "Troubleshooting:"
 echo
-echo "* To view the Homebridge logs: pm2 logs homebridge"
-echo "* To stop Homebridge: pm2 stop homebridge"
-echo "* To start Homebridge manually: pm2 start homebridge"
+echo "* To view the Homebridge logs:    pm2 logs homebridge"
+echo "* To stop Homebridge:             pm2 stop homebridge"
+echo "* To start Homebridge manually:   pm2 start homebridge"
 echo "* To restart Homebridge manually: pm2 restart homebridge"
-echo "* To monitor PM2 processes: pm2 monit"
+echo "* To monitor PM2 processes:       pm2 monit"
 echo
 echo "If you have issues with this script, please contact @dale3h on gitter.im"
 echo
