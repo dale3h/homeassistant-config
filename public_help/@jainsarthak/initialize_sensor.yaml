@@ -1,0 +1,13 @@
+shell_command:
+  initialize_sensor: 'curl -X POST -H "x-ha-access: YOUR_PASSWORD" -H "Content-Type: application/json" -d ''{"state": "unknown", "attributes": {"friendly_name": "{{ friendly_name }}"}}'' http://localhost:8123/api/states/{{ entity_id }}'
+
+automation:
+  - alias: Initialize HTTP sensors
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      - service: shell_command.initialize_sensor
+        data:
+          entity_id: sensor.bathroom_temperature
+          friendly_name: Bathroom Temperature
