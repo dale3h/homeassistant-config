@@ -1,4 +1,4 @@
-## Example using `automation`
+### Example using `automation`
 
 ```yaml
 automation:
@@ -18,7 +18,7 @@ automation:
             {% endif %}
 ```
 
-## Example using `automation` and `script`
+### Example using `automation` and `script`
 
 ```yaml
 automation:

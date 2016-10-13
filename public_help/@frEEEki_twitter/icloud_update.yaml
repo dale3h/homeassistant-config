@@ -1,0 +1,77 @@
+### Example 1 - `automation`
+
+automation:
+  - alias: Update iPhone Location when Front Door Opens
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door
+        to: 'open'
+    condition:
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.marcsiphone', 'home') }}"
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.janesiphone', 'home') }}"
+    action:
+      - service: icloud.update_icloud
+        data_template:
+          accountname: >
+            {% if not is_state('device_tracker.marcsiphone', 'home') and not is_state('device_tracker.janesiphone', 'home') %}
+              None
+            {% elif not is_state('device_tracker.marcsiphone', 'home') %}
+              marc
+            {% elif not is_state('device_tracker.janesiphone', 'home') %}
+              jane
+            {% else %}
+              None
+            {% endif %}
+          devicename: >
+            {% if not is_state('device_tracker.marcsiphone', 'home') and not is_state('device_tracker.janesiphone', 'home') %}
+              None
+            {% elif not is_state('device_tracker.marcsiphone', 'home') %}
+              marcsiphone
+            {% elif not is_state('device_tracker.janesiphone', 'home') %}
+              janesiphone
+            {% else %}
+              None
+
+### Example 2 - `automation` and `script`
+
+automation:
+  - alias: Update iPhone Location when Front Door Opens
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door
+        to: 'open'
+    condition:
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.marcsiphone', 'home') }}"
+          - condition: template
+            value_template: "{{ not is_state('device_tracker.janesiphone', 'home') }}"
+    action:
+      - service: script.update_icloud_marcsiphone
+      - service: script.update_icloud_janesiphone
+
+script:
+  update_icloud_marcsiphone:
+    name: Update Marc's iPhone Location
+    sequence:
+      - condition: template
+        value_template: "{{ not is_state('device_tracker.marcsiphone', 'home') }}"
+      - service: icloud.update_icloud
+        data:
+          accountname: marc
+          devicename: marcsiphone
+
+  update_icloud_janesiphone:
+    name: Update Jane's iPhone Location
+    sequence:
+      - condition: template
+        value_template: "{{ not is_state('device_tracker.janesiphone', 'home') }}"
+      - service: icloud.update_icloud
+        data:
+          accountname: jane
+          devicename: janesiphone
