@@ -25,11 +25,11 @@ updater:
 
 apcupsd:
 
-telegram:
-  api_key: !secret telegram_bot_key
-  chat_ids: !secret telegram_chat_id
-  users: dale3h
-  admins: dale3h
+# telegram:
+#   api_key: !secret telegram_bot_key
+#   chat_ids: !secret telegram_chat_id
+#   users: dale3h
+#   admins: dale3h
 
 ecobee:
   api_key: !secret ecobee_api_key
@@ -89,7 +89,7 @@ zone: !include_dir_merge_list zone
 
 group: !include_dir_merge_named group
 input_boolean: !include_dir_merge_named input_boolean
-# input_select: !include_dir_merge_named input_select
-# input_slider: !include_dir_merge_named input_slider
+input_select: !include_dir_merge_named input_select
+input_slider: !include_dir_merge_named input_slider
 script: !include_dir_merge_named script
 shell_command: !include_dir_merge_named shell_command

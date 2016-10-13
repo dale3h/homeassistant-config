@@ -45,6 +45,9 @@ automation.automation_9:
 automation.backup_config_at_3am:
   friendly_name: Backup Config at 3am
 
+automation.front_porch_timer:
+  friendly_name: Front Porch Timer
+
 automation.home_assistant_update_notification:
   friendly_name: Home Assistant Update Notification
 
@@ -94,6 +97,22 @@ automation.parkers_closet_light_off_when_door_is_closed:
 
 automation.parkers_closet_light_on_when_door_is_open:
   friendly_name: "Parker's Closet Light ON when Door is OPEN"
+
+automation.persistence_from_mqtt_binary:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Persistence from MQTT (Binary)
+
+automation.persistence_from_mqtt_select_option:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Persistence from MQTT (Select Option)
+
+automation.persistence_from_mqtt_select_value:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Persistence from MQTT (Select Value)
+
+automation.persistence_to_mqtt:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Persistence to MQTT
 
 automation.roll_a_die:
   friendly_name: Roll a Die
@@ -504,6 +523,11 @@ group.motion:
   friendly_name: Motion
   haaska_hidden: true
 
+group.mqtt_persistence:
+  friendly_name: MQTT Persistence
+  haaska_hidden: true
+  order: -100
+
 group.network_devices:
   friendly_name: Network Devices
   haaska_hidden: true
@@ -591,10 +615,40 @@ idevice.iphone:
 ## Input Boolean
 ################################################
 
+input_boolean.garage_lighting:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Garage Lighting
+  haaska_hidden: true
+
 input_boolean.https_proxy:
   friendly_name: HTTPS Proxy
   haaska_hidden: true
   icon: mdi:server-security
+
+input_boolean.sunrise_lighting:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Sunrise Lighting
+  haaska_hidden: true
+
+################################################
+## Input Select
+################################################
+
+input_select.front_porch_time_off:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Front Porch Time Off
+
+input_select.front_porch_time_on:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Front Porch Time On
+
+################################################
+## Input Slider
+################################################
+
+input_slider.nightlight_brightness:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: Nightlight Brightness
 
 ################################################
 ## Light
@@ -851,6 +905,9 @@ sensor.cpu_temperature:
   friendly_name: CPU Temperature
   icon: mdi:thermometer
 
+sensor.date:
+  friendly_name: System Date
+
 sensor.forecastio_cloud_coverage:
   friendly_name: Cloud Coverage
   icon: mdi:weather-partlycloudy
@@ -1006,6 +1063,9 @@ sensor.pepper_fan_power:
   friendly_name: Pepper Fan Power
   icon: mdi:flash
 
+sensor.time:
+  friendly_name: System Time
+
 sensor.time_brightness:
   friendly_name: Time Based Brightness
   hidden: true
@@ -1094,6 +1154,11 @@ switch.master_bedroom_motion:
   haaska_hidden: false
   icon: mdi:walk
 
+switch.mqtt_switch:
+  date_updated: '2016-10-10 19:29:21'
+  friendly_name: MQTT Switch
+  haaska_hidden: true
+
 switch.pepper_fan:
   friendly_name: Pepper Fan
   haaska_hidden: false
@@ -1137,5 +1202,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Sun Oct 09 2016 12:04:26 GMT-0500 (CDT)
+# Last Generated: Mon Oct 10 2016 19:29:21 GMT-0500 (CDT)
 ################################################################

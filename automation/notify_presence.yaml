@@ -8,7 +8,7 @@
       entity_id: group.person_courtney, group.person_dale, group.person_russell, group.person_tonyia
   condition:
     - condition: template
-      value_template: "{{ trigger.from_state.state != trigger.to_state.state  }}"
+      value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
   action:
     - service: notify.telegram
       data_template:

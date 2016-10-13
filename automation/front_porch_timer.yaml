@@ -1,0 +1,13 @@
+################################################################
+## Automation / Front Porch Timer
+################################################################
+
+- alias: front_porch_timer
+  trigger:
+    - platform: template
+      value_template: "{{ states('input_select.front_porch_time_on') == states('sensor.time') }}"
+    - platform: template
+      value_template: "{{ states('input_select.front_porch_time_off') == states('sensor.time') }}"
+  action:
+    - service_template: "light.turn_{{ 'on' if states('input_select.front_porch_time_on') == states('sensor.time') else 'off' }}"
+      entity_id: light.front_porch

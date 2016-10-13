@@ -1,10 +1,9 @@
 ################################################################
-## Group / System
+## Input Boolean / Lighting
 ################################################################
 
-system:
-  entities:
-    - sensor.date
-    - sensor.time
-    - sensor.cpu_temperature
-    - updater.updater
+garage_lighting:
+  initial: on
+
+sunrise_lighting:
+  initial: on
