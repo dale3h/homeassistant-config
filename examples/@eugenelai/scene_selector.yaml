@@ -14,9 +14,11 @@
 #
 # Author:
 #   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
 
 automation:
-  - alias: Select a Scene
+  - alias: select_a_scene
     trigger:
       # Trigger when the input_select changes
       - platform: state
@@ -24,16 +26,17 @@ automation:
     condition:
       # Do not trigger if "None" is selected
       - platform: template
-        value_template: "{{ states('input_select.scene_selector') != 'None' }}"
+        value_template: "{{ not is_state('input_select.scene_selector', 'None') }}"
     action:
       # Turn the selected scene on
       - service: scene.turn_on
         data_template:
           entity_id: "scene.{{ states('input_select.scene_selector')|lower|replace(' ', '_') }}"
-      # Uncomment these lines to set the input_select back to "None"
-      # - service: input_select.select_option
-      #   data:
-      #     option: 'None'
+      # Set the input_select back to "None"
+      - service: input_select.select_option
+        entity_id: input_select.scene_selector
+        data:
+          option: 'None'
 
 input_select:
   scene_selector:
@@ -41,30 +44,18 @@ input_select:
     initial: 'None'
     options:
       - 'None'
-      - 'Morning'
-      - 'Afternoon'
-      - 'Evening'
-      - 'Night'
+      - 'Low'
+      - 'Bright'
 
 scene:
-  - name: Morning
+  - name: Low
     entities:
-      light.living_room:
+      light.bedroom:
         state: on
-        brightness: 192
+        brightness: 20
 
-  - name: Afternoon
+  - name: Bright
     entities:
-      light.living_room:
+      light.bedroom:
         state: on
-        brightness: 255
-
-  - name: Evening
-    entities:
-      light.living_room:
-        state: on
-        brightness: 128
-
-  - name: Night
-    entities:
-      light.living_room: off
+        brightness: 100
