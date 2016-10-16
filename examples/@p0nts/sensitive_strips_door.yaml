@@ -1,0 +1,7 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      bedroom_door_contact:
+        friendly_name: Bedroom Door Contact
+        sensor_class: opening
+        value_template: "{{ not is_state('sensor.sensative_strips_sensor', '23') }}"

@@ -1,0 +1,54 @@
+# Description:
+#   Select an HDMI CEC device/input using input_select
+#
+# Written for:
+#   @andrew-curtis
+#
+# Components:
+#   automation
+#   hdmi_cec
+#   input_select
+#   persistent_notification
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: ps3_input
+    trigger:
+      - platform: state
+        entity_id: input_select.tv_input
+        to: 'PS3'
+    action:
+      - service: hdmi_cec.select_device
+        data:
+        device: PS3
+      - service: persistent_notification.create
+        data:
+          title: Automation Executed
+          message: PS3 On
+
+  - alias: turn_off_tv
+    trigger:
+      - platform: state
+        entity_id: input_select.tv_input
+        to: 'Off'
+    action:
+      - service: hdmi_cec.standby
+      - service: persistent_notification.create
+        data:
+          title: Automation Executed
+          message: PS3 Off
+
+input_select:
+  tv_input:
+    name: TV
+    options:
+      - 'Off'
+      - 'PS3'
+    initial: 'Off'

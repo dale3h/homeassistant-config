@@ -1,0 +1,47 @@
+################################################################
+## Group / People
+################################################################
+
+################################################
+## Household
+################################################
+
+household:
+  name: Household
+  view: yes
+  entities:
+    - group.person_carlos
+    - group.person_betzi
+    - group.guests
+
+person_carlos:
+  name: Carlos
+  entities:
+    - device_tracker.carlossiphone
+    - device_tracker.carlossiphone_netgear
+
+person_betzi:
+  name: Betzi
+  entities:
+    - device_tracker.betzisiphone
+    - device_tracker.betzisiphone_netgear
+
+################################################
+## Guests
+################################################
+
+guests:
+  name: Guests
+  entities:
+    - group.person_patrick
+    - group.person_sarah
+
+person_patrick:
+  name: Patrick
+  entities:
+    - device_tracker.patrick_iphone
+
+person_sarah:
+  name: Sarah
+  entities:
+    - device_tracker.sarah_android

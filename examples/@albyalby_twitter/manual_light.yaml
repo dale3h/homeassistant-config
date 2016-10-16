@@ -1,0 +1,67 @@
+# Description:
+#   Detect if a light was turned on manually
+#
+# Written for:
+#   @albyalby_twitter
+#
+# Components:
+#   automation
+#   input_boolean
+#   light
+#   notify
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+input_boolean:
+  bedroom_light_flag:
+    name: Bedroom Light Flag
+    initial: off
+
+automation:
+  - alias: event_turns_flag_on
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: homeassistant
+          service: turn_on
+          service_data:
+            entity_id: light.bedroom_light
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.bedroom_light_flag
+
+  - alias: event_turns_flag_off
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: homeassistant
+          service: turn_off
+          service_data:
+            entity_id: light.bedroom_light
+    action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.bedroom_light_flag
+
+  - alias: light_was_turned_on_manually
+    trigger:
+      - platform: state
+        entity_id: light.bedroom_light
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_light_flag
+        state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.bedroom_light_flag
+      - service: notify.notify
+        data:
+          message: Bedroom light was turned on manually

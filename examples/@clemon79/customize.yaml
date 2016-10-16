@@ -1,0 +1,14 @@
+################################################################
+## Customize
+################################################################
+
+################################################
+## Script
+################################################
+
+script.hello_world_wrapper:
+  friendly_name: Hello World
+
+script.restart_ha:
+  friendly_name: Restart Home Assistant
+  icon: mdi:power

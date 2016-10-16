@@ -1,0 +1,12 @@
+alias: Bedroom Sonos Volume Link (Device > Slider)
+trigger:
+  - platform: state
+    entity_id: media_player.bedroom_sonos
+condition:
+  - condition: template
+    value_template: "{{ not is_state_attr('media_player.bedroom_sonos', 'volume_level', states('input_slider.bedroom_sonos_volume')|int / 100) }}"
+action:
+  - service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.bedroom_sonos_volume
+      value: "{{ trigger.to_state.attributes.volume_level | multiply(100) | int }}"

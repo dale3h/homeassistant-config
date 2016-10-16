@@ -1,0 +1,6 @@
+sensor:
+  - platform: template
+    sensors:
+      router:
+        friendly_name: Router
+        value_template: "{{ 'online' if is_state('device_tracker.router', 'home') else 'offline' }}"

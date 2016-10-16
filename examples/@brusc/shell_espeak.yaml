@@ -1,0 +1,13 @@
+shell_command:
+  espeak: 'espeak "{{ text }}"'
+
+automation:
+  - alias: Speak welcome message for Ben
+    trigger:
+      platform: state
+      entity_id: device_tracker.bens_phone
+      to: 'home'
+    action:
+      service: shell_command.espeak
+      data_template:
+        text: 'Welcome home Ben. The time is {{ now.strftime("%-I:%M %p") }} and the temperature is {{ states("sensor.temperature") }} degrees.'

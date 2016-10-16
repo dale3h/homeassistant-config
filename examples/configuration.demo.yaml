@@ -1,0 +1,130 @@
+# Port of demo config:
+#   https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/demo.py
+
+homeassistant:
+  name: Home
+  latitude: 32.87336
+  longitude: 117.22743
+  temperature_unit: C
+
+conversation:
+frontend:
+history:
+logbook:
+sun:
+introduction:
+
+alarm_control_panel:
+  platform: demo
+
+binary_sensor:
+  platform: demo
+
+camera:
+  platform: demo
+
+device_tracker:
+  platform: demo
+
+garage_door:
+  platform: demo
+
+hvac:
+  platform: demo
+
+light:
+  platform: demo
+
+lock:
+  platform: demo
+
+media_player:
+  platform: demo
+
+notify:
+  platform: demo
+
+rollershutter:
+  platform: demo
+
+sensor:
+  platform: demo
+
+switch:
+  platform: demo
+
+thermostat:
+  platform: demo
+
+group:
+  living_room:
+    name: Living Room
+    entities:
+      - light.table_lamp
+      - light.ceiling
+      - light.tv_back_light
+      - switch.ac
+      - media_player.living_room
+      - input_select.living_room_preset
+      - rollershutter.living_room_window
+      - scene.romantic_lights
+
+  bedroom:
+    name: Bedroom
+    entities:
+      - light.bed_light
+      - switch.decorative_lights
+      - rollershutter.bedroom_window
+      - input_slider.noise_allowance
+
+  kitchen:
+    name: Kitchen
+    entities:
+      - rollershutter.kitchen_window
+      - lock.kitchen_door
+
+  doors:
+    name: Doors
+    entities:
+      - lock.front_door
+      - lock.kitchen_door
+      - garage_door.right_garage_door
+      - garage_door.left_garage_door
+
+  automations:
+    name: Automations
+    entities:
+      - input_select.who_cooks
+      - input_boolean.notify
+
+  people:
+    name: People
+    entities:
+      - device_tracker.demo_anne_therese
+      - device_tracker.demo_home_boy
+      - device_tracker.demo_paulus
+
+  thermostats:
+    name: Thermostats
+    entities:
+      - thermostat.nest
+      - thermostat.thermostat
+
+  downstairs:
+    name: Downstairs
+    view: yes
+    entities:
+      - group.living_room
+      - group.kitchen
+      - scene.romantic_lights
+      - rollershutter.kitchen_window
+      - rollershutter.living_room_window
+      - group.doors
+      - thermostat.nest
+
+  upstairs:
+    name: Upstairs
+    view: yes
+    entities:
+      - thermostat.thermostat
+      - group.bedroom

@@ -1,0 +1,15 @@
+alias: Default Light On Brightness
+trigger:
+  platform: event
+  event_type: light_toggle
+  event_data:
+    entity_id: light.bedroom
+condition:
+  condition: state
+  entity_id: light.bedroom
+  state: 'on'
+action:
+  service: light.turn_on
+  entity_id: light.bedroom
+  data:
+    brightness: 255

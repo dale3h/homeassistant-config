@@ -1,0 +1,21 @@
+- alias: Charge Heaters
+  # Charge the storage heaters during eco7
+  trigger:
+    platform: time
+    minutes: '/5'
+    seconds: 0
+  condition:
+    - condition: time
+      after: '00:00:00'
+      before: '08:00:00'
+  action:
+    service_template: >
+      {%- if float(now().hour) < float(states('input_slider.storage_heating_time')) -%}
+        switch.turn_on
+      {%- else -%}
+        switch.turn_off
+      {%- endif -%}
+    entity_id:
+      - switch.radiator_kitchen
+      - switch.radiator_front
+      - switch.radiator_back

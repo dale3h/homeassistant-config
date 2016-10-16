@@ -1,0 +1,44 @@
+# For this to work properly, your MQTT broker must be setup to handle persistence
+
+sensor:
+  - platform: mqtt
+    state_topic: home-assistant/nightlight_brightness
+    name: Nightlight Brightness
+
+input_slider:
+  nightlight_brightness:
+    name: Nightlight Brightness
+    initial: 64
+    min: 0
+    max: 255
+    step: 1
+
+automation:
+  - alias: Update Nightlight Brightness Sensor
+    trigger:
+      - platform: state
+        entity_id: input_slider.nightlight_brightness
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('sensor.nightlight_brightness', states('input_slider.nightlight_brightness')) }}"
+    action:
+      service: mqtt.publish
+      data_template:
+        topic: home-assistant/nightlight_brightness
+        payload: "{{ states('input_slider.nightlight_brightness') }}"
+        retain: true
+
+  - alias: Update Nightlight Brightness Input Slider
+    trigger:
+      - platform: state
+        entity_id: sensor.nightlight_brightness
+      - platform: event
+        event_type: homeassistant_start
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('sensor.nightlight_brightness', states('input_slider.nightlight_brightness')) }}"
+    action:
+      service: input_slider.select_value
+      entity_id: input_slider.nightlight_brightness
+      data_template:
+        value: "{{ states('sensor.nightlight_brightness')|int }}"

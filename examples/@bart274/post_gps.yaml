@@ -1,0 +1,72 @@
+################################################
+## One Device w/ Passing Service Data
+################################################
+
+shell_command:
+  update_pgm: 'curl -X POST http://localhost:5000/next_loc?lat={{ latitude }}&lon={{ longitude }}'
+
+automation:
+  - alias: POST GPS Coordinates
+    trigger:
+      platform: state
+      entity_id: device_tracker.iphonebart
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.latitude != trigger.from_state.attributes.latitude }}"
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.longitude != trigger.from_state.attributes.longitude }}"
+    action:
+      service: shell_command.update_pgm
+      data:
+        latitude: "{{ trigger.to_state.attributes.latitude }}"
+        longitude: "{{ trigger.to_state.attributes.longitude }}"
+
+################################################
+## Multiple Devices w/ Passing Service Data
+################################################
+
+shell_command:
+  update_pgm: 'curl -X POST http://localhost:5000/next_loc?lat={{ latitude }}&lon={{ longitude }}&device={{ device }}'
+
+automation:
+  - alias: POST GPS Coordinates
+    trigger:
+      platform: state
+      entity_id: device_tracker.iphonebart, device_tracker.ipadbart
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.latitude != trigger.from_state.attributes.latitude }}"
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.longitude != trigger.from_state.attributes.longitude }}"
+    action:
+      service: shell_command.update_pgm
+      data:
+        latitude: "{{ trigger.to_state.attributes.latitude }}"
+        longitude: "{{ trigger.to_state.attributes.longitude }}"
+        device: "{{ trigger.to_state.entity_id }}"
+
+################################################
+## Multiple Devices w/ Passed Service Data
+################################################
+
+shell_command:
+  update_pgm: 'curl -X POST http://localhost:5000/next_loc?lat={{ trigger.to_state.attributes.latitude }}&lon={{ trigger.to_state.attributes.longitutde }}&device={{ trigger.to_state.entity_id }}'@
+
+automation:
+  - alias: POST GPS Coordinates
+    trigger:
+      platform: state
+      entity_id: device_tracker.iphonebart, device_tracker.ipadbart
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.latitude != trigger.from_state.attributes.latitude }}"
+        - condition: template
+          value_template: "{{ trigger.to_state.attributes.longitude != trigger.from_state.attributes.longitude }}"
+    action:
+      service: shell_command.update_pgm

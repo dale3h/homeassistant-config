@@ -1,0 +1,11 @@
+################################################################
+## Script
+################################################################
+
+hello_world_wrapper:
+  sequence:
+    - service: shell_command.hello_world
+
+restart_ha:
+  sequence:
+    - service: homeassistant.restart

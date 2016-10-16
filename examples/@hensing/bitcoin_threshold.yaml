@@ -1,0 +1,9 @@
+automation:
+  - alias: Input Slider Threshold Example
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.exchange_rate_1_btc')|float <= states('input_slider.bitcoin_low')|float }}"
+    action:
+      service: notify.push
+      data:
+        message: Bitcoin price has dropped below the threshold
