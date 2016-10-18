@@ -1,9 +1,0 @@
-- alias: pub wuweather temp mqtt
-  trigger:
-    platform: state
-    entity_id: sensor.pws_temp_f
-  action:
-    - service: mqtt.publish
-      data_template:
-        payload: "{{ trigger.to_state.state }}"
-        topic: wuweather/temp

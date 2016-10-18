@@ -1,7 +1,0 @@
-sensor:
-  - platform: template
-    sensors:
-      home_temperature:
-        value_template: "{{ states.climate.home.attributes.current_temperature if states.climate.home is not none else 'unknown' }}"
-        unit_of_measurement: 'F'
-        entity_id: climate.home
