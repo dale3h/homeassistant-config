@@ -3,6 +3,7 @@
 ################################################################
 
 - platform: mqtt
+  name: pepper_fan
   state_topic: smartthings/pepper_fan/switch
   command_topic: smartthings/pepper_fan/switch
   payload_on: 'on'
