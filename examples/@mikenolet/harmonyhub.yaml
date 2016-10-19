@@ -1,0 +1,45 @@
+################################################################
+## Switch / Harmony Hub
+################################################################
+
+- platform: mqtt
+  name: living_room_movie
+  state_topic: harmony-api/hubs/living-room/activities/movie/state
+  command_topic: harmony-api/hubs/living-room/activities/movie/command
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  name: living_room_tv
+  state_topic: harmony-api/hubs/living-room/activities/tv/state
+  command_topic: harmony-api/hubs/living-room/activities/tv/command
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  name: living_room_roku
+  state_topic: harmony-api/hubs/living-room/activities/watch-roku/state
+  command_topic: harmony-api/hubs/living-room/activities/watch-roku/command
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  name: upstairs_tv_room_chromecast
+  state_topic: harmony-api/hubs/upstairs-tv-room/activities/chromecast/state
+  command_topic: harmony-api/hubs/upstairs-tv-room/activities/chromecast/command
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  name: upstairs_tv_room_tv
+  state_topic: harmony-api/hubs/upstairs-tv-room/activities/tv/state
+  command_topic: harmony-api/hubs/upstairs-tv-room/activities/tv/command
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  name: upstairs_tv_room_roku
+  state_topic: harmony-api/hubs/upstairs-tv-room/activities/watch-roku/state
+  command_topic: harmony-api/hubs/upstairs-tv-room/activities/watch-roku/command
+  payload_on: 'on'
+  payload_off: 'off'
