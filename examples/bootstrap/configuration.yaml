@@ -1,0 +1,63 @@
+################################################################
+## Configuration
+################################################################
+
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  time_zone: America/Chicago
+  unit_system: imperial
+  customize: !include customize.yaml
+
+discovery:
+frontend:
+history:
+logbook:
+sun:
+updater:
+
+################################################
+## Components (Non-Includes)
+################################################
+
+http:
+  api_password: !secret http_api_password
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+# recorder:
+#   purge_days: 7
+
+################################################
+## Component Includes (Merge List)
+################################################
+
+automation: !include_dir_merge_list automation
+# binary_sensor: !include_dir_merge_list binary_sensor
+# camera: !include_dir_merge_list camera
+# cover: !include_dir_merge_list cover
+# device_tracker: !include_dir_merge_list device_tracker
+# light: !include_dir_merge_list light
+# media_player: !include_dir_merge_list media_player
+# notify: !include_dir_merge_list notify
+# scene: !include_dir_merge_list scene
+# sensor: !include_dir_merge_list sensor
+# switch: !include_dir_merge_list switch
+# zone: !include_dir_merge_list zone
+
+################################################
+## Component Includes (Merge Named)
+################################################
+
+# group: !include_dir_merge_named group
+input_boolean: !include_dir_merge_named input_boolean
+# input_select: !include_dir_merge_named input_select
+# input_slider: !include_dir_merge_named input_slider
+# script: !include_dir_merge_named script
+# shell_command: !include_dir_merge_named shell_command

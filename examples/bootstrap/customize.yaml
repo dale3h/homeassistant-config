@@ -1,0 +1,43 @@
+################################################################
+## Customize
+################################################################
+
+################################################
+## Automation
+################################################
+
+automation.easy_stuff_n:
+  friendly_name: Easy Stuff is On
+  icon: mdi:cube
+
+automation.easy_stuff_off:
+  friendly_name: Easy Stuff is Off
+  icon: mdi:cube-outline
+
+automation.peasy_things_on:
+  friendly_name: Peasy Things are On
+  icon: mdi:bell
+
+automation.peasy_things_off:
+  friendly_name: Peasy Things are Off
+  icon: mdi:bell-outline
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean.easy_toggle:
+  friendly_name: Easy Toggle
+  icon: mdi:apple
+
+input_boolean.easier_toggle:
+  friendly_name: Easier Toggle
+  icon: mdi:amazon
+
+input_boolean.peasy_cheese:
+  friendly_name: Peasy Cheese
+  icon: mdi:server-security
+
+input_boolean.peasy_example:
+  friendly_name: Peasy Example
+  icon: mdi:chip

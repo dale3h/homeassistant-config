@@ -1,0 +1,41 @@
+################################################################
+## Automation / Easy Stuff
+################################################################
+
+- alias: easy_stuff_on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.easy_toggle, input_boolean.easier_toggle
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.easy_toggle
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.easier_toggle
+      state: 'on'
+  action:
+    - service: persistent_notification.create
+      data:
+        message: Both easy input booleans are on!
+        notification_id: easy_notify
+        title: Easy On Notification
+
+- alias: easy_stuff_off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.easy_toggle, input_boolean.easier_toggle
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.easy_toggle
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.easier_toggle
+      state: 'off'
+  action:
+    - service: persistent_notification.create
+      data:
+        message: Both easy input booleans are off!
+        notification_id: easy_notify
+        title: Easy Off Notification

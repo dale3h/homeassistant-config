@@ -1,0 +1,41 @@
+################################################################
+## Automation / Peasy Things
+################################################################
+
+- alias: peasy_things_on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.peasy_cheese, input_boolean.peasy_example
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.peasy_cheese
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.peasy_example
+      state: 'on'
+  action:
+    - service: persistent_notification.create
+      data:
+        message: Both peasy input booleans are on!
+        notification_id: peasy_notify
+        title: Peasy On Notification
+
+- alias: peasy_things_off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.peasy_cheese, input_boolean.peasy_example
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.peasy_cheese
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.peasy_example
+      state: 'off'
+  action:
+    - service: persistent_notification.create
+      data:
+        message: Both peasy input booleans are off!
+        notification_id: peasy_notify
+        title: Peasy Off Notification
