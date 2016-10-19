@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # Install by running:
-# wget -Nnv https://raw.githubusercontent.com/dale3h/homeassistant-config/master/shell_scripts/homebridge_rpi_installer.sh && bash homebridge_rpi_installer.sh
+# wget -Nnv https://raw.githubusercontent.com/dale3h/homeassistant-config/master/wizard/homebridge-wizard.sh && bash homebridge-wizard.sh
 
-USER_HOME=/home/pi
+me=$(whoami)
+
+USER_HOME=/home/$me
 HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
 
-echo "Homebridge Simple Installer for Raspberry Pi and Home Assistant"
+echo "Homebridge Installer for Home Assistant"
 echo "Copyright(c) 2016 Dale Higgs <https://gitter.im/dale3h>"
 echo
 
@@ -24,7 +26,7 @@ sudo apt-get install -y libavahi-compat-libdnssd-dev
 
 echo "Installing PM2 process manager"
 sudo npm install -g pm2
-sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp $USER_HOME"
+sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u $me --hp $USER_HOME"
 
 echo "Installing Homebridge"
 sudo npm install -g --unsafe-perm homebridge hap-nodejs node-gyp
