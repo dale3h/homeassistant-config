@@ -1,31 +1,31 @@
 ################################################################
-## Automation / Bathroom Lighting
+## Automation / Bathroom Lights
 ################################################################
 
-- alias: Master Bathroom Light ON when Motion Active
+- alias: master_bathroom_light_on_when_motion_active
   trigger:
     platform: state
     entity_id: binary_sensor.master_bathroom_sensor_4
     to: 'on'
   condition:
     condition: state
-    entity_id: switch.master_bathroom_motion
+    entity_id: input_boolean.master_bathroom_motion
     state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.master_bathroom_1, light.master_bathroom_2
+    entity_id: group.master_bathroom_light
     data_template:
       brightness: "{{ states('sensor.time_brightness')|int }}"
 
-- alias: Master Bathroom Light OFF when Motion Inactive
+- alias: master_bathroom_light_off_when_motion_inactive
   trigger:
     platform: state
     entity_id: binary_sensor.master_bathroom_sensor_4
     to: 'off'
   condition:
     condition: state
-    entity_id: switch.master_bathroom_motion
+    entity_id: input_boolean.master_bathroom_motion
     state: 'on'
   action:
     service: light.turn_off
-    entity_id: light.master_bathroom_1, light.master_bathroom_2
+    entity_id: group.master_bathroom_light

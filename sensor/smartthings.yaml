@@ -3,33 +3,6 @@
 ################################################################
 
 ################################################
-## Pepper Fan
-################################################
-
-- platform: mqtt
-  name: pepper_fan_power
-  state_topic: smartthings/pepper_fan/power
-  unit_of_measurement: 'W'
-
-################################################
-## Garage Entry
-################################################
-
-- platform: mqtt
-  name: garage_entry_battery
-  state_topic: smartthings/garage_entry/battery
-  unit_of_measurement: '%'
-
-- platform: mqtt
-  name: garage_entry_temperature
-  state_topic: smartthings/garage_entry/temperature
-  unit_of_measurement: '°F'
-
-# - platform: mqtt
-#   name: garage_entry_position
-#   state_topic: smartthings/garage_entry/threeAxis
-
-################################################
 ## Closet Door
 ################################################
 
@@ -43,22 +16,18 @@
   state_topic: smartthings/closet_door/temperature
   unit_of_measurement: '°F'
 
-# - platform: mqtt
-#   name: closet_door_position
-#   state_topic: smartthings/closet_door/threeAxis
-
 ################################################
-## Parker's Closet Door
+## Garage Entry
 ################################################
 
 - platform: mqtt
-  name: parkers_closet_door_battery
-  state_topic: smartthings/parkers_closet_door/battery
+  name: garage_entry_battery
+  state_topic: smartthings/garage_entry/battery
   unit_of_measurement: '%'
 
 - platform: mqtt
-  name: parkers_closet_door_temperature
-  state_topic: smartthings/parkers_closet_door/temperature
+  name: garage_entry_temperature
+  state_topic: smartthings/garage_entry/temperature
   unit_of_measurement: '°F'
 
 ################################################
@@ -76,7 +45,7 @@
   unit_of_measurement: '°F'
 
 ################################################
-## Iris Smart Button
+## Network Cabinet Button
 ################################################
 
 - platform: mqtt
@@ -88,3 +57,26 @@
   name: network_cabinet_temperature
   state_topic: smartthings/network_cabinet/temperature
   unit_of_measurement: '°F'
+
+################################################
+## Parker's Closet Door
+################################################
+
+- platform: mqtt
+  name: parkers_closet_door_battery
+  state_topic: smartthings/parkers_closet_door/battery
+  unit_of_measurement: '%'
+
+- platform: mqtt
+  name: parkers_closet_door_temperature
+  state_topic: smartthings/parkers_closet_door/temperature
+  unit_of_measurement: '°F'
+
+################################################
+## Pepper Fan
+################################################
+
+- platform: mqtt
+  name: pepper_fan_power
+  state_topic: smartthings/pepper_fan/power
+  unit_of_measurement: 'W'

@@ -6,17 +6,17 @@
   sensors:
     time_brightness:
       value_template: >-
-        {%- if now.strftime('%H%M')|int < 600 -%}
+        {%- if now().strftime('%H%M')|int < 600 -%}
           64
-        {%- elif now.strftime('%H%M')|int < 700 -%}
+        {%- elif now().strftime('%H%M')|int < 700 -%}
           128
-        {%- elif now.strftime('%H%M')|int < 800 -%}
+        {%- elif now().strftime('%H%M')|int < 800 -%}
           192
-        {%- elif now.strftime('%H%M')|int < 2000 -%}
+        {%- elif now().strftime('%H%M')|int < 2000 -%}
           255
-        {%- elif now.strftime('%H%M')|int < 2100 -%}
+        {%- elif now().strftime('%H%M')|int < 2100 -%}
           192
-        {%- elif now.strftime('%H%M')|int < 2200 -%}
+        {%- elif now().strftime('%H%M')|int < 2200 -%}
           128
         {%- else -%}
           64

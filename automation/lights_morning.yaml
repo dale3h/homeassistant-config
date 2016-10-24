@@ -1,0 +1,22 @@
+################################################################
+## Automation / Morning Lights
+################################################################
+
+- alias: morning_lights_on
+  trigger:
+    - platform: time
+      after: '06:30:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.sunrise_lighting
+      state: 'on'
+    - condition: state
+      entity_id: group.person_dale
+      state: 'home'
+  action:
+    - service: light.turn_on
+      entity_id: group.morning_lights
+      data:
+        brightness: 255
+        color_temp: 154
+        transition: 900

@@ -1,21 +1,15 @@
 ## Todo
 
-* Update automation names
 * Removal redundant switches for automations
 * Clean up customize.yaml to remove old/outdated entities
-* Remove possessive names and make singular
-* Add names for new entities
-* Automate Goodnight/Good Morning button
-  * After 9pm, trigger goodnight script (unless already triggered)
+* Automate Good Morning/Night button
+  * After 9pm, trigger good night script (unless already triggered)
   * After 5am, trigger good morning script (unless already triggered)
   * After 10am, toggle bedroom motion
 * Move mqtt dash buttons to MQTT sensors
-* Figure out a way to use templates in scenes
 * Normalize triggers, conditions, actions, scripts, etc with hyphens
 * Organize groups better
 * Iconify everything
-* Automate lights using door sensors and motion sensor
-* Add full sexy time scene (music, lights, etc)
 * Add panic mode/security mode scene
 * Schedule backup, but figure out a way to delete old archives
 
@@ -43,12 +37,6 @@
       timer:
         minutes: 10
     ```
-
-* Custom UPnP ports
-  * Using "upnp" component
-  * Using automation
-  * Allow for options such as host, local port, remote port, name, etc
-  * Allow for removal by automation
 
 * Translations
 

@@ -1,9 +1,6 @@
 ################################################################
-## Input Boolean / Lighting
+## Input Boolean / Occupancy Dummy
 ################################################################
 
-garage_lighting:
-  initial: on
-
-sunrise_lighting:
-  initial: on
+motion_dummy:
+  initial: off

@@ -17,7 +17,7 @@
 ## Bluetooth
 ################################################
 
-- platform: bluetooth_tracker
+# - platform: bluetooth_tracker
 
 ################################################
 ## iCloud

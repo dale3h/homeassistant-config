@@ -6,21 +6,20 @@
 ## Startup Notification
 ################################################
 
-- alias: Startup Notification
+- alias: startup_notification
   trigger:
     platform: event
     event_type: homeassistant_start
   action:
     service: notify.telegram
     data:
-      title: ''
       message: Home Assistant is now up and running.
 
 ################################################
 ## Rebuild Customize on Startup
 ################################################
 
-# - alias: Rebuild Customize on Startup
+# - alias: rebuild_customize_on_startup
 #   trigger:
 #     platform: event
 #     event_type: homeassistant_start

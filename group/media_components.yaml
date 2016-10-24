@@ -4,5 +4,5 @@
 
 media_components:
   entities:
-    - switch.projector
+    - switch.apple_tv
     - switch.fire_tv

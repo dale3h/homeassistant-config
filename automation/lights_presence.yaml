@@ -1,12 +1,12 @@
 ################################################################
-## Automation / Presence Lighting
+## Automation / Presence Light
 ################################################################
 
 ################################################
 ## Turn Lights ON when Dale Arrives
 ################################################
 
-- alias: Activate Arrival Scene
+- alias: activate_arrival_scene
   trigger:
     platform: state
     entity_id: group.household
@@ -19,7 +19,7 @@
 ## Turn Lights OFF when Dale Leaves
 ################################################
 
-- alias: Activate Departure Scene
+- alias: activate_departure_scene
   trigger:
     platform: state
     entity_id: group.household

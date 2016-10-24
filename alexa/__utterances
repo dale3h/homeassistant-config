@@ -1,6 +1,0 @@
-LocateIntent where is {User}
-LocateIntent where's {User}
-LocateIntent where {User} is
-LocateIntent where did {User} go
-
-WhereAreWeIntent where we are

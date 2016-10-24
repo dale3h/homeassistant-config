@@ -7,9 +7,20 @@
 default: info
 logs:
   custom_components.telegram: debug
+  homeassistant.components.climate.ecobee: warn
+  homeassistant.components.sensor.command_line: warn
   homeassistant.components.device_tracker.asuswrt: warn
   homeassistant.components.discovery: warn
+  homeassistant.components.ecobee: warn
   homeassistant.components.http: warn
+  homeassistant.components.sensor.apcupsd: error
+  homeassistant.components.sensor.yweather: warn
+  homeassistant.components.notify.telegram: warn
+  homeassistant.components.zone: warn
+  homeassistant.components.zwave: error
+  homeassistant.core: warn
+  phue: warn
   plexapi: warn
+  pyicloud.base: warn
   requests.packages.urllib3.connectionpool: error
-#   homeassistant.core: warn
+  urllib3.connectionpool: error

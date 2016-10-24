@@ -58,6 +58,9 @@ ATTR_LOWPOWERMODE = 'Low_power_mode'
 ATTR_BATTERYSTATUS = 'Battery_status'
 ATTR_LOCATION = 'Location'
 ATTR_FRIENDLY_NAME = 'Friendly_name'
+ATTR_GOOGLE_MAPS_TRAVEL_TIME = 'GoogleMapsTravelTime'
+ATTR_GOOGLE_MAPS_TRAVEL_TIME_DURATION = 'GMTT_duration'
+ATTR_GOOGLE_MAPS_TRAVEL_TIME_ORIGIN = 'GMTT_origin'
 
 TYPE_CURRENT = 'currentevent'
 TYPE_NEXT = 'nextevent'
@@ -118,9 +121,15 @@ def setup(hass, config):
                 ignored_devices.append(each_dev)
 
         getevents = account_config.get(CONF_EVENTS, DEFAULT_EVENTS)
+        
+        googletraveltime = {}
+        if 'googletraveltime' in account_config:
+            for google, googleconfig in account_config.get('googletraveltime').items():
+                googletraveltime[google] = googleconfig
+        _LOGGER.info("ICLOUD: account %s googletraveltime %s", account, googletraveltime)
 
         icloudaccount = Icloud(hass, username, password, cookiedirectory, account,
-                               ignored_devices, getevents)
+                               ignored_devices, getevents, googletraveltime)
         icloudaccount.update_ha_state()
         ICLOUDTRACKERS[account] = icloudaccount
         if ICLOUDTRACKERS[account].api is not None:
@@ -207,7 +216,7 @@ def setup(hass, config):
 
 class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
     """ Represents a Proximity in Home Assistant. """
-    def __init__(self, hass, icloudobject, name, identifier):
+    def __init__(self, hass, icloudobject, name, identifier, googletraveltime):
         # pylint: disable=too-many-arguments
         self.hass = hass
         self.icloudobject = icloudobject
@@ -223,6 +232,9 @@ class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
         self._devicestatus = None
         self._lowPowerMode = None
         self._batteryStatus = None
+        self._googletraveltime = googletraveltime
+        self._googletraveltimeduration = None
+        self._googletraveltimeorigin = None
 
         self.entity_id = generate_entity_id(
             ENTITY_ID_FORMAT_DEVICE, self.devicename,
@@ -241,14 +253,28 @@ class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
     @property
     def state_attributes(self):
         """ returns the friendlyname of the icloud tracker """
-        return {
-            ATTR_DEVICENAME: self.devicename,
-            ATTR_BATTERY: self._battery,
-            ATTR_DISTANCE: self._distance,
-            ATTR_DEVICESTATUS: self._devicestatus,
-            ATTR_LOWPOWERMODE: self._lowPowerMode,
-            ATTR_BATTERYSTATUS: self._batteryStatus
-        }
+        if self._googletraveltime is None:
+            return {
+                ATTR_DEVICENAME: self.devicename,
+                ATTR_BATTERY: self._battery,
+                ATTR_DISTANCE: self._distance,
+                ATTR_DEVICESTATUS: self._devicestatus,
+                ATTR_LOWPOWERMODE: self._lowPowerMode,
+                ATTR_BATTERYSTATUS: self._batteryStatus,
+                ATTR_GOOGLE_MAPS_TRAVEL_TIME: self._googletraveltime
+            }
+        else:
+            return {
+                ATTR_DEVICENAME: self.devicename,
+                ATTR_BATTERY: self._battery,
+                ATTR_DISTANCE: self._distance,
+                ATTR_DEVICESTATUS: self._devicestatus,
+                ATTR_LOWPOWERMODE: self._lowPowerMode,
+                ATTR_BATTERYSTATUS: self._batteryStatus,
+                ATTR_GOOGLE_MAPS_TRAVEL_TIME: self._googletraveltime,
+                ATTR_GOOGLE_MAPS_TRAVEL_TIME_DURATION: self._googletraveltimeduration,
+                ATTR_GOOGLE_MAPS_TRAVEL_TIME_ORIGIN: self._googletraveltimeorigin
+            }
 
     @property
     def icon(self):
@@ -258,9 +284,23 @@ class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
     def keep_alive(self):
         """ Keeps the api alive """
         currentminutes = dt_util.now().hour * 60 + dt_util.now().minute
-        maxminute = round(self._interval / 5, 0)
-        if currentminutes % self._interval <= maxminute:
+        if currentminutes % self._interval == 0:
             self.update_icloud(see)
+        elif self._interval > 10 and currentminutes % self._interval == 2:
+            self.update_icloud(see)
+        elif self._interval > 10 and currentminutes % self._interval == 4:
+            self.update_icloud(see)
+        
+        self._googletraveltimeduration = None
+        self._googletraveltimeorigin = None
+        if self._googletraveltime is not None:
+            googletraveltimestate = self.hass.states.get(self._googletraveltime)
+            if googletraveltimestate is not None:
+                if (self._googletraveltimeduration != googletraveltimestate.state or ('origin_addresses' in googletraveltimestate.attributes and self._googletraveltimeorigin != googletraveltimestate.attributes['origin_addresses'])):
+                    self._googletraveltimeduration = googletraveltimestate.state
+                    if 'origin_addresses' in googletraveltimestate.attributes:
+                        self._googletraveltimeorigin = googletraveltimestate.attributes['origin_addresses']
+                    self.update_ha_state()
 
     def lost_iphone(self):
         """ Calls the lost iphone function if the device is found """
@@ -305,6 +345,7 @@ class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
                 self._lowPowerMode = status['lowPowerMode']
                 self._batteryStatus = status['batteryStatus']
                 self.update_ha_state()
+                status = self.identifier.status(DEVICESTATUSSET)
                 battery = status['batteryLevel']*100
                 location = status['location']
                 if location:
@@ -370,6 +411,10 @@ class IDevice(Entity):  # pylint: disable=too-many-instance-attributes
                 return
             if self._distance > 100:
                 self._interval = round(self._distance, 0)
+                if self._googletraveltime is not None:
+                    googletraveltimestate = self.hass.states.get(self._googletraveltime)
+                    if googletraveltimestate is not None:
+                        self._interval = round(float(googletraveltimestate.state) - 10, 0)
             elif self._distance > 50:
                 self._interval = 30
             elif self._distance > 25:
@@ -565,7 +610,7 @@ class IEvent(Entity):  # pylint: disable=too-many-instance-attributes
 class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
     """ Represents a Proximity in Home Assistant. """
     def __init__(self, hass, username, password, cookiedirectory, name, ignored_devices,
-                 getevents):
+                 getevents, googletraveltime):
         # pylint: disable=too-many-arguments
         self.hass = hass
         self.username = username
@@ -583,6 +628,10 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
         self.nextevents = {}
         self._ignored_devices = ignored_devices
         self._ignored_identifiers = {}
+        self.googletraveltime = googletraveltime
+        
+        self._currentevents = 0
+        self._nextevents = 0
 
         self.entity_id = generate_entity_id(
             ENTITY_ID_FORMAT_ICLOUD, self.accountname,
@@ -603,7 +652,10 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
                                         status['name']).lower()
                     if (devicename not in self.devices and
                         devicename not in self._ignored_devices):
-                        idevice = IDevice(self.hass, self, devicename, device)
+                        gtt = None
+                        if devicename in self.googletraveltime:
+                            gtt = self.googletraveltime[devicename]
+                        idevice = IDevice(self.hass, self, devicename, device, gtt)
                         idevice.update_ha_state()
                         self.devices[devicename] = idevice
                     elif devicename in self._ignored_devices:
@@ -613,7 +665,7 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
                     from_dt = dt_util.now()
                     to_dt = from_dt + timedelta(days=7)
                     events = self.api.calendar.events(from_dt, to_dt)
-                    new_events = sorted(events.list_of_dict, key=operator.attrgetter('startDate'))
+                    new_events = sorted(events, key=self.get_key)
                     starttime = None
                     endtime = None
                     duration = None
@@ -709,7 +761,7 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
                                                              tz,
                                                              location)
 
-            except PyiCloudFailedLoginException as error:
+            except Exception as error:
                 _LOGGER.error('Error logging into iCloud Service: %s',
                               error)
 
@@ -721,15 +773,25 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
     @property
     def state_attributes(self):
         """ returns the friendlyname of the icloud tracker """
-        return {
-            ATTR_ACCOUNTNAME: self.accountname
-        }
+        if self.getevents:
+            return {
+                ATTR_ACCOUNTNAME: self.accountname,
+                'current events': self._currentevents,
+                'next events': self._nextevents
+            }
+        else:
+            return {
+                ATTR_ACCOUNTNAME: self.accountname
+            }
 
     @property
     def icon(self):
         """Return the icon to use for device if any."""
         return 'mdi:account'
-
+        
+    def get_key(self, item):
+        return item.get('startDate')
+        
     def keep_alive(self):
         """ Keeps the api alive """
         if self.api is None:
@@ -753,7 +815,7 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
                 from_dt = dt_util.now()
                 to_dt = from_dt + timedelta(days=7)
                 events = self.api.calendar.events(from_dt, to_dt)
-                new_events = sorted(events.list_of_dict, key=operator.attrgetter('startDate'))
+                new_events = sorted(events, key=self.get_key)
                 starttime = None
                 endtime = None
                 duration = None
@@ -879,6 +941,16 @@ class Icloud(Entity):  # pylint: disable=too-many-instance-attributes
                     else:
                         self.nextevents[addedevent].check_alive()
 
+                self._currentevents = 0
+                self._nextevents = 0
+                for entity_id in self.hass.states.entity_ids('ievent'):
+                    state = self.hass.states.get(entity_id)
+                    if state.attributes.get('Friendly_name') == 'nextevent':
+                        self._nextevents = self._nextevents + 1
+                    elif state.attributes.get('Friendly_name') == 'currentevent':
+                        self._currentevents = self._currentevents + 1
+                self.update_ha_state()
+                        
     def lost_iphone(self, devicename):
         """ Calls the lost iphone function if the device is found """
         if self.api is not None:

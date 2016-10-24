@@ -1,52 +1,51 @@
 ################################################################
-## Automation / Closet Lighting
+## Automation / Closet Lights
 ################################################################
 
 ################################################
 ## Master Closet
 ################################################
 
-- alias: Master Closet Light ON when Door is OPEN
+- alias: master_closet_light_on_when_door_is_open
   trigger:
     platform: state
     entity_id: binary_sensor.closet_door_contact
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: light.master_closet
+    entity_id: group.master_closet_light
     data_template:
       brightness: "{{ states('sensor.time_brightness')|int }}"
 
-- alias: Master Closet Light OFF when Door is CLOSED
+- alias: master_closet_light_off_when_door_is_closed
   trigger:
     platform: state
     entity_id: binary_sensor.closet_door_contact
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.master_closet
+    entity_id: group.master_closet_light
 
 ################################################
 ## Parker's Closet
 ################################################
 
-- alias: "Parker's Closet Light ON when Door is OPEN"
+- alias: parker_closet_light_on_when_door_is_open
   trigger:
     platform: state
     entity_id: binary_sensor.parkers_closet_door_contact
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: light.parkers_closet
+    entity_id: group.parkers_closet_light
     data_template:
       brightness: "{{ states('sensor.time_brightness')|int }}"
 
-- alias: "Parker's Closet Light OFF when Door is CLOSED"
+- alias: parker_closet_light_off_when_door_is_closed
   trigger:
     platform: state
     entity_id: binary_sensor.parkers_closet_door_contact
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.parkers_closet
-
+    entity_id: group.parkers_closet_light

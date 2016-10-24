@@ -1,0 +1,108 @@
+################################################################
+## Group / Lights
+################################################################
+
+################################################
+## Individual Lights
+################################################
+
+back_porch_light:
+  entities:
+    - light.back_porch
+
+dining_room_light:
+  entities:
+    - light.dining_room_1
+    - light.dining_room_2
+
+entry_lamp:
+  entities:
+    - light.entry_lamp
+
+entryway_light:
+  entities:
+    - light.entryway_1
+    - light.entryway_2
+
+front_porch_light:
+  entities:
+    - light.front_porch
+
+garage_light:
+  entities:
+    - light.garage
+
+guest_bathroom_light:
+  entities:
+    - light.guest_bathroom_1
+    - light.guest_bathroom_2
+
+guest_bedroom_light:
+  entities:
+    - light.guest_bedroom
+
+hallway_light:
+  entities:
+    - light.hallway
+
+kitchen_chandelier:
+  entities:
+    - light.chandelier_1
+    - light.chandelier_2
+    - light.chandelier_3
+
+kitchen_range:
+  entities:
+    - light.range
+
+kitchen_sink:
+  entities:
+    - light.sink
+
+laundry_room_light:
+  entities:
+    - light.laundry_room
+
+living_room_light:
+  entities:
+    - light.living_room_1
+    - light.living_room_2
+
+master_bathroom_light:
+  entities:
+    - light.master_bathroom_1
+    - light.master_bathroom_2
+
+master_bedroom_light:
+  entities:
+    - light.master_bedroom_1
+    - light.master_bedroom_2
+
+master_closet_light:
+  entities:
+    - light.master_closet
+
+parker_closet_light:
+  entities:
+    - light.parkers_closet
+
+parker_lamp:
+  entities:
+    - light.parker_lamp_1
+    - light.parker_lamp_2
+
+################################################
+## Grouped Lights
+################################################
+
+kitchen_lights:
+  entities:
+    - group.kitchen_chandelier
+    - group.kitchen_sink
+    - group.kitchen_range
+
+morning_lights:
+  entities:
+    - group.dining_room_light
+    - group.entry_lamp
+    - group.master_bedroom_light

@@ -1,8 +1,9 @@
 ################################################################
-## Script / Goodnight
+## Input Slider / Light Timers
 ################################################################
 
-goodnight:
-  sequence:
-    - service: scene.turn_on
-      entity_id: scene.goodnight
+kitchen_timeout:
+  initial: 1
+  min: 0
+  max: 100
+  step: 1

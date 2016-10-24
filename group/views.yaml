@@ -12,7 +12,6 @@ home:
     - group.garage
     - group.guest_bedroom
     - group.hallway
-    - group.hue_lights
     - group.kitchen
     - group.laundry_room
     - group.living_room
@@ -45,7 +44,6 @@ media:
   view: yes
   entities:
     - group.media_components
-    - group.media_player
 
 automation:
   view: yes
@@ -53,3 +51,13 @@ automation:
     - group.automation_override
     - group.scripts
     - group.scenes
+    - group.all_automations
+    - group.all_scripts
+
+weather:
+  view: yes
+  entities:
+    - group.weather_general
+    - group.weather_darksky
+    - group.weather_wunderground
+    - group.weather_yr

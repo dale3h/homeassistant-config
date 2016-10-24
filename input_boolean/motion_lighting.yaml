@@ -1,26 +1,37 @@
 ################################################################
-## Shell Command / Harmony Hub
+## Input Boolean / Motion Lighting
 ################################################################
 
 ################################################
-## harmonyHubCLI Documentation:
-##   https://github.com/sushilks/harmonyHubCLI
+## Multi-Room
 ################################################
 
-################################################
-## Yamaha AV Receiver
-################################################
-
-harmonyhub_raw: 'harmonyhub-cli --hub=192.168.1.70 {{ args }}'
-harmonyhub_device_command: 'harmonyhub-cli --hub=192.168.1.70 --device="{{ device }}" --command={{ command }}'
-harmonyhub_activity_command: 'harmonyhub-cli --hub=192.168.1.70 --actvity="{{ activity }}" --command={{ command }}'
+sunrise_lighting:
+  initial: on
 
 ################################################
-## Epson Projector
+## Garage
 ################################################
 
+garage_lighting:
+  initial: on
 
 ################################################
-## Amazon Fire TV Stick
+## Kitchen
 ################################################
 
+kitchen_motion:
+  initial: on
+
+################################################
+## Master Bedroom
+################################################
+
+master_bathroom_motion:
+  initial: on
+
+master_bedroom_motion:
+  initial: on
+
+shower_mode:
+  initial: off

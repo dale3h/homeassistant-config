@@ -2,38 +2,38 @@
 ## Automation / Occupancy Lights
 ################################################################
 
-- alias: Turn Hallway Light OFF when Unoccupied
+- alias: turn_hallway_light_off_when_unoccupied
   trigger:
     platform: state
     entity_id: binary_sensor.home_occupancy
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.hallway
+    entity_id: group.hallway_light
 
-- alias: Turn Living Room Light OFF when Unoccupied
+- alias: turn_living_room_light_off_when_unoccupied
   trigger:
     platform: state
     entity_id: binary_sensor.living_room_occupancy
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.living_room_1, light.living_room_2
+    entity_id: group.living_room_light
 
-- alias: Turn Master Bedroom Light OFF when Unoccupied
+- alias: turn_master_bedroom_light_off_when_unoccupied
   trigger:
     platform: state
     entity_id: binary_sensor.master_bedroom_occupancy
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.master_bedroom_1, light.master_bedroom_2
+    entity_id: group.master_bedroom_light
 
-- alias: Turn Guest Bedroom Light OFF when Unoccupied
+- alias: turn_guest_bedroom_light_off_when_unoccupied
   trigger:
     platform: state
     entity_id: binary_sensor.guest_bedroom_occupancy
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.guest_bedroom
+    entity_id: group.guest_bedroom_light

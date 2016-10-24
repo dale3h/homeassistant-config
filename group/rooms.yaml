@@ -4,53 +4,46 @@
 
 back_porch:
   entities:
-    - light.back_porch
+    - group.back_porch_light
 
 dining_room:
   entities:
-    - light.dining_room_1
-    - light.dining_room_2
+    - group.dining_room_light
 
 entryway:
   entities:
-    - light.entryway_lamp_level_3
-    - light.entryway_1
-    - light.entryway_2
+    - group.entry_lamp
+    - group.entryway_light
 
 front_porch:
   entities:
-    - light.front_porch
+    - group.front_porch_light
 
 garage:
   entities:
-    - light.garage
+    - group.garage_light
     - switch.garage_door
     - cover.garage_door
-    - sensor.aladdin_connect
     - binary_sensor.garage_entry_contact
-    - binary_sensor.garage_entry_acceleration
 
 guest_bathroom:
   entities:
-    - light.guest_bathroom_1
-    - light.guest_bathroom_2
+    - group.guest_bathroom_light
 
 guest_bedroom:
   entities:
-    - light.guest_bedroom
+    - group.guest_bedroom_light
 
 hallway:
   entities:
-    - light.hallway
+    - group.hallway_light
     - sensor.home_humidity
 
 kitchen:
   entities:
-    - light.chandelier_1
-    - light.chandelier_2
-    - light.chandelier_3
-    - light.range
-    - light.sink
+    - group.kitchen_chandelier
+    - group.kitchen_range
+    - group.kitchen_sink
     - switch.pepper_fan
     - sensor.pepper_fan_power
     - sensor.kitchen_luminance_6
@@ -58,30 +51,24 @@ kitchen:
 
 laundry_room:
   entities:
-    - light.laundry_room
+    - group.laundry_room_light
 
 living_room:
   entities:
-    - light.living_room_1
-    - light.living_room_2
-    - media_player.my_aftm_2
-    - switch.projector
+    - group.living_room_light
     - sensor.harmony_hub_activity
 
 master_bedroom:
   entities:
     - binary_sensor.closet_door_contact
-    - light.master_bedroom_1
-    - light.master_bedroom_2
-    - light.master_bathroom_1
-    - light.master_bathroom_2
-    - light.master_closet
-    - light.master_bedroom_lamp_level_2
-    - media_player.my_aftm
+    - group.master_bedroom_light
+    - group.master_bathroom_light
+    - group.master_closet_light
     - sensor.master_bathroom_luminance_4
     - sensor.master_bathroom_ultraviolet_4
 
 parkers_bedroom:
   entities:
-    - light.parkers_closet
+    - group.parker_lamp
+    - group.parker_closet_light
     - binary_sensor.parkers_closet_door_contact

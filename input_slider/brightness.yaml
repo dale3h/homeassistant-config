@@ -5,5 +5,5 @@
 nightlight_brightness:
   initial: 25
   min: 0
-  max: 254
+  max: 255
   step: 1

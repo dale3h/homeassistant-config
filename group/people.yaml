@@ -10,22 +10,22 @@ guests:
 
 person_courtney:
   entities:
-    - device_tracker.courtneys_iphone
+    - device_tracker.courtney_iphone
 
 person_dale:
   entities:
     - device_tracker.iphone
-    - device_tracker.dales_iphone
-    - device_tracker.dales_iphone_bt
+    - device_tracker.dale_iphone
+    - device_tracker.dale_iphone_bt
 
 person_meagan:
   entities:
-    - device_tracker.meagans_android
+    - device_tracker.meagan_android
 
 person_russell:
   entities:
-    - device_tracker.russells_iphone
+    - device_tracker.russell_iphone
 
 person_tonyia:
   entities:
-    - device_tracker.tonyias_kindle
+    - device_tracker.tonyia_kindle

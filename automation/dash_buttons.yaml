@@ -1,42 +1,38 @@
 ################################################################
-## Automation / MQTT Dash Buttons
+## Automation / Dash Buttons
 ################################################################
 
 ################################################
 ## Master Bedroom Motion (Kraft)
 ################################################
 
-- alias: Toggle Master Bedroom Motion
+- alias: toggle_master_bedroom_motion
   trigger:
     platform: mqtt
-    topic: dash/kraft_mac_and_cheese
-    payload: 'active'
+    topic: dash-button/kraft_mac_and_cheese
   action:
     service: homeassistant.toggle
-    entity_id: switch.master_bedroom_motion
+    entity_id: input_boolean.master_bedroom_motion
 
 ################################################
 ## Master Bathroom Motion (Ziploc)
 ################################################
 
-- alias: Toggle Master Bathroom Motion
+- alias: toggle_master_bathroom_motion
   trigger:
     platform: mqtt
-    topic: dash/ziploc
-    payload: 'active'
+    topic: dash-button/ziploc
   action:
     service: homeassistant.toggle
-    entity_id: switch.master_bathroom_motion
+    entity_id: input_boolean.master_bathroom_motion
 
 ################################################
-## Goodnight Scene (Gatorade)
+## Good Night Script (Gatorade)
 ################################################
 
-- alias: Activate Goodnight Script
+- alias: activate_good_night_script
   trigger:
     platform: mqtt
-    topic: dash/gatorade
-    payload: 'active'
+    topic: dash-button/gatorade
   action:
-    service: script.turn_on
-    entity_id: script.goodnight
+    service: script.good_night

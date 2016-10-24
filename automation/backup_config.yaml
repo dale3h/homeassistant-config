@@ -2,7 +2,7 @@
 ## Automation / Backup Config
 ################################################################
 
-- alias: Backup Config at 3am
+- alias: backup_config_at_3am
   trigger:
     platform: time
     after: '03:00:00'

@@ -2,10 +2,56 @@
 ## Sensor / Weather
 ################################################################
 
-- platform: forecast
-  api_key: !secret forecast_api_key
+- platform: darksky
+  api_key: !secret darksky_api_key
   monitored_conditions:
-    - precip_probability
-    - temperature
     - cloud_cover
     - humidity
+    - precip_probability
+    - temperature
+
+- platform: wunderground
+  api_key: !secret wunderground_api_key
+  monitored_conditions:
+    - feelslike_f
+    - heat_index_f
+    - precip_today_in
+    - relative_humidity
+    - temp_f
+
+- platform: yr
+  monitored_conditions:
+    - cloudiness
+    - humidity
+    - precipitation
+    - temperature
+
+# - platform: yweather
+#   monitored_conditions:
+#     - weather
+#     - weather_current
+#     - temp_min
+#     - temp_max
+#     - humidity
+#     - temperature
+#
+# - platform: yweather
+#   forecast: 0
+#   monitored_conditions:
+#     - weather
+#     - temp_min
+#     - temp_max
+#
+# - platform: yweather
+#   forecast: 1
+#   monitored_conditions:
+#     - weather
+#     - temp_min
+#     - temp_max
+#
+# - platform: yweather
+#   forecast: 2
+#   monitored_conditions:
+#     - weather
+#     - temp_min
+#     - temp_max

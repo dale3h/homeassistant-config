@@ -1,33 +1,33 @@
 ################################################################
-## Automation / Garage Entry Lighting
+## Automation / Garage Entry Lights
 ################################################################
 
-- alias: Laundry Room and Garage Lights ON when Garage Entry Door is OPEN
+- alias: laundry_room_and_garage_lights_on_when_garage_entry_door_is_open
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_entry_contact
       to: 'on'
   condition:
     - condition: state
-      entity_id: switch.auto_garage_entry_lighting
+      entity_id: input_boolean.garage_lighting
       state: 'on'
   action:
     - service: light.turn_on
-      entity_id: light.laundry_room, light.garage
+      entity_id: group.laundry_room_light, group.garage_light
       data_template:
         brightness: "{{ states('sensor.time_brightness')|int }}"
 
-- alias: Laundry Room and Garage Lights OFF when Garage Entry Door is CLOSED
+- alias: laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_entry_contact
       to: 'off'
   condition:
     - condition: state
-      entity_id: switch.auto_garage_entry_lighting
+      entity_id: input_boolean.garage_lighting
       state: 'on'
   action:
     - delay:
         minutes: 5
     - service: light.turn_off
-      entity_id: light.laundry_room, light.garage
+      entity_id: group.laundry_room_light, group.garage_light

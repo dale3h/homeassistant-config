@@ -3,52 +3,42 @@
 ################################################################
 
 ################################################
-## Fire TV
-################################################
-
-# - platform: firetv
-#   host: localhost:5556
-#   device: default
-#   name: living_room_fire_tv
-
-################################################
 ## Plex
 ################################################
 
 - platform: plex
 
 ################################################
-## Universal
+## Apple TV
 ################################################
 
 # - platform: universal
-#   name: MEDIA_PLAYER_NAME
-#   children:
-#     - media_player.CHILD_1_ID
-#     - media_player.CHILD_2_ID
+#   name: apple_tv
 #   commands:
 #     turn_on:
-#        service: SERVICE
-#        data: SERVICE_DATA
+#       service: mqtt.publish
+#       data:
+#         topic: harmony-api/hubs/harmony-hub/activities/watch-apple-tv/command
+#         payload: 'on'
 #     turn_off:
-#        service: SERVICE
-#        data: SERVICE_DATA
+#       service: mqtt.publish
+#       data:
+#         topic: harmony-api/hubs/harmony-hub/activities/watch-apple-tv/command
+#         payload: 'off'
 #     volume_up:
-#        service: SERVICE
-#        data: SERVICE_DATA
+#       service: mqtt.publish
+#       data:
+#         topic: harmony-api/hubs/harmony-hub/devices/yamaha-avr/command
+#         payload: 'volume-up'
 #     volume_down:
-#        service: SERVICE
-#        data: SERVICE_DATA
+#       service: mqtt.publish
+#       data:
+#         topic: harmony-api/hubs/harmony-hub/devices/yamaha-avr/command
+#         payload: 'volume-down'
 #     volume_mute:
-#        service: SERVICE
-#        data: SERVICE_DATA
+#       service: mqtt.publish
+#       data:
+#         topic: harmony-api/hubs/harmony-hub/devices/yamaha-avr/command
+#         payload: 'mute'
 #   attributes:
-#     is_volume_muted: ENTITY_ID|ATTRIBUTE
-#     state: ENTITY_ID|ATTRIBUTE
-
-################################################
-## Yamaha
-################################################
-
-# - platform: yamaha
-#   name: living_room_receiver
+#     state: switch.apple_tv

@@ -11,8 +11,6 @@ homeassistant:
   unit_system: imperial
   customize: !include customize.yaml
 
-# conversation:
-# discovery:
 frontend:
 history:
 logbook:
@@ -38,9 +36,6 @@ ecobee:
 http:
   api_password: !secret http_api_password
 
-ifttt:
-  key: !secret ifttt_key
-
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
@@ -54,7 +49,7 @@ recorder:
 ## Component Includes (Single File)
 ################################################
 
-emulated_hue: !include emulated_hue.yaml
+# emulated_hue: !include emulated_hue.yaml
 icloud: !include icloud.yaml
 logger: !include logger.yaml
 zwave: !include zwave.yaml
@@ -63,8 +58,8 @@ zwave: !include zwave.yaml
 ## Component Includes (Named)
 ################################################
 
-alexa:
-  intents: !include_dir_named alexa
+# alexa:
+#   intents: !include_dir_named alexa
 
 ################################################
 ## Component Includes (Merge List)
@@ -72,7 +67,7 @@ alexa:
 
 automation: !include_dir_merge_list automation
 binary_sensor: !include_dir_merge_list binary_sensor
-camera: !include_dir_merge_list camera
+# camera: !include_dir_merge_list camera
 cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light

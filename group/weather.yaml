@@ -2,10 +2,28 @@
 ## Group / Weather
 ################################################################
 
-weather:
+weather_general:
   entities:
     - sun.sun
-    - sensor.forecastio_cloud_coverage
-    - sensor.forecastio_humidity
-    - sensor.forecastio_precip_probability
-    - sensor.forecastio_temperature
+
+weather_darksky:
+  entities:
+    - sensor.dark_sky_cloud_coverage
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_temperature
+
+weather_wunderground:
+  entities:
+    - sensor.pws_feelslike_f
+    - sensor.pws_heat_index_f
+    - sensor.pws_precip_today_in
+    - sensor.pws_relative_humidity
+    - sensor.pws_temp_f
+
+weather_yr:
+  entities:
+    - sensor.yr_cloudiness
+    - sensor.yr_condition
+    - sensor.yr_humidity
+    - sensor.yr_temperature

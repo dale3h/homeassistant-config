@@ -2,7 +2,7 @@
 ## Automation / Update Notification
 ################################################################
 
-- alias: Home Assistant Update Notification
+- alias: home_assistant_update_notification
   trigger:
     - platform: state
       entity_id: updater.updater
@@ -14,5 +14,4 @@
   action:
     - service: notify.telegram
       data_template:
-        title: ''
         message: "Home Assistant {{ states('updater.updater') }} is now available."

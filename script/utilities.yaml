@@ -18,6 +18,10 @@ restart_ha:
   sequence:
     - service: homeassistant.restart
 
+restart_https_proxy:
+  sequence:
+    - service: shell_command.restart_https_proxy
+
 update_hass:
   sequence:
     - service: shell_command.update_hass

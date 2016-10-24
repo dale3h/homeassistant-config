@@ -4,10 +4,9 @@
 
 automation_override:
   entities:
-    - input_boolean.https_proxy
-    - switch.sunrise_lighting
-    - switch.kitchen_motion
-    - switch.master_bedroom_motion
-    - switch.master_bathroom_motion
-    - switch.shower_mode
-    - switch.auto_garage_entry_lighting
+    - input_boolean.sunrise_lighting
+    - input_boolean.kitchen_motion
+    - input_boolean.master_bedroom_motion
+    - input_boolean.master_bathroom_motion
+    - input_boolean.shower_mode
+    - input_boolean.garage_lighting
