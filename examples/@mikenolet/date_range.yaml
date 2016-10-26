@@ -1,0 +1,26 @@
+# Description:
+#   Restrict an automation to a date range (ex: Oct 24 to Oct 31, inclusive)
+#
+# Written for:
+#   @mikenolet
+#
+# Components:
+#   automation
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias:
+    trigger:
+      ...
+    condition:
+      - condition: template
+        value_template: "{{ (now().strftime('%m')|int == 10) and (24 <= now().strftime('%d')|int <= 31) }}"
+    action:
+      ...
