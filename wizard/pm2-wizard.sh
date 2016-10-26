@@ -4,6 +4,7 @@
 # wget -Nnv https://raw.githubusercontent.com/dale3h/homeassistant-config/master/wizard/pm2-wizard.sh && bash pm2-wizard.sh
 
 me=$(whoami)
+
 USER_HOME=/home/$me
 
 echo "Node+PM2 Quick Installer"
