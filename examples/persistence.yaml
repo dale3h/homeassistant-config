@@ -42,7 +42,7 @@
       event_type: state_changed
   condition:
     - condition: template
-      value_template: "{{ trigger.event.data.new_state is not none and trigger.event.data.new_state.attributes.persistent|default(false, true) }}"
+      value_template: "{{ trigger.event.data is not none and trigger.event.data.new_state is not none and trigger.event.data.new_state.attributes is not none and trigger.event.data.new_state.attributes.persistent|default(false, true) }}"
   action:
     - service: mqtt.publish
       data_template:
