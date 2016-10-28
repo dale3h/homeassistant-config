@@ -1,0 +1,41 @@
+# Description:
+#   Notify on sensor change if no one is home (using a group)
+#
+# Written for:
+#   @sgauche
+#
+# Components:
+#   automation
+#   group
+#   notify
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: notify_sensor_change_away
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: state
+        entity_id: group.all_devices
+        state: 'not_home'
+      - condition: template
+        value_template: "{{ (trigger.event.data is not none) and (trigger.event.data.entity_id is not none) and (trigger.event.data.old_state is not none) and (trigger.event.data.new_state is not none) }}"
+      - condition: template
+        value_template: "{{ (trigger.event.data.old_state.state == 'off') and (trigger.event.data.new_state.state == 'on') }}"
+      - condition: template
+        value_template: "{{ (states.group is not none) and (states.group.notify_sensors is not none) and (states.group.notify_sensors.attributes is not none) and (states.group.notify_sensors.attributes.entity_id is not none) }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.entity_id in states.group.notify_sensors.attributes.entity_id }}"
+    action:
+      - service: notify.html5_scott_phone
+        data_template:
+          title: "Alarm!"
+          message: "The {{ trigger.event.data.new_state.name }} was changed to {{ trigger.event.data.new_state.state }} while no one is home. - {{ as_timestamp(now())|timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
