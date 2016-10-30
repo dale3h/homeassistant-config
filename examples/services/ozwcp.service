@@ -1,0 +1,22 @@
+# Open Z-Wave Control Panel Service File
+# ======================================
+# Copy this file to /etc/systemd/system/ozwcp.service and then run:
+#   sudo systemctl daemon-reload
+#   sudo systemctl start ozwcp.service
+#
+# Now check the logs to ensure that it is running without errors:
+#   sudo journalctl -fu ozwcp.service
+#
+[Unit]
+Description=OpenZWave Control Panel
+After=network.target
+
+[Service]
+Type=simple
+User=hass
+WorkingDirectory=/srv/hass/src/open-zwave-control-panel
+ExecStart=/srv/hass/src/open-zwave-control-panel/ozwcp
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
