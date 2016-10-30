@@ -1,0 +1,30 @@
+# Description:
+#   Add a switch to the UI to toggle your Z-Wave network (for use with OZWCP)
+#
+# Written for:
+#   @garymaurizi
+#
+# Components:
+#   automation
+#   input_boolean
+#   zwave
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: zwave_network_toggle
+    trigger:
+      - platform: state
+        entity_id: input_boolean.zwave_network
+    action:
+      - service_template: "zwave.{{ 'start' if trigger.to_state.state == 'on' else 'stop' }}_network"
+
+input_boolean:
+  zwave_network:
+    initial: on
