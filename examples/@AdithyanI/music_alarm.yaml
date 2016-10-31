@@ -1,0 +1,47 @@
+# Description:
+#   Start playing music at a selected time
+#
+# Written for:
+#   @AdithyanI
+#
+# Components:
+#   automation
+#   input_slider
+#   sensor
+#   shell_command
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: turn_on_music_at_selected_time
+    trigger:
+      - platform: template
+        value_template: "{{ is_state('sensor.time', states('input_slider.music_hour')|int ~ ':' ~ states('input_slider.music_minute')|int) }}"
+    action:
+      - service: shell_command.play_sound
+
+input_slider:
+  music_hour:
+    initial: 6
+    min: 0
+    max: 23
+    step: 1
+  music_minute:
+    initial: 30
+    min: 0
+    max: 59
+    step: 1
+
+sensor:
+  - platform: time_date
+    display_options:
+      - time
+
+shell_command:
+  play_sound: sudo /usr/bin/omxplayer /home/pi/Downloads/Aigiri_Nandhini_BombaySisters.mp3
