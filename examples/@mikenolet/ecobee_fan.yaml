@@ -1,0 +1,30 @@
+# Description:
+#   Adjust the ecobee3 fan run time throughout the day
+#
+# Written for:
+#   @mikenolet
+#
+# Components:
+#   automation
+#   climate
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: ecobee3_fan_run_time
+    trigger:
+      - platform: time
+        after: '23:00:00'
+      - platform: time
+        after: '01:00:00'
+    action:
+      - service: climate.ecobee_set_fan_min_on_time
+        data_template:
+          entity_id: climate.home
+          fan_min_on_time: "{{ 0 if trigger.now.hour == '23' else 30 }}"
