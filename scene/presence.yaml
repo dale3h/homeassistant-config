@@ -10,19 +10,16 @@
   entities:
     climate.home:
       away_mode: off
-    light.laundry_room:
+    group.laundry_room_light:
       state: on
       brightness: 255
-    light.dining_room_1:
+    group.dining_room_light:
       state: on
       brightness: 255
-    light.dining_room_2:
+    group.entry_lamp:
       state: on
       brightness: 255
-    light.entryway_lamp_level_3:
-      state: on
-      brightness: 255
-    light.garage:
+    group.garage_light:
       state: on
       brightness: 255
       rgb_color: [255, 255, 255]

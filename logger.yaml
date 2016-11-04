@@ -22,5 +22,6 @@ logs:
   phue: warn
   plexapi: warn
   pyicloud.base: warn
-  requests.packages.urllib3.connectionpool: error
-  urllib3.connectionpool: error
+  requests.exceptions: fatal
+  requests.exceptions.ConnectTimeout: fatal
+  requests.packages: fatal

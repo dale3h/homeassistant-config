@@ -8,12 +8,13 @@
 
 - alias: activate_arrival_scene
   trigger:
-    platform: state
-    entity_id: group.household
-    to: 'home'
+    - platform: state
+      entity_id: group.household
+      to: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.arrival
+    - service: script.turn_on
+      data:
+        entity_id: script.arrival
 
 ################################################
 ## Turn Lights OFF when Dale Leaves
@@ -21,9 +22,10 @@
 
 - alias: activate_departure_scene
   trigger:
-    platform: state
-    entity_id: group.household
-    from: 'home'
+    - platform: state
+      entity_id: group.household
+      from: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.departure
+    - service: script.turn_on
+      data:
+        entity_id: script.departure

@@ -27,7 +27,7 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.master_bathroom_motion
     - condition: state
-      entity_id: binary_sensor.master_bathroom_sensor_4
+      entity_id: binary_sensor.master_bathroom_sensor_4_0
       state: 'off'
     - service: light.turn_off
       entity_id: group.master_bathroom_light

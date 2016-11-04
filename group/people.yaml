@@ -15,12 +15,14 @@ person_courtney:
 person_dale:
   entities:
     - device_tracker.iphone
+    - device_tracker.iphone_ios
     - device_tracker.dale_iphone
     - device_tracker.dale_iphone_bt
 
 person_meagan:
   entities:
     - device_tracker.meagan_android
+    - device_tracker.meagan_laptop
 
 person_russell:
   entities:
@@ -28,4 +30,5 @@ person_russell:
 
 person_tonyia:
   entities:
+    - device_tracker.tonyia_android
     - device_tracker.tonyia_kindle

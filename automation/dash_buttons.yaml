@@ -6,33 +6,34 @@
 ## Master Bedroom Motion (Kraft)
 ################################################
 
-- alias: toggle_master_bedroom_motion
-  trigger:
-    platform: mqtt
-    topic: dash-button/kraft_mac_and_cheese
-  action:
-    service: homeassistant.toggle
-    entity_id: input_boolean.master_bedroom_motion
+# - alias: toggle_master_bedroom_motion
+#   trigger:
+#     platform: mqtt
+#     topic: dash-button/kraft
+#   action:
+#     service: input_boolean.toggle
+#     entity_id: input_boolean.master_bedroom_motion
 
 ################################################
-## Master Bathroom Motion (Ziploc)
+## Master Bathroom Shower Mode (Ziploc)
 ################################################
 
-- alias: toggle_master_bathroom_motion
+- alias: toggle_master_bathroom_shower_mode
   trigger:
-    platform: mqtt
-    topic: dash-button/ziploc
+    platform: state
+    entity_id: binary_sensor.dashbutton_ziploc
+    to: 'on'
   action:
-    service: homeassistant.toggle
-    entity_id: input_boolean.master_bathroom_motion
+    service: input_boolean.toggle
+    entity_id: input_boolean.shower_mode
 
 ################################################
 ## Good Night Script (Gatorade)
 ################################################
 
-- alias: activate_good_night_script
-  trigger:
-    platform: mqtt
-    topic: dash-button/gatorade
-  action:
-    service: script.good_night
+# - alias: activate_good_night_script
+#   trigger:
+#     platform: mqtt
+#     topic: dash-button/gatorade
+#   action:
+#     service: script.good_night

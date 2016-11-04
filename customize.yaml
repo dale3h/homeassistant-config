@@ -31,48 +31,20 @@ automation.home_assistant_update_notification:
   friendly_name: Home Assistant Update Notification
   haaska_hidden: true
 
-automation.hue_dimmer_1:
-  friendly_name: Hue Dimmer 1
+automation.hue_master_bedroom_dimmer_good_morning_good_night:
+  friendly_name: Hue Master Bedroom Dimmer Good Morning Good Night
   haaska_hidden: true
 
-automation.hue_dimmer_1_button_1_long_press:
-  friendly_name: Hue Dimmer 1 Button 1 Long Press
+automation.hue_master_bedroom_dimmer_motion_on_motion_off:
+  friendly_name: Hue Master Bedroom Dimmer Motion On Motion Off
   haaska_hidden: true
 
-automation.hue_dimmer_1_button_4_long_press:
-  friendly_name: Hue Dimmer 1 Button 4 Long Press
+automation.hue_parker_bedroom_tap_toggle_lamp:
+  friendly_name: Hue Parker Bedroom Tap Toggle Lamp
   haaska_hidden: true
 
-automation.hue_dimmer_2:
-  friendly_name: Hue Dimmer 1
-  haaska_hidden: true
-
-automation.hue_dimmer_3:
-  friendly_name: Hue Dimmer 1
-  haaska_hidden: true
-
-automation.hue_dimmer_4:
-  friendly_name: Hue Dimmer 1
-  haaska_hidden: true
-
-automation.hue_dimmer_5:
-  friendly_name: Hue Dimmer 1
-  haaska_hidden: true
-
-automation.hue_parker_tap:
-  friendly_name: Hue Parker Tap
-  haaska_hidden: true
-
-automation.hue_parker_tap_button_1:
-  friendly_name: Hue Parker Tap Button 1
-  haaska_hidden: true
-
-automation.icloud_fallback_home:
-  friendly_name: iCloud Fallback (Home)
-  haaska_hidden: true
-
-automation.icloud_fallback_not_home:
-  friendly_name: iCloud Fallback (Not Home)
+automation.icloud_fallback:
+  friendly_name: iCloud Fallback
   haaska_hidden: true
 
 automation.kitchen_lights_off_when_motion_inactive:
@@ -147,6 +119,10 @@ automation.parker_closet_light_on_when_door_is_open:
   friendly_name: "Parker's Closet Light ON when Door is OPEN"
   haaska_hidden: true
 
+automation.persistence_publish:
+  friendly_name: Persistence Publish
+  haaska_hidden: true
+
 automation.persistence_subscribe_binary:
   friendly_name: Persistence Subscribe (Binary)
   haaska_hidden: true
@@ -157,10 +133,6 @@ automation.persistence_subscribe_select_option:
 
 automation.persistence_subscribe_select_value:
   friendly_name: Persistence from MQTT (Select Value)
-  haaska_hidden: true
-
-automation.persistence_publish:
-  friendly_name: Persistence Publish
   haaska_hidden: true
 
 automation.restart_https_proxy:
@@ -182,8 +154,8 @@ automation.startup_notification:
   friendly_name: Startup Notification
   haaska_hidden: true
 
-automation.toggle_master_bathroom_motion:
-  friendly_name: Toggle Master Bathroom Motion
+automation.toggle_master_bathroom_shower_mode:
+  friendly_name: Toggle Master Bathroom Shower Mode
   haaska_hidden: true
 
 automation.toggle_master_bedroom_motion:
@@ -206,6 +178,10 @@ automation.turn_master_bedroom_light_off_when_unoccupied:
   friendly_name: Turn Master Bedroom Light OFF when Unoccupied
   haaska_hidden: true
 
+automation.zwave_network_toggle:
+  friendly_name: Zwave Network Toggle
+  haaska_hidden: true
+
 ################################################
 ## Binary Sensor
 ################################################
@@ -213,6 +189,36 @@ automation.turn_master_bedroom_light_off_when_unoccupied:
 binary_sensor.closet_door_contact:
   friendly_name: Closet Door
   sensor_class: opening
+
+binary_sensor.dashbutton_bounty:
+  friendly_name: Dash Button (Bounty)
+
+binary_sensor.dashbutton_dixie:
+  friendly_name: Dash Button (Dixie)
+
+binary_sensor.dashbutton_finish:
+  friendly_name: Dash Button (Finish)
+
+binary_sensor.dashbutton_gatorade:
+  friendly_name: Dash Button (Gatorade)
+
+binary_sensor.dashbutton_hefty:
+  friendly_name: Dash Button (Hefty)
+
+binary_sensor.dashbutton_kraft:
+  friendly_name: Dash Button (Kraft)
+
+binary_sensor.dashbutton_playdoh:
+  friendly_name: Dash Button (Playdoh)
+
+binary_sensor.dashbutton_quaker:
+  friendly_name: Dash Button (Quaker)
+
+binary_sensor.dashbutton_tide:
+  friendly_name: Dash Button (Tide)
+
+binary_sensor.dashbutton_ziploc:
+  friendly_name: Dash Button (Ziploc)
 
 binary_sensor.front_door_contact:
   friendly_name: Front Door
@@ -230,7 +236,7 @@ binary_sensor.home_occupancy:
   friendly_name: Hallway Occupancy
   sensor_class: motion
 
-binary_sensor.kitchen_sensor_6:
+binary_sensor.kitchen_sensor_6_0:
   friendly_name: Kitchen Motion
   sensor_class: motion
 
@@ -238,7 +244,7 @@ binary_sensor.living_room_occupancy:
   friendly_name: Living Room Occupancy
   sensor_class: motion
 
-binary_sensor.master_bathroom_sensor_4:
+binary_sensor.master_bathroom_sensor_4_0:
   friendly_name: Master Bathroom Motion
   sensor_class: motion
 
@@ -252,6 +258,7 @@ binary_sensor.master_bedroom_occupancy:
 
 binary_sensor.occupancy_test:
   friendly_name: Occupancy Test
+  sensor_class: occupancy
 
 binary_sensor.parkers_closet_door_contact:
   friendly_name: "Parker's Closet Door"
@@ -299,10 +306,6 @@ cover.garage_door:
 ## Device Tracker
 ################################################
 
-device_tracker.appletv:
-  friendly_name: Apple-TV
-  icon: mdi:apple
-
 device_tracker.courtney_iphone:
   friendly_name: Courtney (iPhone)
   icon: mdi:cellphone-iphone
@@ -327,12 +330,20 @@ device_tracker.meagan_android:
   friendly_name: Meagan (Android)
   icon: mdi:cellphone-android
 
+device_tracker.meagan_laptop:
+  friendly_name: Meagan (Laptop)
+  icon: mdi:laptop
+
 device_tracker.net_aladdin_connect:
   friendly_name: Aladdin Connect
   icon: mdi:glassdoor
 
-device_tracker.net_appletv:
-  friendly_name: Apple TV
+device_tracker.net_appletv_living_room:
+  friendly_name: Apple TV (Living Room)
+  icon: mdi:apple
+
+device_tracker.net_appletv_master_bedroom:
+  friendly_name: Apple TV (Master Bedroom)
   icon: mdi:apple
 
 device_tracker.net_echo_bathroom:
@@ -351,12 +362,12 @@ device_tracker.net_echo_dot_guest_bedroom:
   friendly_name: Echo Dot (Guest Bedroom)
   icon: mdi:amazon
 
-device_tracker.net_echo_dot_kitchen:
-  friendly_name: Echo Dot (Kitchen)
+device_tracker.net_echo_dot_jeep:
+  friendly_name: Echo Dot (Jeep)
   icon: mdi:amazon
 
-device_tracker.net_echo_dot_master_bedroom:
-  friendly_name: Echo Dot (Master Bedroom)
+device_tracker.net_echo_dot_kitchen:
+  friendly_name: Echo Dot (Kitchen)
   icon: mdi:amazon
 
 device_tracker.net_echo_dot_parker:
@@ -447,6 +458,10 @@ device_tracker.russell_iphone:
   friendly_name: Russ (iPhone)
   icon: mdi:cellphone-iphone
 
+device_tracker.tonyia_android:
+  friendly_name: Tonyia (Android)
+  icon: mdi:cellphone-android
+
 device_tracker.tonyia_kindle:
   friendly_name: Tonyia (Kindle)
   icon: mdi:tablet-android
@@ -489,6 +504,10 @@ group.all_devices:
 
 group.all_lights:
   friendly_name: All Lights
+  haaska_hidden: true
+
+group.all_remotes:
+  friendly_name: All Remotes
   haaska_hidden: true
 
 group.all_scripts:
@@ -534,6 +553,10 @@ group.cameras_home:
   friendly_name: Home Cameras
   haaska_hidden: true
   icon: mdi:camcorder
+
+group.dash_buttons:
+  friendly_name: Dash Buttons
+  haaska_hidden: true
 
 group.dining_room:
   friendly_name: Dining Room
@@ -776,20 +799,6 @@ group.weather_yr:
   haaska_hidden: true
 
 ################################################
-## Icloud
-################################################
-
-icloud.dale:
-  friendly_name: Dale
-
-################################################
-## Idevice
-################################################
-
-idevice.iphone:
-  friendly_name: iPhone
-
-################################################
 ## Input Boolean
 ################################################
 
@@ -833,6 +842,10 @@ input_boolean.sunrise_lighting:
   icon: mdi:weather-sunset-up
   persistent: true
 
+input_boolean.zwave_network:
+  friendly_name: Z-Wave Network
+  haaska_hidden: true
+
 ################################################
 ## Input Select
 ################################################
@@ -866,40 +879,49 @@ input_slider.nightlight_brightness:
 light.back_porch:
   friendly_name: Back Porch
   haaska_hidden: true
+  hidden: true
 
 light.chandelier_1:
   friendly_name: Chandelier 1
   haaska_hidden: true
+  hidden: true
 
 light.chandelier_2:
   friendly_name: Chandelier 2
   haaska_hidden: true
+  hidden: true
 
 light.chandelier_3:
   friendly_name: Chandelier 3
   haaska_hidden: true
+  hidden: true
 
 light.dining_room_1:
   friendly_name: Dining Room 1
   haaska_hidden: true
+  hidden: true
 
 light.dining_room_2:
   friendly_name: Dining Room 2
   haaska_hidden: true
+  hidden: true
 
 light.entry_lamp:
   friendly_name: Entry Lamp
   haaska_hidden: true
+  hidden: true
 
 light.entryway_1:
   friendly_name: Entryway 1
   haaska_hidden: true
+  hidden: true
 
 light.entryway_2:
   friendly_name: Entryway 2
   haaska_hidden: true
+  hidden: true
 
-light.entryway_lamp_level_3:
+light.entryway_lamp_level_3_0:
   friendly_name: Unused Lamp Module
   haaska_hidden: true
   hidden: true
@@ -907,83 +929,103 @@ light.entryway_lamp_level_3:
 light.front_porch:
   friendly_name: Front Porch
   haaska_hidden: true
+  hidden: true
 
 light.garage:
   friendly_name: Garage
   haaska_hidden: false
+  hidden: true
   persistent: true
 
 light.guest_bathroom_1:
   friendly_name: Guest Bathroom 1
   haaska_hidden: true
+  hidden: true
 
 light.guest_bathroom_2:
   friendly_name: Guest Bathroom 2
   haaska_hidden: true
+  hidden: true
 
 light.guest_bedroom:
   friendly_name: Guest Bedroom
   haaska_hidden: true
+  hidden: true
 
 light.hallway:
   friendly_name: Hallway
   haaska_hidden: true
+  hidden: true
 
 light.laundry_room:
   friendly_name: Laundry Room
   haaska_hidden: true
+  hidden: true
 
 light.living_room_1:
   friendly_name: Living Room 1
   haaska_hidden: true
+  hidden: true
 
 light.living_room_2:
   friendly_name: Living Room 2
   haaska_hidden: true
+  hidden: true
 
 light.master_bathroom_1:
   friendly_name: Master Bathroom 1
   haaska_hidden: true
+  hidden: true
 
 light.master_bathroom_2:
   friendly_name: Master Bathroom 2
   haaska_hidden: true
+  hidden: true
 
 light.master_bedroom_1:
   friendly_name: Master Bedroom 1
   haaska_hidden: true
+  hidden: true
 
 light.master_bedroom_2:
   friendly_name: Master Bedroom 2
   haaska_hidden: true
+  hidden: true
 
-light.master_bedroom_lamp_level_2:
-  friendly_name: "Parker's Lamp"
+light.master_bedroom_lamp_level_2_0:
+  friendly_name: Unused Lamp Module
   haaska_hidden: true
+  hidden: true
 
 light.master_closet:
   friendly_name: Master Closet
   haaska_hidden: true
+  hidden: true
 
 light.parker_lamp_1:
   friendly_name: Parker Lamp 1
   haaska_hidden: true
+  hidden: true
 
 light.parker_lamp_2:
   friendly_name: Parker Lamp 2
   haaska_hidden: true
+  hidden: true
 
 light.parkers_closet:
   friendly_name: "Parker's Closet"
   haaska_hidden: true
+  hidden: true
 
 light.range:
   friendly_name: Range
   haaska_hidden: true
+  hidden: true
 
 light.sink:
   friendly_name: Sink
   haaska_hidden: true
+  hidden: true
 
 ################################################
 ## Media Player
@@ -995,37 +1037,40 @@ media_player.apple_tv:
   icon: mdi:apple
 
 ################################################
-## Scene
+## Remote
 ################################################
 
-scene.arrival:
-  friendly_name: Arrival
-  haaska_hidden: true
-  haaska_name: Arrival Scene
-  icon: mdi:map-marker
-
-scene.departure:
-  friendly_name: Departure
-  haaska_hidden: true
-  haaska_name: Departure Scene
-  icon: mdi:map-marker-off
+remote.living_room:
+  friendly_name: Living Room
 
 ################################################
 ## Script
 ################################################
+
+script.arrival:
+  friendly_name: Arrival
+  haaska_hidden: true
+  icon: mdi:map-marker
 
 script.backup_config:
   friendly_name: Backup Configuration
   haaska_hidden: true
   icon: mdi:backup-restore
 
+script.departure:
+  friendly_name: Departure
+  haaska_hidden: true
+  icon: mdi:map-marker-off
+
 script.good_morning:
   friendly_name: Good Morning
   haaska_hidden: true
+  icon: mdi:weather-sunny
 
 script.good_night:
   friendly_name: Good Night
   haaska_hidden: true
+  icon: mdi:weather-night
 
 script.master_bedroom_motion_helper:
   friendly_name: Master Bedroom Motion Helper
@@ -1040,6 +1085,7 @@ script.master_bedroom_motion_timer:
 script.occupancy:
   friendly_name: occupancy
   haaska_hidden: true
+  icon: mdi:home
 
 script.rebuild_customize:
   friendly_name: Rebuild Customize
@@ -1057,8 +1103,9 @@ script.restart_ha:
   icon: mdi:power
 
 script.restart_https_proxy:
-  friendly_name: Restart Https Proxy
+  friendly_name: Restart HTTPS Proxy
   haaska_hidden: true
+  icon: mdi:server-security
 
 script.update_hass:
   friendly_name: Update Home Assistant
@@ -1068,10 +1115,6 @@ script.update_hass:
 ################################################
 ## Sensor
 ################################################
-
-sensor.aladdin_connect:
-  friendly_name: Aladdin Connect
-  icon: mdi:lan-connect
 
 sensor.closet_door_battery:
   friendly_name: Closet Door Battery
@@ -1094,8 +1137,8 @@ sensor.dark_sky_humidity:
   icon: mdi:water-percent
 
 sensor.dark_sky_precip_probability:
-  friendly_name: Precip Probability
-  icon: mdi:water-percent
+  friendly_name: Precipitation
+  icon: mdi:weather-rainy
 
 sensor.dark_sky_temperature:
   friendly_name: Temperature
@@ -1104,6 +1147,12 @@ sensor.dark_sky_temperature:
 sensor.date:
   friendly_name: System Date
   icon: mdi:calendar
+
+sensor.dining_room_dimmer:
+  friendly_name: Dining Room Dimmer
+
+sensor.dining_room_dimmer_cycle:
+  friendly_name: Dining Room Dimmer Cycle
 
 sensor.front_door_battery:
   friendly_name: Front Door Battery
@@ -1120,6 +1169,21 @@ sensor.garage_entry_battery:
 sensor.garage_entry_temperature:
   friendly_name: Garage Entry Temperature
   icon: mdi:thermometer
+
+sensor.guest_bathroom_luminance:
+  friendly_name: Guest Bathroom Luminance
+
+sensor.guest_bathroom_motion:
+  friendly_name: Guest Bathroom Motion
+
+sensor.guest_bathroom_temperature:
+  friendly_name: Guest Bathroom Temperature
+
+sensor.guest_bedroom_dimmer:
+  friendly_name: Guest Bedroom Dimmer
+
+sensor.guest_bedroom_dimmer_cycle:
+  friendly_name: Guest Bedroom Dimmer Cycle
 
 sensor.guest_bedroom_temperature:
   friendly_name: Guest Bedroom Temperature
@@ -1141,35 +1205,39 @@ sensor.iphone_battery:
   friendly_name: iPhone Battery
   icon: mdi:battery
 
-sensor.kitchen_alarm_level_6:
+sensor.kitchen_alarm_level_6_1:
   friendly_name: Kitchen Alarm Level
   hidden: true
 
-sensor.kitchen_alarm_type_6:
+sensor.kitchen_alarm_type_6_0:
   friendly_name: Kitchen Alarm Type
   hidden: true
 
-sensor.kitchen_burglar_6:
+sensor.kitchen_battery:
+  friendly_name: Kitchen Battery
+  icon: mdi:battery
+
+sensor.kitchen_burglar_6_10:
   friendly_name: Kitchen Burglar
   hidden: true
 
-sensor.kitchen_luminance_6:
+sensor.kitchen_luminance_6_3:
   friendly_name: Kitchen Luminance
   icon: mdi:theme-light-dark
 
-sensor.kitchen_relative_humidity_6:
+sensor.kitchen_relative_humidity_6_5:
   friendly_name: Kitchen Humidity
   icon: mdi:water-percent
 
-sensor.kitchen_sourcenodeid_6:
+sensor.kitchen_sourcenodeid_6_2:
   friendly_name: Kitchen SourceNodeId
   hidden: true
 
-sensor.kitchen_temperature_6:
+sensor.kitchen_temperature_6_1:
   friendly_name: Kitchen Temperature
   icon: mdi:thermometer
 
-sensor.kitchen_ultraviolet_6:
+sensor.kitchen_ultraviolet_6_27:
   friendly_name: Kitchen Ultraviolet
   icon: mdi:sunglasses
 
@@ -1177,45 +1245,51 @@ sensor.living_room_temperature:
   friendly_name: Living Room Temperature
   icon: mdi:thermometer
 
-sensor.master_bathroom_alarm_level_4:
+sensor.master_bathroom_alarm_level_4_1:
   friendly_name: Master Bathroom Alarm Level
   hidden: true
 
-sensor.master_bathroom_alarm_type_4:
+sensor.master_bathroom_alarm_type_4_0:
   friendly_name: Master Bathroom Alarm Type
   hidden: true
 
-sensor.master_bathroom_battery_4:
+sensor.master_bathroom_battery:
   friendly_name: Master Bathroom Battery
   icon: mdi:battery
 
-sensor.master_bathroom_burglar_4:
+sensor.master_bathroom_burglar_4_10:
   friendly_name: Master Bathroom Burglar
   hidden: true
 
-sensor.master_bathroom_luminance_4:
+sensor.master_bathroom_luminance_4_3:
   friendly_name: Master Bathroom Luminance
   icon: mdi:theme-light-dark
 
-sensor.master_bathroom_relative_humidity_4:
+sensor.master_bathroom_relative_humidity_4_5:
   friendly_name: Master Bathroom Humidity
   icon: mdi:water-percent
 
-sensor.master_bathroom_sourcenodeid_4:
+sensor.master_bathroom_sourcenodeid_4_2:
   friendly_name: Master Bathroom SourceNodeId
   hidden: true
 
-sensor.master_bathroom_temperature_4:
+sensor.master_bathroom_temperature_4_1:
   friendly_name: Master Bathroom Temperature
   icon: mdi:thermometer
 
-sensor.master_bathroom_ultraviolet_4:
+sensor.master_bathroom_ultraviolet_4_27:
   friendly_name: Master Bathroom Ultraviolet
   icon: mdi:sunglasses
 
 sensor.master_bedroom_battery:
   friendly_name: Master Bedroom Battery
   icon: mdi:battery
+
+sensor.master_bedroom_dimmer:
+  friendly_name: Master Bedroom Dimmer
+
+sensor.master_bedroom_dimmer_cycle:
+  friendly_name: Master Bedroom Dimmer Cycle
 
 sensor.master_bedroom_motion_temperature:
   friendly_name: Master Bedroom Temperature
@@ -1232,6 +1306,9 @@ sensor.network_cabinet_battery:
 sensor.network_cabinet_temperature:
   friendly_name: Network Cabinet Temperature
   icon: mdi:thermometer
+
+sensor.parker_bedroom_tap:
+  friendly_name: "Parker's Bedroom Tap"
 
 sensor.parkers_closet_door_battery:
   friendly_name: "Parker's Closet Door Battery"
@@ -1254,8 +1331,8 @@ sensor.pws_heat_index_f:
   icon: mdi:thermometer
 
 sensor.pws_precip_today_in:
-  friendly_name: Precip Today
-  icon: mdi:water-percent
+  friendly_name: Precipitation
+  icon: mdi:weather-rainy
 
 sensor.pws_relative_humidity:
   friendly_name: Humidity
@@ -1333,6 +1410,10 @@ sensor.yr_humidity:
   friendly_name: Humidity
   icon: mdi:water-percent
 
+sensor.yr_precipitation:
+  friendly_name: Precipitation
+  icon: mdi:weather-rainy
+
 sensor.yr_temperature:
   friendly_name: Temperature
   icon: mdi:thermometer
@@ -1386,5 +1467,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Fri Oct 21 2016 03:11:06 GMT-0500 (CDT)
+# Last Generated: Tue Nov 01 2016 08:54:59 GMT-0500 (CDT)
 ################################################################

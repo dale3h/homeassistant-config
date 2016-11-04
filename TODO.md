@@ -1,17 +1,27 @@
 ## Todo
 
+* Move HTTPS Proxy to Ubuntu machine
+  * Update to support multiple proxies
+* Add OZWCP to hass sidebar
+  * Add an input boolean for toggling the Z-Wave network
+  * Write a script to detect changes to zwcfg and restart hass if necessary?
+* Add guest mode switch
+  * Automatically toggle when a guest is present
+  * Allow manual toggle
+  * `persistent: true` in customize
+* Fix front porch light to turn on only at night when arriving/leaving
+* Figure out why input_select triggers a reset after changing (re: persistence)
+* Add radar map (shell_command + local file)
 * Removal redundant switches for automations
 * Clean up customize.yaml to remove old/outdated entities
 * Automate Good Morning/Night button
   * After 9pm, trigger good night script (unless already triggered)
   * After 5am, trigger good morning script (unless already triggered)
   * After 10am, toggle bedroom motion
-* Move mqtt dash buttons to MQTT sensors
 * Normalize triggers, conditions, actions, scripts, etc with hyphens
 * Organize groups better
 * Iconify everything
 * Add panic mode/security mode scene
-* Schedule backup, but figure out a way to delete old archives
 
 ## Discussion:
 

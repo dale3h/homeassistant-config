@@ -1,0 +1,43 @@
+################################################################
+## Script / Occupancy
+################################################################
+
+################################################
+## Arrival
+################################################
+
+arrival:
+  sequence:
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.home
+        away_mode: off
+    - service: light.turn_on
+      data:
+        entity_id:
+          - group.laundry_room_light
+          - group.dining_room_light
+          - group.entry_lamp
+          - group.garage_light
+        brightness: 255
+        rgb_color: [255, 255, 255]
+    - service: light.turn_on
+      data:
+        entity_id: group.front_porch_light
+
+################################################
+## Departure
+################################################
+
+departure:
+  sequence:
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.home
+        away_mode: on
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
+    - service: light.turn_on
+      data:
+        entity_id: group.front_porch_light

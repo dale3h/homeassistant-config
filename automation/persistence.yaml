@@ -5,6 +5,31 @@
 ################################################################
 ## Add `persistent: true` in the customize section to enable
 ##   persistence on an entity.
+##
+## This currently supports: automation, input_boolean,
+##   input_select, input_slider, light, and switch.
+##
+## Example Configuration:
+##
+## homeassistant:
+##   customize:
+##     automation.good_morning_lights:
+##       persistent: true
+##
+##     input_boolean.notify_arrival:
+##       persistent: true
+##
+##     input_select.light_color_1:
+##       persistent: true
+##
+##     input_slider.bedroom_brightness:
+##       persistent: true
+##
+##     light.bedroom:
+##       persistent: true
+##
+##     switch.bedroom_fan:
+##       persistent: true
 ################################################################
 
 ################################################
@@ -17,7 +42,7 @@
       event_type: state_changed
   condition:
     - condition: template
-      value_template: "{{ trigger.event.data.new_state is not none and trigger.event.data.new_state.attributes.persistent|default(false, true) }}"
+      value_template: "{{ trigger.event.data is not none and trigger.event.data.new_state is not none and trigger.event.data.new_state.attributes is not none and trigger.event.data.new_state.attributes.persistent|default(false, true) }}"
   action:
     - service: mqtt.publish
       data_template:

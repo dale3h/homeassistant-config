@@ -5,7 +5,7 @@
 - alias: master_bathroom_light_on_when_motion_active
   trigger:
     platform: state
-    entity_id: binary_sensor.master_bathroom_sensor_4
+    entity_id: binary_sensor.master_bathroom_sensor_4_0
     to: 'on'
   condition:
     condition: state
@@ -20,7 +20,7 @@
 - alias: master_bathroom_light_off_when_motion_inactive
   trigger:
     platform: state
-    entity_id: binary_sensor.master_bathroom_sensor_4
+    entity_id: binary_sensor.master_bathroom_sensor_4_0
     to: 'off'
   condition:
     condition: state

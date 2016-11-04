@@ -9,7 +9,12 @@
       unit_of_measurement: '%'
       entity_id: device_tracker.iphone
 
-    master_bathroom_battery_4:
-      value_template: "{{ states.binary_sensor.master_bathroom_sensor_4.attributes.battery_level|default(-1)|int if states.binary_sensor.master_bathroom_sensor_4 is not none }}"
+    kitchen_battery:
+      value_template: "{{ states.binary_sensor.kitchen_sensor_6_0.attributes.battery_level|default(-1)|int if states.binary_sensor.kitchen_sensor_6_0 is not none }}"
       unit_of_measurement: '%'
-      entity_id: binary_sensor.master_bathroom_sensor_4
+      entity_id: binary_sensor.kitchen_sensor_6_0
+
+    master_bathroom_battery:
+      value_template: "{{ states.binary_sensor.master_bathroom_sensor_4_0.attributes.battery_level|default(-1)|int if states.binary_sensor.master_bathroom_sensor_4_0 is not none }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.master_bathroom_sensor_4_0

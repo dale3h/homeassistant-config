@@ -2,7 +2,7 @@
 ## Automation / iCloud Fallback
 ################################################################
 
-- alias: icloud_fallback_not_home
+- alias: icloud_fallback
   trigger:
     - platform: state
       entity_id: device_tracker.dale_iphone
@@ -12,26 +12,7 @@
       entity_id: device_tracker.iphone
       state: 'home'
   action:
-    - service: icloud.setinterval
-      data:
-        accountname: dale
-        interval: 1
-
-- alias: icloud_fallback_home
-  trigger:
-    - platform: state
-      entity_id: device_tracker.dale_iphone
-      to: 'home'
-  condition:
-    - condition: and
-      conditions:
-      - condition: state
-        entity_id: device_tracker.iphone
-        state: 'home'
-      - condition: numeric_state
-        entity_id: idevice.iphone
-        below: 30
-  action:
-    - service: icloud.setinterval
-      data:
-        accountname: dale
+    - service: device_tracker.icloud_set_interval
+      data_template:
+        account_name: !secret icloud_account_name
+        interval: "{{ 1 if trigger.to_state.state == 'not_home' else 30 }}"

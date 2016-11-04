@@ -51,8 +51,10 @@ __pycache__
 *.xml
 *.backup
 .HA_VERSION
+.uuid
 home-assistant.env
 home-assistant.*
+icloud
 known_devices.yaml
 secrets.yaml
 components

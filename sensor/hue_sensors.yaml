@@ -1,0 +1,63 @@
+################################################################
+## Sensor / Philips Hue Sensors
+################################################################
+
+################################################
+## Dining Room
+################################################
+
+- platform: mqtt
+  name: dining_room_dimmer
+  state_topic: hue/dining_room_dimmer/buttonevent
+
+- platform: mqtt
+  name: dining_room_dimmer_cycle
+  state_topic: hue/dimmer_switch_9_scenecycle/status
+
+################################################
+## Guest Bathroom
+################################################
+
+- platform: mqtt
+  name: guest_bathroom_motion
+  state_topic: hue/guest_bathroom_motion/presence
+
+- platform: mqtt
+  name: guest_bathroom_temperature
+  state_topic: hue/hue_temperature_sensor_1/temperature
+
+- platform: mqtt
+  name: guest_bathroom_luminance
+  state_topic: hue/hue_ambient_light_sensor_1/lightlevel
+
+################################################
+## Guest Bedroom
+################################################
+
+- platform: mqtt
+  name: guest_bedroom_dimmer
+  state_topic: hue/guest_bedroom_dimmer/buttonevent
+
+- platform: mqtt
+  name: guest_bedroom_dimmer_cycle
+  state_topic: hue/dimmer_switch_11_scenecycle/status
+
+################################################
+## Master Bedroom
+################################################
+
+- platform: mqtt
+  name: master_bedroom_dimmer
+  state_topic: hue/master_bedroom_dimmer/buttonevent
+
+- platform: mqtt
+  name: master_bedroom_dimmer_cycle
+  state_topic: hue/dimmer_switch_2_scenecycle/status
+
+################################################
+## Parker's Bedroom
+################################################
+
+- platform: mqtt
+  name: parker_bedroom_tap
+  state_topic: hue/parker_tap/buttonevent

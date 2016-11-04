@@ -5,7 +5,7 @@
 - alias: kitchen_lights_on_when_motion_active
   trigger:
     platform: state
-    entity_id: binary_sensor.kitchen_sensor_6
+    entity_id: binary_sensor.kitchen_sensor_6_0
     to: 'on'
   condition:
     condition: state
@@ -20,7 +20,7 @@
 - alias: kitchen_lights_off_when_motion_inactive
   trigger:
     platform: state
-    entity_id: binary_sensor.kitchen_sensor_6
+    entity_id: binary_sensor.kitchen_sensor_6_0
     to: 'off'
   condition:
     condition: state

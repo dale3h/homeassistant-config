@@ -4,6 +4,6 @@
 
 motion:
   entities:
-    - binary_sensor.master_bathroom_sensor_4
-    - binary_sensor.kitchen_sensor_6
+    - binary_sensor.master_bathroom_sensor_4_0
+    - binary_sensor.kitchen_sensor_6_0
     - binary_sensor.master_bedroom_motion

@@ -1,0 +1,46 @@
+################################################################
+## Automation / Philips Hue Sensors
+################################################################
+
+################################################
+## Master Bedroom
+################################################
+
+- alias: hue_master_bedroom_dimmer_good_morning_good_night
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_dimmer
+      to: '1003'
+    - platform: state
+      entity_id: sensor.master_bedroom_dimmer
+      to: '4003'
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: "script.good_{{ 'night' if trigger.to_state.state == '4003' else 'morning' }}"
+
+- alias: hue_master_bedroom_dimmer_motion_on_motion_off
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_dimmer
+      to: '2003'
+    - platform: state
+      entity_id: sensor.master_bedroom_dimmer
+      to: '3003'
+  action:
+    - service_template: "input_boolean.turn_{{ 'off' if trigger.to_state.state == '3003' else 'on' }}"
+      data:
+        entity_id: input_boolean.master_bedroom_motion
+
+################################################
+## Parker's Bedroom
+################################################
+
+- alias: hue_parker_bedroom_tap_toggle_lamp
+  trigger:
+    - platform: state
+      entity_id: sensor.parker_bedroom_tap
+      to: '34'
+  action:
+    - service_template: light.toggle
+      entity_id: group.parker_lamp

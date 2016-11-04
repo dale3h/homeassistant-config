@@ -46,8 +46,8 @@ kitchen:
     - group.kitchen_sink
     - switch.pepper_fan
     - sensor.pepper_fan_power
-    - sensor.kitchen_luminance_6
-    - sensor.kitchen_ultraviolet_6
+    - sensor.kitchen_luminance_6_3
+    - sensor.kitchen_ultraviolet_6_27
 
 laundry_room:
   entities:
@@ -64,8 +64,8 @@ master_bedroom:
     - group.master_bedroom_light
     - group.master_bathroom_light
     - group.master_closet_light
-    - sensor.master_bathroom_luminance_4
-    - sensor.master_bathroom_ultraviolet_4
+    - sensor.master_bathroom_luminance_4_3
+    - sensor.master_bathroom_ultraviolet_4_27
 
 parkers_bedroom:
   entities:

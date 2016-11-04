@@ -1,0 +1,10 @@
+################################################################
+## Automation / Z-Wave Network
+################################################################
+
+- alias: zwave_network_toggle
+  trigger:
+    - platform: state
+      entity_id: input_boolean.zwave_network
+  action:
+    - service_template: "zwave.{{ 'start' if trigger.to_state.state == 'on' else 'stop' }}_network"

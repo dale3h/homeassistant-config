@@ -5,12 +5,12 @@
 network_devices:
   entities:
     - device_tracker.net_aladdin_connect
-    - device_tracker.net_appletv
+    - device_tracker.net_appletv_living_room
+    - device_tracker.net_appletv_master_bedroom
     - device_tracker.net_echo_dot_garage
     - device_tracker.net_echo_dot_guest_bathroom
     - device_tracker.net_echo_dot_guest_bedroom
     - device_tracker.net_echo_dot_kitchen
-    - device_tracker.net_echo_dot_master_bedroom
     - device_tracker.net_echo_dot_parker
     - device_tracker.net_echo_entryway
     - device_tracker.net_echo_master_bathroom

@@ -17,13 +17,13 @@ weather_wunderground:
   entities:
     - sensor.pws_feelslike_f
     - sensor.pws_heat_index_f
-    - sensor.pws_precip_today_in
     - sensor.pws_relative_humidity
+    - sensor.pws_precip_today_in
     - sensor.pws_temp_f
 
 weather_yr:
   entities:
     - sensor.yr_cloudiness
-    - sensor.yr_condition
     - sensor.yr_humidity
+    - sensor.yr_precipitation
     - sensor.yr_temperature
