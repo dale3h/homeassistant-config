@@ -1,0 +1,29 @@
+# Description:
+#   Publish a sensor to MQTT when it changes
+#
+# Written for:
+#   @araneolusporcus
+#
+# Components:
+#   automation
+#   mqtt
+#   sensor
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: publish_sensor_to_mqtt
+    trigger:
+      - platform: state
+        entity_id: sensor.dark_sky_apparent_temperature
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: hass01/ds/Temperature
+          payload: "{{ trigger.to_state.state }}"
