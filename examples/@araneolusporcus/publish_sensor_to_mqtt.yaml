@@ -27,3 +27,4 @@ automation:
         data_template:
           topic: hass01/ds/Temperature
           payload: "{{ trigger.to_state.state }}"
+          retain: true

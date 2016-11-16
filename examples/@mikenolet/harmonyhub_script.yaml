@@ -1,0 +1,25 @@
+# Description:
+#   Script to mute harmony-api device
+#
+# Written for:
+#   @mikenolet
+#
+# Components:
+#   mqtt
+#   script
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+script:
+  harmony_avr_mute:
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: harmony-api/hubs/living-room/devices/yamaha-av-receiver/command
+          payload: 'mute'
