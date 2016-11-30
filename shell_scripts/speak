@@ -1,0 +1,60 @@
+#!/bin/bash
+
+cache_path=/home/pi/.homeassistant/www/tts
+
+usage() {
+  echo "usage: $(basename $0) [-o] <words>"
+  exit 1
+}
+
+rawurlencode() {
+  local string="${1}"
+  local strlen=${#string}
+  local encoded=""
+  local pos c o
+
+  for (( pos=0 ; pos<strlen ; pos++ )); do
+    c=${string:$pos:1}
+    case "$c" in
+      [-_.~a-zA-Z0-9] ) o="${c}" ;;
+      * )               printf -v o '%%%02x' "'$c"
+    esac
+    encoded+="${o}"
+  done
+  echo "${encoded}"
+}
+
+if [ $# -lt 1 ]; then
+  usage
+fi
+
+speak_now=true
+words=$1
+
+if [ "$words" = "-o" ]; then
+  if [ $# -lt 2 ]; then
+    usage
+  fi
+
+  speak_now=false
+  words=$2
+fi
+
+words_md5=$(echo -n $words | md5sum | awk '{print $1}')
+words_enc=$(rawurlencode "$words")
+
+if [ ! -d $cache_path ]; then
+  mkdir -p $cache_path
+fi
+
+tts_file=$cache_path/$words_md5.mp3
+
+if [ ! -f $tts_file ]; then
+  wget -U Mozilla -O $tts_file "https://translate.google.com/translate_tts?ie=UTF-8&q=$words_enc&tl=en&total=1&idx=0&textlen=${#words}&client=tw-ob&prev=input" > /dev/null 2>&1
+fi
+
+echo $tts_file
+
+if $speak_now; then
+  mplayer $tts_file > /dev/null 2>&1
+fi
