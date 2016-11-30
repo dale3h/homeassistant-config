@@ -1,9 +1,7 @@
 #!/bin/bash
 
-cache_path=/home/pi/.homeassistant/www/tts
-
 usage() {
-  echo "usage: $(basename $0) [-o] <words>"
+  echo "usage: $(basename $0) [-q] <words>"
   exit 1
 }
 
@@ -24,6 +22,19 @@ rawurlencode() {
   echo "${encoded}"
 }
 
+if [ -d "/home/hass/.homeassistant" ]; then
+  base_dir=/home/hass/.homeassistant/www
+elif [ -d "/home/homeassistant/.homeassistant" ]; then
+  base_dir=/home/homeassistant/.homeassistant/www
+elif [ -d "/home/pi/.homeassistant" ]; then
+  base_dir=/home/pi/.homeassistant/www
+else
+  base_dir=/tmp/speak
+fi
+
+cache_path=$base_dir/tts
+static_file=$base_dir/speak.mp3
+
 if [ $# -lt 1 ]; then
   usage
 fi
@@ -31,7 +42,7 @@ fi
 speak_now=true
 words=$1
 
-if [ "$words" = "-o" ]; then
+if [ "$words" = "-q" ]; then
   if [ $# -lt 2 ]; then
     usage
   fi
@@ -43,8 +54,8 @@ fi
 words_md5=$(echo -n $words | md5sum | awk '{print $1}')
 words_enc=$(rawurlencode "$words")
 
-if [ ! -d $cache_path ]; then
-  mkdir -p $cache_path
+if [ ! -d "$cache_path" ]; then
+  mkdir -p "$cache_path"
 fi
 
 tts_file=$cache_path/$words_md5.mp3
@@ -53,6 +64,12 @@ if [ ! -f $tts_file ]; then
   wget -U Mozilla -O $tts_file "https://translate.google.com/translate_tts?ie=UTF-8&q=$words_enc&tl=en&total=1&idx=0&textlen=${#words}&client=tw-ob&prev=input" > /dev/null 2>&1
 fi
 
+if [ ! -f $tts_file ]; then
+  echo "An error occurred while trying to generate the speech file"
+  exit 1
+fi
+
+cp -f $tts_file $static_file
 echo $tts_file
 
 if $speak_now; then
