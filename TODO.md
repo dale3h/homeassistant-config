@@ -2,6 +2,7 @@
 
 * Move HTTPS Proxy to Ubuntu machine
   * Update to support multiple proxies
+  * Use nginx as a reverse proxy
 * Add OZWCP to hass sidebar
   * Add an input boolean for toggling the Z-Wave network
   * Write a script to detect changes to zwcfg and restart hass if necessary?
