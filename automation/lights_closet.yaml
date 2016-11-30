@@ -33,19 +33,19 @@
 - alias: parker_closet_light_on_when_door_is_open
   trigger:
     platform: state
-    entity_id: binary_sensor.parkers_closet_door_contact
+    entity_id: binary_sensor.parker_closet_door_contact
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: group.parkers_closet_light
+    entity_id: group.parker_closet_light
     data_template:
       brightness: "{{ states('sensor.time_brightness')|int }}"
 
 - alias: parker_closet_light_off_when_door_is_closed
   trigger:
     platform: state
-    entity_id: binary_sensor.parkers_closet_door_contact
+    entity_id: binary_sensor.parker_closet_door_contact
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: group.parkers_closet_light
+    entity_id: group.parker_closet_light

@@ -13,3 +13,4 @@ cameras_home:
   entities:
     - camera.driveway
     - camera.garage
+    - camera.living_room

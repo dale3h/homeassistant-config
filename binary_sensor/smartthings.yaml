@@ -37,7 +37,7 @@
 ################################################
 
 - platform: mqtt
-  name: parkers_closet_door_contact
-  state_topic: smartthings/parkers_closet_door/contact
+  name: parker_closet_door_contact
+  state_topic: smartthings/parker_closet_door/contact
   payload_on: 'open'
   payload_off: 'closed'

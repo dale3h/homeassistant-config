@@ -73,7 +73,7 @@ device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light
 media_player: !include_dir_merge_list media_player
 notify: !include_dir_merge_list notify
-remote: !include_dir_merge_list remote
+# remote: !include_dir_merge_list remote
 # scene: !include_dir_merge_list scene
 sensor: !include_dir_merge_list sensor
 switch: !include_dir_merge_list switch

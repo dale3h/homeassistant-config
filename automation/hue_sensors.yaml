@@ -3,6 +3,26 @@
 ################################################################
 
 ################################################
+## Resets
+################################################
+
+# - alias: hue_sensor_reset
+#   trigger:
+#     - platform: mqtt
+#       topic: hue/master_bedroom_dimmer/buttonevent
+#     - platform: mqtt
+#       topic: hue/
+#   condition:
+#     - condition: template
+#       value_template: "{{ ...payload isnt 'inactive'... }}"
+#   action:
+#     - delay: 5
+#     - service: mqtt.publish
+#       data_template:
+#         topic:
+#         payload: 'inactive'
+
+################################################
 ## Master Bedroom
 ################################################
 
@@ -18,6 +38,10 @@
     - service: script.turn_on
       data_template:
         entity_id: "script.good_{{ 'night' if trigger.to_state.state == '4003' else 'morning' }}"
+    - service: mqtt.publish
+      data:
+        topic: hue/master_bedroom_dimmer/buttonevent
+        payload: 'inactive'
 
 - alias: hue_master_bedroom_dimmer_motion_on_motion_off
   trigger:
@@ -31,6 +55,10 @@
     - service_template: "input_boolean.turn_{{ 'off' if trigger.to_state.state == '3003' else 'on' }}"
       data:
         entity_id: input_boolean.master_bedroom_motion
+    - service: mqtt.publish
+      data:
+        topic: hue/master_bedroom_dimmer/buttonevent
+        payload: 'inactive'
 
 ################################################
 ## Parker's Bedroom
@@ -42,5 +70,9 @@
       entity_id: sensor.parker_bedroom_tap
       to: '34'
   action:
-    - service_template: light.toggle
+    - service: light.toggle
       entity_id: group.parker_lamp
+    - service: mqtt.publish
+      data:
+        topic: hue/parker_tap/buttonevent
+        payload: 'inactive'

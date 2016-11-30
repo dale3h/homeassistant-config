@@ -15,3 +15,10 @@
   username: !secret camera_home_garage_username
   password: !secret camera_home_garage_password
   authentication: basic
+
+- platform: mjpeg
+  name: living_room
+  mjpeg_url: !secret camera_home_living_room_url
+  username: !secret camera_home_living_room_username
+  password: !secret camera_home_living_room_password
+  authentication: basic

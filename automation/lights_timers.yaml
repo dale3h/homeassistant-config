@@ -1,0 +1,69 @@
+################################################################
+## Automation / Light Timers
+################################################################
+
+# When light is turned off, set input slider to 0
+# When input slider goes from 0, turn light on
+# When input slider goes to 0, turn light off
+# Every minute, reduce input slider by 1
+
+# Motion sensor can set timer to X whenever it triggers
+# Light will automatically turn off after X minutes if motion sensor isn't triggered again
+
+- alias: living_room_timer_1
+  trigger:
+    - platform: state
+      entity_id: group.living_room_light
+      to: 'off'
+  condition:
+    - condition: template
+      value_template: "{{ states('input_slider.living_room_timer')|int > 0 }}"
+  action:
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.living_room_timer
+        value: 0
+
+- alias: living_room_timer_2
+  trigger:
+    - platform: state
+      entity_id: input_select.living_room_timer
+      to: '0'
+  condition:
+    - condition: state
+      entity_id: group.living_room_light
+      state: 'on'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: group.living_room_light
+
+- alias: living_room_timer_3
+  trigger:
+    - platform: time
+      minutes: '*/1'
+  condition:
+    - condition: state
+      entity_id: group.living_room_light
+      state: 'on'
+    - condition: template
+      value_template: "{{ states('input_slider.living_room_timer')|int > 0 }}"
+  action:
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.living_room_timer
+        value: "{{ states('input_slider.living_room_timer')|int - 1 }}"
+
+- alias: living_room_timer_4
+  trigger:
+    - platform: numeric_state
+      entity_id: input_slider.living_room_timer
+      above: 0.1
+  condition:
+    - condition: state
+      entity_id: group.living_room_light
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.living_room_light

@@ -27,6 +27,8 @@ network_devices:
     - device_tracker.net_projector
     - device_tracker.net_smartthings
     - device_tracker.net_starbase
+    - device_tracker.net_tablet_digiland
+    - device_tracker.net_tablet_insignia
     - device_tracker.net_ubuntu
     - device_tracker.net_workshop
     - device_tracker.net_yamaha_rxv675

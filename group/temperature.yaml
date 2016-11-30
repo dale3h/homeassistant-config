@@ -16,7 +16,7 @@ temperature:
     - sensor.master_bedroom_motion_temperature
     - sensor.master_bedroom_temperature
     - sensor.network_cabinet_temperature
-    - sensor.parkers_closet_door_temperature
+    - sensor.parker_closet_door_temperature
 
     - sensor.home_humidity
     - sensor.kitchen_relative_humidity_6_5

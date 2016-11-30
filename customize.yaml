@@ -22,6 +22,30 @@ automation.backup_config_at_3am:
   friendly_name: Backup Config at 3am
   haaska_hidden: true
 
+automation.dining_room_remote_button_1_held:
+  friendly_name: Dining Room Remote Button 1 Held
+  haaska_hidden: true
+
+automation.dining_room_remote_button_1_pressed:
+  friendly_name: Dining Room Remote Button 1 Pressed
+  haaska_hidden: true
+
+automation.dining_room_remote_button_2_pressed:
+  friendly_name: Dining Room Remote Button 2 Pressed
+  haaska_hidden: true
+
+automation.dining_room_remote_button_3_held:
+  friendly_name: Dining Room Remote Button 3 Held
+  haaska_hidden: true
+
+automation.dining_room_remote_button_3_pressed:
+  friendly_name: Dining Room Remote Button 3 Pressed
+  haaska_hidden: true
+
+automation.dining_room_remote_button_4_pressed:
+  friendly_name: Dining Room Remote Button 4 Pressed
+  haaska_hidden: true
+
 automation.front_porch_timer:
   friendly_name: Front Porch Timer
   haaska_hidden: true
@@ -61,6 +85,22 @@ automation.laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed:
 
 automation.laundry_room_and_garage_lights_on_when_garage_entry_door_is_open:
   friendly_name: Laundry Room and Garage Lights ON when Garage Entry Door is OPEN
+  haaska_hidden: true
+
+automation.living_room_timer_1:
+  friendly_name: Living Room Timer 1
+  haaska_hidden: true
+
+automation.living_room_timer_2:
+  friendly_name: Living Room Timer 2
+  haaska_hidden: true
+
+automation.living_room_timer_3:
+  friendly_name: Living Room Timer 3
+  haaska_hidden: true
+
+automation.living_room_timer_4:
+  friendly_name: Living Room Timer 4
   haaska_hidden: true
 
 automation.master_bathroom_light_off_when_motion_inactive:
@@ -220,6 +260,10 @@ binary_sensor.dashbutton_tide:
 binary_sensor.dashbutton_ziploc:
   friendly_name: Dash Button (Ziploc)
 
+binary_sensor.driveway_motion:
+  friendly_name: Driveway Motion
+  sensor_class: motion
+
 binary_sensor.front_door_contact:
   friendly_name: Front Door
   sensor_class: opening
@@ -227,6 +271,10 @@ binary_sensor.front_door_contact:
 binary_sensor.garage_entry_contact:
   friendly_name: Garage Entry Door
   sensor_class: opening
+
+binary_sensor.garage_motion:
+  friendly_name: Garage Motion
+  sensor_class: motion
 
 binary_sensor.guest_bedroom_occupancy:
   friendly_name: Guest Bedroom Occupancy
@@ -260,7 +308,7 @@ binary_sensor.occupancy_test:
   friendly_name: Occupancy Test
   sensor_class: occupancy
 
-binary_sensor.parkers_closet_door_contact:
+binary_sensor.parker_closet_door_contact:
   friendly_name: "Parker's Closet Door"
   sensor_class: opening
 
@@ -269,10 +317,13 @@ binary_sensor.parkers_closet_door_contact:
 ################################################
 
 camera.driveway:
-  friendly_name: driveway
+  friendly_name: Driveway
 
 camera.garage:
-  friendly_name: garage
+  friendly_name: Garage
+
+camera.living_room:
+  friendly_name: Living Room
 
 camera.hitech_barn:
   friendly_name: Barn
@@ -324,6 +375,10 @@ device_tracker.ipcam1:
 
 device_tracker.iphone:
   friendly_name: Dale (iCloud)
+  icon: mdi:cellphone-iphone
+
+device_tracker.iphone_ios:
+  friendly_name: Dale (iOS)
   icon: mdi:cellphone-iphone
 
 device_tracker.meagan_android:
@@ -437,6 +492,14 @@ device_tracker.net_smartthings:
 device_tracker.net_starbase:
   friendly_name: Starbase
   icon: mdi:server-security
+
+device_tracker.net_tablet_digiland:
+  friendly_name: Tablet (DigiLand)
+  icon: mdi:tablet
+
+device_tracker.net_tablet_insignia:
+  friendly_name: Tablet (Insignia)
+  icon: mdi:tablet
 
 device_tracker.net_ubuntu:
   friendly_name: Ubuntu
@@ -715,16 +778,16 @@ group.occupancy:
   friendly_name: Occupancy
   haaska_hidden: true
 
+group.parker_bedroom:
+  friendly_name: "Parker's Bedroom"
+  haaska_hidden: true
+
 group.parker_closet_light:
   friendly_name: Parker Closet Light
   haaska_hidden: true
 
 group.parker_lamp:
   friendly_name: "Parker's Lamp"
-  haaska_hidden: true
-
-group.parkers_bedroom:
-  friendly_name: "Parker's Bedroom"
   haaska_hidden: true
 
 group.person_courtney:
@@ -862,10 +925,14 @@ input_select.front_porch_time_on:
 ## Input Slider
 ################################################
 
-input_slider.kitchen_timeout:
-  friendly_name: Kitchen Timeout
+input_slider.kitchen_timer:
+  friendly_name: Kitchen Timer
   haaska_hidden: false
   persistent: true
+
+input_slider.living_room_timer:
+  friendly_name: Living Room Timer
+  haaska_hidden: true
 
 input_slider.nightlight_brightness:
   friendly_name: Nightlight Brightness
@@ -1036,6 +1103,19 @@ media_player.apple_tv:
   haaska_hidden: true
   icon: mdi:apple
 
+media_player.bedroom:
+  friendly_name: Bedroom
+  haaska_hidden: true
+
+media_player.living_room:
+  friendly_name: Living Room
+  haaska_hidden: true
+
+media_player.living_room_apple_tv:
+  friendly_name: Living Room Apple TV
+  haaska_hidden: true
+  icon: mdi:apple
+
 ################################################
 ## Remote
 ################################################
@@ -1049,7 +1129,7 @@ remote.living_room:
 
 script.arrival:
   friendly_name: Arrival
-  haaska_hidden: true
+  haaska_hidden: false
   icon: mdi:map-marker
 
 script.backup_config:
@@ -1059,18 +1139,22 @@ script.backup_config:
 
 script.departure:
   friendly_name: Departure
-  haaska_hidden: true
+  haaska_hidden: false
   icon: mdi:map-marker-off
 
 script.good_morning:
   friendly_name: Good Morning
-  haaska_hidden: true
+  haaska_hidden: false
   icon: mdi:weather-sunny
 
 script.good_night:
   friendly_name: Good Night
-  haaska_hidden: true
+  haaska_hidden: false
   icon: mdi:weather-night
+
+script.harmony_avr_mute:
+  friendly_name: Harmony Avr Mute
+  haaska_hidden: true
 
 script.master_bedroom_motion_helper:
   friendly_name: Master Bedroom Motion Helper
@@ -1205,6 +1289,14 @@ sensor.iphone_battery:
   friendly_name: iPhone Battery
   icon: mdi:battery
 
+sensor.iphone_battery_level:
+  friendly_name: iPhone Battery Level
+  icon: mdi:battery
+
+sensor.iphone_battery_state:
+  friendly_name: iPhone Battery State
+  icon: mdi:battery-charging
+
 sensor.kitchen_alarm_level_6_1:
   friendly_name: Kitchen Alarm Level
   hidden: true
@@ -1310,11 +1402,11 @@ sensor.network_cabinet_temperature:
 sensor.parker_bedroom_tap:
   friendly_name: "Parker's Bedroom Tap"
 
-sensor.parkers_closet_door_battery:
+sensor.parker_closet_door_battery:
   friendly_name: "Parker's Closet Door Battery"
   icon: mdi:battery
 
-sensor.parkers_closet_door_temperature:
+sensor.parker_closet_door_temperature:
   friendly_name: "Parker's Closet Door Temperature"
   icon: mdi:thermometer
 
@@ -1467,5 +1559,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Tue Nov 01 2016 08:54:59 GMT-0500 (CDT)
+# Last Generated: Tue Nov 22 2016 10:45:00 GMT-0600 (CST)
 ################################################################

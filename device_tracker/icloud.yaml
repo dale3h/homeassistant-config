@@ -1,8 +1,0 @@
-################################################################
-## Device Tracker / iCloud
-################################################################
-
-- platform: icloud
-  account_name: !secret icloud_account_name
-  username: !secret icloud_username
-  password: !secret icloud_password

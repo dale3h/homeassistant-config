@@ -67,8 +67,8 @@ master_bedroom:
     - sensor.master_bathroom_luminance_4_3
     - sensor.master_bathroom_ultraviolet_4_27
 
-parkers_bedroom:
+parker_bedroom:
   entities:
     - group.parker_lamp
     - group.parker_closet_light
-    - binary_sensor.parkers_closet_door_contact
+    - binary_sensor.parker_closet_door_contact

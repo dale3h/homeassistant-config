@@ -6,6 +6,7 @@
 
 default: info
 logs:
+  custom_components.device_tracker.icloud: debug
   custom_components.telegram: debug
   homeassistant.components.climate.ecobee: warn
   homeassistant.components.sensor.command_line: warn
@@ -13,15 +14,16 @@ logs:
   homeassistant.components.discovery: warn
   homeassistant.components.ecobee: warn
   homeassistant.components.http: warn
+  homeassistant.components.remote: debug
   homeassistant.components.sensor.apcupsd: error
   homeassistant.components.sensor.yweather: warn
   homeassistant.components.notify.telegram: warn
   homeassistant.components.zone: warn
   homeassistant.components.zwave: error
-  homeassistant.core: warn
+  homeassistant.core: info
   phue: warn
   plexapi: warn
-  pyicloud.base: warn
+  pyicloud.base: debug
   requests.exceptions: fatal
   requests.exceptions.ConnectTimeout: fatal
   requests.packages: fatal
