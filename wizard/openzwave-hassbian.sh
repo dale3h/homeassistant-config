@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Run this script with sudo
+# Install by running:
+# wget -Nnv https://raw.githubusercontent.com/dale3h/homeassistant-config/master/wizard/openzwave-hassbian.sh && sudo bash openzwave-hassbian.sh
 
 echo "Open Z-Wave Installer for Hassbian"
 echo "Copyright(c) 2016 Dale Higgs <https://gitter.im/dale3h>"
