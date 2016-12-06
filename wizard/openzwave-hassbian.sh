@@ -9,7 +9,7 @@ echo
 
 echo "Running apt-get preparation"
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
 apt-get install -y git make
 
 echo "Installing latest version of cython"
