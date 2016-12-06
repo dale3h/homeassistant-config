@@ -35,7 +35,8 @@ apt-get install -y mosquitto mosquitto-clients
 echo "Writing default configuration"
 cd /etc/mosquitto
 mv mosquitto.conf mosquitto.conf.backup
-wget https://raw.githubusercontent.com/home-assistant/fabric-home-assistant/master/mosquitto.conf
+wget https://raw.githubusercontent.com/dale3h/homeassistant-config/master/wizard/assets/mosquitto.conf.asset
+mv mosquitto.conf.asset mosquitto.conf
 chown mosquitto:mosquitto mosquitto.conf
 
 echo "Initializing password file"
