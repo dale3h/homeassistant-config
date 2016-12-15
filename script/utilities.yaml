@@ -22,6 +22,17 @@ restart_https_proxy:
   sequence:
     - service: shell_command.restart_https_proxy
 
+speak:
+  sequence:
+    - service: shell_command.speak
+      data_template:
+        message: "{{ message }}"
+    - service: media_player.play_media
+      data_template:
+        entity_id: "{{ entity_id }}"
+        media_content_id: !secret speak_mp3_url
+        media_content_type: music
+
 update_hass:
   sequence:
     - service: shell_command.update_hass

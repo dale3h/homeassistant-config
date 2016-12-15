@@ -27,8 +27,9 @@ household:
 cameras:
   view: yes
   entities:
-    - group.cameras_home
     - group.cameras_hitech
+    - group.cameras_indoor
+    - group.cameras_outdoor
 
 sensors:
   view: yes

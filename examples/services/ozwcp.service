@@ -1,8 +1,15 @@
 # Open Z-Wave Control Panel Service File
 # ======================================
-# Copy this file to /etc/systemd/system/ozwcp.service and then run:
+# To install this service file run the following commands:
+#   sudo wget https://raw.githubusercontent.com/dale3h/homeassistant-config/master/examples/services/ozwcp.service -O /etc/systemd/system/ozwcp.service
 #   sudo systemctl daemon-reload
+#   sudo systemctl enable ozwcp.service
 #   sudo systemctl start ozwcp.service
+#
+# To link your Z-Wave configuration files:
+#   cd /srv/hass/src/open-zwave-control-panel
+#   sudo rename -v 's/\.xml$/\.xml.backup/' zw*.xml
+#   sudo ln -s /home/hass/.homeassistant/zw*.xml
 #
 # Now check the logs to ensure that it is running without errors:
 #   sudo journalctl -fu ozwcp.service

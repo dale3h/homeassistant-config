@@ -24,3 +24,13 @@
       - number: 1
         type: rgbw
         name: garage
+
+################################################
+## Flux LED / MagicLight
+################################################
+
+# - platform: flux_led
+#   devices:
+#     !secret flux_led_test_strip_host:
+#       name: test_strip
+#       mode: 'rgb'

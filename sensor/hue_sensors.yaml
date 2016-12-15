@@ -25,6 +25,8 @@
 - platform: mqtt
   name: guest_bathroom_temperature
   state_topic: hue/hue_temperature_sensor_1/temperature
+#   value_template: "{{ value|int / 100 }}"
+#   unit_of_measurement: '°C'
 
 - platform: mqtt
   name: guest_bathroom_luminance

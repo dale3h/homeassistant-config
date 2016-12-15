@@ -16,6 +16,10 @@ good_morning:
         brightness: 255
         color_temp: 370
         transition: 60
+    - service: script.speak
+      data_template:
+        entity_id: media_player.dining_room_home
+        message: !include ../phrases/good_morning.yaml
 
 good_night:
   sequence:

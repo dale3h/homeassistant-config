@@ -3,10 +3,26 @@
 ################################################################
 
 ################################################
+## Google Cast
+################################################
+
+- platform: cast
+  name: dining_room_home
+  host: !secret google_cast_dining_room_host
+
+- platform: cast
+  name: living_room_speakers
+  host: !secret google_cast_living_room_host
+
+- platform: cast
+  name: master_bedroom_speakers
+  host: !secret google_cast_master_bedroom_host
+
+################################################
 ## Plex
 ################################################
 
-- platform: plex
+# - platform: plex
 
 ################################################
 ## Living Room Apple TV

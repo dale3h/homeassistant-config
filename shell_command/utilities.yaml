@@ -5,4 +5,5 @@
 backup_config: '/home/pi/shell/backup_config.sh'
 rebuild_customize: 'hass-customizer'
 restart_https_proxy: 'pm2 restart hass-https-proxy'
+speak: 'speak -q "{{ message }}"'
 update_hass: 'nohup /home/pi/shell/update_hass.sh </dev/null >> /home/pi/shell/update_hass.log 2>&1 &'

@@ -7,6 +7,8 @@ network_devices:
     - device_tracker.net_aladdin_connect
     - device_tracker.net_appletv_living_room
     - device_tracker.net_appletv_master_bedroom
+    - device_tracker.net_chromecast_1
+    - device_tracker.net_chromecast_2
     - device_tracker.net_echo_dot_garage
     - device_tracker.net_echo_dot_guest_bathroom
     - device_tracker.net_echo_dot_guest_bedroom
@@ -18,9 +20,12 @@ network_devices:
     - device_tracker.net_firetv1
     - device_tracker.net_firetv2
     - device_tracker.net_firetv3
+    - device_tracker.net_google_home
     - device_tracker.net_harmonyhub
     - device_tracker.net_htpc
-    - device_tracker.net_ipcam1
+    - device_tracker.net_ipcam_ac1
+    - device_tracker.net_ipcam_hv1
+    - device_tracker.net_ipcam_yh1
     - device_tracker.net_limitlessled
     - device_tracker.net_oak1
     - device_tracker.net_philipshue
@@ -31,5 +36,6 @@ network_devices:
     - device_tracker.net_tablet_insignia
     - device_tracker.net_ubuntu
     - device_tracker.net_workshop
+    - device_tracker.net_xbox_one
     - device_tracker.net_yamaha_rxv675
     - device_tracker.net_yamaha_wifi_bridge

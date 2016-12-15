@@ -36,6 +36,27 @@ ecobee:
 http:
   api_password: !secret http_api_password
 
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+logger:
+  default: info
+#   logs:
+#     homeassistant.components.climate.ecobee: warn
+#     homeassistant.components.sensor.command_line: warn
+#     homeassistant.components.device_tracker.asuswrt: warn
+#     homeassistant.components.discovery: warn
+#     homeassistant.components.ecobee: warn
+#     homeassistant.components.http: warn
+#     homeassistant.components.remote: debug
+#     homeassistant.components.sensor.apcupsd: error
+#     homeassistant.components.sensor.yweather: warn
+#     homeassistant.components.notify.telegram: warn
+#     homeassistant.components.zone: warn
+#     homeassistant.components.zwave: error
+#     homeassistant.core: warn
+#     phue: warn
+#     plexapi: warn
+#     pyicloud.base: debug
+
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
@@ -45,14 +66,17 @@ mqtt:
 recorder:
   purge_days: 7
 
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+  polling_interval: 60000
+
 ################################################
 ## Component Includes (Single File)
 ################################################
 
 # emulated_hue: !include emulated_hue.yaml
 ios: !include ios.yaml
-logger: !include logger.yaml
-zwave: !include zwave.yaml
 
 ################################################
 ## Component Includes (Named)
@@ -67,7 +91,7 @@ zwave: !include zwave.yaml
 
 automation: !include_dir_merge_list automation
 binary_sensor: !include_dir_merge_list binary_sensor
-camera: !include_dir_merge_list camera
+# camera: !include_dir_merge_list camera
 cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light

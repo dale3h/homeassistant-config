@@ -9,8 +9,16 @@ cameras_hitech:
     - camera.hitech_barn
     - camera.hitech_camper
 
-cameras_home:
+cameras_indoor:
+  entities:
+    - camera.backyard
+    - camera.front_yard
+    - camera.garage
+    - camera.kitchen
+    - camera.living_room
+    - camera.master_bedroom
+    - camera.parker_bedroom
+
+cameras_outdoor:
   entities:
     - camera.driveway
-    - camera.garage
-    - camera.living_room
