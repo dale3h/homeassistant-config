@@ -1,0 +1,44 @@
+# Description:
+#   Google TTS script for media_player
+#
+# Components:
+#   automation
+#   media_player
+#   script
+#   shell_command
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# Script installation:
+#   sudo curl -o /usr/local/bin/speak https://raw.githubusercontent.com/dale3h/homeassistant-config/master/shell_scripts/speak && sudo chmod +x /usr/local/bin/speak
+
+script:
+  speak:
+    sequence:
+      - service: shell_command.speak
+        data_template:
+          message: "{{ message }}"
+      - service: media_player.play_media
+        data_template:
+          entity_id: "{{ entity_id }}"
+          media_content_id: 'http://XXX.XXX.XXX.XXX:8123/local/speak.mp3'
+          media_content_type: music
+
+shell_command:
+  speak: 'speak -q "{{ message }}"'
+
+automation:
+  - alias: speech_test
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_door
+        to: 'on'
+    action:
+      - service: script.speak
+        data:
+          entity_id: media_player.dining_room_chromecast
+          message: The garage door is open
