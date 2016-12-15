@@ -36,6 +36,7 @@ mkdir libmicrohttpd
 chown homeassistant:homeassistant libmicrohttpd
 
 echo "Downloading libmicrohttpd-0.9.19"
+cd libmicrohttpd
 wget ftp://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-0.9.19.tar.gz
 chown homeassistant:homeassistant libmicrohttpd-0.9.19.tar.gz
 tar zxvf libmicrohttpd-0.9.19.tar.gz
