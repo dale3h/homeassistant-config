@@ -23,6 +23,10 @@ good_morning:
 
 good_night:
   sequence:
+    - service: script.speak
+      data_template:
+        entity_id: media_player.dining_room_home
+        message: Good night and sweet dreams.
     - service: input_boolean.turn_off
       entity_id: input_boolean.master_bedroom_motion
     - service: climate.set_temperature

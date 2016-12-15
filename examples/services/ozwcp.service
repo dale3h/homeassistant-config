@@ -9,11 +9,13 @@
 # To link your Z-Wave configuration files:
 #   cd /srv/hass/src/open-zwave-control-panel
 #   sudo rename -v 's/\.xml$/\.xml.backup/' zw*.xml
-#   sudo ln -s /home/hass/.homeassistant/zw*.xml
+#   sudo ln -s /home/hass/.homeassistant/zwcfg_(PRESS TAB AND THEN ENTER)
+#   sudo ln -s /home/hass/.homeassistant/zwscene.xml
+#   sudo chown hass:hass zw*.xml
 #
 # Now check the logs to ensure that it is running without errors:
 #   sudo journalctl -fu ozwcp.service
-#
+
 [Unit]
 Description=OpenZWave Control Panel
 After=network.target
