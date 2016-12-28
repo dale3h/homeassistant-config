@@ -32,3 +32,6 @@ Software on the pi:
 * [Aladdin Connect](http://amzn.to/2i6pOv6) Garage Door Opener
 * [Xbox One S](http://amzn.to/2igdusB)
 * [RGBWW LED Strip WiFi Controller](http://amzn.to/2i6mUqn) with [RGB LED Strips](http://amzn.to/2i68N42)
+* [Aeon Labs MultiSensor 6](http://amzn.to/2hMzmrW)
+* [Aeon Labs Z-Wave Minimote](http://amzn.to/2igetsU)
+* [Logitech Harmony Hub](http://amzn.to/2i6jNPb)
