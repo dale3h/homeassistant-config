@@ -1,0 +1,72 @@
+# Description:
+#   Broadlink RM Input Select work around for fan speed selection
+#
+# Written for:
+#   @torn8o01_twitter
+#
+# Components:
+#   automation
+#   input_select
+#   switch
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: fan_speed_selected
+    trigger:
+      - platform: state
+        entity_id: input_select.fan_speed
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'Select an option...' }}"
+    action:
+      # Turn the corresponding switch on to send the fan speed command
+      - service: switch.turn_on
+        data_template:
+          entity_id: "switch.fan_speed_{{ trigger.to_state.state|lower|replace(' ', '_') }}"
+      # Reset the Input Select to "Select an option..."
+      - service: input_select.select_option
+        data_template:
+          entity_id: "{{ trigger.to_state.entity_id }}"
+          option: Select an option...
+
+input_select:
+  fan_speed:
+    initial: Select an option...
+    options:
+      - Select an option...
+      - Off
+      - Low
+      - Medium
+      - High
+
+switch:
+  - platform: broadlink
+    host: !secret broadlink_host
+    mac: !secret broadlink_mac
+    switches:
+      fan_speed_off:
+        friendly_name: Fan Speed Off
+        command_on: 'oooOOOOOOOO'
+        command_off: 'oooOOOOOOOO'
+
+      fan_speed_low:
+        friendly_name: Fan Speed Low
+        command_on: 'lllLLLLLLLL'
+        command_off: 'lllLLLLLLLL'
+
+      fan_speed_Medium:
+        friendly_name: Fan Speed Medium
+        command_on: 'mmmMMMMMMMM'
+        command_off: 'mmmMMMMMMMM'
+
+      fan_speed_High:
+        friendly_name: Fan Speed High
+        command_on: 'hhhHHHHHHHH'
+        command_off: 'hhhHHHHHHHH'
