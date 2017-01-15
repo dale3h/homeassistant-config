@@ -1,0 +1,81 @@
+# Description:
+#   Keep Input Slider and Media Player volume in sync
+#
+# Written for:
+#   @mattthhdp
+#
+# Components:
+#   automation
+#   input_slider
+#   media_player
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# Notes:
+#   It may be possible to reduce this to just one automation.
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+homeassistant:
+  customize:
+    automation.set_kodi_salon_volume:
+      friendly_name: Set Kodi Salon Volume
+
+    automation.sync_kodi_salon_volume:
+      friendly_name: Sync Kodi Salon Volume
+
+    input_slider.kodi_salon_volume:
+      friendly_name: Kodi Salon Volume
+
+    media_player.kodi_salon:
+      friendly_name: Kodi Salon
+
+automation:
+  - alias: set_kodi_salon_volume
+    trigger:
+      - platform: state
+        entity_id: input_slider.kodi_salon_volume
+    action:
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.kodi_salon
+          volume_level: "{{ trigger.to_state.state }}"
+
+  - alias: sync_kodi_salon_volume
+    trigger:
+      - platform: state
+        entity_id: media_player.kodi_salon
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes is not none }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.volume_level is not none }}"
+      - condition: template
+        value_template: "{{ trigger.to_state.attributes.volume_level|float != states('input_slider.kodi_salon_volume')|float }}"
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id: automation.set_kodi_salon_volume
+      - service: input_slider.select_value
+        data_template:
+          entity_id: input_slider.kodi_salon_volume
+          value: '{{ trigger.to_state.attributes.volume_level }}'
+      - service: automation.turn_on
+        data:
+          entity_id: automation.set_kodi_salon_volume
+
+input_slider:
+  kodi_salon_volume:
+    initial: 0.3
+    min: 0
+    max: 1
+    step: 0.1
+
+media_player:
+  - platform: kodi
+    name: kodi_salon
+    host: 'http://192.168.1.100'
