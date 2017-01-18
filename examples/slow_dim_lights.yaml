@@ -33,7 +33,7 @@ script:
       - service: light.turn_on
         data_template:
           entity_id: "{{ entity_id }}"
-          brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness|int * (2 / 3))|int }}"
+          brightness: "{{ (states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness|int * (2 / 3))|int }}"
       - delay:
           seconds: 1
       - service: light.turn_on
