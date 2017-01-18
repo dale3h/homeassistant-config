@@ -1,0 +1,93 @@
+################################################################
+## Packages / SmartThings
+################################################################
+
+binary_sensor:
+  - platform: mqtt
+    name: closet_door_contact
+    state_topic: smartthings/closet_door/contact
+    payload_on: 'open'
+    payload_off: 'closed'
+
+  - platform: mqtt
+    name: garage_entry_contact
+    state_topic: smartthings/garage_entry/contact
+    payload_on: 'open'
+    payload_off: 'closed'
+
+  - platform: mqtt
+    name: master_bedroom_motion
+    state_topic: smartthings/master_bedroom_motion/motion
+    payload_on: 'active'
+    payload_off: 'inactive'
+
+  - platform: mqtt
+    name: parker_closet_door_contact
+    state_topic: smartthings/parker_closet_door/contact
+    payload_on: 'open'
+    payload_off: 'closed'
+
+sensor:
+  - platform: mqtt
+    name: closet_door_battery
+    state_topic: smartthings/closet_door/battery
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    name: closet_door_temperature
+    state_topic: smartthings/closet_door/temperature
+    unit_of_measurement: '°F'
+
+  - platform: mqtt
+    name: garage_entry_battery
+    state_topic: smartthings/garage_entry/battery
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    name: garage_entry_temperature
+    state_topic: smartthings/garage_entry/temperature
+    unit_of_measurement: '°F'
+
+  - platform: mqtt
+    name: master_bedroom_battery
+    state_topic: smartthings/master_bedroom_motion/battery
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    name: master_bedroom_motion_temperature
+    state_topic: smartthings/master_bedroom_motion/temperature
+    unit_of_measurement: '°F'
+
+  - platform: mqtt
+    name: network_cabinet_battery
+    state_topic: smartthings/network_cabinet/battery
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    name: network_cabinet_temperature
+    state_topic: smartthings/network_cabinet/temperature
+    unit_of_measurement: '°F'
+
+  - platform: mqtt
+    name: parker_closet_door_battery
+    state_topic: smartthings/parker_closet_door/battery
+    unit_of_measurement: '%'
+
+  - platform: mqtt
+    name: parker_closet_door_temperature
+    state_topic: smartthings/parker_closet_door/temperature
+    unit_of_measurement: '°F'
+
+  - platform: mqtt
+    name: pepper_fan_power
+    state_topic: smartthings/pepper_fan/power
+    unit_of_measurement: 'W'
+
+switch:
+  - platform: mqtt
+    name: pepper_fan
+    state_topic: smartthings/pepper_fan/switch
+    command_topic: smartthings/pepper_fan/switch
+    payload_on: 'on'
+    payload_off: 'off'
+    retain: true
