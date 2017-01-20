@@ -1,0 +1,13 @@
+[Unit]
+Description=Home Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/local/bin/hass
+SendSIGKILL=yes
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

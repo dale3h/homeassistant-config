@@ -1,0 +1,13 @@
+[Unit]
+Description=Home Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=homeassistant
+ExecStart=/srv/homeassistant/bin/hass
+SendSIGKILL=yes
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target
