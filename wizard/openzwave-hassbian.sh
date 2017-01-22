@@ -13,7 +13,7 @@ apt-get upgrade -y
 apt-get install -y git make
 
 echo "Installing latest version of cython"
-pip3 install --upgrade cython
+pip3 install --upgrade cython==0.24.1
 
 echo "Creating source directory"
 mkdir -p /srv/homeassistant/src
