@@ -15,8 +15,8 @@ echo "Running apt-get preparation"
 sudo apt-get update
 sudo apt-get upgrade
 
-echo "Installing Node.js 4.x"
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+echo "Installing Node.js 6.x"
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Installing PM2 process manager"
