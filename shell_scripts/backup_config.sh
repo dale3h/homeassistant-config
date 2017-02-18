@@ -1,8 +1,9 @@
 #!/bin/bash
 
-BACKUP_FILE=/home/pi/hass-config_$(date +"%Y%m%d_%H%M%S").zip
+CONFIG_DIR="/etc/homeassistant"
+BACKUP_FILE="/srv/homeassistant/backup/homeassistant_$1.zip"
 
-pushd /home/pi/.homeassistant >/dev/null
+pushd $CONFIG_DIR >/dev/null
 zip -9 -q -r $BACKUP_FILE . -x"components/*" -x"deps/*" -x"home-assistant.db" -x"home-assistant_v2.db" -x"home-assistant.log"
 popd >/dev/null
 

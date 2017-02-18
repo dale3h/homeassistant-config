@@ -2,8 +2,6 @@
 ## Shell Command / Utilities
 ################################################################
 
-backup_config: '/home/pi/shell/backup_config.sh'
-rebuild_customize: 'hass-customizer'
-restart_https_proxy: 'pm2 restart hass-https-proxy'
-speak: 'speak -q "{{ message }}"'
-update_hass: 'nohup /home/pi/shell/update_hass.sh </dev/null >> /home/pi/shell/update_hass.log 2>&1 &'
+backup_config: "/etc/homeassistant/shell_scripts/backup_config.sh '{{ states('sensor.date')|replace('-', '') ~ '_' ~ states('sensor.time')|replace(':', '') }}'"
+rebuild_customize: '/usr/local/bin/hass-customizer'
+update_hass: 'nohup /etc/homeassistant/shell_scripts/update_hass.sh </dev/null >> /etc/homeassistant/shell_scripts/update_hass.log 2>&1 &'
