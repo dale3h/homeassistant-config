@@ -2,6 +2,6 @@
 ## Shell Command / Utilities
 ################################################################
 
-backup_config: "/etc/homeassistant/shell_scripts/backup_config.sh '{{ states('sensor.date')|replace('-', '') ~ '_' ~ states('sensor.time')|replace(':', '') }}'"
+backup_config: "/etc/homeassistant/shell_scripts/backup_config.sh"
 rebuild_customize: '/usr/local/bin/hass-customizer'
 update_hass: 'nohup /etc/homeassistant/shell_scripts/update_hass.sh </dev/null >> /etc/homeassistant/shell_scripts/update_hass.log 2>&1 &'
