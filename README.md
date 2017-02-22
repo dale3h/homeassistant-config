@@ -1,4 +1,4 @@
-# Home Assistant Configuration by [@dale3h](https://gitter.im/dale3h) <a href="https://flattr.com/submit/auto?fid=o7dr10&url=https%3A%2F%2Fgithub.com%2Fdale3h%2Fhomeassistant-config" target="_blank"><img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+# Home Assistant Configuration by [@dale3h](https://gitter.im/dale3h) <a href="https://flattr.com/submit/auto?fid=o7dr10&url=https%3A%2F%2Fgithub.com%2Fdale3h%2Fhomeassistant-config" target="_blank"><img src="https://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 [Home Assistant](https://home-assistant.io/) configuration files (YAMLs)
 
 This is my Home Assistant Configuration. I often try new components to help test them for others.
