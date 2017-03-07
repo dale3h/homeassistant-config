@@ -1,0 +1,93 @@
+################################################################
+## Packages / Alarm Clock
+################################################################
+
+automation:
+  - alias: alarm_clock_disable
+    trigger:
+      - platform: state
+        entity_id: input_boolean.alarm_clock
+        from: 'on'
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.siren_switch_16_0
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.alarm_clock
+          option: 'Disabled'
+
+  - alias: alarm_clock_enable
+    trigger:
+      - platform: state
+        entity_id: input_select.alarm_clock
+        from: 'Disabled'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.alarm_clock
+
+  - alias: alarm_clock
+    trigger:
+      - platform: state
+        entity_id: sensor.time
+    condition:
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+      - condition: template
+        value_template: "{{ is_state('input_select.alarm_clock', trigger.to_state.state) }}"
+    action:
+      - service: script.siren_autostop_120s
+      - service: script.siren_mode_all
+
+      - service: switch.turn_on
+        data:
+          entity_id: switch.siren_switch_16_0
+
+      - delay: '00:00:15'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.siren_switch_16_0
+
+      - delay: '00:01:00'
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.siren_switch_16_0
+
+      - delay: '00:05:00'
+      - condition: state
+        entity_id: input_boolean.alarm_clock
+        state: 'on'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.siren_switch_16_0
+
+input_boolean:
+  alarm_clock:
+    initial: off
+
+input_select:
+  alarm_clock:
+    initial: 'Disabled'
+    options:
+      - 'Disabled'
+      - '06:00'
+      - '06:15'
+      - '06:30'
+      - '06:45'
+      - '07:00'
+      - '07:15'
+      - '07:30'
+      - '07:45'
+      - '08:00'
+      - '08:15'
+      - '08:30'
+      - '08:45'
+      - '09:00'
+      - '09:15'
+      - '09:30'

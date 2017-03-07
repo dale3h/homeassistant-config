@@ -1,0 +1,29 @@
+################################################################
+## Sensor / Time Based Brightness
+################################################################
+
+# @todo Automation for setting light brightness when global changes
+# @todo Add individual light brightnesses
+# @todo Is there a way to implement machine learning for individual lights?
+
+sensor:
+  - platform: template
+    sensors:
+      global_brightness:
+        value_template: >-
+          {% set time_now = states('sensor.time').replace(':', '.')|float %}
+          {% if time_now < 7 %}
+            64
+          {% elif time_now < 8 %}
+            128
+          {% elif time_now < 9 %}
+            192
+          {% elif time_now < 20 %}
+            255
+          {% elif time_now < 21 %}
+            192
+          {% elif time_now < 22 %}
+            128
+          {% else %}
+            64
+          {% endif %}

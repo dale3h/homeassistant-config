@@ -1,0 +1,98 @@
+################################################################
+## Packages / Blue Iris
+################################################################
+
+camera:
+  - platform: mjpeg
+    name: amcrest_ptz
+    mjpeg_url: !secret blueiris_amcrest_ptz_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: backyard
+    mjpeg_url: !secret blueiris_backyard_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: driveway
+    mjpeg_url: !secret blueiris_driveway_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: front_yard
+    mjpeg_url: !secret blueiris_front_yard_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: garage
+    mjpeg_url: !secret blueiris_garage_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: kitchen
+    mjpeg_url: !secret blueiris_kitchen_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: living_room
+    mjpeg_url: !secret blueiris_living_room_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: master_bedroom
+    mjpeg_url: !secret blueiris_master_bedroom_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: parker_bedroom
+    mjpeg_url: !secret blueiris_parker_bedroom_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+group:
+  cameras_indoor:
+    entities:
+      - camera.amcrest_ptz
+      - camera.backyard
+      - camera.front_yard
+      - camera.garage
+      - camera.kitchen
+      - camera.living_room
+      - camera.master_bedroom
+      - camera.parker_bedroom
+
+  cameras_outdoor:
+    entities:
+      - camera.driveway
+
+switch:
+  - platform: mqtt
+    name: htpc_monitor
+    state_topic: htpc/monitor/state
+    command_topic: htpc/monitor/command
+    payload_on: 'on'
+    payload_off: 'off'
+
+  - platform: mqtt
+    name: htpc_blueiris
+    state_topic: htpc/blueiris/state
+    command_topic: htpc/blueiris/command
+    payload_on: 'on'
+    payload_off: 'off'

@@ -1,0 +1,49 @@
+################################################################
+## Package / Motion Lights
+################################################################
+
+automation:
+  - alias: dining_room_motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d00012d71be
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d00012d71be
+        to: 'off'
+        for: '00:04:00'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.dining_room
+          state: "{{ trigger.to_state.state }}"
+
+  - alias: kitchen_motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kitchen_sensor_5_0
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.kitchen_sensor_5_0
+        to: 'off'
+        for: '00:04:00'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.kitchen
+          state: "{{ trigger.to_state.state }}"
+
+  - alias: master_bathroom_motion
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.master_bathroom_sensor_4_0
+        to: 'on'
+      - platform: state
+        entity_id: binary_sensor.master_bathroom_sensor_4_0
+        to: 'off'
+        for: '00:04:00'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.master_bathroom
+          state: "{{ trigger.to_state.state }}"

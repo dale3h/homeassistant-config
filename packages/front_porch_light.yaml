@@ -1,0 +1,64 @@
+################################################################
+## Packages / Front Porch Light
+################################################################
+
+automation:
+  - alias: front_porch_timer
+    trigger:
+      - platform: state
+        entity_id: sensor.time
+    condition:
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ is_state('input_select.front_porch_time_on', trigger.to_state.state) }}"
+          - condition: template
+            value_template: "{{ is_state('input_select.front_porch_time_off', trigger.to_state.state) }}"
+    action:
+      - service: script.front_porch_light
+
+binary_sensor:
+  - platform: template
+    sensors:
+      front_porch_expected_state:
+        value_template: >-
+          {% set time_now = states('sensor.time').replace(':', '.')|float %}
+          {% set time_on = states('input_select.front_porch_time_on').replace(':', '.')|float %}
+          {% set time_off = states('input_select.front_porch_time_off').replace(':', '.')|float %}
+          {{ not time_off <= time_now < time_on }}
+
+input_select:
+  front_porch_time_on:
+    initial: '19:00'
+    options:
+      - '17:00'
+      - '17:30'
+      - '18:00'
+      - '18:30'
+      - '19:00'
+      - '19:30'
+      - '20:00'
+      - '20:30'
+      - '21:00'
+
+  front_porch_time_off:
+    initial: '07:00'
+    options:
+      - '05:00'
+      - '05:30'
+      - '06:00'
+      - '06:30'
+      - '07:00'
+      - '07:30'
+      - '08:00'
+      - '08:30'
+      - '09:00'
+
+script:
+  front_porch_light:
+    sequence:
+      - service: script.light_control
+        data_template:
+          entity_id: light.front_porch
+          state: "{{ states('binary_sensor.front_porch_expected_state') }}"
+          brightness: 255

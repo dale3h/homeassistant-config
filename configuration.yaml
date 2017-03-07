@@ -12,6 +12,7 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
 
+config:
 frontend:
 history:
 logbook:
@@ -39,20 +40,33 @@ ecobee:
   api_key: !secret ecobee_api_key
   hold_temp: true
 
+ffmpeg:
+
 http:
   api_password: !secret http_api_password
+  base_url: !secret http_base_url
+  use_x_forwarded_for: true
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+influxdb:
+  host: !secret influxdb_host
+  port: !secret influxdb_port
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  database: !secret influxdb_database
 
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 logger:
   default: info
-#   logs:
+  logs:
+    homeassistant.components.sensor.apcupsd: error
 #     homeassistant.components.climate.ecobee: warn
 #     homeassistant.components.sensor.command_line: warn
 #     homeassistant.components.device_tracker.asuswrt: warn
 #     homeassistant.components.discovery: warn
 #     homeassistant.components.ecobee: warn
 #     homeassistant.components.http: warn
-#     homeassistant.components.sensor.apcupsd: error
 #     homeassistant.components.sensor.yweather: warn
 #     homeassistant.components.notify.telegram: warn
 #     homeassistant.components.zone: warn
@@ -60,7 +74,6 @@ logger:
 #     homeassistant.core: warn
 #     phue: warn
 #     plexapi: warn
-#     pyicloud.base: debug
 
 mqtt:
   broker: !secret mqtt_broker
@@ -69,15 +82,21 @@ mqtt:
   password: !secret mqtt_password
 
 recorder:
-  purge_days: 7
+  purge_days: 30
+  db_url: !secret recorder_db_url
 
 tts:
   - platform: google
 
 zwave:
   usb_path: /dev/ttyACM0
-  config_path: /usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+  config_path: /etc/homeassistant/config
   polling_interval: 60000
+
+xiaomi:
+  gateways:
+    - sid: !secret xiaomi_gateway_sid
+      key: !secret xiaomi_gateway_key
 
 ################################################
 ## Component Includes (Single File)
@@ -99,7 +118,6 @@ ios: !include ios.yaml
 
 automation: !include_dir_merge_list automation
 binary_sensor: !include_dir_merge_list binary_sensor
-# camera: !include_dir_merge_list camera
 cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light
@@ -117,6 +135,6 @@ group: !include_dir_merge_named group
 input_boolean: !include_dir_merge_named input_boolean
 input_select: !include_dir_merge_named input_select
 input_slider: !include_dir_merge_named input_slider
-# panel_iframe: !include_dir_merge_named panel_iframe
+panel_iframe: !include_dir_merge_named panel_iframe
 script: !include_dir_merge_named script
 shell_command: !include_dir_merge_named shell_command

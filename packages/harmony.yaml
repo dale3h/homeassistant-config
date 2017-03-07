@@ -1,0 +1,95 @@
+################################################################
+## Packages / Harmony Hub
+################################################################
+
+automation:
+  - alias: toggle_apple_tv
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+            entity_id: binary_sensor.switch_158d00012d9fd7
+            click_type: single
+    condition:
+      - condition: template
+        value_template: "{{ states.automation.toggle_apple_tv.attributes is not none }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ states.automation.toggle_apple_tv.attributes.last_triggered is none }}"
+          - condition: template
+            value_template: "{{ as_timestamp(now()) - as_timestamp(states.automation.toggle_apple_tv.attributes.last_triggered) > 30 }}"
+    action:
+      - service: switch.toggle
+        data:
+          entity_id: switch.apple_tv
+
+remote:
+  - platform: harmony
+    name: living_room
+    host: !secret harmony_host
+    activity: !secret harmony_activity_watch_apple_tv
+
+script:
+  harmony_activity:
+    sequence:
+      - service: switch.turn_on
+        data_template:
+          entity_id: "switch.projection_screen_{{ screen|default('up') }}"
+      - service: remote.turn_on
+        data_template:
+          entity_id: "{{ entity_id|default('remote.living_room') }}"
+          activity: "{{ activity|default(-1) }}"
+
+switch:
+  - platform: template
+    switches:
+      apple_tv:
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or False }}"
+        turn_on:
+          - service: script.harmony_activity
+            data:
+              activity: !secret harmony_activity_watch_apple_tv
+              screen: 'down'
+        turn_off:
+          - service: script.harmony_activity
+
+      chromecast:
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Music') or False }}"
+        turn_on:
+          - service: script.harmony_activity
+            data:
+              activity: !secret harmony_activity_listen_to_music
+              screen: 'up'
+        turn_off:
+          - service: script.harmony_activity
+
+      computer:
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch PC') or False }}"
+        turn_on:
+          - service: script.harmony_activity
+            data:
+              activity: !secret harmony_activity_watch_pc
+              screen: 'down'
+        turn_off:
+          - service: script.harmony_activity
+
+      fire_tv:
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch Fire TV') or False }}"
+        turn_on:
+          - service: script.harmony_activity
+            data:
+              activity: !secret harmony_activity_watch_fire_tv
+              screen: 'down'
+        turn_off:
+          - service: script.harmony_activity
+
+      xbox:
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Play a Game') or False }}"
+        turn_on:
+          - service: script.harmony_activity
+            data:
+              activity: !secret harmony_activity_play_a_game
+              screen: 'down'
+        turn_off:
+          - service: script.harmony_activity
