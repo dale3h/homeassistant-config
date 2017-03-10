@@ -44,7 +44,7 @@ light_control:
 light_control_on:
   sequence:
     - service: light.turn_on
-      data_template:
+      data_template: &light_control_on
         entity_id: "{{ entity_id }}"
         brightness: "{{ brightness }}"
         color_temp: "{{ color_temp }}"
@@ -53,36 +53,32 @@ light_control_on_flash:
   sequence:
     - service: light.turn_on
       data_template:
-        entity_id: "{{ entity_id }}"
-        brightness: "{{ brightness }}"
-        color_temp: "{{ color_temp }}"
+        <<: *light_control_on
         flash: "{{ flash }}"
 
 light_control_on_transition:
   sequence:
     - service: light.turn_on
       data_template:
-        entity_id: "{{ entity_id }}"
-        brightness: "{{ brightness }}"
-        color_temp: "{{ color_temp }}"
+        <<: *light_control_on
         transition: "{{ transition }}"
 
 light_control_off:
   sequence:
     - service: light.turn_off
-      data_template:
+      data_template: &light_control_off
         entity_id: "{{ entity_id }}"
 
 light_control_off_flash:
   sequence:
     - service: light.turn_off
       data_template:
-        entity_id: "{{ entity_id }}"
+        <<: *light_control_off
         flash: "{{ flash }}"
 
 light_control_off_transition:
   sequence:
     - service: light.turn_off
       data_template:
-        entity_id: "{{ entity_id }}"
+        <<: *light_control_off
         transition: "{{ transition }}"
