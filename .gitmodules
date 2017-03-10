@@ -1,0 +1,4 @@
+[submodule "shell_scripts/switchmate"]
+	path = shell_scripts/switchmate
+	url = git@github.com:dale3h/switchmate.git
+	branch = python3
