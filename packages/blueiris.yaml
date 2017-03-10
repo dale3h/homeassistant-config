@@ -81,18 +81,3 @@ group:
   cameras_outdoor:
     entities:
       - camera.driveway
-
-switch:
-  - platform: mqtt
-    name: htpc_monitor
-    state_topic: htpc/monitor/state
-    command_topic: htpc/monitor/command
-    payload_on: 'on'
-    payload_off: 'off'
-
-  - platform: mqtt
-    name: htpc_blueiris
-    state_topic: htpc/blueiris/state
-    command_topic: htpc/blueiris/command
-    payload_on: 'on'
-    payload_off: 'off'

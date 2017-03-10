@@ -29,8 +29,9 @@
 ## Flux LED / MagicLight
 ################################################
 
-# - platform: flux_led
-#   devices:
-#     !secret flux_led_test_strip_host:
-#       name: test_strip
-#       mode: 'rgb'
+- platform: flux_led
+  devices:
+    !secret flux_led_rack_light_host:
+      name: rack_light
+      protocol: 'ledenet'
+      mode: 'rgb'

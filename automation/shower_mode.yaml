@@ -8,12 +8,12 @@
       entity_id: input_boolean.shower_mode
       to: 'on'
   action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.master_bathroom_motion
+    - service: automation.turn_off
+      entity_id: automation.master_bathroom_motion
     - service: light.turn_on
-      entity_id: group.master_bathroom_light
+      entity_id: light.master_bathroom
       data_template:
-        brightness: "{{ states('sensor.time_brightness')|int }}"
+        brightness: "{{ states('sensor.global_brightness')|int }}"
     - delay: '00:30:00'
     - service: input_boolean.turn_off
       entity_id: input_boolean.shower_mode
@@ -24,10 +24,10 @@
       entity_id: input_boolean.shower_mode
       to: 'off'
   action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.master_bathroom_motion
+    - service: automation.turn_on
+      entity_id: automation.master_bathroom_motion
     - condition: state
       entity_id: binary_sensor.master_bathroom_sensor_4_0
       state: 'off'
     - service: light.turn_off
-      entity_id: group.master_bathroom_light
+      entity_id: light.master_bathroom

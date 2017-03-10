@@ -45,6 +45,7 @@ media:
   view: yes
   entities:
     - group.media_components
+    - group.media_players
 
 automation:
   view: yes

@@ -88,15 +88,19 @@ recorder:
 tts:
   - platform: google
 
-zwave:
-  usb_path: /dev/ttyACM0
-  config_path: /etc/homeassistant/config
-  polling_interval: 60000
-
 xiaomi:
   gateways:
     - sid: !secret xiaomi_gateway_sid
       key: !secret xiaomi_gateway_key
+
+# zigbee:
+#   device: /dev/ttyUSB0
+#   baud: 9600
+
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /etc/homeassistant/config
+  polling_interval: 60000
 
 ################################################
 ## Component Includes (Single File)
@@ -117,7 +121,7 @@ ios: !include ios.yaml
 ################################################
 
 automation: !include_dir_merge_list automation
-binary_sensor: !include_dir_merge_list binary_sensor
+# binary_sensor: !include_dir_merge_list binary_sensor
 cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light
@@ -133,7 +137,7 @@ zone: !include_dir_merge_list zone
 
 group: !include_dir_merge_named group
 input_boolean: !include_dir_merge_named input_boolean
-input_select: !include_dir_merge_named input_select
+# input_select: !include_dir_merge_named input_select
 input_slider: !include_dir_merge_named input_slider
 panel_iframe: !include_dir_merge_named panel_iframe
 script: !include_dir_merge_named script

@@ -41,22 +41,29 @@ __pycache__
 *.pyc
 
 # Other
+components
+config
+custom_components
+deps
+icloud
+tts
+www
+__*
 *.conf
 *.db
 *.db-journal
 *.log
+*.moved
 *.noload
+*.notes
 *.txt
 *.sqlite
 *.xml
 *.backup
 .HA_VERSION
 .uuid
-home-assistant.env
 home-assistant.*
-icloud
+!home-assistant.service
 known_devices.yaml
+secrets.env
 secrets.yaml
-components
-deps
-www

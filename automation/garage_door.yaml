@@ -1,0 +1,36 @@
+################################################################
+## Automaton / Garage Door Notification
+################################################################
+
+- alias: garage_door_notification_10m
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      state: 'open'
+      for: '00:10:00'
+  action:
+    - service: tts.google_say
+      data:
+        message: The garage door has been open for ten minutes
+
+- alias: garage_door_notification_30m
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      state: 'open'
+      for: '00:30:00'
+  action:
+    - service: tts.google_say
+      data:
+        message: The garage door has been open for thirty minutes
+
+- alias: garage_door_notification_60m
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      state: 'open'
+      for: '01:00:00'
+  action:
+    - service: tts.google_say
+      data:
+        message: The garage door has been open for one hour

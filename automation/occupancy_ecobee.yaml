@@ -9,7 +9,7 @@
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: group.hallway_light
+    entity_id: light.hallway
 
 - alias: turn_living_room_light_off_when_unoccupied
   trigger:
@@ -18,7 +18,7 @@
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: group.living_room_light
+    entity_id: light.living_room
 
 - alias: turn_master_bedroom_light_off_when_unoccupied
   trigger:
@@ -27,7 +27,7 @@
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: group.master_bedroom_light
+    entity_id: light.master_bedroom
 
 - alias: turn_guest_bedroom_light_off_when_unoccupied
   trigger:
@@ -36,4 +36,4 @@
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: group.guest_bedroom_light
+    entity_id: light.guest_bedroom

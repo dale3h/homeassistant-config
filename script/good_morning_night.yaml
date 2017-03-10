@@ -4,42 +4,58 @@
 
 good_morning:
   sequence:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.master_bedroom_motion
-    - service: climate.set_temperature
-      entity_id: climate.home
+    - service: input_boolean.turn_off
       data:
-        temperature: 76
-    - service: light.turn_on
-      entity_id: group.master_bedroom_light
-      data:
-        brightness: 255
-        color_temp: 370
-        transition: 60
-    - service: script.speak
+        entity_id: input_boolean.night_mode
+
+    - service: tts.google_say
       data_template:
         entity_id: media_player.dining_room_home
         message: !include ../phrases/good_morning.yaml
 
-good_night:
-  sequence:
-    - service: script.speak
-      data_template:
-        entity_id: media_player.dining_room_home
-        message: Good night and sweet dreams.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.master_bedroom_motion
-    - service: climate.set_temperature
-      entity_id: climate.home
+    - service: input_boolean.turn_on
       data:
-        temperature: 72
-    - service: light.turn_off
-      entity_id: group.all_lights
-      data:
-        transition: 15
+        entity_id: input_boolean.master_bedroom_motion
+
     - service: light.turn_on
-      entity_id: group.front_porch_light
       data:
+        entity_id: light.master_bedroom
         brightness: 255
         color_temp: 370
-        transition: 60
+        transition: 5
+
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.home
+        hold_mode: 'home'
+
+good_night:
+  sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.night_mode
+
+    - service: tts.google_say
+      data_template:
+        entity_id: media_player.dining_room_home
+        message: !include ../phrases/good_night.yaml
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.master_bedroom_motion
+
+    - service: climate.set_hold_mode
+      data:
+        entity_id: climate.home
+        hold_mode: 'sleep'
+
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
+        transition: 5
+
+    - service: script.front_porch_light
+
+    - service: lock.lock
+      data:
+        entity_id: !secret lock_front_door

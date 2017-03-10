@@ -14,10 +14,9 @@ person_courtney:
 
 person_dale:
   entities:
-    - device_tracker.iphone
-    - device_tracker.iphone_ios
     - device_tracker.dale_iphone
     - device_tracker.dale_iphone_bt
+    - device_tracker.dale_iphone_ios
 
 person_meagan:
   entities:

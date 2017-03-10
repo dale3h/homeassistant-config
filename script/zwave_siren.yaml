@@ -1,0 +1,67 @@
+################################################################
+## Script / Z-Wave Siren Settings
+################################################################
+
+################################################
+## Strobe / Siren Mode
+################################################
+
+siren_mode_all:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 0
+        value: 0
+
+siren_mode_siren:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 0
+        value: 1
+
+siren_mode_strobe:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 0
+        value: 2
+
+################################################
+## Auto Stop Time
+################################################
+
+siren_autostop_30s:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 1
+        value: 0
+
+siren_autostop_60s:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 1
+        value: 1
+
+siren_autostop_120s:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 1
+        value: 2
+
+siren_autostop_never:
+  sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 16
+        parameter: 1
+        value: 3

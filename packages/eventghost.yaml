@@ -1,0 +1,24 @@
+################################################################
+## Packages / EventGhost
+################################################################
+
+switch:
+  - platform: command_line
+    switches:
+      eventghost_blueiris:
+        command_on: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "TriggerEvent", "args": ["BlueIris.Show"]}' $EVENTGHOST_URL > /dev/null
+        command_off: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "TriggerEvent", "args": ["BlueIris.Hide"]}' $EVENTGHOST_URL > /dev/null
+        command_state: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "GetPersistentValue", "args": ["BlueIris.State"]}' $EVENTGHOST_URL
+        value_template: "{{ value_json == 'On' }}"
+
+      eventghost_monitor:
+        command_on: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "TriggerEvent", "args": ["Monitor.On"]}' $EVENTGHOST_URL > /dev/null
+        command_off: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "TriggerEvent", "args": ["Monitor.Off"]}' $EVENTGHOST_URL > /dev/null
+        command_state: >-
+          /usr/bin/curl -sS -X POST -d '{"method": "GetPersistentValue", "args": ["Monitor.State"]}' $EVENTGHOST_URL
+        value_template: "{{ value_json == 'On' }}"

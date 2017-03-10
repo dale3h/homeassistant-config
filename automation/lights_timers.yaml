@@ -13,7 +13,7 @@
 - alias: living_room_timer_1
   trigger:
     - platform: state
-      entity_id: group.living_room_light
+      entity_id: light.living_room
       to: 'off'
   condition:
     - condition: template
@@ -31,12 +31,12 @@
       to: '0'
   condition:
     - condition: state
-      entity_id: group.living_room_light
+      entity_id: light.living_room
       state: 'on'
   action:
     - service: light.turn_off
       data:
-        entity_id: group.living_room_light
+        entity_id: light.living_room
 
 - alias: living_room_timer_3
   trigger:
@@ -44,7 +44,7 @@
       minutes: '*/1'
   condition:
     - condition: state
-      entity_id: group.living_room_light
+      entity_id: light.living_room
       state: 'on'
     - condition: template
       value_template: "{{ states('input_slider.living_room_timer')|int > 0 }}"
@@ -61,9 +61,9 @@
       above: 0.1
   condition:
     - condition: state
-      entity_id: group.living_room_light
+      entity_id: light.living_room
       state: 'off'
   action:
     - service: light.turn_on
       data:
-        entity_id: group.living_room_light
+        entity_id: light.living_room

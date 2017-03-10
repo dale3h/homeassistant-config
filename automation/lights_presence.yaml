@@ -1,31 +1,23 @@
 ################################################################
-## Automation / Presence Light
+## Automation / Presence Lighting
 ################################################################
 
-################################################
-## Turn Lights ON when Dale Arrives
-################################################
-
-- alias: activate_arrival_scene
+- alias: activate_presence_script
   trigger:
     - platform: state
       entity_id: group.household
       to: 'home'
-  action:
-    - service: script.turn_on
-      data:
-        entity_id: script.arrival
-
-################################################
-## Turn Lights OFF when Dale Leaves
-################################################
-
-- alias: activate_departure_scene
-  trigger:
     - platform: state
       entity_id: group.household
       from: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
-    - service: script.turn_on
-      data:
-        entity_id: script.departure
+    - service_template: >-
+        {% if trigger.to_state.state == 'home' %}
+          script.arrival
+        {% elif trigger.from_state.state == 'home' %}
+          script.departure
+        {% endif %}

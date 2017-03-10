@@ -1,5 +1,8 @@
 ## Todo
 
+* Look into NUT (Network UPS Tools)
+  * https://home-assistant.io/components/sensor.nut/
+  * Seek advice from @bassclarinetl2 and @quadflight
 * Move HTTPS Proxy to Ubuntu machine
   * Update to support multiple proxies
   * Use nginx as a reverse proxy
@@ -13,7 +16,7 @@
 * Fix front porch light to turn on only at night when arriving/leaving
 * Figure out why input_select triggers a reset after changing (re: persistence)
 * Add radar map (shell_command + local file)
-* Removal redundant switches for automations
+* Remove redundant switches for automations
 * Clean up customize.yaml to remove old/outdated entities
 * Automate Good Morning/Night button
   * After 9pm, trigger good night script (unless already triggered)
@@ -23,6 +26,23 @@
 * Organize groups better
 * Iconify everything
 * Add panic mode/security mode scene
+
+## More Todo
+* Decide if I want to keep Harmony Hub AND Broadlink RM2/Pro, or just switch to Broadlink RM2/Pro only, and sell the Harmony Hub
+* Figure out a decent way to mount the projector
+* Buy a web power switch for the rack
+* Buy another ProSafe switch, rack mountable
+* Find a cheap rack server to put Linux on, and run hass
+* Find an affordable yet reliable rack PDU
+* Find an affordable yet reliable rack UPS
+* Rebuild Philips Hue network
+* Rebuild Z-Wave network
+* Setup Z-Wave minimotes for each room
+* Buy more Z-Wave door/window sensors
+* Replace garage door opener
+* Buy a Garadget
+* Make ethernet cables for each component
+* Buy proper length, matching interconnects for all components
 
 ## Discussion:
 

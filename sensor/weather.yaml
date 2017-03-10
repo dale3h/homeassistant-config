@@ -18,6 +18,7 @@
     - precip_today_in
     - relative_humidity
     - temp_f
+    - weather
 
 - platform: yr
   monitored_conditions:
@@ -26,32 +27,21 @@
     - precipitation
     - temperature
 
-# - platform: yweather
-#   monitored_conditions:
-#     - weather
-#     - weather_current
-#     - temp_min
-#     - temp_max
-#     - humidity
-#     - temperature
-#
-# - platform: yweather
-#   forecast: 0
-#   monitored_conditions:
-#     - weather
-#     - temp_min
-#     - temp_max
-#
-# - platform: yweather
-#   forecast: 1
-#   monitored_conditions:
-#     - weather
-#     - temp_min
-#     - temp_max
-#
-# - platform: yweather
-#   forecast: 2
-#   monitored_conditions:
-#     - weather
-#     - temp_min
-#     - temp_max
+- platform: template
+  sensors:
+    season:
+      value_template: >-
+        {% set temp_entity = 'sensor.pws_temp_f' %}
+        {% set temp = states(temp_entity)|float(none) %}
+        {% set temp_min = states.input_slider.season_winter.state|default(68)|float %}
+        {% set temp_max = states.input_slider.season_summer.state|default(84)|float %}
+
+        {% if temp is none %}
+          {{ states(temp_entity) }}
+        {% elif temp < temp_min %}
+          Winter
+        {% elif temp > temp_max %}
+          Summer
+        {% else %}
+          Awesome
+        {% endif %}

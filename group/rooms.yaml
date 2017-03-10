@@ -4,71 +4,71 @@
 
 back_porch:
   entities:
-    - group.back_porch_light
+    - light.back_porch
 
 dining_room:
   entities:
-    - group.dining_room_light
+    - light.dining_room
 
 entryway:
   entities:
-    - group.entry_lamp
-    - group.entryway_light
+    - !secret lock_front_door
+    - light.entry_lamp
+    - light.entry_light
+    - !secret binary_sensor_front_door
+    - !secret binary_sensor_doorbell
 
 front_porch:
   entities:
-    - group.front_porch_light
+    - light.front_porch
 
 garage:
   entities:
-    - group.garage_light
+    - light.garage
     - switch.garage_door
     - cover.garage_door
     - binary_sensor.garage_entry_contact
 
 guest_bathroom:
   entities:
-    - group.guest_bathroom_light
+    - light.guest_bathroom
 
 guest_bedroom:
   entities:
-    - group.guest_bedroom_light
+    - light.guest_bedroom
 
 hallway:
   entities:
-    - group.hallway_light
+    - light.hallway
     - sensor.home_humidity
 
 kitchen:
   entities:
-    - group.kitchen_chandelier
-    - group.kitchen_range
-    - group.kitchen_sink
+    - light.chandelier
+    - light.range
+    - light.sink
     - switch.pepper_fan
     - sensor.pepper_fan_power
-    - sensor.kitchen_luminance_6_3
-    - sensor.kitchen_ultraviolet_6_27
+    - !secret sensor_kitchen_moisture
 
 laundry_room:
   entities:
-    - group.laundry_room_light
+    - light.laundry_room
 
 living_room:
   entities:
-    - group.living_room_light
+    - light.living_room
     - sensor.harmony_hub_activity
 
 master_bedroom:
   entities:
     - binary_sensor.closet_door_contact
-    - group.master_bedroom_light
-    - group.master_bathroom_light
-    - group.master_closet_light
-    - sensor.master_bathroom_luminance_4_3
-    - sensor.master_bathroom_ultraviolet_4_27
+    - light.master_bedroom
+    - light.master_bathroom
+    - light.master_closet
 
 parker_bedroom:
   entities:
-    - group.parker_lamp
-    - group.parker_closet_light
+    - light.parker_lamp
+    - light.parker_closet
     - binary_sensor.parker_closet_door_contact

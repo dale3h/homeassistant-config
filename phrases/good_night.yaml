@@ -1,0 +1,10 @@
+################################################################
+## Random Good Night Phrases
+################################################################
+
+>
+  {{ [
+    "I hope you have sweet dreams.",
+    "Good night and sweet dreams.",
+    "Get some rest, you'll need it to be superman tomorrow."
+  ]|random }}

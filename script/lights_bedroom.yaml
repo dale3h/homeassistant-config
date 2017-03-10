@@ -8,7 +8,7 @@ master_bedroom_motion_helper:
         minutes: 5
     - service: light.turn_off
       data:
-        entity_id: light.master_bedroom_1, light.master_bedroom_2
+        entity_id: light.master_bedroom
 
 master_bedroom_motion_timer:
   sequence:
@@ -16,9 +16,9 @@ master_bedroom_motion_timer:
       data:
         entity_id: script.master_bedroom_motion_helper
     - service: light.turn_on
-      entity_id: light.master_bedroom_1, light.master_bedroom_2
+      entity_id: light.master_bedroom
       data_template:
-        brightness: "{{ states('sensor.time_brightness')|int }}"
+        brightness: "{{ states('sensor.global_brightness')|int }}"
     - service: script.turn_on
       data:
         entity_id: script.master_bedroom_motion_helper

@@ -8,22 +8,25 @@
 
 arrival:
   sequence:
-    - service: climate.set_away_mode
+    - service: lock.unlock
+      data:
+        entity_id: !secret lock_front_door
+
+    - service: light.turn_on
+      data_template:
+        entity_id:
+          - light.entry_lamp
+          - light.laundry_room
+          - light.dining_room
+          - light.garage
+        brightness: "{{ states('sensor.global_brightness')|int }}"
+
+    - service: script.front_porch_light
+
+    - service: climate.set_hold_mode
       data:
         entity_id: climate.home
-        away_mode: off
-    - service: light.turn_on
-      data:
-        entity_id:
-          - group.laundry_room_light
-          - group.dining_room_light
-          - group.entry_lamp
-          - group.garage_light
-        brightness: 255
-        rgb_color: [255, 255, 255]
-    - service: light.turn_on
-      data:
-        entity_id: group.front_porch_light
+        hold_mode: 'home'
 
 ################################################
 ## Departure
@@ -31,13 +34,17 @@ arrival:
 
 departure:
   sequence:
-    - service: climate.set_away_mode
+    - service: lock.lock
       data:
-        entity_id: climate.home
-        away_mode: on
+        entity_id: !secret lock_front_door
+
     - service: light.turn_off
       data:
         entity_id: group.all_lights
-    - service: light.turn_on
+
+    - service: script.front_porch_light
+
+    - service: climate.set_hold_mode
       data:
-        entity_id: group.front_porch_light
+        entity_id: climate.home
+        hold_mode: 'away'

@@ -1,9 +1,6 @@
 ################################################################
-## Group / System
+## Input Boolean / Night Mode
 ################################################################
 
-system:
-  entities:
-    - sensor.date
-    - sensor.time
-    - updater.updater
+night_mode:
+  initial: off

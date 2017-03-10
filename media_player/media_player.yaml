@@ -3,6 +3,20 @@
 ################################################################
 
 ################################################
+## Apple TV
+################################################
+
+- platform: apple_tv
+  name: apple_tv_living_room
+  host: !secret apple_tv_living_room_host
+  login_id: !secret apple_tv_living_room_login_id
+
+# - platform: apple_tv
+#   name: apple_tv_bedroom
+#   host: !secret apple_tv_bedroom_host
+#   login_id: !secret apple_tv_bedroom_login_id
+
+################################################
 ## Google Cast
 ################################################
 
@@ -22,41 +36,28 @@
 ## Plex
 ################################################
 
-# - platform: plex
+- platform: plex
 
 ################################################
-## Living Room Apple TV
+## Yamaha RX-V675
 ################################################
 
-- platform: universal
-  name: living_room_apple_tv
-  children:
-    - media_player.living_room
-  commands:
-    turn_on:
-      service: mqtt.publish
-      data:
-        topic: harmony-api/hubs/harmony-hub/activities/watch-apple-tv/command
-        payload: 'on'
-    turn_off:
-      service: mqtt.publish
-      data:
-        topic: harmony-api/hubs/harmony-hub/activities/watch-apple-tv/command
-        payload: 'off'
-    volume_up:
-      service: mqtt.publish
-      data:
-        topic: harmony-api/hubs/harmony-hub/devices/yamaha-av-receiver/command
-        payload: 'volume-up'
-    volume_down:
-      service: mqtt.publish
-      data:
-        topic: harmony-api/hubs/harmony-hub/devices/yamaha-av-receiver/command
-        payload: 'volume-down'
-    volume_mute:
-      service: mqtt.publish
-      data:
-        topic: harmony-api/hubs/harmony-hub/devices/yamaha-av-receiver/command
-        payload: 'mute'
-  attributes:
-    state: switch.apple_tv
+# - platform: yamaha
+#   name: yamaha_avr
+#   host: !secret yamaha_avr_host
+#   source_ignore:
+#     - AUDIO2
+#     - AV1
+#     - AV2
+#     - AV3
+#     - AV4
+#     - AV5
+#     - AV6
+#     - NET RADIO
+#     - Pandora
+#     - Rhapsody
+#     - SiriusXM
+#     - Spotify
+#     - iPod (USB)
+#   source_names:
+#     AUDIO1: Chromecast

@@ -17,18 +17,8 @@ garage_lighting:
   initial: on
 
 ################################################
-## Kitchen
-################################################
-
-kitchen_motion:
-  initial: on
-
-################################################
 ## Master Bedroom
 ################################################
-
-master_bathroom_motion:
-  initial: on
 
 master_bedroom_motion:
   initial: on

@@ -5,10 +5,11 @@
 network_devices:
   entities:
     - device_tracker.net_aladdin_connect
-    - device_tracker.net_appletv_living_room
-    - device_tracker.net_appletv_master_bedroom
-    - device_tracker.net_chromecast_1
-    - device_tracker.net_chromecast_2
+    - device_tracker.net_apple_tv_living_room
+    - device_tracker.net_apple_tv_master_bedroom
+    - device_tracker.net_broadlink_rmpro
+    - device_tracker.net_chromecast_living_room
+    - device_tracker.net_chromecast_master_bedroom
     - device_tracker.net_echo_dot_garage
     - device_tracker.net_echo_dot_guest_bathroom
     - device_tracker.net_echo_dot_guest_bedroom
@@ -17,25 +18,24 @@ network_devices:
     - device_tracker.net_echo_entryway
     - device_tracker.net_echo_master_bathroom
     - device_tracker.net_ecobee3
-    - device_tracker.net_firetv1
-    - device_tracker.net_firetv2
-    - device_tracker.net_firetv3
+    - device_tracker.net_fire_tv
     - device_tracker.net_google_home
-    - device_tracker.net_harmonyhub
+    - device_tracker.net_harmony_hub
+    - device_tracker.net_hp_printer
     - device_tracker.net_htpc
     - device_tracker.net_ipcam_ac1
     - device_tracker.net_ipcam_hv1
-    - device_tracker.net_ipcam_yh1
+    - device_tracker.net_ipcam_ptz1
     - device_tracker.net_limitlessled
-    - device_tracker.net_oak1
-    - device_tracker.net_philipshue
+    - device_tracker.net_philips_hue
     - device_tracker.net_projector
+    - device_tracker.net_rack_light
+    - device_tracker.net_raspberry_pi
     - device_tracker.net_smartthings
-    - device_tracker.net_starbase
     - device_tracker.net_tablet_digiland
     - device_tracker.net_tablet_insignia
     - device_tracker.net_ubuntu
+    - device_tracker.net_web_power_switch
     - device_tracker.net_workshop
     - device_tracker.net_xbox_one
     - device_tracker.net_yamaha_rxv675
-    - device_tracker.net_yamaha_wifi_bridge

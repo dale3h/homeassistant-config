@@ -2,11 +2,14 @@
 ## Group / Automation Override
 ################################################################
 
+# @todo Convert these to pure automations (on/off is now allowed)
+
 automation_override:
   entities:
     - input_boolean.sunrise_lighting
-    - input_boolean.kitchen_motion
+    - automation.kitchen_motion
+    - automation.dining_room_motion
     - input_boolean.master_bedroom_motion
-    - input_boolean.master_bathroom_motion
+    - automation.master_bathroom_motion
     - input_boolean.shower_mode
     - input_boolean.garage_lighting

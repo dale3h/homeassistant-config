@@ -13,9 +13,9 @@
       state: 'on'
   action:
     - service: light.turn_on
-      entity_id: group.laundry_room_light, group.garage_light
+      entity_id: light.laundry_room, light.garage
       data_template:
-        brightness: "{{ states('sensor.time_brightness')|int }}"
+        brightness: "{{ states('sensor.global_brightness')|int }}"
 
 - alias: laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed
   trigger:
@@ -30,4 +30,4 @@
     - delay:
         minutes: 5
     - service: light.turn_off
-      entity_id: group.laundry_room_light, group.garage_light
+      entity_id: light.laundry_room, light.garage
