@@ -247,6 +247,11 @@ automation.parker_closet_light_on_when_door_is_open:
   homebridge_hidden: true
   persistent: true
 
+automation.persistence_enable_subscriptions:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Persistence Enable Subscriptions
+  haaska_hidden: true
+
 automation.persistence_publish:
   friendly_name: Persistence Publish
   haaska_hidden: true
@@ -340,12 +345,6 @@ automation.turn_living_room_light_off_when_unoccupied:
 
 automation.turn_master_bedroom_light_off_when_unoccupied:
   friendly_name: Turn Master Bedroom Light OFF when Unoccupied
-  haaska_hidden: true
-  homebridge_hidden: true
-  persistent: true
-
-automation.zwave_network_toggle:
-  friendly_name: Z-Wave Network
   haaska_hidden: true
   homebridge_hidden: true
   persistent: true
@@ -1215,10 +1214,10 @@ input_boolean.sunrise_lighting:
   persistent: true
 
 input_boolean.zwave_network:
+  date_updated: '2017-03-14 02:54:46'
   friendly_name: Z-Wave Network
   haaska_hidden: true
   homebridge_hidden: true
-  icon: mdi:radio-tower
 
 ################################################
 ## Input Select
@@ -1842,6 +1841,16 @@ sensor.front_door_battery:
   homebridge_hidden: true
   icon: mdi:battery
 
+sensor.front_door_battery_level_17_0:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Front Door Battery Level
+  homebridge_hidden: true
+
+sensor.front_door_battery_level_3_0:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Front Door Battery Level
+  homebridge_hidden: true
+
 sensor.front_door_burglar_3_10:
   friendly_name: Front Door Burglar
   hidden: true
@@ -1912,6 +1921,11 @@ sensor.harmony_hub_activity:
   homebridge_hidden: true
   icon: mdi:mixcloud
 
+sensor.hass_startup_time:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Hass Startup Time
+  homebridge_hidden: true
+
 sensor.home_humidity:
   friendly_name: Home Humidity
   homebridge_hidden: false
@@ -1955,6 +1969,11 @@ sensor.kitchen_alarm_level_5_1:
 sensor.kitchen_alarm_type_5_0:
   friendly_name: Kitchen Alarm Type
   hidden: true
+  homebridge_hidden: true
+
+sensor.kitchen_battery_level_5_0:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Kitchen Battery Level
   homebridge_hidden: true
 
 sensor.kitchen_burglar_5_10:
@@ -2013,6 +2032,11 @@ sensor.master_bathroom_alarm_level_4_1:
 sensor.master_bathroom_alarm_type_4_0:
   friendly_name: Master Bathroom Alarm Type
   hidden: true
+  homebridge_hidden: true
+
+sensor.master_bathroom_battery_level_4_0:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Master Bathroom Battery Level
   homebridge_hidden: true
 
 sensor.master_bathroom_burglar_4_10:
@@ -2142,6 +2166,11 @@ sensor.secrets:
   friendly_name: Secrets
   homebridge_hidden: true
   icon: mdi:file-lock
+
+sensor.siren_battery_level_16_0:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: Siren Battery Level
+  homebridge_hidden: true
 
 sensor.time:
   friendly_name: System Time
@@ -2367,6 +2396,42 @@ switch.rack_yamaha_avr:
   haaska_hidden: true
   homebridge_hidden: true
 
+switch.rf_outlet_b1:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet B1
+  haaska_hidden: true
+  homebridge_hidden: true
+
+switch.rf_outlet_b2:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet B2
+  haaska_hidden: true
+  homebridge_hidden: true
+
+switch.rf_outlet_b3:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet B3
+  haaska_hidden: true
+  homebridge_hidden: true
+
+switch.rf_outlet_d1:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet D1
+  haaska_hidden: true
+  homebridge_hidden: true
+
+switch.rf_outlet_d2:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet D2
+  haaska_hidden: true
+  homebridge_hidden: true
+
+switch.rf_outlet_d3:
+  date_updated: '2017-03-14 02:54:46'
+  friendly_name: RF Outlet D3
+  haaska_hidden: true
+  homebridge_hidden: true
+
 switch.siren_switch_16_0:
   friendly_name: Siren
   haaska_hidden: true
@@ -2401,5 +2466,5 @@ zone.parents:
   icon: mdi:cow
 
 ################################################################
-# Last Generated: Fri Mar 10 2017 09:10:54 GMT-0600 (CST)
+# Last Generated: Tue Mar 14 2017 02:54:47 GMT-0500 (CDT)
 ################################################################

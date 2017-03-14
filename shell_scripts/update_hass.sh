@@ -1,19 +1,22 @@
 #!/bin/bash
 
-VIRTUAL_ENV=/srv/homeassistant
-HASS_SERVICE=home-assistant.service
+# Path variables
+HASS_SERVICE=${HASS_SERVICE:-home-assistant.service}
+HASS_CONFIG=${HASS_CONFIG:-/etc/homeassistant}
+VIRTUAL_ENV=${VIRTUAL_ENV:-/srv/homeassistant}
 
-# Create a backup
-/etc/homeassistant/shell_scripts/backup_config.sh
+# This is for log purposes
+echo
+echo "[$(date)] Update script starting"
 
-# Activate virtualenv
-source $VIRTUAL_ENV/bin/activate
+# Show package information
+$VIRTUAL_ENV/bin/pip3 search homeassistant
+
+# Run the backup script
+$HASS_CONFIG/shell_scripts/backup_config.sh
 
 # Upgrade Home Assistant
-pip3 install --upgrade homeassistant
-
-# Deactivate virtualenv
-deactivate
+$VIRTUAL_ENV/bin/pip3 install --upgrade homeassistant
 
 # Restart Home Assistant
 # This requires a modification using `sudo visudo`:

@@ -100,7 +100,7 @@ xiaomi:
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /etc/homeassistant/config
-  polling_interval: 60000
+  device_config: !include zwave_device_config.yaml
 
 ################################################
 ## Component Includes (Single File)

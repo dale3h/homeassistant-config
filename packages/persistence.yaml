@@ -38,6 +38,8 @@ automation:
   ################################################
 
   - alias: persistence_publish
+    hide_entity: true
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: state_changed
@@ -54,6 +56,20 @@ automation:
         value_template: "{{ trigger.event.data.old_state is not none }}"
       - condition: template
         value_template: "{{ trigger.event.data.new_state.state != trigger.event.data.old_state.state }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'automation' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_boolean' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_select' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_slider' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'light' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'switch' }}"
     action:
       - service: mqtt.publish
         data_template:
@@ -65,7 +81,23 @@ automation:
   ## Persistent Subscriptions
   ################################################
 
+  - alias: persistence_enable_subscriptions
+    hide_entity: true
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      - service: automation.turn_on
+        data:
+          entity_id:
+            - automation.persistence_subscribe_binary
+            - automation.persistence_subscribe_select_option
+            - automation.persistence_subscribe_select_value
+
   - alias: persistence_subscribe_binary
+    hide_entity: true
+    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/automation/+
@@ -75,21 +107,21 @@ automation:
         topic: home-assistant/light/+
       - platform: mqtt
         topic: home-assistant/switch/+
-    condition:
+    condition: &subscribe_condition
       - condition: template
         value_template: "{{ not is_state(trigger.topic|replace('home-assistant/', '')|replace('/', '.'), trigger.payload) }}"
-    action:
+    action: &subscribe_action
       - service_template: "{{ trigger.topic.split('/')[1] }}.turn_{{ trigger.payload|lower }}"
         data_template:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
 
   - alias: persistence_subscribe_select_option
+    hide_entity: true
+    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/input_select/+
-    condition:
-      - condition: template
-        value_template: "{{ not is_state(trigger.topic|replace('home-assistant/', '')|replace('/', '.'), trigger.payload) }}"
+    condition: *subscribe_condition
     action:
       - service_template: "{{ trigger.topic.split('/')[1] }}.select_option"
         data_template:
@@ -97,14 +129,14 @@ automation:
           option: "{{ trigger.payload }}"
 
   - alias: persistence_subscribe_select_value
+    hide_entity: true
+    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/input_slider/+
-    condition:
-      - condition: template
-        value_template: "{{ not is_state(trigger.topic|replace('home-assistant/', '')|replace('/', '.'), trigger.payload|float) }}"
+    condition: *subscribe_condition
     action:
       - service_template: "{{ trigger.topic.split('/')[1] }}.select_value"
         data_template:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
-          value: "{{ trigger.payload|float }}"
+          value: "{{ trigger.payload }}"

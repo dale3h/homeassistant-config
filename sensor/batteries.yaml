@@ -4,27 +4,7 @@
 
 - platform: template
   sensors:
-    front_door_lock_battery:
-      value_template: "{{ states.lock.front_door_locked_17_0.attributes.battery_level|default(-1)|int if states.lock.front_door_locked_17_0 is not none }}"
-      unit_of_measurement: '%'
-      entity_id: !secret lock_front_door
-
-    front_door_sensor_battery:
-      value_template: "{{ states.binary_sensor.front_door_sensor_3_0.attributes.battery_level|default(-1)|int if states.binary_sensor.front_door_sensor_3_0 is not none }}"
-      unit_of_measurement: '%'
-      entity_id: !secret binary_sensor_front_door
-
     iphone_battery:
       value_template: "{{ states.device_tracker.dale_iphone_ios.attributes.battery|default(-1)|int if states.device_tracker.dale_iphone_ios is not none }}"
       unit_of_measurement: '%'
       entity_id: device_tracker.dale_iphone_ios
-
-    kitchen_motion_battery:
-      value_template: "{{ states.binary_sensor.kitchen_sensor_5_0.attributes.battery_level|default(-1)|int if states.binary_sensor.kitchen_sensor_5_0 is not none }}"
-      unit_of_measurement: '%'
-      entity_id: !secret binary_sensor_kitchen_motion
-
-    master_bathroom_motion_battery:
-      value_template: "{{ states.binary_sensor.master_bathroom_sensor_4_0.attributes.battery_level|default(-1)|int if states.binary_sensor.master_bathroom_sensor_4_0 is not none }}"
-      unit_of_measurement: '%'
-      entity_id: !secret binary_sensor_master_bathroom_motion
