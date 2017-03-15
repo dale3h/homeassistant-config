@@ -31,7 +31,7 @@ homeassistant:
 automation:
   - alias: select_led_color
     trigger:
-      - platform: states
+      - platform: state
         entity_id: input_select.led_color
     condition:
       - condition: template
@@ -58,7 +58,7 @@ automation:
 
   - alias: select_led_scene
     trigger:
-      - platform: states
+      - platform: state
         entity_id: input_select.led_scene
     action:
       - service: input_select.select_option
