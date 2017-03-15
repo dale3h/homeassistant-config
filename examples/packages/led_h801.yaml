@@ -85,9 +85,8 @@ automation:
 
 input_select:
   led_color:
-    name: LED Color
     icon: mdi:format-color-fill
-    initial: Red
+    initial: "Off"
     options:
       - "Off"
       - "Red"
@@ -100,9 +99,8 @@ input_select:
       - "Scene"
 
   led_scene:
-    name: LED Scene
     icon: mdi:spotlight
-    initial: Solid Color
+    initial: "Solid Color"
     options:
       - "Solid Color"
       - "Full Color"
