@@ -1,3 +1,27 @@
+# Description:
+#   Home Assistant Package for H801 LED Controller
+#
+# Written for:
+#   @Norien
+#
+# Components:
+#   homeassistant
+#   automation
+#   input_select
+#   script
+#   shell_command
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# THE ABOVE COPYRIGHT NOTICE AND THIS PERMISSION NOTICE SHALL BE INCLUDED
+# IN ALL COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
 ################################################################
 ## Packages / H801 LED Controller
 ################################################################
