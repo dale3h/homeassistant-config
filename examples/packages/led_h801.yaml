@@ -136,7 +136,6 @@ script:
       - service: script.led_set_color
         data_template:
           rgb_hex: 'ffffff'
-          count: "{{ count|default(2) }}"
 
   led_power_off:
     sequence:
@@ -151,7 +150,6 @@ script:
       - service: script.led_set_color
         data_template:
           rgb_hex: '000000'
-          count: "{{ count|default(2) }}"
 
   led_set_color:
     sequence:
@@ -162,11 +160,9 @@ script:
       - service: shell_command.led_send_payload
         data_template:
           scene: '00'
-          count: "{{ count|default(2) }}"
       - service: shell_command.led_send_payload
         data_template:
           rgb_hex: "{{ rgb_hex|default('ffffff') }}"
-          count: "{{ count|default(2) }}"
 
   led_set_scene:
     sequence:
@@ -177,7 +173,6 @@ script:
       - service: shell_command.led_send_payload
         data_template:
           scene: "{{ scene }}"
-          count: "{{ count|default(2) }}"
 
 shell_command:
   led_send_payload: >-
