@@ -1,40 +1,184 @@
-shell_command:
-  led_send_payload: >-
-    sudo /usr/bin/sendip -p ipv4 -is 192.168.1.2 -p udp -us 30978 -ud 30977 -d {{ payload|default('0x' ~ ('fbec' if scene is defined else 'fbeb') ~ ((scene ~ '01000000') if scene is defined else (rgb_hex|default('000000') ~ '0000')) ~ (mac|default('4c5499') ~ '00'))|lower }} -v {{ host|default('192.168.1.255') }}
+################################################################
+## Packages / H801 LED Controller
+################################################################
+
+homeassistant:
+  customize:
+    automation.select_led_color:
+      friendly_name: Select LED Color
+
+    automation.select_led_scene:
+      friendly_name: Select LED Scene
+
+    input_select.led_color:
+      friendly_name: LED Color
+
+    input_select.led_scene:
+      friendly_name: LED Scene
+
+    script.led_power_on:
+      friendly_name: LED Power On
+
+    script.led_power_off:
+      friendly_name: LED Power On
+
+    script.led_set_color:
+      friendly_name: LED Set Color
+
+    script.led_set_scene:
+      friendly_name: LED Set Scene
+
+automation:
+  - alias: select_led_color
+    trigger:
+      - platform: states
+        entity_id: input_select.led_color
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'Off' }}"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.led_scene
+          option: Solid Color
+      - service: script.led_set_color
+        data_template:
+          rgb_hex: >-
+            {% set color_map = {
+              'off':    '000000',
+              'red':    'ff0000',
+              'orange': 'ffa500',
+              'yellow': 'ffff00',
+              'green':  '00ff00',
+              'blue':   '0000ff',
+              'purple': '800080',
+              'white':  'ffffff',
+            } %}
+            {{ color_map[trigger.to_state.state|replace(' ', '')|lower]|default('ffffff') }}
+
+  - alias: select_led_scene
+    trigger:
+      - platform: states
+        entity_id: input_select.led_scene
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.led_color
+          option: Scene
+      - service: script.led_set_scene
+        data_template:
+          scene: >-
+            {% set scene_map = {
+              'solidcolor':            '00',
+              'fullcolor':             '01',
+              'monochromeshade':       '02',
+              'monochromefade':        '03',
+              'monochromelight':       '04',
+              'mixedcolorshade':       '05',
+              'mixedcolorfade':        '06',
+              'mixedcolorlight':       '07',
+              'redfade':               '08',
+              'greenfade':             '09',
+              'bluefade':              '0a',
+              'monochrometransition':  '0b',
+              'mixedcolortransistion': '0c',
+              'sevencolortransistion': '0d',
+            } %}
+            {{ scene_map[trigger.to_state.state|replace(' ', '')|lower]|default('01') }}
+
+input_select:
+  led_color:
+    name: LED Color
+    icon: mdi:format-color-fill
+    initial: Red
+    options:
+      - Off
+      - Red
+      - Orange
+      - Yellow
+      - Green
+      - Blue
+      - Purple
+      - White
+      - Scene
+
+  led_scene:
+    name: LED Scene
+    icon: mdi:spotlight
+    initial: Solid Color
+    options:
+      - Solid Color
+      - Full Color
+      - Monochrome Shade
+      - Monochrome Fade
+      - Monochrome Light
+      - Mixed Color Shade
+      - Mixed Color Fade
+      - Mixed Color Light
+      - Red Fade
+      - Green Fade
+      - Blue Fade
+      - Monochrome Transition
+      - Mixed Color Transistion
+      - Seven Color Transistion
 
 script:
-  led_power_off_by_payload:
+  led_power_on:
     sequence:
-      - service: shell_command.led_send_payload
+      - service: input_select.select_option
         data:
-          payload: '0xfbeb00000000004c549900'
+          entity_id: input_select.led_color
+          option: White
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.led_scene
+          option: Solid Color
+      - service: script.led_set_color
+        data_template:
+          rgb_hex: 'ffffff'
+          count: "{{ count|default(2) }}"
 
-  led_power_off_by_color:
+  led_power_off:
     sequence:
-      - service: shell_command.led_send_payload
+      - service: input_select.select_option
         data:
+          entity_id: input_select.led_color
+          option: Off
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.led_scene
+          option: Solid Color
+      - service: script.led_set_color
+        data_template:
           rgb_hex: '000000'
+          count: "{{ count|default(2) }}"
 
-  led_color_purple:
+  led_set_color:
     sequence:
-      - service: shell_command.led_send_payload
+      - service: input_select.select_option
         data:
-          rgb_hex: 'cc66ff'
+          entity_id: input_select.led_scene
+          option: Solid Color
+      - service: shell_command.led_send_payload
+        data_template:
+          scene: '00'
+          count: "{{ count|default(2) }}"
+      - service: shell_command.led_send_payload
+        data_template:
+          rgb_hex: "{{ rgb_hex|default('ffffff') }}"
+          count: "{{ count|default(2) }}"
 
-  led_scene_red_fade:
+  led_set_scene:
     sequence:
-      - service: shell_command.led_send_payload
+      - service: input_select.select_option
         data:
-          scene: '08'
+          entity_id: input_select.led_color
+          option: Scene
+      - service: shell_command.led_send_payload
+        data_template:
+          scene: "{{ scene }}"
+          count: "{{ count|default(2) }}"
 
-  led_scene_green_fade:
-    sequence:
-      - service: shell_command.led_send_payload
-        data:
-          scene: '09'
-
-  led_scene_blue_fade:
-    sequence:
-      - service: shell_command.led_send_payload
-        data:
-          scene: '0a'
+shell_command:
+  led_send_payload: >-
+    for i in {{ '{1..' ~ count|default(2)|int ~ '}' }}; do sudo /usr/bin/sendip -p ipv4 -is 192.168.1.2 -p udp -us 30978 -ud 30977 -d {{ payload|default('0x' ~ ('fbec' if scene is defined else 'fbeb') ~ ((scene ~ '01000000') if scene is defined else (rgb_hex|default('000000') ~ '0000')) ~ (mac|default('4c5499') ~ '00'))|lower }} -v {{ host|default('192.168.1.249') }}; done
