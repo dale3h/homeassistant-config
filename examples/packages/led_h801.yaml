@@ -1,0 +1,40 @@
+shell_command:
+  led_send_payload: >-
+    sudo /usr/bin/sendip -p ipv4 -is 192.168.1.2 -p udp -us 30978 -ud 30977 -d {{ {{ payload|default('0x' ~ ('fbec' if scene is defined else 'fbeb') ~ ((scene ~ '01000000') if scene is defined else (rgb_hex|default('000000') ~ '0000')) ~ (mac|default('4c5499') ~ '00')) }}|lower }} -v {{ host|default('192.168.1.255') }}
+
+script:
+  led_power_off_by_payload:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          payload: '0xfbeb00000000004c549900'
+
+  led_power_off_by_color:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          rgb_hex: '000000'
+
+  led_color_purple:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          rgb_hex: 'cc66ff'
+
+  led_scene_red_fade:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          scene: '08'
+
+  led_scene_green_fade:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          scene: '09'
+
+  led_scene_blue_fade:
+    sequence:
+      - service: shell_command.led_send_payload
+        data:
+          scene: '0a'
