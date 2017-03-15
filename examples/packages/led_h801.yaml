@@ -33,9 +33,6 @@ automation:
     trigger:
       - platform: state
         entity_id: input_select.led_color
-    condition:
-      - condition: template
-        value_template: "{{ trigger.to_state.state != 'Off' }}"
     action:
       - service: input_select.select_option
         data:
