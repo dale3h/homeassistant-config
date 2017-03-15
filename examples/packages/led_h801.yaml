@@ -5,28 +5,28 @@
 homeassistant:
   customize:
     automation.select_led_color:
-      friendly_name: Select LED Color
+      friendly_name: "Select LED Color"
 
     automation.select_led_scene:
-      friendly_name: Select LED Scene
+      friendly_name: "Select LED Scene"
 
     input_select.led_color:
-      friendly_name: LED Color
+      friendly_name: "LED Color"
 
     input_select.led_scene:
-      friendly_name: LED Scene
+      friendly_name: "LED Scene"
 
     script.led_power_on:
-      friendly_name: LED Power On
+      friendly_name: "LED Power On"
 
     script.led_power_off:
-      friendly_name: LED Power On
+      friendly_name: "LED Power Off"
 
     script.led_set_color:
-      friendly_name: LED Set Color
+      friendly_name: "LED Set Color"
 
     script.led_set_scene:
-      friendly_name: LED Set Scene
+      friendly_name: "LED Set Scene"
 
 automation:
   - alias: select_led_color
@@ -40,7 +40,7 @@ automation:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_scene
-          option: Solid Color
+          option: "Solid Color"
       - service: script.led_set_color
         data_template:
           rgb_hex: >-
@@ -64,7 +64,7 @@ automation:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_color
-          option: Scene
+          option: "Scene"
       - service: script.led_set_scene
         data_template:
           scene: >-
@@ -92,35 +92,35 @@ input_select:
     icon: mdi:format-color-fill
     initial: Red
     options:
-      - Off
-      - Red
-      - Orange
-      - Yellow
-      - Green
-      - Blue
-      - Purple
-      - White
-      - Scene
+      - "Off"
+      - "Red"
+      - "Orange"
+      - "Yellow"
+      - "Green"
+      - "Blue"
+      - "Purple"
+      - "White"
+      - "Scene"
 
   led_scene:
     name: LED Scene
     icon: mdi:spotlight
     initial: Solid Color
     options:
-      - Solid Color
-      - Full Color
-      - Monochrome Shade
-      - Monochrome Fade
-      - Monochrome Light
-      - Mixed Color Shade
-      - Mixed Color Fade
-      - Mixed Color Light
-      - Red Fade
-      - Green Fade
-      - Blue Fade
-      - Monochrome Transition
-      - Mixed Color Transistion
-      - Seven Color Transistion
+      - "Solid Color"
+      - "Full Color"
+      - "Monochrome Shade"
+      - "Monochrome Fade"
+      - "Monochrome Light"
+      - "Mixed Color Shade"
+      - "Mixed Color Fade"
+      - "Mixed Color Light"
+      - "Red Fade"
+      - "Green Fade"
+      - "Blue Fade"
+      - "Monochrome Transition"
+      - "Mixed Color Transistion"
+      - "Seven Color Transistion"
 
 script:
   led_power_on:
@@ -128,11 +128,11 @@ script:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_color
-          option: White
+          option: "White"
       - service: input_select.select_option
         data:
           entity_id: input_select.led_scene
-          option: Solid Color
+          option: "Solid Color"
       - service: script.led_set_color
         data_template:
           rgb_hex: 'ffffff'
@@ -142,11 +142,11 @@ script:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_color
-          option: Off
+          option: "Off"
       - service: input_select.select_option
         data:
           entity_id: input_select.led_scene
-          option: Solid Color
+          option: "Solid Color"
       - service: script.led_set_color
         data_template:
           rgb_hex: '000000'
@@ -156,7 +156,7 @@ script:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_scene
-          option: Solid Color
+          option: "Solid Color"
       - service: shell_command.led_send_payload
         data_template:
           scene: '00'
@@ -169,7 +169,7 @@ script:
       - service: input_select.select_option
         data:
           entity_id: input_select.led_color
-          option: Scene
+          option: "Scene"
       - service: shell_command.led_send_payload
         data_template:
           scene: "{{ scene }}"
