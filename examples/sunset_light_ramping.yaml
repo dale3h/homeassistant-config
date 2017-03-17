@@ -1,0 +1,59 @@
+# Description:
+#   Light ramping at sunset
+#
+# Written for:
+#   @hwikene
+#
+# Components:
+#   automation
+#   light
+#   sun
+#
+# License:
+#   MIT
+#
+# Original Authors:
+#   @hwikene
+#   @arsaboo
+#
+# Supporting Author:
+#   Dale Higgs <@dale3h>
+#
+# THE ABOVE NOTICE SHALL BE INCLUDED IN ALL COPIES OR SUBSTANTIAL
+# PORTIONS OF THE SOFTWARE.
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+automation:
+  - alias: sol_lys_1
+    trigger:
+      - platform: sun
+        event: sunset
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.qubino_zmnhdd1_flush_dimmer_level_2_0
+          brightness: 15
+      - service: automation.turn_on
+        data:
+          entity_id: automation.sol_lys_6
+
+  - alias: sol_lys_6
+    trigger:
+      - platform: time
+        minutes: '/5'
+        seconds: 00
+    condition:
+      - condition: state
+        entity_id: light.qubino_zmnhdd1_flush_dimmer_level_2_0
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.qubino_zmnhdd1_flush_dimmer_level_2_0
+          brightness: "{{ states.light.qubino_zmnhdd1_flush_dimmer_level_2_0.attributes.brightness|int + 24 }}"
+      - condition: template
+        value_template: "{{ (states.light.qubino_zmnhdd1_flush_dimmer_level_2_0.attributes|default({})).brightness|default(0) >= 250 }}"
+      - service: automation.turn_off
+        data:
+          entity_id: automation.sol_lys_6
