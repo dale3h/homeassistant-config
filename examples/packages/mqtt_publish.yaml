@@ -1,3 +1,26 @@
+# Description:
+#   Publish all sensor states to MQTT broker
+#
+# Written for:
+#   @thundergreen
+#
+# Components:
+#   automation
+#   binary_sensor
+#   mqtt
+#   sensor
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# THE ABOVE COPYRIGHT NOTICE AND THIS PERMISSION NOTICE SHALL BE INCLUDED
+# IN ALL COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
 ################################################################
 ## Packages / MQTT - Publish Sensors
 ################################################################
@@ -11,6 +34,10 @@ automation:
         event_type: state_changed
     condition:
       - condition: template
+        value_template: "{{ trigger is not none }}"
+      - condition: template
+        value_template: "{{ trigger.event is not none }}"
+      - condition: template
         value_template: "{{ trigger.event.data is not none }}"
       - condition: template
         value_template: "{{ trigger.event.data.entity_id is not none }}"
@@ -22,6 +49,12 @@ automation:
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'binary_sensor' }}"
           - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'sensor' }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.old_state is none }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.new_state.state != trigger.event.data.old_state.state }}"
     action:
       - service: mqtt.publish
         data_template:
