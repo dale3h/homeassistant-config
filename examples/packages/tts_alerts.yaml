@@ -1,0 +1,110 @@
+# Description:
+#   Allow the alert component to be used for other things, like TTS
+#
+# Written for:
+#   @dale3h
+#
+# Components:
+#   alert
+#   automation
+#   input_boolean
+#   notify
+#   tts
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# THE ABOVE COPYRIGHT NOTICE AND THIS PERMISSION NOTICE SHALL BE INCLUDED
+# IN ALL COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+################################################################
+## Packages / TTS Alerts
+################################################################
+
+alert:
+  garage_door_1:
+    name: garage_door_open_1
+    entity_id: input_boolean.garage_door_1
+    state: 'on'
+    repeat: 1
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+  garage_door_2:
+    name: garage_door_open_2
+    entity_id: input_boolean.garage_door_2
+    state: 'on'
+    repeat: 1
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+  garage_door_3:
+    name: garage_door_open_3
+    entity_id: input_boolean.garage_door_3
+    state: 'on'
+    repeat: 1
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+  unmapped_alert:
+    name: This alert name will be spoken if the automation does not recognize it.
+    entity_id: input_boolean.unmapped_alert
+    state: 'on'
+    repeat: 1
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+automation:
+  - alias: alert_triggered
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: notify
+          service: tts_alerts
+    action:
+      - service: tts.google_say
+        data_template:
+          message: >-
+            {% set alert_name = trigger.event.data.service_data.message %}
+            {% set alert_map = {
+              'garage_door_open_1': 'The first garage door is open.',
+              'garage_door_open_2': 'The second garage door is open.',
+              'garage_door_open_3': 'The third garage door is open.'
+            } %}
+            {{ alert_map[alert_name]|default(alert_name) }}
+
+
+input_boolean:
+  garage_door_1:
+    initial: off
+
+  garage_door_2:
+    initial: off
+
+  garage_door_3:
+    initial: off
+
+  unmapped_alert:
+    initial: off
+
+notify:
+  - platform: file
+    name: tts_alerts
+    filename: tts_alerts.log
+
+tts:
+  - platform: google

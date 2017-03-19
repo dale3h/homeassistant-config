@@ -1,0 +1,40 @@
+################################################################
+## Packages / TTS Alerts
+################################################################
+
+alert:
+  garage_door_open:
+    name: garage_door_open
+    entity_id: cover.garage_door
+    state: 'open'
+    repeat:
+      - 15
+      - 30
+      - 60
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+automation:
+  - alias: alert_triggered
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: notify
+          service: tts_alerts
+    action:
+      - service: tts.google_say
+        data_template:
+          message: >-
+            {% set alert_name = trigger.event.data.service_data.message %}
+            {% set alert_map = {
+              'garage_door_open': 'The garage door is open.'
+            } %}
+            {{ alert_map[alert_name]|default(alert_name) }}
+
+notify:
+  - platform: file
+    name: tts_alerts
+    filename: tts_alerts.log
