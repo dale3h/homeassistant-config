@@ -15,6 +15,9 @@ $VIRTUAL_ENV/bin/pip3 search homeassistant
 # Run the backup script
 $HASS_CONFIG/shell_scripts/backup_config.sh
 
+# Install everything in new requirements_all.txt
+$VIRTUAL_ENV/bin/pip3 install -r https://raw.githubusercontent.com/home-assistant/home-assistant/master/requirements_all.txt
+
 # Upgrade Home Assistant
 $VIRTUAL_ENV/bin/pip3 install --upgrade homeassistant
 
@@ -22,4 +25,4 @@ $VIRTUAL_ENV/bin/pip3 install --upgrade homeassistant
 # This requires a modification using `sudo visudo`:
 #   homeassistant ALL=(ALL) NOPASSWD: /bin/systemctl restart home-assistant.service
 # Make sure to change `home-assistant.service` to the correct service name
-sudo systemctl restart $HASS_SERVICE
+sudo systemctl restart "$HASS_SERVICE"

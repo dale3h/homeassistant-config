@@ -34,12 +34,34 @@
 
 automation:
   ################################################
+  ## Automation Enabler
+  ################################################
+
+  - alias: persistence_enable_automations
+    hide_entity: true
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      - service: automation.turn_on
+        data:
+          entity_id:
+            - automation.persistence_publish
+            - automation.persistence_subscribe_binary
+            - automation.persistence_subscribe_select_option
+            - automation.persistence_subscribe_select_value
+      - service: automation.turn_off
+        data:
+          entity_id: automation.persistence_enable_automations
+
+  ################################################
   ## Persistent Publisher
   ################################################
 
   - alias: persistence_publish
     hide_entity: true
-    initial_state: 'on'
+    initial_state: 'off'
     trigger:
       - platform: event
         event_type: state_changed
@@ -81,20 +103,6 @@ automation:
   ## Persistent Subscriptions
   ################################################
 
-  - alias: persistence_enable_subscriptions
-    hide_entity: true
-    initial_state: 'on'
-    trigger:
-      - platform: event
-        event_type: homeassistant_start
-    action:
-      - service: automation.turn_on
-        data:
-          entity_id:
-            - automation.persistence_subscribe_binary
-            - automation.persistence_subscribe_select_option
-            - automation.persistence_subscribe_select_value
-
   - alias: persistence_subscribe_binary
     hide_entity: true
     initial_state: 'off'
@@ -108,6 +116,8 @@ automation:
       - platform: mqtt
         topic: home-assistant/switch/+
     condition: &subscribe_condition
+      - condition: template
+        value_template: "{{ ((states[trigger.topic.split('/')[1]][trigger.topic.split('/')[2]]|default).attributes|default).persistent|default(false, true) }}"
       - condition: template
         value_template: "{{ not is_state(trigger.topic|replace('home-assistant/', '')|replace('/', '.'), trigger.payload) }}"
     action: &subscribe_action

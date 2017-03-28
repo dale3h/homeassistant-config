@@ -1,0 +1,34 @@
+################################################################
+## Packages / Grafana
+################################################################
+
+panel_iframe:
+  grafana:
+    title: 'Grafana'
+    url: !secret panel_grafana_url
+    icon: mdi:chart-pie
+
+script:
+  grafana_webhook:
+    sequence:
+      - condition: template
+        value_template: >-
+          {{ state != 'ok' }}
+      - service: notify.syslog
+        data_template:
+          message: >
+            ruleId="{{ ruleId }}",
+            title="{{ title }}",
+            ruleUrl="{{ ruleUrl }}",
+            imageUrl="{{ imageUrl }}",
+            state="{{ state }}",
+            message="{{ message }}",
+            ruleName="{{ ruleName }}",
+            evalMatches="{{ evalMatches|pprint }}"
+      - service: notify.telegram
+        data_template:
+          message: >-
+            {{ ruleName }} is {{ state }}.
+            {% for match in evalMatches %}
+              {{ match.metric }}: {{ match.value }}
+            {% endfor %}

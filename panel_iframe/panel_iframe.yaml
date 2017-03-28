@@ -2,11 +2,6 @@
 ## Panel Iframe
 ################################################################
 
-grafana:
-  title: 'Grafana'
-  url: !secret panel_grafana_url
-  icon: mdi:chart-pie
-
 ozwcp:
   title: 'Open Z-Wave'
   url: !secret panel_ozwcp_url

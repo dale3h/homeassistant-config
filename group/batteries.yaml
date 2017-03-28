@@ -14,8 +14,6 @@ batteries:
     - sensor.iphone_battery
     - sensor.iphone_battery_level
     - sensor.iphone_battery_state
-    - sensor.iphone_battery_level_2
-    - sensor.iphone_battery_state_2
     - sensor.master_bedroom_battery
     - sensor.parker_closet_door_battery
     - sensor.network_cabinet_battery

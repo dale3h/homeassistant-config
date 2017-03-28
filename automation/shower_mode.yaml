@@ -6,6 +6,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.shower_mode
+      from: 'off'
       to: 'on'
   action:
     - service: automation.turn_off
@@ -22,6 +23,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.shower_mode
+      from: 'on'
       to: 'off'
   action:
     - service: automation.turn_on

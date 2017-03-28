@@ -17,235 +17,197 @@ automation.activate_good_night_script:
   friendly_name: Activate Good Night Script
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.activate_presence_script:
   friendly_name: Activate Presence Script
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.alarm_clock:
   friendly_name: Alarm Clock
   haaska_hidden: true
   homebridge_hidden: true
   icon: mdi:alarm
-  persistent: true
 
 automation.alarm_clock_disable:
   friendly_name: Alarm Clock Disabled
   haaska_hidden: true
   homebridge_hidden: true
   icon: mdi:alarm
-  persistent: true
 
 automation.alarm_clock_enable:
   friendly_name: Alarm Clock Enabled
   haaska_hidden: true
   homebridge_hidden: true
   icon: mdi:alarm
-  persistent: true
 
 automation.backup_config_at_3am:
   friendly_name: Backup Config at 3am
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_motion:
   friendly_name: Dining Room Motion
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:walk
-  persistent: true
 
 automation.dining_room_remote_button_1_held:
   friendly_name: Dining Room Remote Button 1 Held
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_remote_button_1_pressed:
   friendly_name: Dining Room Remote Button 1 Pressed
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_remote_button_2_pressed:
   friendly_name: Dining Room Remote Button 2 Pressed
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_remote_button_3_held:
   friendly_name: Dining Room Remote Button 3 Held
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_remote_button_3_pressed:
   friendly_name: Dining Room Remote Button 3 Pressed
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.dining_room_remote_button_4_pressed:
   friendly_name: Dining Room Remote Button 4 Pressed
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.front_porch_timer:
   friendly_name: Front Porch Timer
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.garage_door_notification_10m:
   friendly_name: Garage Door Notification 10m
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.garage_door_notification_30m:
   friendly_name: Garage Door Notification 30m
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.garage_door_notification_60m:
   friendly_name: Garage Door Notification 60m
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
-automation.home_assistant_update_notification:
-  friendly_name: Home Assistant Update Notification
+automation.update_notification:
+  friendly_name: Update Notification
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.hue_master_bedroom_dimmer_good_morning_good_night:
   friendly_name: Hue Master Bedroom Dimmer Good Morning Good Night
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.hue_master_bedroom_dimmer_motion_on_motion_off:
   friendly_name: Hue Master Bedroom Dimmer Motion On Motion Off
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.hue_parker_bedroom_tap_toggle_lamp:
   friendly_name: Hue Parker Bedroom Tap Toggle Lamp
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.kitchen_motion:
   friendly_name: Kitchen Motion
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:walk
-  persistent: true
 
 automation.laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed:
   friendly_name: Laundry Room and Garage Lights OFF when Garage Entry Door is CLOSED
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.laundry_room_and_garage_lights_on_when_garage_entry_door_is_open:
   friendly_name: Laundry Room and Garage Lights ON when Garage Entry Door is OPEN
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.living_room_timer_1:
   friendly_name: Living Room Timer 1
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.living_room_timer_2:
   friendly_name: Living Room Timer 2
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.living_room_timer_3:
   friendly_name: Living Room Timer 3
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.living_room_timer_4:
   friendly_name: Living Room Timer 4
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.master_bathroom_motion:
   friendly_name: Bathroom Motion
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:walk
-  persistent: true
 
 automation.master_bedroom_light_on_when_motion_is_active:
   friendly_name: Master Bedroom Light ON when Motion is ACTIVE
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.master_closet_light_off_when_door_is_closed:
   friendly_name: Master Closet Light OFF when Door is CLOSED
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.master_closet_light_on_when_door_is_open:
   friendly_name: Master Closet Light ON when Door is OPEN
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.media_lights_when_paused:
   friendly_name: Plex Lights on Pause
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.media_lights_when_playing:
   friendly_name: Plex Lights on Play
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.morning_lights_on:
   friendly_name: Morning Lights On
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.occupant_presence_notification:
   friendly_name: Occupant Presence Notification
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.parker_closet_light_off_when_door_is_closed:
   friendly_name: Parker Closet Light OFF when Door is CLOSED
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.parker_closet_light_on_when_door_is_open:
   friendly_name: Parker Closet Light ON when Door is OPEN
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.persistence_enable_subscriptions:
   date_updated: '2017-03-14 02:54:46'
@@ -276,78 +238,65 @@ automation.projection_screen:
   friendly_name: Projection Screen
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.reset_mqtt_topic:
   friendly_name: Reset Mqtt Topic
   haaska_hidden: true
-  persistent: true
 
 automation.server_load_notification:
   friendly_name: Server Load Notification
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.shower_mode_disabled:
   friendly_name: Shower Mode Disabled
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.shower_mode_enabled:
   friendly_name: Shower Mode Enabled
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.startup_notification:
   friendly_name: Startup Notification
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.toggle_apple_tv:
   friendly_name: Toggle Apple TV
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.toggle_master_bathroom_shower_mode:
   friendly_name: Toggle Master Bathroom Shower Mode
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.toggle_master_bedroom_motion:
   friendly_name: Toggle Master Bedroom Motion
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.turn_guest_bedroom_light_off_when_unoccupied:
   friendly_name: Turn Guest Bedroom Light OFF when Unoccupied
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.turn_hallway_light_off_when_unoccupied:
   friendly_name: Turn Hallway Light OFF when Unoccupied
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.turn_living_room_light_off_when_unoccupied:
   friendly_name: Turn Living Room Light OFF when Unoccupied
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 automation.turn_master_bedroom_light_off_when_unoccupied:
   friendly_name: Turn Master Bedroom Light OFF when Unoccupied
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 ################################################
 ## Binary Sensor
@@ -1176,42 +1125,36 @@ input_boolean.garage_lighting:
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:lightbulb
-  persistent: true
 
 input_boolean.guest_mode:
   friendly_name: Guest Mode
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:account
-  persistent: true
 
 input_boolean.master_bedroom_motion:
   friendly_name: Bedroom Motion
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:walk
-  persistent: true
 
 input_boolean.night_mode:
   friendly_name: Night Mode
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:weather-night
-  persistent: true
 
 input_boolean.shower_mode:
   friendly_name: Shower Mode
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:water-pump
-  persistent: true
 
 input_boolean.sunrise_lighting:
   friendly_name: Sunrise Lighting
   haaska_hidden: false
   homebridge_hidden: false
   icon: mdi:weather-sunset-up
-  persistent: true
 
 input_boolean.zwave_network:
   date_updated: '2017-03-14 02:54:46'
@@ -1226,15 +1169,12 @@ input_boolean.zwave_network:
 input_select.alarm_clock:
   friendly_name: Alarm Clock
   icon: mdi:alarm
-  persistent: true
 
 input_select.front_porch_time_off:
   friendly_name: Front Porch Time Off
-  persistent: true
 
 input_select.front_porch_time_on:
   friendly_name: Front Porch Time On
-  persistent: true
 
 input_select.projection_screen:
   friendly_name: Projection Screen
@@ -1247,7 +1187,6 @@ input_slider.kitchen_timer:
   friendly_name: Kitchen Timer
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 input_slider.living_room_timer:
   friendly_name: Living Room Timer
@@ -1258,7 +1197,6 @@ input_slider.nightlight_brightness:
   friendly_name: Nightlight Brightness
   haaska_hidden: true
   homebridge_hidden: true
-  persistent: true
 
 ################################################
 ## Light
@@ -1659,39 +1597,32 @@ script.harmony_activity:
   icon: mdi:remote
 
 script.light_control:
-  friendly_name: Light Control
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_off:
-  friendly_name: Light Control Off
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_off_flash:
-  friendly_name: Light Control Off Flash
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_off_transition:
-  friendly_name: Light Control Off Transition
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_on:
-  friendly_name: Light Control On
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_on_flash:
-  friendly_name: Light Control On Flash
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.light_control_on_transition:
-  friendly_name: Light Control On Transition
   haaska_hidden: true
-  hidden: true
+  ignore_rebuild: true
 
 script.master_bedroom_motion_helper:
   friendly_name: Master Bedroom Motion Helper
@@ -1921,9 +1852,8 @@ sensor.harmony_hub_activity:
   homebridge_hidden: true
   icon: mdi:mixcloud
 
-sensor.hass_startup_time:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: Hass Startup Time
+sensor.startup_time:
+  friendly_name: Startup Time
   homebridge_hidden: true
 
 sensor.home_humidity:
@@ -1939,25 +1869,16 @@ sensor.home_temperature:
 sensor.iphone_battery:
   friendly_name: iPhone Battery
   homebridge_hidden: true
-  icon: mdi:battery
 
 sensor.iphone_battery_level:
   friendly_name: iPhone Battery Level
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.iphone_battery_level_2:
-  friendly_name: iPhone Battery Level
+  hidden: true
   homebridge_hidden: true
   icon: mdi:battery
 
 sensor.iphone_battery_state:
   friendly_name: iPhone Battery State
-  homebridge_hidden: true
-  icon: mdi:battery-charging
-
-sensor.iphone_battery_state_2:
-  friendly_name: iPhone Battery State
+  hidden: true
   homebridge_hidden: true
   icon: mdi:battery-charging
 

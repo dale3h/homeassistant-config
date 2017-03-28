@@ -4,36 +4,44 @@
 
 - alias: turn_hallway_light_off_when_unoccupied
   trigger:
-    platform: state
-    entity_id: binary_sensor.home_occupancy
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.home_occupancy
+      from: 'on'
+      to: 'off'
   action:
-    service: light.turn_off
-    entity_id: light.hallway
+    - service: light.turn_off
+      data:
+        entity_id: light.hallway
 
 - alias: turn_living_room_light_off_when_unoccupied
   trigger:
-    platform: state
-    entity_id: binary_sensor.living_room_occupancy
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.living_room_occupancy
+      from: 'on'
+      to: 'off'
   action:
-    service: light.turn_off
-    entity_id: light.living_room
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room
 
 - alias: turn_master_bedroom_light_off_when_unoccupied
   trigger:
-    platform: state
-    entity_id: binary_sensor.master_bedroom_occupancy
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_occupancy
+      from: 'on'
+      to: 'off'
   action:
-    service: light.turn_off
-    entity_id: light.master_bedroom
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom
 
 - alias: turn_guest_bedroom_light_off_when_unoccupied
   trigger:
-    platform: state
-    entity_id: binary_sensor.guest_bedroom_occupancy
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.guest_bedroom_occupancy
+      from: 'on'
+      to: 'off'
   action:
-    service: light.turn_off
-    entity_id: light.guest_bedroom
+    - service: light.turn_off
+      data:
+        entity_id: light.guest_bedroom

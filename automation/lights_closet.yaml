@@ -12,6 +12,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.closet_door_contact
+      from: 'off'
       to: 'on'
   action:
     - service: light.turn_on
@@ -23,6 +24,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.closet_door_contact
+      from: 'on'
       to: 'off'
   action:
     - service: light.turn_off
@@ -37,6 +39,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.parker_closet_door_contact
+      from: 'off'
       to: 'on'
   action:
     - service: light.turn_on
@@ -48,6 +51,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.parker_closet_door_contact
+      from: 'on'
       to: 'off'
   action:
     - service: light.turn_off

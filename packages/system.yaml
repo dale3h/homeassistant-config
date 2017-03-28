@@ -1,0 +1,65 @@
+################################################################
+## Packages / System
+################################################################
+
+homeassistant:
+  customize:
+    binary_sensor.system_ready:
+      friendly_name: System Ready
+      hidden: true
+
+group:
+  system:
+    entities:
+      - updater.updater
+      - sensor.date
+      - sensor.time
+      - binary_sensor.system_ready
+      - sensor.startup_time
+
+automation:
+  - alias: startup_notification
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      - service: notify.telegram
+        data:
+          message: Home Assistant is now up and running.
+
+  - alias: update_notification
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+      - platform: event
+        event_type: homeassistant_start
+    condition:
+      - condition: template
+        value_template: >-
+          {{ states('updater.updater') != 'unknown' }}
+    action:
+      - service: notify.telegram
+        data_template:
+          message: >-
+            Home Assistant {{ states('updater.updater') }} is now available.
+
+binary_sensor:
+  - platform: template
+    sensors:
+      system_ready:
+        entity_id: sensor.startup_time
+        value_template: >-
+          {{ states('sensor.startup_time') != 'unknown' }}
+
+sensor:
+  - platform: time_date
+    display_options:
+      - date
+      - time
+
+  - platform: template
+    sensors:
+      startup_time:
+        entity_id: automation.startup_notification
+        value_template: >-
+          {{ (states.automation.startup_notification.attributes|default).last_triggered|default('unknown') }}

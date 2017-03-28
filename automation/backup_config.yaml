@@ -4,7 +4,7 @@
 
 - alias: backup_config_at_3am
   trigger:
-    platform: time
-    after: '03:00:00'
+    - platform: time
+      after: '03:00:00'
   action:
-    service: shell_command.backup_config
+    - service: shell_command.backup_config

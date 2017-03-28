@@ -11,16 +11,9 @@ automation:
       - condition: template
         value_template: "{{ trigger.to_state.state|lower != 'idle' }}"
     action:
-      - service: broadlink.send_packet_192_168_1_7
+      - service: switch.turn_on
         data_template:
-          packet: >-
-            {% if trigger.to_state.state|lower == 'stop' %}
-              sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA
-            {% elif trigger.to_state.state|lower == 'down' %}
-              sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA
-            {% elif trigger.to_state.state|lower == 'up' %}
-              si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA
-            {% endif %}
+          entity_id: "switch.projection_screen_{{ trigger.to_state.state|lower }}"
       - service: input_select.select_option
         data_template:
           entity_id: "{{ trigger.to_state.entity_id }}"
@@ -40,6 +33,21 @@ switch:
     host: !secret broadlink_host
     mac: !secret broadlink_mac
     switches:
+      projection_screen_stop:
+        friendly_name: Projection Screen Stop
+        command_on: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
+        command_off: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
+
+      projection_screen_down:
+        friendly_name: Projection Screen Down
+        command_on: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
+        command_off: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
+
+      projection_screen_up:
+        friendly_name: Projection Screen Up
+        command_on: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
+        command_off: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
+
       rf_outlet_b1:
         friendly_name: RF Outlet B1
         command_on: 'eADaAAcHBwYHBwcHBwcHBwcHBgcHBwcHBwcHBwcHBgcIBgcHBwcHBggHBwYHBwcHBwcHBwcGCAYIBgcHBwcHBwcGCAYHBwcHBwcHBggHBwYHBwcHBwcHBwcHB44HFRUHFAgHFRQHCBQHFQcVFQcHFQcVBxUHFBYGCBQInAcVFQcVBwcVFAgHFQcUCBQVBwcVBxUHFQcVFQcHFAicCBUVBhUHBxUVBwcVBxQIFRQHCBQIFAgUBxUVBwcVB50HFRUGFQcHFRUHBxUHFQcVFQYIFAgUCBQIFBUHBxUHAAXcAAAAAAAAAAAAAAAAAAA='
@@ -69,18 +77,3 @@ switch:
         friendly_name: RF Outlet D3
         command_on: 'eADaAAYIBggFCQUIBggGCAUJBQgGCAYIBQgGCAYIBQkFCAYIBggFCAYIBggFCQUJBQgGCAYHBggGCAYIBggFCAYIBggFCQUIBggGCAUIBggGCAYIBQkFCAYIBY8GFhMJEwgGFhMJBRYGFhMIBhYGFgYWBhYFFgYWBhYTjwYWEwkTCAYWEwkFFgYWEwkFFgYWBhYGFgUWBhYGFhOPBhYTCRMIBhYTCQYWBRYUCAYVBhYGFgYWBRYGFgYWE48GFhMJEwkFFhMJBhYFFhQIBhYFFwUWBhYFFwUWBhYTAAXcAAAAAAAAAAAAAAAAAAA='
         command_off: 'eADaAAYHBwcGCAYIBgcGCAYIBggGBwYIBggGCAUIBggGCAUIBggGCAYIBggFCAYIBggFCAYIBggGCAUIBggGCAYHBggGCAYIBgcGCAYIBggFCAYIBggGCAYHBo8GFhMIFAgGFhMIBhYTCAYWBhYGFgYVBhYGFgYVBhYUjwYWEwgUCAYWEwgGFhMIBhYGFgYWBhUGFgYWBhUGFhSPBhUUCBQIBhYTCAYWFAcGFgYWBhYGFQYWBhYGFgUWFI8GFRQIFAgGFRQIBhYTCAYWBhYGFgYVBhYGFgYVBhYUAAXcAAAAAAAAAAAAAAAAAAA='
-
-#       projection_screen_stop:
-#         friendly_name: Projection Screen Stop
-#         command_on: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
-#         command_off: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
-#
-#       projection_screen_down:
-#         friendly_name: Projection Screen Down
-#         command_on: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
-#         command_off: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
-#
-#       projection_screen_up:
-#         friendly_name: Projection Screen Up
-#         command_on: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
-#         command_off: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'

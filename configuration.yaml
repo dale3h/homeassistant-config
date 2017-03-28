@@ -15,7 +15,6 @@ homeassistant:
 config:
 frontend:
 history:
-logbook:
 sun:
 updater:
 
@@ -24,9 +23,9 @@ updater:
 ################################################
 
 alarm_control_panel:
-  platform: manual
-  name: alarm_system
-  code: !secret alarm_code
+  - platform: manual
+    name: alarm_system
+    code: !secret alarm_code
 
 apcupsd:
 
@@ -56,6 +55,15 @@ influxdb:
   password: !secret influxdb_password
   database: !secret influxdb_database
 
+logbook:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.ups_status_date
+    domains:
+      - sun
+
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 logger:
   default: info
@@ -81,10 +89,6 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-recorder:
-  purge_days: 30
-  db_url: !secret recorder_db_url
-
 tts:
   - platform: google
 
@@ -108,6 +112,7 @@ zwave:
 
 # emulated_hue: !include emulated_hue.yaml
 ios: !include ios.yaml
+recorder: !include recorder.yaml
 
 ################################################
 ## Component Includes (Named)

@@ -1,0 +1,63 @@
+################################################################
+## Packages / Presence
+################################################################
+
+automation:
+  - alias: activate_presence_script
+    trigger:
+      - platform: state
+        entity_id: group.household
+        from: 'not_home'
+        to: 'home'
+      - platform: state
+        entity_id: group.household
+        from: 'home'
+        to: 'not_home'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.system_ready
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+    action:
+      - service_template: >-
+          {% if trigger.to_state.state == 'home' %}
+            script.arrival
+          {% elif trigger.from_state.state == 'home' %}
+            script.departure
+          {% endif %}
+
+script:
+  arrival:
+    sequence:
+      - service: lock.unlock
+        data:
+          entity_id: !secret lock_front_door
+      - service: light.turn_on
+        data_template:
+          entity_id:
+            - light.entry_lamp
+            - light.laundry_room
+            - light.dining_room
+            - light.garage
+          brightness: "{{ states('sensor.global_brightness')|int }}"
+      - service: script.front_porch_light
+      - service: climate.set_hold_mode
+        data:
+          entity_id: climate.home
+          hold_mode: 'home'
+
+  departure:
+    sequence:
+      - service: lock.lock
+        data:
+          entity_id: !secret lock_front_door
+      - service: light.turn_off
+        data:
+          entity_id: group.all_lights
+      - service: script.front_porch_light
+      - service: climate.set_hold_mode
+        data:
+          entity_id: climate.home
+          hold_mode: 'away'

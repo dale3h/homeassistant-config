@@ -4,12 +4,12 @@
 
 - alias: master_bedroom_light_on_when_motion_is_active
   trigger:
-    platform: state
-    entity_id: binary_sensor.master_bedroom_motion
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_motion
+      to: 'on'
   condition:
-    condition: state
-    entity_id: input_boolean.master_bedroom_motion
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.master_bedroom_motion
+      state: 'on'
   action:
-    service: script.master_bedroom_motion_timer
+    - service: script.master_bedroom_motion_timer
