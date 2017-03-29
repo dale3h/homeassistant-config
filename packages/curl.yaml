@@ -1,0 +1,38 @@
+################################################################
+## Packages / cURL
+################################################################
+
+################################################
+## Configuration:
+##
+##   url: string (Required)
+##   args: string (Optional) default is '-sS'
+##   method: string (Optional) default is 'get'
+##   headers: dict (Optional) default is empty
+##   payload: dict (Optional) default is empty
+##
+## Example Usage:
+##
+## automation:
+##   trigger:
+##     - ...your trigger(s) here...
+##   condition:
+##     - ...your condition(s) here...
+##   action:
+##     - service: shell_command.curl
+##       data:
+##         url: http://your.website.com/api/endpoint
+##         args: --ipv4
+##         method: post
+##         headers:
+##           Content-Type: application/json
+##           Another-Header: header value
+##         payload:
+##           key1: value1
+##           key2: value2
+################################################
+
+
+shell_command:
+  curl: >-
+    /usr/bin/curl {{ args|default('-sS') }} -X {{ method|default('get')|upper }} {%- for k in headers %} -H "{{ k }}: {{ headers[k] }}"{% endfor %} {{- (' -d \'' ~ payload|tojson ~ '\'') if payload }} {{ url }} > /dev/null
