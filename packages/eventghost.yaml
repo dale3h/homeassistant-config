@@ -8,6 +8,10 @@ automation:
       - platform: mqtt
         topic: smartthings/network_cabinet/button
         payload: 'pushed'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.system_ready
+        state: 'on'
     action:
       - service: switch.toggle
         data:
@@ -18,6 +22,10 @@ automation:
       - platform: mqtt
         topic: smartthings/network_cabinet/button
         payload: 'held'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.system_ready
+        state: 'on'
     action:
       - service: notify.syslog
         data:

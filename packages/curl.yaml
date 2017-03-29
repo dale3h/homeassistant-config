@@ -10,6 +10,7 @@
 ##   method: string (Optional) default is 'get'
 ##   headers: dict (Optional) default is empty
 ##   payload: dict (Optional) default is empty
+##   stream: string (Optional) default is '/dev/null'
 ##
 ## Example Usage:
 ##
@@ -22,7 +23,6 @@
 ##     - service: shell_command.curl
 ##       data:
 ##         url: http://your.website.com/api/endpoint
-##         args: --ipv4
 ##         method: post
 ##         headers:
 ##           Content-Type: application/json
@@ -32,7 +32,6 @@
 ##           key2: value2
 ################################################
 
-
 shell_command:
   curl: >-
-    /usr/bin/curl {{ args|default('-sS') }} -X {{ method|default('get')|upper }} {%- for k in headers %} -H "{{ k }}: {{ headers[k] }}"{% endfor %} {{- (' -d \'' ~ payload|tojson ~ '\'') if payload }} {{ url }} > /dev/null
+    /usr/bin/curl {{ args|default('-sS') }} -X {{ method|default('get')|upper }} {%- for k in headers %} -H "{{ k }}: {{ headers[k] }}"{% endfor %} {{- (' -d \'' ~ payload|tojson ~ '\'') if payload }} {{ url }} > {{ stream|default('/dev/null') }}
