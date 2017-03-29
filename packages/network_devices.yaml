@@ -1,0 +1,298 @@
+################################################################
+## Packages / Network Devices
+################################################################
+
+# {% set group = states.group.network_devices -%}
+# {%- set templateGroup = 'network_devices_template' -%}
+# {%- set entities = group.attributes.entity_id -%}
+# group:
+#   {{ group.entity_id.split('.')[1] }}:
+#     name: "{{ group.name }}"
+#     hidden: true
+#     entities:
+#       {% for entity_id in entities -%}
+#         - {{ entity_id }}
+#       {% endfor %}
+#   {{ templateGroup }}:
+#     name: "{{ group.name }}"
+#     entities:
+#       {% for entity_id in entities -%}
+#         - {{ ('sensor.' ~ entity_id.split('.')[1] ~ '_template') if entity_id.split('.')[0] == 'device_tracker' else entity_id }}
+#       {% endfor %}
+#
+# {%- set newline = joiner("\n      ") %}
+# sensor:
+#   - platform: template
+#     sensors:
+#       {% for entity_id in entities if entity_id.split('.')[0] == 'device_tracker' -%}
+#         {{ newline() }}
+#         {%- set entity = states[entity_id.split('.')[0]][entity_id.split('.')[1]] -%}
+#         {{- entity_id.split('.')[1] }}_template:
+#         friendly_name: "{{ entity.name }}"
+#         value_template: "{{ '{{' }} 'online' if is_state('{{ entity_id }}', 'home') else 'offline' {{ '}}' }}"
+#         icon_template: "{{ '{{' }} 'mdi:check-circle' if is_state('{{ entity_id }}', 'home') else 'mdi:alert-circle' {{ '}}' }}"
+#       {% endfor %}
+
+homeassistant:
+  customize:
+    group.network_devices:
+      friendly_name: "Network Devices"
+      hidden: true
+
+    group.network_devices_template:
+      friendly_name: "Network Devices"
+
+group:
+  network_devices:
+    entities:
+      - device_tracker.net_aladdin_connect
+      - device_tracker.net_apple_tv_living_room
+      - device_tracker.net_apple_tv_master_bedroom
+      - device_tracker.net_broadlink_rmpro
+      - device_tracker.net_chromecast_living_room
+      - device_tracker.net_chromecast_master_bedroom
+      - device_tracker.net_echo_dot_garage
+      - device_tracker.net_echo_dot_guest_bathroom
+      - device_tracker.net_echo_dot_guest_bedroom
+      - device_tracker.net_echo_dot_kitchen
+      - device_tracker.net_echo_dot_parker
+      - device_tracker.net_echo_entryway
+      - device_tracker.net_echo_master_bathroom
+      - device_tracker.net_ecobee3
+      - device_tracker.net_fire_tv
+      - device_tracker.net_google_home
+      - device_tracker.net_harmony_hub
+      - device_tracker.net_hp_printer
+      - device_tracker.net_htpc
+      - device_tracker.net_ipcam_ac1
+      - device_tracker.net_ipcam_hv1
+      - device_tracker.net_ipcam_ptz1
+      - device_tracker.net_limitlessled
+      - device_tracker.net_philips_hue
+      - device_tracker.net_projector
+      - device_tracker.net_rack_light
+      - device_tracker.net_raspberry_pi
+      - device_tracker.net_smartthings
+      - device_tracker.net_tablet_digiland
+      - device_tracker.net_tablet_insignia
+      - device_tracker.net_ubuntu
+      - device_tracker.net_web_power_switch
+      - device_tracker.net_workshop
+      - device_tracker.net_xbox_one
+      - device_tracker.net_yamaha_rxv675
+
+  network_devices_template:
+    entities:
+      - sensor.net_aladdin_connect_template
+      - sensor.net_apple_tv_living_room_template
+      - sensor.net_apple_tv_master_bedroom_template
+      - sensor.net_broadlink_rmpro_template
+      - sensor.net_chromecast_living_room_template
+      - sensor.net_chromecast_master_bedroom_template
+      - sensor.net_echo_dot_garage_template
+      - sensor.net_echo_dot_guest_bathroom_template
+      - sensor.net_echo_dot_guest_bedroom_template
+      - sensor.net_echo_dot_kitchen_template
+      - sensor.net_echo_dot_parker_template
+      - sensor.net_echo_entryway_template
+      - sensor.net_echo_master_bathroom_template
+      - sensor.net_ecobee3_template
+      - sensor.net_fire_tv_template
+      - sensor.net_google_home_template
+      - sensor.net_harmony_hub_template
+      - sensor.net_hp_printer_template
+      - sensor.net_htpc_template
+      - sensor.net_ipcam_ac1_template
+      - sensor.net_ipcam_hv1_template
+      - sensor.net_ipcam_ptz1_template
+      - sensor.net_limitlessled_template
+      - sensor.net_philips_hue_template
+      - sensor.net_projector_template
+      - sensor.net_rack_light_template
+      - sensor.net_raspberry_pi_template
+      - sensor.net_smartthings_template
+      - sensor.net_tablet_digiland_template
+      - sensor.net_tablet_insignia_template
+      - sensor.net_ubuntu_template
+      - sensor.net_web_power_switch_template
+      - sensor.net_workshop_template
+      - sensor.net_xbox_one_template
+      - sensor.net_yamaha_rxv675_template
+
+sensor:
+  - platform: template
+    sensors:
+      net_aladdin_connect_template:
+        friendly_name: "Aladdin Connect"
+        value_template: "{{ 'online' if is_state('device_tracker.net_aladdin_connect', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_aladdin_connect', 'home') else 'mdi:alert-circle' }}"
+
+      net_apple_tv_living_room_template:
+        friendly_name: "Apple TV (Living Room)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'mdi:alert-circle' }}"
+
+      net_apple_tv_master_bedroom_template:
+        friendly_name: "Apple TV (Master Bedroom)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_apple_tv_master_bedroom', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_apple_tv_master_bedroom', 'home') else 'mdi:alert-circle' }}"
+
+      net_broadlink_rmpro_template:
+        friendly_name: "Broadlink RM Pro"
+        value_template: "{{ 'online' if is_state('device_tracker.net_broadlink_rmpro', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_broadlink_rmpro', 'home') else 'mdi:alert-circle' }}"
+
+      net_chromecast_living_room_template:
+        friendly_name: "Chromecast (Living Room)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_chromecast_living_room', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_chromecast_living_room', 'home') else 'mdi:alert-circle' }}"
+
+      net_chromecast_master_bedroom_template:
+        friendly_name: "Chromecast (Master Bedroom)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_chromecast_master_bedroom', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_chromecast_master_bedroom', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_dot_garage_template:
+        friendly_name: "Echo Dot (Garage)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_garage', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_garage', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_dot_guest_bathroom_template:
+        friendly_name: "Echo Dot (Guest Bathroom)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_guest_bathroom', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_guest_bathroom', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_dot_guest_bedroom_template:
+        friendly_name: "Echo Dot (Guest Bedroom)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_dot_kitchen_template:
+        friendly_name: "Echo Dot (Kitchen)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_dot_parker_template:
+        friendly_name: "Echo Dot (Parker)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_entryway_template:
+        friendly_name: "Echo (Entryway)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_entryway', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_entryway', 'home') else 'mdi:alert-circle' }}"
+
+      net_echo_master_bathroom_template:
+        friendly_name: "Echo (Master Bathroom)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'mdi:alert-circle' }}"
+
+      net_ecobee3_template:
+        friendly_name: "ecobee3"
+        value_template: "{{ 'online' if is_state('device_tracker.net_ecobee3', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ecobee3', 'home') else 'mdi:alert-circle' }}"
+
+      net_fire_tv_template:
+        friendly_name: "Fire TV Stick"
+        value_template: "{{ 'online' if is_state('device_tracker.net_fire_tv', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_fire_tv', 'home') else 'mdi:alert-circle' }}"
+
+      net_google_home_template:
+        friendly_name: "Google Home"
+        value_template: "{{ 'online' if is_state('device_tracker.net_google_home', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_google_home', 'home') else 'mdi:alert-circle' }}"
+
+      net_harmony_hub_template:
+        friendly_name: "Harmony Hub"
+        value_template: "{{ 'online' if is_state('device_tracker.net_harmony_hub', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_harmony_hub', 'home') else 'mdi:alert-circle' }}"
+
+      net_hp_printer_template:
+        friendly_name: "HP Printer"
+        value_template: "{{ 'online' if is_state('device_tracker.net_hp_printer', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_hp_printer', 'home') else 'mdi:alert-circle' }}"
+
+      net_htpc_template:
+        friendly_name: "HTPC"
+        value_template: "{{ 'online' if is_state('device_tracker.net_htpc', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_htpc', 'home') else 'mdi:alert-circle' }}"
+
+      net_ipcam_ac1_template:
+        friendly_name: "IPCam AC1"
+        value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'mdi:alert-circle' }}"
+
+      net_ipcam_hv1_template:
+        friendly_name: "IPCam HV1"
+        value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_hv1', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_hv1', 'home') else 'mdi:alert-circle' }}"
+
+      net_ipcam_ptz1_template:
+        friendly_name: "IP Cam PTZ1"
+        value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_ptz1', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_ptz1', 'home') else 'mdi:alert-circle' }}"
+
+      net_limitlessled_template:
+        friendly_name: "Limitless LED"
+        value_template: "{{ 'online' if is_state('device_tracker.net_limitlessled', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_limitlessled', 'home') else 'mdi:alert-circle' }}"
+
+      net_philips_hue_template:
+        friendly_name: "Philips Hue"
+        value_template: "{{ 'online' if is_state('device_tracker.net_philips_hue', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_philips_hue', 'home') else 'mdi:alert-circle' }}"
+
+      net_projector_template:
+        friendly_name: "Projector"
+        value_template: "{{ 'online' if is_state('device_tracker.net_projector', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_projector', 'home') else 'mdi:alert-circle' }}"
+
+      net_rack_light_template:
+        friendly_name: "Rack Light"
+        value_template: "{{ 'online' if is_state('device_tracker.net_rack_light', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_rack_light', 'home') else 'mdi:alert-circle' }}"
+
+      net_raspberry_pi_template:
+        friendly_name: "Raspberry Pi"
+        value_template: "{{ 'online' if is_state('device_tracker.net_raspberry_pi', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_raspberry_pi', 'home') else 'mdi:alert-circle' }}"
+
+      net_smartthings_template:
+        friendly_name: "SmartThings"
+        value_template: "{{ 'online' if is_state('device_tracker.net_smartthings', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_smartthings', 'home') else 'mdi:alert-circle' }}"
+
+      net_tablet_digiland_template:
+        friendly_name: "Tablet (DigiLand)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_tablet_digiland', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_tablet_digiland', 'home') else 'mdi:alert-circle' }}"
+
+      net_tablet_insignia_template:
+        friendly_name: "Tablet (Insignia)"
+        value_template: "{{ 'online' if is_state('device_tracker.net_tablet_insignia', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_tablet_insignia', 'home') else 'mdi:alert-circle' }}"
+
+      net_ubuntu_template:
+        friendly_name: "Ubuntu"
+        value_template: "{{ 'online' if is_state('device_tracker.net_ubuntu', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ubuntu', 'home') else 'mdi:alert-circle' }}"
+
+      net_web_power_switch_template:
+        friendly_name: "Web Power Switch"
+        value_template: "{{ 'online' if is_state('device_tracker.net_web_power_switch', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_web_power_switch', 'home') else 'mdi:alert-circle' }}"
+
+      net_workshop_template:
+        friendly_name: "Workshop"
+        value_template: "{{ 'online' if is_state('device_tracker.net_workshop', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_workshop', 'home') else 'mdi:alert-circle' }}"
+
+      net_xbox_one_template:
+        friendly_name: "Xbox One"
+        value_template: "{{ 'online' if is_state('device_tracker.net_xbox_one', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_xbox_one', 'home') else 'mdi:alert-circle' }}"
+
+      net_yamaha_rxv675_template:
+        friendly_name: "Yamaha RX-V675"
+        value_template: "{{ 'online' if is_state('device_tracker.net_yamaha_rxv675', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_yamaha_rxv675', 'home') else 'mdi:alert-circle' }}"

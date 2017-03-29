@@ -2,6 +2,27 @@
 ## Packages / EventGhost
 ################################################################
 
+automation:
+  - alias: toggle_security_monitor
+    trigger:
+      - platform: mqtt
+        topic: smartthings/network_cabinet/button
+        payload: 'pushed'
+    action:
+      - service: switch.toggle
+        data:
+          entity_id: switch.eventghost_monitor
+
+  - alias: smartthings_button_held
+    trigger:
+      - platform: mqtt
+        topic: smartthings/network_cabinet/button
+        payload: 'held'
+    action:
+      - service: notify.syslog
+        data:
+          message: SmartThings button was held.
+
 switch:
   - platform: command_line
     switches:
