@@ -53,6 +53,8 @@ script:
                 {{ {'action': action} }}
               {% elif method|lower == 'application.setvolume' and volume is defined %}
                 {{ {'volume': volume} }}
+              {% elif params is defined %}
+                {{ params }}
               {% else %}
                 {{ {'playerid': 1} }}
               {% endif %}
