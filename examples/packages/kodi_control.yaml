@@ -88,7 +88,7 @@ script:
   kodi_playpause:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -96,19 +96,32 @@ script:
             method: "Player.PlayPause"
             params:
               playerid: 1
-              play: "{{ play|default('toggle') }}"
 
   kodi_play:
     sequence:
-      - service: script.kodi_playpause
+      - service: shell_command.curl
         data:
-          play: true
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.PlayPause"
+            params:
+              playerid: 1
+              play: true
 
   kodi_pause:
     sequence:
-      - service: script.kodi_playpause
+      - service: shell_command.curl
         data:
-          play: false
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.PlayPause"
+            params:
+              playerid: 1
+              play: false
 
   kodi_stop:
     sequence:
@@ -146,10 +159,10 @@ script:
         data:
           to: "previous"
 
-  kodi_setspeed:
+  kodi_speed_1x:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -157,12 +170,142 @@ script:
             method: "Player.SetSpeed"
             params:
               playerid: 1
-              speed: "{{ speed|int(1) }}"
+              speed: 1
 
-  kodi_seek:
+  kodi_speed_2x:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: 2
+
+  kodi_speed_4x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: 4
+
+  kodi_speed_8x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: 8
+
+  kodi_speed_16x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: 16
+
+  kodi_speed_32x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: 32
+
+  kodi_speed_n2x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: -2
+
+  kodi_speed_n4x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: -4
+
+  kodi_speed_n8x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: -8
+
+  kodi_speed_n16x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: -16
+
+  kodi_speed_n32x:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: -32
+
+  kodi_seek_forward:
+    sequence:
+      - service: shell_command.curl
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -170,24 +313,25 @@ script:
             method: "Player.Seek"
             params:
               playerid: 1
-              value: "{{ value|default('smallforward') }}"
-
-  kodi_seek_forward:
-    sequence:
-      - service: script.kodi_seek
-        data:
-          value: "smallforward"
+              value: "smallforward"
 
   kodi_seek_backward:
     sequence:
-      - service: script.kodi_seek
+      - service: shell_command.curl
         data:
-          value: "smallbackward"
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.Seek"
+            params:
+              playerid: 1
+              value: "smallbackward"
 
-  kodi_set_repeat:
+  kodi_repeat_one:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -195,30 +339,38 @@ script:
             method: "Player.SetRepeat"
             params:
               playerid: 1
-              repeat: "{{ repeat|default('off') }}"
-
-  kodi_repeat_one:
-    sequence:
-      - service: script.kodi_set_repeat
-        data:
-          repeat: "one"
+              repeat: "one"
 
   kodi_repeat_all:
     sequence:
-      - service: script.kodi_set_repeat
+      - service: shell_command.curl
         data:
-          repeat: "all"
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetRepeat"
+            params:
+              playerid: 1
+              repeat: "all"
 
   kodi_repeat_off:
     sequence:
-      - service: script.kodi_set_repeat
+      - service: shell_command.curl
         data:
-          repeat: "off"
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetRepeat"
+            params:
+              playerid: 1
+              repeat: "off"
 
-  kodi_set_shuffle:
+  kodi_shuffle_on:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -226,16 +378,163 @@ script:
             method: "Player.SetShuffle"
             params:
               playerid: 1
-              shuffle: "{{ shuffle|default(true, true) }}"
-
-  kodi_shuffle_on:
-    sequence:
-      - service: script.kodi_set_shuffle
-        data:
-          shuffle: true
+              shuffle: true
 
   kodi_shuffle_off:
     sequence:
-      - service: script.kodi_set_shuffle
+      - service: shell_command.curl
         data:
-          shuffle: false
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetShuffle"
+            params:
+              playerid: 1
+              shuffle: false
+
+  kodi_nav_back:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Back"
+
+  kodi_nav_select:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Select"
+
+  kodi_nav_left:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Left"
+
+  kodi_nav_right:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Right"
+
+  kodi_nav_up:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Up"
+
+  kodi_nav_down:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Down"
+
+  kodi_nav_home:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Home"
+
+  kodi_nav_info:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.Info"
+
+  kodi_nav_show_osd:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ShowOSD"
+
+  kodi_nav_context_menu:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ContextMenu"
+
+  kodi_nav_show_codec:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ShowCodec"
+
+  kodi_exec_action:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ExecuteAction"
+            params:
+              action: "{{ action }}"
+
+  kodi_nav_page_down:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ExecuteAction"
+            params:
+              action: "pagedown"
+
+  kodi_nav_page_up:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Input.ExecuteAction"
+            params:
+              action: "pageup"
