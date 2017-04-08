@@ -1,0 +1,241 @@
+################################################################
+## Packages / Kodi Control
+################################################################
+
+homeassistant:
+  customize:
+    script.auto_cartoons:
+      friendly_name: Cartoons
+      icon: mdi:playlist-play
+
+    script.auto_all_tv:
+      friendly_name: All TV
+      icon: mdi:playlist-play
+
+    script.auto_pawpatrol:
+      friendly_name: Paw Partol
+      icon: mdi:playlist-play
+
+script:
+  ################################################
+  ## Living Room Cartoons
+  ################################################
+
+  auto_cartoons:
+    sequence:
+      - service_template: >-
+          script.kodi_play_file{{ '_bootup' if is_state('switch.living_room_pc', 'off') }}
+        data:
+          file: "c:/Users/Living Room/AppData/Roaming/Kodi/userdata/playlists/video/cartoon2.xsp"
+
+  ################################################
+  ## Living Room - All TV
+  ################################################
+
+  auto_all_tv:
+    sequence:
+      - service_template: >-
+          script.kodi_play_file{{ '_bootup' if is_state('switch.living_room_pc', 'off') }}
+        data:
+          file: "c:/Users/Living Room/AppData/Roaming/Kodi/userdata/playlists/video/all.xsp"
+
+  ################################################
+  ## Living Room - Paw Patrol
+  ################################################
+
+  auto_pawpatrol:
+    sequence:
+      - service_template: >-
+          script.kodi_play_file{{ '_bootup' if is_state('switch.living_room_pc', 'off') }}
+        data:
+          file: "c:/Users/Living Room/AppData/Roaming/Kodi/userdata/playlists/video/pawpatrol.xsp"
+
+  ################################################
+  ## Kodi Commands
+  ################################################
+
+  kodi_defaults:
+    sequence:
+      - service: shell_command.curl
+        data: &defaults
+          url: "http://192.168.1.76:8099/jsonrpc"
+          method: "post"
+          headers:
+            content-type: "application/json"
+
+  kodi_play_file:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.Open"
+            params:
+              item:
+                file: "{{ file }}"
+
+  kodi_play_file_bootup:
+    sequence:
+      - service: switch.turn_on
+        entity_id: switch.living_room_pc
+      - delay: '00:01:30'
+      - service: script.kodi_play_file
+        data_template:
+          file: "{{ file }}"
+
+  kodi_playpause:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.PlayPause"
+            params:
+              playerid: 1
+              play: "{{ play|default('toggle') }}"
+
+  kodi_play:
+    sequence:
+      - service: script.kodi_playpause
+        data:
+          play: true
+
+  kodi_pause:
+    sequence:
+      - service: script.kodi_playpause
+        data:
+          play: false
+
+  kodi_stop:
+    sequence:
+      - service: shell_command.curl
+        data:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.Stop"
+            params:
+              playerid: 1
+
+  kodi_goto:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.GoTo"
+            params:
+              playerid: 1
+              to: "{{ to }}"
+  kodi_next:
+    sequence:
+      - service: script.kodi_goto
+        data:
+          to: "next"
+
+  kodi_previous:
+    sequence:
+      - service: script.kodi_goto
+        data:
+          to: "previous"
+
+  kodi_setspeed:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetSpeed"
+            params:
+              playerid: 1
+              speed: "{{ speed|int(1) }}"
+
+  kodi_seek:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.Seek"
+            params:
+              playerid: 1
+              value: "{{ value|default('smallforward') }}"
+
+  kodi_seek_forward:
+    sequence:
+      - service: script.kodi_seek
+        data:
+          value: "smallforward"
+
+  kodi_seek_backward:
+    sequence:
+      - service: script.kodi_seek
+        data:
+          value: "smallbackward"
+
+  kodi_set_repeat:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetRepeat"
+            params:
+              playerid: 1
+              repeat: "{{ repeat|default('off') }}"
+
+  kodi_repeat_one:
+    sequence:
+      - service: script.kodi_set_repeat
+        data:
+          repeat: "one"
+
+  kodi_repeat_all:
+    sequence:
+      - service: script.kodi_set_repeat
+        data:
+          repeat: "all"
+
+  kodi_repeat_off:
+    sequence:
+      - service: script.kodi_set_repeat
+        data:
+          repeat: "off"
+
+  kodi_set_shuffle:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.SetShuffle"
+            params:
+              playerid: 1
+              shuffle: "{{ shuffle|default(true, true) }}"
+
+  kodi_shuffle_on:
+    sequence:
+      - service: script.kodi_set_shuffle
+        data:
+          shuffle: true
+
+  kodi_shuffle_off:
+    sequence:
+      - service: script.kodi_set_shuffle
+        data:
+          shuffle: false
