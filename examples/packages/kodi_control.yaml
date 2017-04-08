@@ -66,8 +66,12 @@ script:
   kodi_play_file:
     sequence:
       - service: shell_command.curl
+        # We need full config here since we're using data_template
         data_template:
-          <<: *defaults
+          url: "http://192.168.1.76:8099/jsonrpc"
+          method: "post"
+          headers:
+            content-type: "application/json"
           payload:
             jsonrpc: "2.0"
             id: 1
@@ -135,10 +139,10 @@ script:
             params:
               playerid: 1
 
-  kodi_goto:
+  kodi_next:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -146,18 +150,20 @@ script:
             method: "Player.GoTo"
             params:
               playerid: 1
-              to: "{{ to }}"
-  kodi_next:
-    sequence:
-      - service: script.kodi_goto
-        data:
-          to: "next"
+              to: "next"
 
   kodi_previous:
     sequence:
-      - service: script.kodi_goto
+      - service: shell_command.curl
         data:
-          to: "previous"
+          <<: *defaults
+          payload:
+            jsonrpc: "2.0"
+            id: 1
+            method: "Player.GoTo"
+            params:
+              playerid: 1
+              to: "previous"
 
   kodi_speed_1x:
     sequence:
@@ -503,22 +509,10 @@ script:
             id: 1
             method: "Input.ShowCodec"
 
-  kodi_exec_action:
-    sequence:
-      - service: shell_command.curl
-        data_template:
-          <<: *defaults
-          payload:
-            jsonrpc: "2.0"
-            id: 1
-            method: "Input.ExecuteAction"
-            params:
-              action: "{{ action }}"
-
   kodi_nav_page_down:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
@@ -530,7 +524,7 @@ script:
   kodi_nav_page_up:
     sequence:
       - service: shell_command.curl
-        data_template:
+        data:
           <<: *defaults
           payload:
             jsonrpc: "2.0"
