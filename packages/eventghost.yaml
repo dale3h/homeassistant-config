@@ -2,6 +2,34 @@
 ## Packages / EventGhost
 ################################################################
 
+homeassistant:
+  customize:
+    automation.toggle_security_monitor:
+      friendly_name: Toggle Security Monitor
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/eventghost.yaml'
+
+    automation.smartthings_button_held:
+      friendly_name: SmartThings Button Held
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/eventghost.yaml'
+
+    switch.eventghost_blueiris:
+      friendly_name: "Blue Iris"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:camcorder
+      package_file: 'packages/eventghost.yaml'
+
+    switch.eventghost_monitor:
+      friendly_name: "Security Monitor"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:monitor
+      package_file: 'packages/eventghost.yaml'
+
 automation:
   - alias: toggle_security_monitor
     trigger:

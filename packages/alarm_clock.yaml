@@ -2,6 +2,49 @@
 ## Packages / Alarm Clock
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    automation.alarm_clock:
+      friendly_name: "Alarm Clock"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:alarm
+      package_file: 'packages/alarm_clock.yaml'
+
+    automation.alarm_clock_disable:
+      friendly_name: "Alarm Clock Disabled"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:alarm
+      package_file: 'packages/alarm_clock.yaml'
+
+    automation.alarm_clock_enable:
+      friendly_name: "Alarm Clock Enabled"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:alarm
+      package_file: 'packages/alarm_clock.yaml'
+
+    input_boolean.alarm_clock:
+      friendly_name: "Alarm Clock"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:alarm
+      package_file: 'packages/alarm_clock.yaml'
+
+    input_select.alarm_clock:
+      friendly_name: "Alarm Clock"
+      icon: mdi:alarm
+      package_file: 'packages/alarm_clock.yaml'
+
+################################################
+## Automation
+################################################
+
 automation:
   - alias: alarm_clock_disable
     trigger:
@@ -67,9 +110,17 @@ automation:
         data:
           entity_id: switch.siren_switch_16_0
 
+################################################
+## Input Boolean
+################################################
+
 input_boolean:
   alarm_clock:
     initial: off
+
+################################################
+## Input Select
+################################################
 
 input_select:
   alarm_clock:

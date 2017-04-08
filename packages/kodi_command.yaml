@@ -1,0 +1,58 @@
+################################################################
+## Packages / Kodi Command
+##
+## Dependencies: packages/curl.yaml, secrets.yaml
+################################################################
+
+################################################
+## Add your Kodi JSON RPC URL to secrets.yaml:
+##
+##   kodi_jsonrpc_url: 'http://192.168.1.76:8099/jsonrpc'
+##
+## Example Usage:
+##
+##   automation:
+##     trigger:
+##       - ...your trigger(s) here...
+##     condition:
+##       - ...your condition(s) here...
+##     action:
+##       - service: script.kodi_command
+##         data:
+##           method: "Player.PlayPause"
+##           play: true
+################################################
+
+script:
+  kodi_command:
+    sequence:
+      - service: shell_command.curl
+        data_template:
+          url: !secret kodi_jsonrpc_url
+          method: "post"
+          headers:
+            content-type: "application/json"
+          payload:
+            jsonrpc: "2.0"
+            method: "{{ method|lower }}"
+            id: "{{ id|default(1)|int }}"
+            params: >-
+              {% if method|lower == 'player.playpause' and play is defined %}
+                {{ {'playerid': 1, 'play': play} }}
+              {% elif method|lower == 'player.goto' and to is defined %}
+                {{ {'playerid': 1, 'to': to} }}
+              {% elif method|lower == 'player.setspeed' and speed is defined %}
+                {{ {'playerid': 1, 'speed': speed} }}
+              {% elif method|lower == 'player.seek' and value is defined %}
+                {{ {'playerid': 1, 'value': value} }}
+              {% elif method|lower == 'player.setrepeat' and repeat is defined %}
+                {{ {'playerid': 1, 'repeat': repeat} }}
+              {% elif method|lower == 'player.setshuffle' and shuffle is defined %}
+                {{ {'playerid': 1, 'shuffle': shuffle} }}
+              {% elif method|lower == 'input.executeaction' and action is defined %}
+                {{ {'action': action} }}
+              {% elif method|lower == 'application.setvolume' and volume is defined %}
+                {{ {'volume': volume} }}
+              {% else %}
+                {{ {'playerid': 1} }}
+              {% endif %}

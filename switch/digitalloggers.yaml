@@ -1,8 +1,0 @@
-################################################################
-## Switch / Digital Loggers
-################################################################
-
-- platform: digitalloggers
-  name: rack
-  host: !secret digitalloggers_host
-  password: !secret digitalloggers_password

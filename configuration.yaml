@@ -22,18 +22,7 @@ updater:
 ## Components (Non-Includes)
 ################################################
 
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
-
 apcupsd:
-
-# telegram:
-#   api_key: !secret telegram_bot_key
-#   chat_ids: !secret telegram_chat_id
-#   users: dale3h
-#   admins: dale3h
 
 ecobee:
   api_key: !secret ecobee_api_key
@@ -47,13 +36,6 @@ http:
   use_x_forwarded_for: true
   ip_ban_enabled: true
   login_attempts_threshold: 5
-
-influxdb:
-  host: !secret influxdb_host
-  port: !secret influxdb_port
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  database: !secret influxdb_database
 
 logbook:
   exclude:
@@ -69,19 +51,6 @@ logger:
   default: info
   logs:
     homeassistant.components.sensor.apcupsd: error
-#     homeassistant.components.climate.ecobee: warn
-#     homeassistant.components.sensor.command_line: warn
-#     homeassistant.components.device_tracker.asuswrt: warn
-#     homeassistant.components.discovery: warn
-#     homeassistant.components.ecobee: warn
-#     homeassistant.components.http: warn
-#     homeassistant.components.sensor.yweather: warn
-#     homeassistant.components.notify.telegram: warn
-#     homeassistant.components.zone: warn
-#     homeassistant.components.zwave: error
-#     homeassistant.core: warn
-#     phue: warn
-#     plexapi: warn
 
 mqtt:
   broker: !secret mqtt_broker
@@ -92,14 +61,16 @@ mqtt:
 tts:
   - platform: google
 
+  - platform: amazon_polly
+    aws_access_key_id: !secret aws_access_key_id
+    aws_secret_access_key: !secret aws_secret_access_key
+    region_name: !secret aws_region_name
+    voice: Salli
+
 xiaomi:
   gateways:
     - sid: !secret xiaomi_gateway_sid
       key: !secret xiaomi_gateway_key
-
-# zigbee:
-#   device: /dev/ttyUSB0
-#   baud: 9600
 
 zwave:
   usb_path: /dev/ttyACM0
@@ -110,7 +81,6 @@ zwave:
 ## Component Includes (Single File)
 ################################################
 
-# emulated_hue: !include emulated_hue.yaml
 ios: !include ios.yaml
 recorder: !include recorder.yaml
 
@@ -126,14 +96,12 @@ recorder: !include recorder.yaml
 ################################################
 
 automation: !include_dir_merge_list automation
-# binary_sensor: !include_dir_merge_list binary_sensor
 cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light
 media_player: !include_dir_merge_list media_player
 notify: !include_dir_merge_list notify
 sensor: !include_dir_merge_list sensor
-switch: !include_dir_merge_list switch
 zone: !include_dir_merge_list zone
 
 ################################################
@@ -142,8 +110,6 @@ zone: !include_dir_merge_list zone
 
 group: !include_dir_merge_named group
 input_boolean: !include_dir_merge_named input_boolean
-# input_select: !include_dir_merge_named input_select
 input_slider: !include_dir_merge_named input_slider
 panel_iframe: !include_dir_merge_named panel_iframe
 script: !include_dir_merge_named script
-shell_command: !include_dir_merge_named shell_command

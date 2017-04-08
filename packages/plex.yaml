@@ -1,0 +1,31 @@
+################################################################
+## Packages / Plex
+################################################################
+
+homeassistant:
+  customize:
+    packages.plex: &customize
+      haaska_hidden: true
+      hidden: true
+      package_file: 'packages/plex.yaml'
+
+    sensor.plex_activity:
+      <<: *customize
+      friendly_name: 'Plex Activity'
+
+media_player:
+  - platform: plex
+    entity_namespace: 'plex'
+    include_non_clients: false
+    scan_interval: 5
+    show_all_controls: false
+    use_custom_entity_ids: false
+    use_episode_art: true
+
+sensor:
+  - platform: plex
+    name: plex_activity
+    host: !secret plex_host
+    port: !secret plex_port
+    username: !secret plex_username
+    password: !secret plex_password

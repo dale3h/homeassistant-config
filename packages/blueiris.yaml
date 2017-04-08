@@ -2,6 +2,56 @@
 ## Packages / Blue Iris
 ################################################################
 
+homeassistant:
+  customize:
+    camera.amcrest_ptz:
+      friendly_name: "Amcrest PTZ"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.backyard:
+      friendly_name: "Backyard"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.driveway:
+      friendly_name: "Driveway"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.front_yard:
+      friendly_name: "Front Yard"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.garage:
+      friendly_name: "Garage"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.kitchen:
+      friendly_name: "Kitchen"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.living_room:
+      friendly_name: "Living Room"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.master_bedroom:
+      friendly_name: "Master Bedroom"
+      package_file: 'packages/blueiris.yaml'
+
+    camera.parker_bedroom:
+      friendly_name: "Parker Bedroom"
+      package_file: 'packages/blueiris.yaml'
+
+    group.cameras_indoor:
+      friendly_name: "Indoor Cameras"
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/blueiris.yaml'
+
+    group.cameras_outdoor:
+      friendly_name: "Outdoor Cameras"
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/blueiris.yaml'
+
 camera:
   - platform: mjpeg
     name: amcrest_ptz

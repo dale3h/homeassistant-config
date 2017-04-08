@@ -2,6 +2,26 @@
 ## Package / Motion Lights
 ################################################################
 
+homeassistant:
+  customize:
+    packages.motion_lights: &customize
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:walk
+      package_file: 'packages/motion_lights.yaml'
+
+    automation.dining_room_motion:
+      <<: *customize
+      friendly_name: "Dining Room Motion"
+
+    automation.kitchen_motion:
+      <<: *customize
+      friendly_name: "Kitchen Motion"
+
+    automation.master_bathroom_motion:
+      <<: *customize
+      friendly_name: "Bathroom Motion"
+
 automation:
   - alias: dining_room_motion
     trigger:

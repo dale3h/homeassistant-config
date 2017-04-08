@@ -1,0 +1,28 @@
+################################################################
+## Packages / Switchmate
+################################################################
+
+homeassistant:
+  customize:
+    packages.switchmate: &customize
+      package_file: 'packages/switchmate.yaml'
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    switch.kitchen_overhead:
+      <<: *customize
+      friendly_name: "Kitchen Overhead"
+      icon: mdi:lightbulb
+
+switch:
+  - platform: command_line
+    switches:
+      kitchen_overhead:
+        command_on: >-
+          python3 $HASS_CONFIG/shell_scripts/switchmate/switchmate.py $SM_KITCHEN_OVERHEAD $SM_KITCHEN_OVERHEAD_AUTH switch on > /dev/null 2>&1
+        command_off: >-
+          python3 $HASS_CONFIG/shell_scripts/switchmate/switchmate.py $SM_KITCHEN_OVERHEAD $SM_KITCHEN_OVERHEAD_AUTH switch off > /dev/null 2>&1
+        command_state: >-
+          python3 $HASS_CONFIG/shell_scripts/switchmate/switchmate.py status $SM_KITCHEN_OVERHEAD | grep on | wc -l
+        value_template: >-
+          {{ value == '1' }}

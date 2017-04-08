@@ -1,7 +1,0 @@
-################################################################
-## Shell Command / Utilities
-################################################################
-
-backup_config: "$HASS_CONFIG/shell_scripts/backup_config.sh"
-rebuild_customize: '/usr/local/bin/hass-customizer'
-update_hass: 'nohup $HASS_CONFIG/shell_scripts/update_hass.sh </dev/null >> $HASS_CONFIG/shell_scripts/update_hass.log 2>&1 &'

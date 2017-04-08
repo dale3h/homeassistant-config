@@ -1,0 +1,74 @@
+################################################################
+## Packages / Web Power Switch
+################################################################
+
+homeassistant:
+  customize:
+    packages.web_power_switch: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/web_power_switch.yaml'
+
+    group.web_power_switch:
+      <<: *customize
+      friendly_name: "Web Power Switch"
+      icon: mdi:power-settings
+
+    switch.rack_cable_modem:
+      <<: *customize
+      friendly_name: "Cable Modem"
+      icon: mdi:switch
+
+    switch.rack_media_server:
+      <<: *customize
+      friendly_name: "Media Server"
+      icon: mdi:filmstrip
+
+    switch.rack_pe1850:
+      <<: *customize
+      friendly_name: "PE1850"
+      icon: mdi:server
+
+    switch.rack_printer:
+      <<: *customize
+      friendly_name: "Printer"
+      icon: mdi:printer
+
+    switch.rack_projector:
+      <<: *customize
+      friendly_name: "Projector"
+      icon: mdi:projector
+
+    switch.rack_router:
+      <<: *customize
+      friendly_name: "Router"
+      icon: mdi:router-wireless
+
+    switch.rack_usb_panel:
+      <<: *customize
+      friendly_name: "USB Panel"
+      icon: mdi:usb
+
+    switch.rack_yamaha_avr:
+      <<: *customize
+      friendly_name: "Yamaha AVR"
+      icon: mdi:music-box
+
+group:
+  web_power_switch:
+    control: hidden
+    entities:
+      - switch.rack_cable_modem
+      - switch.rack_media_server
+      - switch.rack_pe1850
+      - switch.rack_printer
+      - switch.rack_projector
+      - switch.rack_router
+      - switch.rack_usb_panel
+      - switch.rack_yamaha_avr
+
+switch:
+  - platform: digitalloggers
+    name: rack
+    host: !secret digitalloggers_host
+    password: !secret digitalloggers_password

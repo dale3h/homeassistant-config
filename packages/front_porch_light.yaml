@@ -2,6 +2,35 @@
 ## Packages / Front Porch Light
 ################################################################
 
+homeassistant:
+  customize:
+    automation.front_porch_timer:
+      friendly_name: "Front Porch Timer"
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/front_porch_light.yaml'
+
+    binary_sensor.front_porch_expected_state:
+      device_class: light
+      friendly_name: "Front Porch Expected State"
+      homebridge_hidden: true
+      package_file: 'packages/front_porch_light.yaml'
+
+    input_select.front_porch_time_off:
+      friendly_name: "Front Porch Time Off"
+      package_file: 'packages/front_porch_light.yaml'
+
+    input_select.front_porch_time_on:
+      friendly_name: "Front Porch Time On"
+      package_file: 'packages/front_porch_light.yaml'
+
+    script.front_porch_light:
+      friendly_name: "Front Porch Light"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:lightbulb
+      package_file: 'packages/front_porch_light.yaml'
+
 automation:
   - alias: front_porch_timer
     trigger:

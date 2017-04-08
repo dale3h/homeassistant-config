@@ -1,0 +1,117 @@
+################################################################
+## Packages / Views
+################################################################
+
+homeassistant:
+  customize:
+    packages.views: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/views.yaml'
+
+    group.automation:
+      <<: *customize
+      friendly_name: "Automation"
+      icon: mdi:settings
+
+    group.cameras:
+      <<: *customize
+      friendly_name: "Cameras"
+      icon: mdi:camcorder
+
+    group.home:
+      <<: *customize
+      friendly_name: "Home"
+      icon: mdi:home
+
+    group.household:
+      <<: *customize
+      friendly_name: "Household"
+      icon: mdi:human-greeting
+
+    group.media:
+      <<: *customize
+      friendly_name: "Media"
+      icon: mdi:play-circle-outline
+
+    group.network:
+      <<: *customize
+      friendly_name: "Network"
+      icon: mdi:switch
+
+    group.sensors:
+      <<: *customize
+      friendly_name: "Sensors"
+      icon: mdi:gauge
+
+    group.weather:
+      <<: *customize
+      friendly_name: "Weather"
+      icon: mdi:weather-partlycloudy
+
+group:
+  home:
+    view: yes
+    entities:
+      - group.back_porch
+      - group.dining_room
+      - group.entryway
+      - group.front_porch
+      - group.garage
+      - group.guest_bedroom
+      - group.hallway
+      - group.kitchen
+      - group.laundry_room
+      - group.living_room
+      - group.master_bedroom
+
+  household:
+    view: yes
+    entities:
+      - group.person_dale
+      - group.guests
+
+  network:
+    view: yes
+    entities:
+      - group.network_devices
+      - group.web_power_switch
+      - group.system
+      - group.ups
+      - group.utilities
+
+  cameras:
+    view: yes
+    entities:
+      - group.cameras_indoor
+      - group.cameras_outdoor
+
+  sensors:
+    view: yes
+    entities:
+      - group.weather
+      - group.batteries
+      - group.temperature
+      - group.motion
+      - group.occupancy
+
+  media:
+    view: yes
+    entities:
+      - group.media_components
+      - group.media_players
+
+  automation:
+    view: yes
+    entities:
+      - group.automation_override
+      - group.all_automations
+      - group.all_scripts
+
+  weather:
+    view: yes
+    entities:
+      - group.weather_general
+      - group.weather_darksky
+      - group.weather_wunderground
+      - group.weather_yr

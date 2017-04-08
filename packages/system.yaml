@@ -4,9 +4,49 @@
 
 homeassistant:
   customize:
-    binary_sensor.system_ready:
-      friendly_name: System Ready
+    packages.system: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/system.yaml'
+
+    packages.system_hidden: &customize_hidden
+      <<: *customize
       hidden: true
+
+    automation.startup_notification:
+      <<: *customize
+      friendly_name: "Startup Notification"
+      icon: mdi:message-text
+
+    automation.update_notification:
+      <<: *customize
+      friendly_name: "Update Notification"
+      icon: mdi:message-text
+
+    binary_sensor.system_ready:
+      <<: *customize_hidden
+      friendly_name: "System Ready"
+      icon: mdi:flag-checkered
+
+    group.system:
+      <<: *customize
+      friendly_name: "System"
+      icon: mdi:settings-box
+
+    sensor.date:
+      <<: *customize
+      friendly_name: "System Date"
+      icon: mdi:calendar
+
+    sensor.startup_time:
+      <<: *customize
+      friendly_name: "Startup Time"
+      icon: mdi:clock-start
+
+    sensor.time:
+      <<: *customize
+      friendly_name: "System Time"
+      icon: mdi:clock
 
 group:
   system:

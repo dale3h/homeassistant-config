@@ -32,6 +32,33 @@
 ##       persistent: true
 ################################################################
 
+homeassistant:
+  customize:
+    packages.persistence: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/persistence.yaml'
+
+    automation.persistence_enable_automations:
+      <<: *customize
+      friendly_name: "Persistence Enable Automations"
+
+    automation.persistence_publish:
+      <<: *customize
+      friendly_name: "Persistence Publish"
+
+    automation.persistence_subscribe_binary:
+      <<: *customize
+      friendly_name: "Persistence Subscribe (Binary)"
+
+    automation.persistence_subscribe_select_option:
+      <<: *customize
+      friendly_name: "Persistence Subscribe (Select Option)"
+
+    automation.persistence_subscribe_select_value:
+      <<: *customize
+      friendly_name: "Persistence from MQTT (Select Value)"
+
 automation:
   ################################################
   ## Automation Enabler

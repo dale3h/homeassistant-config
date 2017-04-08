@@ -1,0 +1,15 @@
+################################################################
+## Packages / Alarm
+################################################################
+
+homeassistant:
+  customize:
+    alarm_control_panel.alarm_system:
+      friendly_name: "Alarm System"
+      package_file: 'packages/alarm.yaml'
+
+alarm_control_panel:
+  - platform: manual
+    name: alarm_system
+    code: !secret alarm_code
+

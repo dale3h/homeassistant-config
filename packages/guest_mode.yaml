@@ -2,6 +2,15 @@
 ## Packages / Guest Mode
 ################################################################
 
+homeassistant:
+  customize:
+    input_boolean.guest_mode:
+      friendly_name: "Guest Mode"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:account
+      package_file: 'packages/guest_mode.yaml'
+
 input_boolean:
   guest_mode:
     initial: off

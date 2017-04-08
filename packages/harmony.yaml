@@ -2,6 +2,64 @@
 ## Packages / Harmony Hub
 ################################################################
 
+homeassistant:
+  customize:
+    automation.toggle_apple_tv:
+      friendly_name: "Toggle Apple TV"
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/harmony.yaml'
+
+    remote.living_room:
+      friendly_name: "Living Room"
+      haaska_hidden: true
+      hidden: true
+      homebridge_hidden: true
+      icon: mdi:remote
+      package_file: 'packages/harmony.yaml'
+
+    script.harmony_activity:
+      friendly_name: "Harmony Activity"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:remote
+      package_file: 'packages/harmony.yaml'
+
+    switch.apple_tv:
+      friendly_name: "Apple TV"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:apple
+      package_file: 'packages/harmony.yaml'
+
+    switch.chromecast:
+      friendly_name: "Chromecast"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:google-chrome
+      package_file: 'packages/harmony.yaml'
+
+    switch.computer:
+      friendly_name: "Computer"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:windows
+      package_file: 'packages/harmony.yaml'
+
+    switch.fire_tv:
+      friendly_name: "Fire TV"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:amazon
+      package_file: 'packages/harmony.yaml'
+
+    switch.xbox:
+      friendly_name: "Xbox"
+      haaska_hidden: false
+      homebridge_hidden: false
+      icon: mdi:xbox
+      package_file: 'packages/harmony.yaml'
+
 automation:
   - alias: toggle_apple_tv
     trigger:

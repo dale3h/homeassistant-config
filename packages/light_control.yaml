@@ -4,33 +4,38 @@
 
 homeassistant:
   customize:
-    script.light_control:
-      friendly_name: Light Control
+    packages.light_control: &customize
+      haaska_hidden: true
       hidden: true
+      package_file: 'packages/light_control.yaml'
+
+    script.light_control:
+      <<: *customize
+      friendly_name: "Light Control"
 
     script.light_control_off:
-      friendly_name: Light Control Off
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control Off"
 
     script.light_control_off_flash:
-      friendly_name: Light Control Off Flash
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control Off Flash"
 
     script.light_control_off_transition:
-      friendly_name: Light Control Off Transition
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control Off Transition"
 
     script.light_control_on:
-      friendly_name: Light Control On
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control On"
 
     script.light_control_on_flash:
-      friendly_name: Light Control On Flash
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control On Flash"
 
     script.light_control_on_transition:
-      friendly_name: Light Control On Transition
-      hidden: true
+      <<: *customize
+      friendly_name: "Light Control On Transition"
 
 script:
   light_control:

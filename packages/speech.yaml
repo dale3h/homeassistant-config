@@ -1,0 +1,27 @@
+################################################################
+## Packages / Speech
+################################################################
+
+homeassistant:
+  customize:
+    packages.speech: &customize
+      haaska_hidden: true
+      hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/speech.yaml'
+
+    script.say:
+      <<: *customize
+      friendly_name: "Say"
+      icon: mdi:microphone
+
+script:
+  say:
+    sequence:
+      - service_template: >-
+          tts.{{ platform|default('amazon_polly') }}_say
+        data_template:
+          entity_id: >-
+            {{ entity_id|default('media_player.dining_room_home') }}
+          message: >-
+            {{ message }}

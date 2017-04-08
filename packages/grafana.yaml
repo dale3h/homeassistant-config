@@ -2,6 +2,23 @@
 ## Packages / Grafana
 ################################################################
 
+homeassistant:
+  customize:
+    script.grafana_webhook:
+      friendly_name: "Grafana Webhook"
+      haaska_hidden: true
+      homebridge_hidden: true
+      icon: mdi:webhook
+      package_file: 'packages/grafana.yaml'
+
+influxdb:
+  host: !secret influxdb_host
+  port: !secret influxdb_port
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  database: !secret influxdb_database
+  default_measurement: state
+
 panel_iframe:
   grafana:
     title: 'Grafana'

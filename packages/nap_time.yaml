@@ -1,0 +1,42 @@
+################################################################
+## Packages / Nap Time
+################################################################
+
+homeassistant:
+  customize:
+    packages.speech: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/nap_time.yaml'
+
+    script.nap_time:
+      <<: *customize
+      friendly_name: "Nap Time"
+      icon: mdi:sleep
+
+script:
+  nap_time:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.living_room
+          device: 38739413
+          command: 'Pause'
+      - service: script.say
+        data_template:
+          message: >-
+            {% if is_state('switch.apple_tv', 'on') %}
+              It is time to take a nap. Please turn off the Apple TV and go lie down.
+            {% else %}
+              It is time to take a nap. Please go lie down and take a nap.
+            {% endif %}
+      - delay: '00:01:00'
+      - condition: state
+        entity_id: switch.apple_tv
+        state: 'on'
+      - service: script.say
+        data:
+          message: "I am now turning off the Apple TV for you. Enjoy your nap!"
+      - service: switch.turn_off
+        data:
+          entity_id: switch.apple_tv

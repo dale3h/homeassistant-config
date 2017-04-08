@@ -6,6 +6,14 @@
 # @todo Add individual light brightnesses
 # @todo Is there a way to implement machine learning for individual lights?
 
+homeassistant:
+  customize:
+    sensor.global_brightness:
+      friendly_name: Global Brightness
+      hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/brightness.yaml'
+
 sensor:
   - platform: template
     sensors:

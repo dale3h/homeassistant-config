@@ -2,66 +2,21 @@
 ## Packages / Dash Buttons
 ################################################################
 
+# Dash Button Topics:
+#   dash-button/bounty
+#   dash-button/dixie
+#   dash-button/finish
+#   dash-button/gatorade
+#   dash-button/hefty
+#   dash-button/tide
+#   dash-button/ziploc
+
 automation:
   - alias: toggle_master_bathroom_shower_mode
     trigger:
-      - platform: state
-        entity_id: binary_sensor.dashbutton_ziploc
-        to: 'on'
+      - platform: mqtt
+        topic: dash-button/ziploc
+        payload: 'active'
     action:
       - service: input_boolean.toggle
         entity_id: input_boolean.shower_mode
-
-binary_sensor:
-  - platform: mqtt
-    name: dashbutton_bounty
-    state_topic: dash-button/bounty
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_dixie
-    state_topic: dash-button/dixie
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_finish
-    state_topic: dash-button/finish
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_gatorade
-    state_topic: dash-button/gatorade
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_hefty
-    state_topic: dash-button/hefty
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_tide
-    state_topic: dash-button/tide
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-  - platform: mqtt
-    name: dashbutton_ziploc
-    state_topic: dash-button/ziploc
-    payload_on: 'active'
-    payload_off: 'inactive'
-
-group:
-  dash_buttons:
-    entities:
-      - binary_sensor.dashbutton_bounty
-      - binary_sensor.dashbutton_dixie
-      - binary_sensor.dashbutton_finish
-      - binary_sensor.dashbutton_gatorade
-      - binary_sensor.dashbutton_hefty
-      - binary_sensor.dashbutton_tide
-      - binary_sensor.dashbutton_ziploc

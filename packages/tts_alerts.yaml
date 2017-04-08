@@ -2,6 +2,21 @@
 ## Packages / TTS Alerts
 ################################################################
 
+homeassistant:
+  customize:
+    packages.tts_alerts: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/tts_alerts.yaml'
+
+    alert.garage_door_open:
+      <<: *customize
+      friendly_name: Garage Door Open
+
+    automation.alert_triggered:
+      <<: *customize
+      friendly_name: Alert Triggered
+
 alert:
   garage_door_open:
     name: garage_door_open
@@ -30,7 +45,8 @@ automation:
           message: >-
             {% set alert_name = trigger.event.data.service_data.message %}
             {% set alert_map = {
-              'garage_door_open': 'The garage door is open.'
+              'garage_door_open': 'The garage door is open.',
+              'Garage Door Open': 'Fix the garage door alert.'
             } %}
             {{ alert_map[alert_name]|default(alert_name) }}
 
@@ -38,3 +54,4 @@ notify:
   - platform: file
     name: tts_alerts
     filename: tts_alerts.log
+    timestamp: true

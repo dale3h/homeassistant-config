@@ -6,10 +6,10 @@
 ## Apple TV
 ################################################
 
-- platform: apple_tv
-  name: apple_tv_living_room
-  host: !secret apple_tv_living_room_host
-  login_id: !secret apple_tv_living_room_login_id
+# - platform: apple_tv
+#   name: apple_tv_living_room
+#   host: !secret apple_tv_living_room_host
+#   login_id: !secret apple_tv_living_room_login_id
 
 # - platform: apple_tv
 #   name: apple_tv_bedroom
@@ -32,11 +32,7 @@
   name: master_bedroom_speakers
   host: !secret google_cast_master_bedroom_host
 
-################################################
-## Plex
-################################################
-
-- platform: plex
+- platform: cast
 
 ################################################
 ## Yamaha RX-V675

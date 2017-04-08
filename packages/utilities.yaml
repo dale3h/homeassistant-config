@@ -1,0 +1,94 @@
+################################################################
+## Packages / Utilities
+################################################################
+
+homeassistant:
+  customize:
+    packages.utilities: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package_file: 'packages/utilities.yaml'
+
+    automation.nightly_config_backup:
+      <<: *customize
+      friendly_name: "Nightly Config Backup"
+      icon: mdi:backup-restore
+
+    group.utilities:
+      <<: *customize
+      friendly_name: "Utilities"
+      icon: mdi:script
+
+    script.manual_config_backup:
+      <<: *customize
+      friendly_name: "Manual Config Backup"
+      icon: mdi:backup-restore
+
+    script.rebuild_customize:
+      <<: *customize
+      friendly_name: "Rebuild Customize"
+      icon: mdi:settings
+
+    script.reload_config:
+      <<: *customize
+      friendly_name: "Reload Configuration"
+      icon: mdi:refresh
+
+    script.restart_hass:
+      <<: *customize
+      friendly_name: "Restart Home Assistant"
+      icon: mdi:power
+
+    script.update_hass:
+      <<: *customize
+      friendly_name: "Update Home Assistant"
+      icon: mdi:upload
+
+group:
+  utilities:
+    control: hidden
+    entities:
+      - script.manual_config_backup
+      - script.reload_config
+      - script.update_hass
+      - script.rebuild_customize
+      - script.restart_hass
+
+automation:
+  - alias: nightly_config_backup
+    trigger:
+      - platform: time
+        after: '03:00:00'
+    action:
+      - service: shell_command.manual_config_backup
+
+script:
+  manual_config_backup:
+    sequence:
+      - service: shell_command.manual_config_backup
+
+  rebuild_customize:
+    sequence:
+      - service: shell_command.rebuild_customize
+
+  reload_config:
+    sequence:
+      - service: homeassistant.reload_core_config
+
+  restart_hass:
+    sequence:
+      - service: homeassistant.restart
+
+  update_hass:
+    sequence:
+      - service: shell_command.update_hass
+
+shell_command:
+  manual_config_backup: >-
+    $HASS_CONFIG/shell_scripts/backup_config.sh
+
+  rebuild_customize: >-
+    /usr/local/bin/hass-customizer
+
+  update_hass: >-
+    /usr/bin/nohup $HASS_CONFIG/shell_scripts/update_hass.sh </dev/null >> $HASS_CONFIG/shell_scripts/update_hass.log 2>&1 &

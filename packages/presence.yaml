@@ -2,6 +2,28 @@
 ## Packages / Presence
 ################################################################
 
+homeassistant:
+  customize:
+    packages.presence: &customize
+      haaska_hidden: false
+      homebridge_hidden: false
+      package_file: 'packages/presence.yaml'
+
+    automation.activate_presence_script:
+      <<: *customize
+      friendly_name: "Activate Presence Script"
+      icon: mdi:map-marker
+
+    script.arrival:
+      <<: *customize
+      friendly_name: "Arrival"
+      icon: mdi:map-marker
+
+    script.departure:
+      <<: *customize
+      friendly_name: "Departure"
+      icon: mdi:map-marker-off
+
 automation:
   - alias: activate_presence_script
     trigger:
