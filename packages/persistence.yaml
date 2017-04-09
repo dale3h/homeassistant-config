@@ -61,34 +61,11 @@ homeassistant:
 
 automation:
   ################################################
-  ## Automation Enabler
-  ################################################
-
-  - alias: persistence_enable_automations
-    hide_entity: true
-    initial_state: 'on'
-    trigger:
-      - platform: event
-        event_type: homeassistant_start
-    action:
-      - service: automation.turn_on
-        data:
-          entity_id:
-            - automation.persistence_publish
-            - automation.persistence_subscribe_binary
-            - automation.persistence_subscribe_select_option
-            - automation.persistence_subscribe_select_value
-      - service: automation.turn_off
-        data:
-          entity_id: automation.persistence_enable_automations
-
-  ################################################
   ## Persistent Publisher
   ################################################
 
   - alias: persistence_publish
     hide_entity: true
-    initial_state: 'off'
     trigger:
       - platform: event
         event_type: state_changed
@@ -132,7 +109,6 @@ automation:
 
   - alias: persistence_subscribe_binary
     hide_entity: true
-    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/automation/+
@@ -154,7 +130,6 @@ automation:
 
   - alias: persistence_subscribe_select_option
     hide_entity: true
-    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/input_select/+
@@ -167,7 +142,6 @@ automation:
 
   - alias: persistence_subscribe_select_value
     hide_entity: true
-    initial_state: 'off'
     trigger:
       - platform: mqtt
         topic: home-assistant/input_slider/+

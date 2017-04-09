@@ -60,8 +60,8 @@ group:
 automation:
   - alias: startup_notification
     trigger:
-      - platform: event
-        event_type: homeassistant_start
+      - platform: homeassistant
+        event: start
     action:
       - service: notify.telegram
         data:
@@ -71,8 +71,8 @@ automation:
     trigger:
       - platform: state
         entity_id: updater.updater
-      - platform: event
-        event_type: homeassistant_start
+      - platform: homeassistant
+        event: start
     condition:
       - condition: template
         value_template: >-
