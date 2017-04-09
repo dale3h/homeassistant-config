@@ -1,0 +1,31 @@
+{% macro human_time(seconds) -%}
+  {%- set seconds = seconds|int -%}
+  {%- set comma = joiner(', ') -%}
+  {%- set intervals = {
+    'weeks': 60 * 60 * 24 * 7,
+    'days': 60 * 60 * 24,
+    'hours': 60 * 60,
+    'minutes': 60,
+    'seconds': 1,
+  } -%}
+
+  {%- set weeks = seconds // intervals.weeks -%}
+  {%- set seconds = seconds % intervals.weeks -%}
+  {{- comma() ~ weeks ~ ' week' ~ ('s' if weeks != 1) if weeks -}}
+
+  {%- set days = seconds // intervals.days -%}
+  {%- set seconds = seconds % intervals.days -%}
+  {{- comma() ~ days ~ ' day' ~ ('s' if days != 1) if days -}}
+
+  {%- set hours = seconds // intervals.hours -%}
+  {%- set seconds = seconds % intervals.hours -%}
+  {{- comma() ~ hours ~ ' hour' ~ ('s' if hours != 1) if hours -}}
+
+  {%- set minutes = seconds // intervals.minutes -%}
+  {{- comma() ~ minutes ~ ' minute' ~ ('s' if minutes != 1) if minutes -}}
+
+  {%- set seconds = seconds % intervals.minutes -%}
+  {{- comma() ~ seconds ~ ' second' ~ ('s' if seconds != 1) if seconds -}}
+{%- endmacro %}
+
+59251 seconds in readable format: {{ human_time(59251) }}
