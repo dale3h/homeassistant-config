@@ -1,0 +1,30 @@
+################################################################
+## Packages / Restart MQTT
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    script.restart_mqtt:
+      friendly_name: "Restart MQTT Broker"
+      icon: mdi:bomb
+
+################################################
+## Script
+################################################
+
+script:
+  restart_mqtt:
+    sequence:
+      - service: shell_command.restart_mqtt
+
+################################################
+## Shell Command
+################################################
+
+shell_command:
+  restart_mqtt: >-
+    sudo /bin/systemctl restart mosquitto.service
