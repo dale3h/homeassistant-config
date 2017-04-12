@@ -1,3 +1,21 @@
+# Description:
+#   Example of how to restart MQTT broker from within Home Assistant.
+#
+# Written for:
+#   @torn8o
+#
+# Components:
+#   script
+#   shell_command
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
 ################################################################
 ## Packages / Restart MQTT
 ################################################################
