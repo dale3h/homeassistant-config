@@ -2,37 +2,48 @@
 ## Packages / Front Porch Light
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
-    automation.front_porch_timer:
-      friendly_name: "Front Porch Timer"
+    packages.front_porch_light: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/front_porch_light.yaml'
+      package: 'front_porch_light'
+
+    automation.front_porch_timer:
+      <<: *customize
+      friendly_name: "Front Porch Timer"
 
     binary_sensor.front_porch_expected_state:
-      device_class: light
+      <<: *customize
       friendly_name: "Front Porch Expected State"
-      homebridge_hidden: true
-      package_file: 'packages/front_porch_light.yaml'
+      device_class: light
+      hidden: true
 
     input_select.front_porch_time_off:
+      <<: *customize
       friendly_name: "Front Porch Time Off"
-      package_file: 'packages/front_porch_light.yaml'
 
     input_select.front_porch_time_on:
+      <<: *customize
       friendly_name: "Front Porch Time On"
-      package_file: 'packages/front_porch_light.yaml'
 
     script.front_porch_light:
+      <<: *customize
       friendly_name: "Front Porch Light"
-      haaska_hidden: true
-      homebridge_hidden: true
+      hidden: true
       icon: mdi:lightbulb
-      package_file: 'packages/front_porch_light.yaml'
+
+################################################
+## Automation
+################################################
 
 automation:
   - alias: front_porch_timer
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: sensor.time
@@ -46,6 +57,10 @@ automation:
     action:
       - service: script.front_porch_light
 
+################################################
+## Binary Sensor
+################################################
+
 binary_sensor:
   - platform: template
     sensors:
@@ -55,6 +70,10 @@ binary_sensor:
           {% set time_on = states('input_select.front_porch_time_on').replace(':', '.')|float %}
           {% set time_off = states('input_select.front_porch_time_off').replace(':', '.')|float %}
           {{ not time_off <= time_now < time_on }}
+
+################################################
+## Input Select
+################################################
 
 input_select:
   front_porch_time_on:
@@ -82,6 +101,10 @@ input_select:
       - '08:00'
       - '08:30'
       - '09:00'
+
+################################################
+## Script
+################################################
 
 script:
   front_porch_light:

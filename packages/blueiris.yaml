@@ -2,55 +2,136 @@
 ## Packages / Blue Iris
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
+    packages.blueiris: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package: 'blueiris'
+
     camera.amcrest_ptz:
+      <<: *customize
       friendly_name: "Amcrest PTZ"
-      package_file: 'packages/blueiris.yaml'
 
     camera.backyard:
+      <<: *customize
       friendly_name: "Backyard"
-      package_file: 'packages/blueiris.yaml'
 
     camera.driveway:
+      <<: *customize
       friendly_name: "Driveway"
-      package_file: 'packages/blueiris.yaml'
 
     camera.front_yard:
+      <<: *customize
       friendly_name: "Front Yard"
-      package_file: 'packages/blueiris.yaml'
 
     camera.garage:
+      <<: *customize
       friendly_name: "Garage"
-      package_file: 'packages/blueiris.yaml'
 
     camera.kitchen:
+      <<: *customize
       friendly_name: "Kitchen"
-      package_file: 'packages/blueiris.yaml'
 
     camera.living_room:
+      <<: *customize
       friendly_name: "Living Room"
-      package_file: 'packages/blueiris.yaml'
 
     camera.master_bedroom:
+      <<: *customize
       friendly_name: "Master Bedroom"
-      package_file: 'packages/blueiris.yaml'
 
     camera.parker_bedroom:
+      <<: *customize
       friendly_name: "Parker Bedroom"
-      package_file: 'packages/blueiris.yaml'
 
     group.cameras_indoor:
+      <<: *customize
       friendly_name: "Indoor Cameras"
-      haaska_hidden: true
-      homebridge_hidden: true
-      package_file: 'packages/blueiris.yaml'
 
     group.cameras_outdoor:
+      <<: *customize
       friendly_name: "Outdoor Cameras"
-      haaska_hidden: true
-      homebridge_hidden: true
-      package_file: 'packages/blueiris.yaml'
+
+    binary_sensor.amcrest_ptz_cam_motion:
+      <<: *customize
+      friendly_name: "Amcrest Ptz Cam Motion"
+      device_class: motion
+
+    binary_sensor.backyard_cam_motion:
+      <<: *customize
+      friendly_name: "Backyard Cam Motion"
+      device_class: motion
+
+    binary_sensor.driveway_cam_motion:
+      <<: *customize
+      friendly_name: "Driveway Cam Motion"
+      device_class: motion
+
+    binary_sensor.front_yard_cam_motion:
+      <<: *customize
+      friendly_name: "Front Yard Cam Motion"
+      device_class: motion
+
+    binary_sensor.garage_cam_motion:
+      <<: *customize
+      friendly_name: "Garage Cam Motion"
+      device_class: motion
+
+    binary_sensor.kitchen_cam_motion:
+      <<: *customize
+      friendly_name: "Kitchen Cam Motion"
+      device_class: motion
+
+    binary_sensor.living_room_cam_motion:
+      <<: *customize
+      friendly_name: "Living Room Cam Motion"
+      device_class: motion
+
+    binary_sensor.living_room_fd_cam_motion:
+      <<: *customize
+      friendly_name: "Front Door Cam Motion"
+      device_class: motion
+
+    binary_sensor.master_bedroom_cam_motion:
+      <<: *customize
+      friendly_name: "Master Bedroom Cam Motion"
+      device_class: motion
+
+    binary_sensor.parker_bedroom_cam_motion:
+      <<: *customize
+      friendly_name: "Parker Bedroom Cam Motion"
+      device_class: motion
+
+################################################
+## Group
+################################################
+
+group:
+  cameras_indoor:
+    control: hidden
+    entities:
+      - camera.amcrest_ptz
+      - camera.backyard
+      - camera.front_yard
+      - camera.garage
+      - camera.kitchen
+      - camera.living_room
+      - camera.master_bedroom
+      - camera.parker_bedroom
+
+  cameras_outdoor:
+    control: hidden
+    entities:
+      - camera.driveway
+
+################################################
+## Camera
+################################################
 
 camera:
   - platform: mjpeg
@@ -115,19 +196,3 @@ camera:
     username: !secret blueiris_username
     password: !secret blueiris_password
     authentication: basic
-
-group:
-  cameras_indoor:
-    entities:
-      - camera.amcrest_ptz
-      - camera.backyard
-      - camera.front_yard
-      - camera.garage
-      - camera.kitchen
-      - camera.living_room
-      - camera.master_bedroom
-      - camera.parker_bedroom
-
-  cameras_outdoor:
-    entities:
-      - camera.driveway

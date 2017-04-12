@@ -1,0 +1,51 @@
+################################################################
+## Z-Wave / Device Config
+################################################################
+
+!secret sensor_front_door_lock_alarm_level:
+  ignored: true
+
+!secret sensor_front_door_lock_alarm_type:
+  ignored: true
+
+!secret sensor_front_door_sensor_alarm_level:
+  ignored: true
+
+!secret sensor_front_door_sensor_alarm_type:
+  ignored: true
+
+!secret sensor_front_door_sensor_burglar:
+  ignored: true
+
+!secret sensor_front_door_sensor_sourcenodeid:
+  ignored: true
+
+!secret sensor_kitchen_motion_alarm_level:
+  ignored: true
+
+!secret sensor_kitchen_motion_alarm_type:
+  ignored: true
+
+!secret sensor_kitchen_motion_burglar:
+  ignored: true
+
+!secret sensor_kitchen_motion_sourcenodeid:
+  ignored: true
+
+!secret sensor_kitchen_motion_ultraviolet:
+  ignored: true
+
+!secret sensor_master_bathroom_motion_alarm_level:
+  ignored: true
+
+!secret sensor_master_bathroom_motion_alarm_type:
+  ignored: true
+
+!secret sensor_master_bathroom_motion_burglar:
+  ignored: true
+
+!secret sensor_master_bathroom_motion_sourcenodeid:
+  ignored: true
+
+!secret sensor_master_bathroom_motion_ultraviolet:
+  ignored: true

@@ -2,12 +2,16 @@
 ## Packages / Light Control
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.light_control: &customize
       haaska_hidden: true
       hidden: true
-      package_file: 'packages/light_control.yaml'
+      package: 'light_control'
 
     script.light_control:
       <<: *customize
@@ -36,6 +40,10 @@ homeassistant:
     script.light_control_on_transition:
       <<: *customize
       friendly_name: "Light Control On Transition"
+
+################################################
+## Script
+################################################
 
 script:
   light_control:

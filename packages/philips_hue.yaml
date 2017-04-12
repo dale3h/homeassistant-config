@@ -1,0 +1,411 @@
+################################################################
+## Packages / Philips Hue
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.philips_hue: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package: 'philips_hue'
+
+    ################################################
+    ## Hidden Lights
+    ################################################
+
+    light.back_porch_1:
+      <<: *customize
+      friendly_name: "Back Porch 1"
+      hidden: true
+
+    light.chandelier_1:
+      <<: *customize
+      friendly_name: "Chandelier 1"
+      hidden: true
+
+    light.chandelier_2:
+      <<: *customize
+      friendly_name: "Chandelier 2"
+      hidden: true
+
+    light.chandelier_3:
+      <<: *customize
+      friendly_name: "Chandelier 3"
+      hidden: true
+
+    light.dining_room_1:
+      <<: *customize
+      friendly_name: "Dining Room 1"
+      hidden: true
+
+    light.dining_room_2:
+      <<: *customize
+      friendly_name: "Dining Room 2"
+      hidden: true
+
+    light.entry:
+      <<: *customize
+      friendly_name: "Entry"
+      hidden: true
+
+    light.entry_light_1:
+      <<: *customize
+      friendly_name: "Entry Light 1"
+      hidden: true
+
+    light.entry_light_2:
+      <<: *customize
+      friendly_name: "Entry Light 2"
+      hidden: true
+
+    light.front_porch_1:
+      <<: *customize
+      friendly_name: "Front Porch 1"
+      hidden: true
+
+    light.guest_bathroom_1:
+      <<: *customize
+      friendly_name: "Guest Bathroom 1"
+      hidden: true
+
+    light.guest_bathroom_2:
+      <<: *customize
+      friendly_name: "Guest Bathroom 2"
+      hidden: true
+
+    light.guest_bedroom_1:
+      <<: *customize
+      friendly_name: "Guest Bedroom 1"
+      hidden: true
+
+    light.hallway_1:
+      <<: *customize
+      friendly_name: "Hallway 1"
+      hidden: true
+
+    light.kitchen:
+      <<: *customize
+      friendly_name: "Kitchen"
+      hidden: true
+
+    light.laundry_room_1:
+      <<: *customize
+      friendly_name: "Laundry Room 1"
+      hidden: true
+
+    light.living_room_1:
+      <<: *customize
+      friendly_name: "Living Room 1"
+      hidden: true
+
+    light.living_room_2:
+      <<: *customize
+      friendly_name: "Living Room 2"
+      hidden: true
+
+    light.master_bathroom_1:
+      <<: *customize
+      friendly_name: "Master Bathroom 1"
+      hidden: true
+
+    light.master_bathroom_2:
+      <<: *customize
+      friendly_name: "Master Bathroom 2"
+      hidden: true
+
+    light.master_bedroom_1:
+      <<: *customize
+      friendly_name: "Master Bedroom 1"
+      hidden: true
+
+    light.master_bedroom_2:
+      <<: *customize
+      friendly_name: "Master Bedroom 2"
+      hidden: true
+
+    light.master_closet_1:
+      <<: *customize
+      friendly_name: "Master Closet 1"
+      hidden: true
+
+    light.parker_bedroom:
+      <<: *customize
+      friendly_name: "Parker Bedroom"
+      hidden: true
+
+    light.parker_lamp_1:
+      <<: *customize
+      friendly_name: "Parker Lamp 1"
+      hidden: true
+
+    light.parker_lamp_2:
+      <<: *customize
+      friendly_name: "Parker Lamp 2"
+      hidden: true
+
+    ################################################
+    ## Visible Lights
+    ################################################
+
+    light.back_porch:
+      <<: *customize
+      friendly_name: "Back Porch"
+
+    light.chandelier:
+      <<: *customize
+      friendly_name: "Chandelier"
+
+    light.dining_room:
+      <<: *customize
+      friendly_name: "Dining Room"
+
+    light.entry_lamp:
+      <<: *customize
+      friendly_name: "Entry Lamp"
+
+    light.front_porch:
+      <<: *customize
+      friendly_name: "Front Porch"
+
+    light.guest_bathroom:
+      <<: *customize
+      friendly_name: "Guest Bathroom"
+
+    light.guest_bedroom:
+      <<: *customize
+      friendly_name: "Guest Bedroom"
+
+    light.hallway:
+      <<: *customize
+      friendly_name: "Hallway"
+
+    light.laundry_room:
+      <<: *customize
+      friendly_name: "Laundry Room"
+
+    light.living_room:
+      <<: *customize
+      friendly_name: "Living Room"
+
+    light.master_bathroom:
+      <<: *customize
+      friendly_name: "Master Bathroom"
+
+    light.master_bedroom:
+      <<: *customize
+      friendly_name: "Master Bedroom"
+
+    light.master_closet:
+      <<: *customize
+      friendly_name: "Master Closet"
+
+    light.parker_closet:
+      <<: *customize
+      friendly_name: "Parker Closet"
+
+    light.parker_lamp:
+      <<: *customize
+      friendly_name: "Parker Lamp"
+
+    light.range:
+      <<: *customize
+      friendly_name: "Range"
+
+    light.sink:
+      <<: *customize
+      friendly_name: "Sink"
+
+    ################################################
+    ## Automation
+    ################################################
+
+    # automation.hue_master_bedroom_dimmer_good_morning_good_night:
+    #   <<: *customize
+    #   friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
+    #
+    # automation.hue_master_bedroom_dimmer_motion_on_motion_off:
+    #   <<: *customize
+    #   friendly_name: "Hue Master Bedroom Dimmer Motion On Motion Off"
+
+    ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.guest_bathroom_motion:
+      <<: *customize
+      friendly_name: "Guest Bathroom Motion"
+      device_class: motion
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.guest_bathroom_lux:
+      <<: *customize
+      friendly_name: "Guest Bathroom Lux"
+
+    sensor.guest_bathroom_temperature:
+      <<: *customize
+      friendly_name: "Guest Bathroom Temperature"
+
+    # sensor.dining_room_dimmer:
+    #   <<: *customize
+    #   friendly_name: "Dining Room Dimmer"
+    #
+    # sensor.dining_room_dimmer_cycle:
+    #   <<: *customize
+    #   friendly_name: "Dining Room Dimmer Cycle"
+    #
+    # sensor.guest_bedroom_dimmer:
+    #   <<: *customize
+    #   friendly_name: "Guest Bedroom Dimmer"
+    #
+    # sensor.guest_bedroom_dimmer_cycle:
+    #   <<: *customize
+    #   friendly_name: "Guest Bedroom Dimmer Cycle"
+    #
+    # sensor.master_bedroom_dimmer:
+    #   <<: *customize
+    #   friendly_name: "Master Bedroom Dimmer"
+    #
+    # sensor.master_bedroom_dimmer_cycle:
+    #   <<: *customize
+    #   friendly_name: "Master Bedroom Dimmer Cycle"
+    #
+    # sensor.parker_bedroom_tap:
+    #   <<: *customize
+    #   friendly_name: "Parker Bedroom Tap"
+
+################################################
+## Light
+################################################
+
+light:
+  - platform: hue
+    filename: !secret hue_filename
+    host: !secret hue_host
+    allow_hue_groups: true
+    allow_unreachable: true
+
+################################################
+## Automation
+################################################
+
+# automation:
+#   - alias: hue_master_bedroom_dimmer_good_morning_good_night
+#     # initial_state: 'on'
+#     trigger:
+#       - platform: state
+#         entity_id: sensor.master_bedroom_dimmer
+#         to: '1003'
+#       - platform: state
+#         entity_id: sensor.master_bedroom_dimmer
+#         to: '4003'
+#     action:
+#       - service: script.turn_on
+#         data_template:
+#           entity_id: "script.good_{{ 'night' if trigger.to_state.state == '4003' else 'morning' }}"
+#       - service: mqtt.publish
+#         data:
+#           topic: hue/master_bedroom_dimmer/buttonevent
+#           payload: 'inactive'
+#
+#   - alias: hue_master_bedroom_dimmer_motion_on_motion_off
+#     # initial_state: 'on'
+#     trigger:
+#       - platform: state
+#         entity_id: sensor.master_bedroom_dimmer
+#         to: '2003'
+#       - platform: state
+#         entity_id: sensor.master_bedroom_dimmer
+#         to: '3003'
+#     action:
+#       - service_template: "automation.turn_{{ 'off' if trigger.to_state.state == '3003' else 'on' }}"
+#         data:
+#           entity_id: automation.master_bedroom_motion
+#       - service: mqtt.publish
+#         data:
+#           topic: hue/master_bedroom_dimmer/buttonevent
+#           payload: 'inactive'
+
+################################################
+## Binary Sensor
+################################################
+
+binary_sensor:
+  - platform: rest
+    name: guest_bathroom_motion
+    resource: !secret hue_url_guest_bathroom_motion
+    value_template: '{{ value_json.state.presence }}'
+    scan_interval: 2
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  ################################################
+  ## Dining Room
+  ################################################
+
+  # - platform: mqtt
+  #   name: dining_room_dimmer
+  #   state_topic: hue/dining_room_dimmer/buttonevent
+  #
+  # - platform: mqtt
+  #   name: dining_room_dimmer_cycle
+  #   state_topic: hue/dimmer_switch_9_scenecycle/status
+
+  ################################################
+  ## Guest Bathroom
+  ################################################
+
+  - platform: rest
+    name: guest_bathroom_lux
+    resource: !secret hue_url_guest_bathroom_lux
+    value_template: '{{ value_json.state.lightlevel }}'
+    unit_of_measurement: Lux
+    scan_interval: 10
+
+  - platform: rest
+    name: guest_bathroom_temperature
+    resource: !secret hue_url_guest_bathroom_temperature
+    value_template: '{{ value_json.state.temperature|float / 100 }}'
+    unit_of_measurement: '°C'
+    scan_interval: 60
+
+  ################################################
+  ## Guest Bedroom
+  ################################################
+
+  # - platform: mqtt
+  #   name: guest_bedroom_dimmer
+  #   state_topic: hue/guest_bedroom_dimmer/buttonevent
+  #
+  # - platform: mqtt
+  #   name: guest_bedroom_dimmer_cycle
+  #   state_topic: hue/dimmer_switch_11_scenecycle/status
+
+  ################################################
+  ## Master Bedroom
+  ################################################
+
+  # - platform: mqtt
+  #   name: master_bedroom_dimmer
+  #   state_topic: hue/master_bedroom_dimmer/buttonevent
+  #
+  # - platform: mqtt
+  #   name: master_bedroom_dimmer_cycle
+  #   state_topic: hue/dimmer_switch_2_scenecycle/status
+
+  ################################################
+  ## Parker's Bedroom
+  ################################################
+
+  # - platform: mqtt
+  #   name: parker_bedroom_tap
+  #   state_topic: hue/parker_tap/buttonevent

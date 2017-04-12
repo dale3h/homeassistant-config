@@ -1,0 +1,80 @@
+################################################################
+## Packages / ecobee
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.ecobee: &customize
+      package: 'ecobee'
+
+    packages.ecobee_exposed: &customize_exposed
+      <<: *customize
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    packages.ecobee_contained: &customize_contained
+      <<: *customize
+      haaska_hidden: true
+      homebridge_hidden: true
+
+    binary_sensor.guest_bedroom_occupancy:
+      <<: *customize_exposed
+      friendly_name: "Guest Bedroom Occupancy"
+      device_class: occupancy
+
+    binary_sensor.home_occupancy:
+      <<: *customize_exposed
+      friendly_name: "Hallway Occupancy"
+      device_class: occupancy
+
+    binary_sensor.living_room_occupancy:
+      <<: *customize_exposed
+      friendly_name: "Living Room Occupancy"
+      device_class: occupancy
+
+    binary_sensor.master_bedroom_occupancy:
+      <<: *customize_exposed
+      friendly_name: "Master Bedroom Occupancy"
+      device_class: occupancy
+
+    climate.home:
+      <<: *customize_exposed
+      friendly_name: "Home"
+      icon: mdi:nest-thermostat
+
+    sensor.guest_bedroom_temperature:
+      <<: *customize_exposed
+      friendly_name: "Guest Bedroom Temperature"
+      icon: mdi:thermometer
+
+    sensor.home_humidity:
+      <<: *customize_exposed
+      friendly_name: "Home Humidity"
+      icon: mdi:water-percent
+
+    sensor.home_temperature:
+      <<: *customize_exposed
+      friendly_name: "Home Temperature"
+      icon: mdi:thermometer
+
+    sensor.living_room_temperature:
+      <<: *customize_exposed
+      friendly_name: "Living Room Temperature"
+      icon: mdi:thermometer
+
+    sensor.master_bedroom_temperature:
+      <<: *customize_exposed
+      friendly_name: "Master Bedroom Temperature"
+      icon: mdi:thermometer
+
+################################################
+## ecobee
+################################################
+
+ecobee:
+  api_key: !secret ecobee_api_key
+  hold_temp: true

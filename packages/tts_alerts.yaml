@@ -2,37 +2,28 @@
 ## Packages / TTS Alerts
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.tts_alerts: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/tts_alerts.yaml'
-
-    alert.garage_door_open:
-      <<: *customize
-      friendly_name: Garage Door Open
+      package: 'tts_alerts'
 
     automation.alert_triggered:
       <<: *customize
       friendly_name: Alert Triggered
 
-alert:
-  garage_door_open:
-    name: garage_door_open
-    entity_id: cover.garage_door
-    state: 'open'
-    repeat:
-      - 15
-      - 30
-      - 60
-    can_acknowledge: true
-    skip_first: false
-    notifiers:
-      - tts_alerts
+################################################
+## Automation
+################################################
 
 automation:
   - alias: alert_triggered
+    # initial_state: 'on'
     trigger:
       - platform: event
         event_type: call_service
@@ -40,7 +31,11 @@ automation:
           domain: notify
           service: tts_alerts
     action:
-      - service: tts.google_say
+      - service: notify.syslog
+        data_template:
+          message: >-
+            {{ trigger|tojson(2) }}
+      - service: script.say
         data_template:
           message: >-
             {% set alert_name = trigger.event.data.service_data.message %}
@@ -49,6 +44,10 @@ automation:
               'Garage Door Open': 'Fix the garage door alert.'
             } %}
             {{ alert_map[alert_name]|default(alert_name) }}
+
+################################################
+## Notify
+################################################
 
 notify:
   - platform: file

@@ -13,33 +13,33 @@ homeassistant:
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:alarm
-      package_file: 'packages/alarm_clock.yaml'
+      package: 'alarm_clock'
 
     automation.alarm_clock_disable:
       friendly_name: "Alarm Clock Disabled"
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:alarm
-      package_file: 'packages/alarm_clock.yaml'
+      package: 'alarm_clock'
 
     automation.alarm_clock_enable:
       friendly_name: "Alarm Clock Enabled"
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:alarm
-      package_file: 'packages/alarm_clock.yaml'
+      package: 'alarm_clock'
 
     input_boolean.alarm_clock:
       friendly_name: "Alarm Clock"
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:alarm
-      package_file: 'packages/alarm_clock.yaml'
+      package: 'alarm_clock'
 
     input_select.alarm_clock:
       friendly_name: "Alarm Clock"
       icon: mdi:alarm
-      package_file: 'packages/alarm_clock.yaml'
+      package: 'alarm_clock'
 
 ################################################
 ## Automation
@@ -47,6 +47,7 @@ homeassistant:
 
 automation:
   - alias: alarm_clock_disable
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_boolean.alarm_clock
@@ -55,13 +56,14 @@ automation:
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.siren_switch_16_0
+          entity_id: !secret switch_siren
       - service: input_select.select_option
         data:
           entity_id: input_select.alarm_clock
           option: 'Disabled'
 
   - alias: alarm_clock_enable
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_select.alarm_clock
@@ -72,6 +74,7 @@ automation:
           entity_id: input_boolean.alarm_clock
 
   - alias: alarm_clock
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: sensor.time
@@ -87,12 +90,12 @@ automation:
 
       - service: switch.turn_on
         data:
-          entity_id: switch.siren_switch_16_0
+          entity_id: !secret switch_siren
 
       - delay: '00:00:15'
       - service: switch.turn_off
         data:
-          entity_id: switch.siren_switch_16_0
+          entity_id: !secret switch_siren
 
       - delay: '00:01:00'
       - condition: state
@@ -100,7 +103,7 @@ automation:
         state: 'on'
       - service: switch.turn_on
         data:
-          entity_id: switch.siren_switch_16_0
+          entity_id: !secret switch_siren
 
       - delay: '00:05:00'
       - condition: state
@@ -108,7 +111,7 @@ automation:
         state: 'on'
       - service: switch.turn_on
         data:
-          entity_id: switch.siren_switch_16_0
+          entity_id: !secret switch_siren
 
 ################################################
 ## Input Boolean

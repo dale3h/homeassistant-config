@@ -2,6 +2,10 @@
 ## Packages / Grafana
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     script.grafana_webhook:
@@ -9,7 +13,11 @@ homeassistant:
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:webhook
-      package_file: 'packages/grafana.yaml'
+      package: 'grafana'
+
+################################################
+## InfluxDB
+################################################
 
 influxdb:
   host: !secret influxdb_host
@@ -19,11 +27,19 @@ influxdb:
   database: !secret influxdb_database
   default_measurement: state
 
+################################################
+## Panel Iframe
+################################################
+
 panel_iframe:
   grafana:
     title: 'Grafana'
     url: !secret panel_grafana_url
     icon: mdi:chart-pie
+
+################################################
+## Script
+################################################
 
 script:
   grafana_webhook:

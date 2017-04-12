@@ -2,13 +2,17 @@
 ## Packages / Harmony Hub
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     automation.toggle_apple_tv:
       friendly_name: "Toggle Apple TV"
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     remote.living_room:
       friendly_name: "Living Room"
@@ -16,58 +20,63 @@ homeassistant:
       hidden: true
       homebridge_hidden: true
       icon: mdi:remote
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     script.harmony_activity:
       friendly_name: "Harmony Activity"
       haaska_hidden: true
       homebridge_hidden: true
       icon: mdi:remote
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     switch.apple_tv:
       friendly_name: "Apple TV"
       haaska_hidden: false
       homebridge_hidden: false
       icon: mdi:apple
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     switch.chromecast:
       friendly_name: "Chromecast"
       haaska_hidden: false
       homebridge_hidden: false
       icon: mdi:google-chrome
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     switch.computer:
       friendly_name: "Computer"
       haaska_hidden: false
       homebridge_hidden: false
       icon: mdi:windows
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     switch.fire_tv:
       friendly_name: "Fire TV"
       haaska_hidden: false
       homebridge_hidden: false
       icon: mdi:amazon
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
 
     switch.xbox:
       friendly_name: "Xbox"
       haaska_hidden: false
       homebridge_hidden: false
       icon: mdi:xbox
-      package_file: 'packages/harmony.yaml'
+      package: 'harmony'
+
+################################################
+## Automation
+################################################
 
 automation:
   - alias: toggle_apple_tv
+    # initial_state: 'on'
     trigger:
       - platform: event
         event_type: click
         event_data:
-            entity_id: binary_sensor.switch_158d00012d9fd7
-            click_type: single
+          entity_id: !secret binary_sensor_xiaomi_button
+          click_type: single
     condition:
       - condition: template
         value_template: "{{ states.automation.toggle_apple_tv.attributes is not none }}"
@@ -82,11 +91,19 @@ automation:
         data:
           entity_id: switch.apple_tv
 
+################################################
+## Remote
+################################################
+
 remote:
   - platform: harmony
     name: living_room
     host: !secret harmony_host
     activity: !secret harmony_activity_watch_apple_tv
+
+################################################
+## Script
+################################################
 
 script:
   harmony_activity:
@@ -98,6 +115,10 @@ script:
         data_template:
           entity_id: "{{ entity_id|default('remote.living_room') }}"
           activity: "{{ activity|default(-1) }}"
+
+################################################
+## Switch
+################################################
 
 switch:
   - platform: template

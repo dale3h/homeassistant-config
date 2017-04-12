@@ -1,0 +1,148 @@
+################################################################
+## Packages / UPS (Battery Backup)
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.ups: &customize
+      package: 'ups'
+
+    packages.ups_exposed: &customize_exposed
+      <<: *customize
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    packages.ups_contained: &customize_contained
+      <<: *customize
+      haaska_hidden: true
+      homebridge_hidden: true
+
+    group.ups:
+      <<: *customize_contained
+      friendly_name: "Battery Backup"
+      icon: mdi:car-battery
+
+    sensor.ups_battery:
+      <<: *customize_contained
+      friendly_name: "UPS Battery"
+
+    sensor.ups_input_voltage:
+      <<: *customize_contained
+      friendly_name: "UPS Input Voltage"
+
+    sensor.ups_last_self_test:
+      <<: *customize_contained
+      friendly_name: "UPS Last Self Test"
+
+    sensor.ups_load:
+      <<: *customize_contained
+      friendly_name: "UPS Load"
+
+    sensor.ups_nominal_input_voltage:
+      <<: *customize_contained
+      friendly_name: "UPS Nominal Input Voltage"
+
+    sensor.ups_nominal_output_power:
+      <<: *customize_contained
+      friendly_name: "UPS Nominal Output Power"
+
+    sensor.ups_output_voltage:
+      <<: *customize_contained
+      friendly_name: "UPS Output Voltage"
+
+    sensor.ups_startup_time:
+      <<: *customize_contained
+      friendly_name: "UPS Startup Time"
+
+    sensor.ups_status:
+      <<: *customize_contained
+      friendly_name: "UPS Status"
+
+    sensor.ups_status_date:
+      <<: *customize_contained
+      friendly_name: "UPS Status Date"
+
+    sensor.ups_time_left:
+      <<: *customize_contained
+      friendly_name: "UPS Time Left"
+
+    sensor.ups_time_on_battery:
+      <<: *customize_contained
+      friendly_name: "UPS Time on Battery"
+
+    sensor.ups_total_time_on_battery:
+      <<: *customize_contained
+      friendly_name: "UPS Total Time on Battery"
+
+    sensor.ups_transfer_count:
+      <<: *customize_contained
+      friendly_name: "UPS Transfer Count"
+
+    sensor.ups_transfer_from_battery:
+      <<: *customize_contained
+      friendly_name: "UPS Transfer from Battery"
+
+    sensor.ups_transfer_to_battery:
+      <<: *customize_contained
+      friendly_name: "UPS Transfer to Battery"
+
+################################################
+## Group
+################################################
+
+group:
+  ups:
+    control: hidden
+    entities:
+      - sensor.ups_battery
+      - sensor.ups_input_voltage
+      - sensor.ups_last_self_test
+      - sensor.ups_load
+      - sensor.ups_nominal_input_voltage
+      - sensor.ups_nominal_output_power
+      - sensor.ups_output_voltage
+      - sensor.ups_startup_time
+      - sensor.ups_status
+      - sensor.ups_status_date
+      - sensor.ups_time_left
+      - sensor.ups_time_on_battery
+      - sensor.ups_total_time_on_battery
+      - sensor.ups_transfer_count
+      - sensor.ups_transfer_from_battery
+      - sensor.ups_transfer_to_battery
+
+################################################
+## APCUPSd
+################################################
+
+apcupsd:
+  host: !secret apcupsd_host
+  port: !secret apcupsd_port
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: apcupsd
+    resources:
+      - bcharge
+      - cumonbatt
+      - date
+      - linev
+      - loadpct
+      - nominv
+      - nompower
+      - numxfers
+      - outputv
+      - selftest
+      - starttime
+      - status
+      - timeleft
+      - tonbatt
+      - xoffbatt
+      - xonbatt

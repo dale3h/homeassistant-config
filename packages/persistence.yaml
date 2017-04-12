@@ -32,12 +32,16 @@
 ##       persistent: true
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.persistence: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/persistence.yaml'
+      package: 'persistence'
 
     automation.persistence_enable_automations:
       <<: *customize
@@ -59,12 +63,18 @@ homeassistant:
       <<: *customize
       friendly_name: "Persistence from MQTT (Select Value)"
 
+################################################
+## Automation
+################################################
+
 automation:
+
   ################################################
   ## Persistent Publisher
   ################################################
 
   - alias: persistence_publish
+    # initial_state: 'on'
     hide_entity: true
     trigger:
       - platform: event
@@ -108,6 +118,7 @@ automation:
   ################################################
 
   - alias: persistence_subscribe_binary
+    # initial_state: 'on'
     hide_entity: true
     trigger:
       - platform: mqtt
@@ -129,6 +140,7 @@ automation:
           entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
 
   - alias: persistence_subscribe_select_option
+    # initial_state: 'on'
     hide_entity: true
     trigger:
       - platform: mqtt
@@ -141,6 +153,7 @@ automation:
           option: "{{ trigger.payload }}"
 
   - alias: persistence_subscribe_select_value
+    # initial_state: 'on'
     hide_entity: true
     trigger:
       - platform: mqtt

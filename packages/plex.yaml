@@ -2,16 +2,24 @@
 ## Packages / Plex
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.plex: &customize
       haaska_hidden: true
       hidden: true
-      package_file: 'packages/plex.yaml'
+      package: 'plex'
 
     sensor.plex_activity:
       <<: *customize
       friendly_name: 'Plex Activity'
+
+################################################
+## Media Player
+################################################
 
 media_player:
   - platform: plex
@@ -21,6 +29,10 @@ media_player:
     show_all_controls: false
     use_custom_entity_ids: false
     use_episode_art: true
+
+################################################
+## Sensor
+################################################
 
 sensor:
   - platform: plex

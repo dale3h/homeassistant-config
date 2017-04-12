@@ -22,7 +22,7 @@ exclude:
     - sensor.kitchen_alarm_type_5_0
     - sensor.kitchen_burglar_5_10
     - sensor.kitchen_luminance_5_3
-    - sensor.kitchen_moisture_5_31
+    - !secret sensor_kitchen_moisture
     - sensor.kitchen_sourcenodeid_5_2
     - sensor.kitchen_ultraviolet_5_27
     - sensor.master_bathroom_alarm_level_4_1

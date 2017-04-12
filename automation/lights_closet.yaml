@@ -9,6 +9,7 @@
 ################################################
 
 - alias: master_closet_light_on_when_door_is_open
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: binary_sensor.closet_door_contact
@@ -21,6 +22,7 @@
         brightness: "{{ states('sensor.global_brightness')|int }}"
 
 - alias: master_closet_light_off_when_door_is_closed
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: binary_sensor.closet_door_contact
@@ -36,6 +38,7 @@
 ################################################
 
 - alias: parker_closet_light_on_when_door_is_open
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: binary_sensor.parker_closet_door_contact
@@ -48,6 +51,7 @@
         brightness: "{{ states('sensor.global_brightness')|int }}"
 
 - alias: parker_closet_light_off_when_door_is_closed
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: binary_sensor.parker_closet_door_contact

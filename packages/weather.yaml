@@ -1,0 +1,195 @@
+################################################################
+## Packages / Weather
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.weather: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package: 'weather'
+
+    group.weather_darksky:
+      <<: *customize
+      friendly_name: "Dark Sky"
+
+    group.weather_general:
+      <<: *customize
+      friendly_name: "General"
+
+    group.weather_wunderground:
+      <<: *customize
+      friendly_name: "Weather Underground"
+
+    group.weather_yr:
+      <<: *customize
+      friendly_name: "YR"
+
+    sensor.dark_sky_cloud_coverage:
+      <<: *customize
+      friendly_name: "Cloud Coverage"
+      icon: mdi:weather-partlycloudy
+
+    sensor.dark_sky_humidity:
+      <<: *customize
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+    sensor.dark_sky_precip_probability:
+      <<: *customize
+      friendly_name: "Precipitation"
+      icon: mdi:weather-rainy
+
+    sensor.dark_sky_temperature:
+      <<: *customize
+      friendly_name: "Temperature"
+      icon: mdi:thermometer
+
+    sensor.pws_feelslike_f:
+      <<: *customize
+      friendly_name: "Feels Like"
+      icon: mdi:thermometer
+
+    sensor.pws_heat_index_f:
+      <<: *customize
+      friendly_name: "Heat Index"
+      icon: mdi:thermometer
+
+    sensor.pws_precip_today_in:
+      <<: *customize
+      friendly_name: "Precipitation"
+      icon: mdi:weather-rainy
+
+    sensor.pws_relative_humidity:
+      <<: *customize
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+    sensor.pws_temp_f:
+      <<: *customize
+      friendly_name: "Temperature"
+      icon: mdi:thermometer
+
+    sensor.pws_weather:
+      <<: *customize
+      friendly_name: "Current Conditions"
+
+    sensor.season:
+      <<: *customize
+      friendly_name: "Season"
+      icon: mdi:weather-snowy-rainy
+
+    sensor.yr_cloudiness:
+      <<: *customize
+      friendly_name: "Cloudiness"
+      icon: mdi:weather-partlycloudy
+
+    sensor.yr_condition:
+      <<: *customize
+      friendly_name: "Condition"
+      icon: mdi:weather-sunny
+
+    sensor.yr_humidity:
+      <<: *customize
+      friendly_name: "Humidity"
+      icon: mdi:water-percent
+
+    sensor.yr_precipitation:
+      <<: *customize
+      friendly_name: "Precipitation"
+      icon: mdi:weather-rainy
+
+    sensor.yr_temperature:
+      <<: *customize
+      friendly_name: "Temperature"
+      icon: mdi:thermometer
+
+################################################
+## Group
+################################################
+
+group:
+  weather_general:
+    control: hidden
+    entities:
+      - sun.sun
+      - sensor.season
+
+  weather_darksky:
+    control: hidden
+    entities:
+      - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_temperature
+
+  weather_wunderground:
+    control: hidden
+    entities:
+      - sensor.pws_feelslike_f
+      - sensor.pws_heat_index_f
+      - sensor.pws_relative_humidity
+      - sensor.pws_precip_today_in
+      - sensor.pws_temp_f
+      - sensor.pws_weather
+
+  weather_yr:
+    control: hidden
+    entities:
+      - sensor.yr_cloudiness
+      - sensor.yr_humidity
+      - sensor.yr_precipitation
+      - sensor.yr_temperature
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - cloud_cover
+      - humidity
+      - precip_probability
+      - temperature
+
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - feelslike_f
+      - heat_index_f
+      - precip_today_in
+      - relative_humidity
+      - temp_f
+      - weather
+
+  - platform: yr
+    monitored_conditions:
+      - cloudiness
+      - humidity
+      - precipitation
+      - temperature
+
+  - platform: template
+    sensors:
+      season:
+        value_template: >-
+          {% set temp_entity = 'sensor.pws_temp_f' %}
+          {% set temp = states(temp_entity)|float(none) %}
+          {% set temp_min = states.input_slider.season_winter.state|default(68)|float %}
+          {% set temp_max = states.input_slider.season_summer.state|default(84)|float %}
+
+          {% if temp is none %}
+            {{ states(temp_entity) }}
+          {% elif temp < temp_min %}
+            Winter
+          {% elif temp > temp_max %}
+            Summer
+          {% else %}
+            Awesome
+          {% endif %}

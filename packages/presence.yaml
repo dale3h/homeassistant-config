@@ -2,17 +2,25 @@
 ## Packages / Presence
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.presence: &customize
       haaska_hidden: false
       homebridge_hidden: false
-      package_file: 'packages/presence.yaml'
+      package: 'presence'
 
-    automation.activate_presence_script:
+    automation.presence_detection:
       <<: *customize
-      friendly_name: "Activate Presence Script"
+      friendly_name: "Presence Detection"
       icon: mdi:map-marker
+
+    input_boolean.guest_mode:
+      friendly_name: "Guest Mode"
+      icon: mdi:account
 
     script.arrival:
       <<: *customize
@@ -24,8 +32,13 @@ homeassistant:
       friendly_name: "Departure"
       icon: mdi:map-marker-off
 
+################################################
+## Automation
+################################################
+
 automation:
-  - alias: activate_presence_script
+  - alias: presence_detection
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: group.household
@@ -49,6 +62,18 @@ automation:
           {% elif trigger.from_state.state == 'home' %}
             script.departure
           {% endif %}
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean:
+  guest_mode:
+    initial: off
+
+################################################
+## Script
+################################################
 
 script:
   arrival:

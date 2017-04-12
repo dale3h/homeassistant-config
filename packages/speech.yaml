@@ -2,18 +2,26 @@
 ## Packages / Speech
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.speech: &customize
       haaska_hidden: true
       hidden: true
       homebridge_hidden: true
-      package_file: 'packages/speech.yaml'
+      package: 'speech'
 
     script.say:
       <<: *customize
       friendly_name: "Say"
       icon: mdi:microphone
+
+################################################
+## Script
+################################################
 
 script:
   say:

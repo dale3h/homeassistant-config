@@ -3,6 +3,7 @@
 ################################################################
 
 occupancy:
+  control: hidden
   entities:
     - binary_sensor.master_bedroom_occupancy
     - binary_sensor.guest_bedroom_occupancy

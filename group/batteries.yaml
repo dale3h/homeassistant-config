@@ -3,12 +3,13 @@
 ################################################################
 
 batteries:
+  control: hidden
   entities:
-    - !secret sensor_front_door_lock_battery
-    - !secret sensor_front_door_sensor_battery
-    - !secret sensor_kitchen_battery
-    - !secret sensor_master_bathroom_battery
-    - !secret sensor_siren_battery
+    - sensor.front_door_lock_battery
+    - sensor.front_door_sensor_battery
+    - sensor.kitchen_motion_battery
+    - sensor.master_bathroom_motion_battery
+    - sensor.siren_battery
     - sensor.closet_door_battery
     - sensor.garage_entry_battery
     - sensor.iphone_battery

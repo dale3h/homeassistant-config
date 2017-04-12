@@ -3,14 +3,19 @@
 ################################################################
 
 back_porch:
+  control: hidden
   entities:
     - light.back_porch
 
 dining_room:
+  control: hidden
   entities:
     - light.dining_room
+    - media_player.dining_room_home
+    - automation.dining_room_motion
 
 entryway:
+  control: hidden
   entities:
     - !secret lock_front_door
     - light.entry_lamp
@@ -19,56 +24,104 @@ entryway:
     - !secret binary_sensor_doorbell
 
 front_porch:
+  control: hidden
   entities:
     - light.front_porch
+    - binary_sensor.front_porch_expected_state
+    - input_select.front_porch_time_on
+    - input_select.front_porch_time_off
+    - script.front_porch_light
+    - automation.front_porch_timer
 
 garage:
+  control: hidden
   entities:
+    - alert.garage_door_open
     - light.garage
-    - switch.garage_door
     - cover.garage_door
     - binary_sensor.garage_entry_contact
+    - sensor.garage_entry_battery
+    - sensor.garage_entry_temperature
+    - automation.garage_lighting
 
 guest_bathroom:
+  control: hidden
   entities:
     - light.guest_bathroom
+    - binary_sensor.guest_bathroom_motion
+    - sensor.guest_bathroom_lux
+    - sensor.guest_bathroom_temperature
 
 guest_bedroom:
+  control: hidden
   entities:
     - light.guest_bedroom
+    - binary_sensor.guest_bedroom_occupancy
+    - sensor.guest_bedroom_temperature
 
 hallway:
+  control: hidden
   entities:
     - light.hallway
+    - binary_sensor.home_occupancy
+    - sensor.home_temperature
     - sensor.home_humidity
+    - climate.home
 
 kitchen:
+  control: hidden
   entities:
     - light.chandelier
     - light.range
     - light.sink
+    - switch.kitchen_overhead
+    - sensor.kitchen_motion_battery
+    - !secret binary_sensor_kitchen_motion
+    - !secret sensor_kitchen_moisture
+    - sensor.kitchen_luminance_5_3
+    - sensor.kitchen_relative_humidity_5_5
+    - sensor.kitchen_temperature_5_1
     - switch.pepper_fan
     - sensor.pepper_fan_power
-    - !secret sensor_kitchen_moisture
+    - automation.kitchen_motion
 
 laundry_room:
+  control: hidden
   entities:
     - light.laundry_room
 
 living_room:
+  control: hidden
   entities:
     - light.living_room
+    - binary_sensor.living_room_occupancy
+    - sensor.living_room_temperature
     - sensor.harmony_hub_activity
+    - media_player.living_room_speakers
+    - media_player.plex_living_room
+    - remote.living_room
 
 master_bedroom:
+  control: hidden
   entities:
-    - binary_sensor.closet_door_contact
     - light.master_bedroom
     - light.master_bathroom
     - light.master_closet
+    - binary_sensor.master_bedroom_occupancy
+    - binary_sensor.master_bedroom_motion
+    - binary_sensor.closet_door_contact
+    - sensor.master_bedroom_battery
+    - sensor.master_bedroom_motion_temperature
+    - sensor.master_bedroom_temperature
+    - automation.master_bedroom_motion
 
 parker_bedroom:
+  control: hidden
   entities:
     - light.parker_lamp
     - light.parker_closet
     - binary_sensor.parker_closet_door_contact
+    - sensor.parker_closet_door_battery
+    - sensor.parker_closet_door_temperature
+    - automation.parker_closet_light_off_when_door_is_closed
+    - automation.parker_closet_light_on_when_door_is_open

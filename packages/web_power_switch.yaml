@@ -2,12 +2,16 @@
 ## Packages / Web Power Switch
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.web_power_switch: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/web_power_switch.yaml'
+      package: 'web_power_switch'
 
     group.web_power_switch:
       <<: *customize
@@ -54,6 +58,10 @@ homeassistant:
       friendly_name: "Yamaha AVR"
       icon: mdi:music-box
 
+################################################
+## Group
+################################################
+
 group:
   web_power_switch:
     control: hidden
@@ -66,6 +74,10 @@ group:
       - switch.rack_router
       - switch.rack_usb_panel
       - switch.rack_yamaha_avr
+
+################################################
+## Switch
+################################################
 
 switch:
   - platform: digitalloggers

@@ -1,0 +1,58 @@
+################################################################
+## Packages / Garage Door
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.garage_door: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package: 'garage_door'
+
+    alert.garage_door_open:
+      <<: *customize
+      friendly_name: Garage Door Open
+
+    cover.garage_door:
+      <<: *customize
+      friendly_name: "Garage Door"
+      homebridge_cover_type: garage_door
+      icon: mdi:glassdoor
+
+################################################
+## Alert
+################################################
+
+alert:
+  garage_door_open:
+    name: garage_door_open
+    entity_id: cover.garage_door
+    state: 'open'
+    repeat:
+      - 15
+      - 30
+      - 60
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - tts_alerts
+
+################################################
+## Cover
+################################################
+
+cover:
+  - platform: mqtt
+    name: garage_door
+    state_topic: home-assistant/cover/garage_door
+    command_topic: home-assistant/cover/garage_door/set
+    payload_open: 'open'
+    payload_close: 'close'
+    payload_stop: 'stop'
+    state_open: 'open'
+    state_closed: 'closed'
+    retain: true

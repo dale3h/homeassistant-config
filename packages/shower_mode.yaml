@@ -1,0 +1,102 @@
+################################################################
+## Packages / Shower Mode
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.shower_mode: &customize
+      package: 'shower_mode'
+
+    packages.shower_mode_exposed: &customize_exposed
+      <<: *customize
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    packages.shower_mode_contained: &customize_contained
+      <<: *customize
+      haaska_hidden: true
+      hidden: true
+      homebridge_hidden: true
+
+    automation.shower_mode_disabled:
+      <<: *customize_contained
+      friendly_name: "Shower Mode Disabled"
+
+    automation.shower_mode_enabled:
+      <<: *customize_contained
+      friendly_name: "Shower Mode Enabled"
+
+    automation.toggle_shower_mode:
+      <<: *customize_contained
+      friendly_name: "Toggle Shower Mode"
+
+    input_boolean.shower_mode:
+      <<: *customize_exposed
+      friendly_name: "Shower Mode"
+      icon: mdi:water-pump
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: shower_mode_enabled
+    # initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.shower_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: automation.turn_off
+        data:
+          entity_id: automation.master_bathroom_motion
+      - service: light.turn_on
+        entity_id: light.master_bathroom
+        data_template:
+          brightness: "{{ states('sensor.global_brightness')|int }}"
+      - delay: '00:30:00'
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.shower_mode
+
+  - alias: shower_mode_disabled
+    # initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.shower_mode
+        from: 'on'
+        to: 'off'
+    action:
+      - service: automation.turn_on
+        data:
+          entity_id: automation.master_bathroom_motion
+      - condition: state
+        entity_id: !secret binary_sensor_master_bathroom_motion
+        state: 'off'
+      - service: light.turn_off
+        data:
+          entity_id: light.master_bathroom
+
+  - alias: toggle_shower_mode
+    # initial_state: 'on'
+    trigger:
+      - platform: mqtt
+        topic: dash-button/ziploc
+        payload: 'active'
+    action:
+      - service: input_boolean.toggle
+        data:
+          entity_id: input_boolean.shower_mode
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean:
+  shower_mode:
+    initial: off

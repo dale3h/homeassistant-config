@@ -22,12 +22,6 @@ updater:
 ## Components (Non-Includes)
 ################################################
 
-apcupsd:
-
-ecobee:
-  api_key: !secret ecobee_api_key
-  hold_temp: true
-
 ffmpeg:
 
 http:
@@ -51,6 +45,7 @@ logger:
   default: info
   logs:
     homeassistant.components.sensor.apcupsd: error
+    homeassistant.components.automation: debug
 
 mqtt:
   broker: !secret mqtt_broker
@@ -66,16 +61,6 @@ tts:
     aws_secret_access_key: !secret aws_secret_access_key
     region_name: !secret aws_region_name
     voice: Salli
-
-xiaomi:
-  gateways:
-    - sid: !secret xiaomi_gateway_sid
-      key: !secret xiaomi_gateway_key
-
-zwave:
-  usb_path: /dev/ttyACM0
-  config_path: /etc/homeassistant/config
-  device_config: !include zwave_device_config.yaml
 
 ################################################
 ## Component Includes (Single File)
@@ -96,12 +81,10 @@ recorder: !include recorder.yaml
 ################################################
 
 automation: !include_dir_merge_list automation
-cover: !include_dir_merge_list cover
 device_tracker: !include_dir_merge_list device_tracker
 light: !include_dir_merge_list light
 media_player: !include_dir_merge_list media_player
 notify: !include_dir_merge_list notify
-sensor: !include_dir_merge_list sensor
 zone: !include_dir_merge_list zone
 
 ################################################

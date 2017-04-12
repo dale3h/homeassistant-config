@@ -3,6 +3,7 @@
 ################################################################
 
 - alias: media_lights_when_playing
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: media_player.living_room
@@ -20,6 +21,7 @@
           - light.dining_room
 
 - alias: media_lights_when_paused
+  # initial_state: 'on'
   trigger:
     - platform: state
       entity_id: media_player.living_room

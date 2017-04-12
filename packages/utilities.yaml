@@ -2,12 +2,16 @@
 ## Packages / Utilities
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.utilities: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/utilities.yaml'
+      package: 'utilities'
 
     automation.nightly_config_backup:
       <<: *customize
@@ -44,6 +48,10 @@ homeassistant:
       friendly_name: "Update Home Assistant"
       icon: mdi:upload
 
+################################################
+## Group
+################################################
+
 group:
   utilities:
     control: hidden
@@ -54,13 +62,22 @@ group:
       - script.rebuild_customize
       - script.restart_hass
 
+################################################
+## Automation
+################################################
+
 automation:
   - alias: nightly_config_backup
+    # initial_state: 'on'
     trigger:
       - platform: time
         after: '03:00:00'
     action:
       - service: shell_command.manual_config_backup
+
+################################################
+## Script
+################################################
 
 script:
   manual_config_backup:
@@ -82,6 +99,10 @@ script:
   update_hass:
     sequence:
       - service: shell_command.update_hass
+
+################################################
+## Shell Command
+################################################
 
 shell_command:
   manual_config_backup: >-

@@ -2,12 +2,16 @@
 ## Packages / System
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.system: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/system.yaml'
+      package: 'system'
 
     packages.system_hidden: &customize_hidden
       <<: *customize
@@ -48,8 +52,13 @@ homeassistant:
       friendly_name: "System Time"
       icon: mdi:clock
 
+################################################
+## Group
+################################################
+
 group:
   system:
+    control: hidden
     entities:
       - updater.updater
       - sensor.date
@@ -57,8 +66,13 @@ group:
       - binary_sensor.system_ready
       - sensor.startup_time
 
+################################################
+## Automation
+################################################
+
 automation:
   - alias: startup_notification
+    # initial_state: 'on'
     trigger:
       - platform: homeassistant
         event: start
@@ -68,6 +82,7 @@ automation:
           message: Home Assistant is now up and running.
 
   - alias: update_notification
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: updater.updater
@@ -83,6 +98,10 @@ automation:
           message: >-
             Home Assistant {{ states('updater.updater') }} is now available.
 
+################################################
+## Binary Sensor
+################################################
+
 binary_sensor:
   - platform: template
     sensors:
@@ -90,6 +109,10 @@ binary_sensor:
         entity_id: sensor.startup_time
         value_template: >-
           {{ states('sensor.startup_time') != 'unknown' }}
+
+################################################
+## Sensor
+################################################
 
 sensor:
   - platform: time_date

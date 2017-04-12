@@ -2,17 +2,25 @@
 ## Packages / Nap Time
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.speech: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/nap_time.yaml'
+      package: 'nap_time'
 
     script.nap_time:
       <<: *customize
       friendly_name: "Nap Time"
       icon: mdi:sleep
+
+################################################
+## Script
+################################################
 
 script:
   nap_time:

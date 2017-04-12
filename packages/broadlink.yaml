@@ -2,12 +2,16 @@
 ## Packages / Broadlink RM Pro
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.broadlink: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/broadlink.yaml'
+      package: 'broadlink'
 
     automation.projection_screen:
       <<: *customize
@@ -16,6 +20,10 @@ homeassistant:
     input_select.projection_screen:
       <<: *customize
       friendly_name: "Projection Screen"
+
+    sensor.broadlink_sensor_temperature:
+      <<: *customize
+      friendly_name: "Broadlink Temperature"
 
     switch.projection_screen_down:
       <<: *customize
@@ -44,8 +52,13 @@ homeassistant:
     switch.rf_outlet_d3:
       <<: *customize
 
+################################################
+## Automation
+################################################
+
 automation:
   - alias: projection_screen
+    # initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_select.projection_screen
@@ -61,6 +74,10 @@ automation:
           entity_id: "{{ trigger.to_state.entity_id }}"
           option: Idle
 
+################################################
+## Input Select
+################################################
+
 input_select:
   projection_screen:
     initial: Idle
@@ -69,6 +86,22 @@ input_select:
       - Stop
       - Down
       - Up
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: broadlink
+    update_interval: 60
+    host: !secret broadlink_host
+    mac: !secret broadlink_mac
+    monitored_conditions:
+      - temperature
+
+################################################
+## Switch
+################################################
 
 switch:
   - platform: broadlink

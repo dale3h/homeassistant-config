@@ -1,9 +1,0 @@
-################################################################
-## Group / Lights
-################################################################
-
-morning_lights:
-  entities:
-    - light.dining_room
-    - light.entry_lamp
-    - light.master_bedroom

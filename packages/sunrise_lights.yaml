@@ -1,0 +1,58 @@
+################################################################
+## Packages / Sunrise Lights
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.sunrise_lights: &customize
+      haaska_hidden: false
+      homebridge_hidden: false
+      package: 'sunrise_lights'
+
+    automation.sunrise_lighting:
+      <<: *customize
+      friendly_name: "Sunrise Lighting"
+      icon: mdi:weather-sunset-up
+
+    group.sunrise_lights:
+      <<: *customize
+      friendly_name: "Morning Lights"
+      icon: mdi:weather-sunset-up
+
+################################################
+## Group
+################################################
+
+group:
+  sunrise_lights:
+    control: hidden
+    entities:
+      - light.dining_room
+      - light.entry_lamp
+      - light.master_bedroom
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: sunrise_lighting
+    # initial_state: 'on'
+    trigger:
+      - platform: time
+        after: '06:30:00'
+    condition:
+      - condition: state
+        entity_id: group.person_dale
+        state: 'home'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: group.sunrise_lights
+          brightness: 255
+          color_temp: 154
+          transition: 900

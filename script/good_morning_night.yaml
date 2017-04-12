@@ -8,14 +8,13 @@ good_morning:
       data:
         entity_id: input_boolean.night_mode
 
-    - service: tts.google_say
+    - service: script.say
       data_template:
-        entity_id: media_player.dining_room_home
         message: !include ../phrases/good_morning.yaml
 
-    - service: input_boolean.turn_on
+    - service: automation.turn_on
       data:
-        entity_id: input_boolean.master_bedroom_motion
+        entity_id: automation.master_bedroom_motion
 
     - service: light.turn_on
       data:
@@ -35,14 +34,13 @@ good_night:
       data:
         entity_id: input_boolean.night_mode
 
-    - service: tts.google_say
+    - service: script.say
       data_template:
-        entity_id: media_player.dining_room_home
         message: !include ../phrases/good_night.yaml
 
-    - service: input_boolean.turn_off
+    - service: automation.turn_off
       data:
-        entity_id: input_boolean.master_bedroom_motion
+        entity_id: automation.master_bedroom_motion
 
     - service: climate.set_hold_mode
       data:

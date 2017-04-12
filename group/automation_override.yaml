@@ -5,11 +5,12 @@
 # @todo Convert these to pure automations (on/off is now allowed)
 
 automation_override:
+  control: hidden
   entities:
-    - input_boolean.sunrise_lighting
+    - automation.sunrise_lighting
     - automation.kitchen_motion
     - automation.dining_room_motion
-    - input_boolean.master_bedroom_motion
     - automation.master_bathroom_motion
+    - automation.master_bedroom_motion
+    - automation.garage_lighting
     - input_boolean.shower_mode
-    - input_boolean.garage_lighting

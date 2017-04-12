@@ -2,12 +2,16 @@
 ## Packages / Views
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.views: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/views.yaml'
+      package: 'views'
 
     group.automation:
       <<: *customize
@@ -48,6 +52,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Weather"
       icon: mdi:weather-partlycloudy
+
+################################################
+## Group
+################################################
 
 group:
   home:

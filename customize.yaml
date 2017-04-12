@@ -6,11 +6,6 @@
 ## Automation
 ################################################
 
-automation.activate_good_night_script:
-  friendly_name: "Activate Good Night Script"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 automation.dining_room_remote_button_1_held:
   friendly_name: "Dining Room Remote Button 1 Held"
   haaska_hidden: true
@@ -41,51 +36,6 @@ automation.dining_room_remote_button_4_pressed:
   haaska_hidden: true
   homebridge_hidden: true
 
-automation.garage_door_notification_10m:
-  friendly_name: "Garage Door Notification 10m"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.garage_door_notification_30m:
-  friendly_name: "Garage Door Notification 30m"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.garage_door_notification_60m:
-  friendly_name: "Garage Door Notification 60m"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.hue_master_bedroom_dimmer_good_morning_good_night:
-  friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.hue_master_bedroom_dimmer_motion_on_motion_off:
-  friendly_name: "Hue Master Bedroom Dimmer Motion On Motion Off"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.hue_parker_bedroom_tap_toggle_lamp:
-  friendly_name: "Hue Parker Bedroom Tap Toggle Lamp"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.laundry_room_and_garage_lights_off_when_garage_entry_door_is_closed:
-  friendly_name: "Laundry Room and Garage Lights OFF when Garage Entry Door is CLOSED"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.laundry_room_and_garage_lights_on_when_garage_entry_door_is_open:
-  friendly_name: "Laundry Room and Garage Lights ON when Garage Entry Door is OPEN"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.master_bedroom_light_on_when_motion_is_active:
-  friendly_name: "Master Bedroom Light ON when Motion is ACTIVE"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 automation.master_closet_light_off_when_door_is_closed:
   friendly_name: "Master Closet Light OFF when Door is CLOSED"
   haaska_hidden: true
@@ -106,16 +56,6 @@ automation.media_lights_when_playing:
   haaska_hidden: true
   homebridge_hidden: true
 
-automation.morning_lights_on:
-  friendly_name: "Morning Lights On"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.occupant_presence_notification:
-  friendly_name: "Occupant Presence Notification"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 automation.parker_closet_light_off_when_door_is_closed:
   friendly_name: "Parker Closet Light OFF when Door is CLOSED"
   haaska_hidden: true
@@ -126,213 +66,14 @@ automation.parker_closet_light_on_when_door_is_open:
   haaska_hidden: true
   homebridge_hidden: true
 
-automation.reset_mqtt_topic:
-  friendly_name: "Reset Mqtt Topic"
-  haaska_hidden: true
-
 automation.server_load_notification:
   friendly_name: "Server Load Notification"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.shower_mode_disabled:
-  friendly_name: "Shower Mode Disabled"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.shower_mode_enabled:
-  friendly_name: "Shower Mode Enabled"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.toggle_master_bathroom_shower_mode:
-  friendly_name: "Toggle Master Bathroom Shower Mode"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.toggle_master_bedroom_motion:
-  friendly_name: "Toggle Master Bedroom Motion"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.turn_guest_bedroom_light_off_when_unoccupied:
-  friendly_name: "Turn Guest Bedroom Light OFF when Unoccupied"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.turn_hallway_light_off_when_unoccupied:
-  friendly_name: "Turn Hallway Light OFF when Unoccupied"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.turn_living_room_light_off_when_unoccupied:
-  friendly_name: "Turn Living Room Light OFF when Unoccupied"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.turn_master_bedroom_light_off_when_unoccupied:
-  friendly_name: "Turn Master Bedroom Light OFF when Unoccupied"
   haaska_hidden: true
   homebridge_hidden: true
 
 ################################################
 ## Binary Sensor
 ################################################
-
-binary_sensor.amcrest_ptz_cam_motion:
-  device_class: motion
-  friendly_name: "Amcrest Ptz Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.backyard_cam_motion:
-  device_class: motion
-  friendly_name: "Backyard Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.door_window_sensor_158d000128edbd:
-  device_class: sound
-  friendly_name: "Doorbell"
-  homebridge_hidden: true
-
-binary_sensor.driveway_cam_motion:
-  device_class: motion
-  friendly_name: "Driveway Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.driveway_motion:
-  device_class: motion
-  friendly_name: "Driveway Motion"
-  homebridge_hidden: false
-
-binary_sensor.front_door_contact:
-  device_class: opening
-  friendly_name: "Front Door"
-  homebridge_hidden: false
-
-binary_sensor.front_door_sensor_3_0:
-  device_class: opening
-  friendly_name: "Front Door Sensor"
-  homebridge_hidden: false
-
-binary_sensor.front_yard_cam_motion:
-  device_class: motion
-  friendly_name: "Front Yard Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.garage_cam_motion:
-  device_class: motion
-  friendly_name: "Garage Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.garage_motion:
-  device_class: motion
-  friendly_name: "Garage Motion"
-  homebridge_hidden: false
-
-binary_sensor.guest_bedroom_occupancy:
-  device_class: occupancy
-  friendly_name: "Guest Bedroom Occupancy"
-  homebridge_hidden: false
-
-binary_sensor.home_occupancy:
-  device_class: occupancy
-  friendly_name: "Hallway Occupancy"
-  homebridge_hidden: false
-
-binary_sensor.kitchen_cam_motion:
-  device_class: motion
-  friendly_name: "Kitchen Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.kitchen_sensor_5_0:
-  device_class: motion
-  friendly_name: "Kitchen Motion"
-  homebridge_hidden: false
-
-binary_sensor.living_room_cam_motion:
-  device_class: motion
-  friendly_name: "Living Room Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.living_room_fd_cam_motion:
-  device_class: motion
-  friendly_name: "Front Door Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.living_room_occupancy:
-  device_class: occupancy
-  friendly_name: "Living Room Occupancy"
-  homebridge_hidden: false
-
-binary_sensor.master_bathroom_sensor_4_0:
-  device_class: motion
-  friendly_name: "Master Bathroom Motion"
-  homebridge_hidden: false
-
-binary_sensor.master_bedroom_cam_motion:
-  device_class: motion
-  friendly_name: "Master Bedroom Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.master_bedroom_occupancy:
-  device_class: occupancy
-  friendly_name: "Master Bedroom Occupancy"
-  homebridge_hidden: false
-
-binary_sensor.motion_sensor_158d00012d71be:
-  device_class: motion
-  friendly_name: "Dining Room Motion"
-  homebridge_hidden: false
-
-binary_sensor.parker_bedroom_cam_motion:
-  device_class: motion
-  friendly_name: "Parker Bedroom Cam Motion"
-  homebridge_hidden: false
-
-binary_sensor.switch_158d00012d9fd7:
-  friendly_name: "Xiaomi Switch"
-  homebridge_hidden: true
-
-binary_sensor.toggle_apple_tv_button:
-  friendly_name: "Toggle Apple TV Button"
-  hidden: true
-  homebridge_hidden: true
-
-################################################
-## Camera
-################################################
-
-camera.hitech_barn:
-  friendly_name: "Barn (HiTech)"
-
-camera.hitech_camper:
-  friendly_name: "Camper (HiTech)"
-
-camera.hitech_driveway:
-  friendly_name: "Driveway (HiTech)"
-
-camera.hitech_front_yard:
-  friendly_name: "Front Yard (HiTech)"
-
-################################################
-## Climate
-################################################
-
-climate.home:
-  friendly_name: "Home"
-  homebridge_hidden: false
-  icon: mdi:nest-thermostat
-
-################################################
-## Cover
-################################################
-
-cover.garage_door:
-  friendly_name: "Garage Door"
-  haaska_hidden: true
-  homebridge_cover_type: garage_door
-  homebridge_hidden: true
-  icon: mdi:glassdoor
 
 ################################################
 ## Device Tracker
@@ -412,45 +153,45 @@ device_tracker.tonyia_kindle:
 ## Group
 ################################################
 
-group.all_automations:
-  friendly_name: "All Automations"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_covers:
-  friendly_name: "All Covers"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_devices:
-  friendly_name: "All Devices"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_lights:
-  friendly_name: "All Lights"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_locks:
-  friendly_name: "All Locks"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_remotes:
-  friendly_name: "All Remotes"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_scripts:
-  friendly_name: "All Scripts"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.all_switches:
-  friendly_name: "All Switches"
-  haaska_hidden: true
-  homebridge_hidden: true
+# group.all_automations:
+#   friendly_name: "All Automations"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_covers:
+#   friendly_name: "All Covers"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_devices:
+#   friendly_name: "All Devices"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_lights:
+#   friendly_name: "All Lights"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_locks:
+#   friendly_name: "All Locks"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_remotes:
+#   friendly_name: "All Remotes"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_scripts:
+#   friendly_name: "All Scripts"
+#   haaska_hidden: true
+#   homebridge_hidden: true
+#
+# group.all_switches:
+#   friendly_name: "All Switches"
+#   haaska_hidden: true
+#   homebridge_hidden: true
 
 group.automation_override:
   friendly_name: "Automation Override"
@@ -538,11 +279,6 @@ group.media_players:
   haaska_hidden: true
   homebridge_hidden: true
 
-group.morning_lights:
-  friendly_name: "Morning Lights"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 group.motion:
   friendly_name: "Motion"
   haaska_hidden: true
@@ -600,47 +336,9 @@ group.temperature:
   homebridge_hidden: true
   icon: mdi:thermometer
 
-group.ups:
-  friendly_name: "Battery Backup"
-  haaska_hidden: true
-  homebridge_hidden: true
-  icon: mdi:car-battery
-
-group.weather_darksky:
-  friendly_name: "Dark Sky"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.weather_general:
-  friendly_name: "General"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.weather_wunderground:
-  friendly_name: "Weather Underground"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-group.weather_yr:
-  friendly_name: YR
-  haaska_hidden: true
-  homebridge_hidden: true
-
 ################################################
 ## Input Boolean
 ################################################
-
-input_boolean.garage_lighting:
-  friendly_name: "Garage Lighting"
-  haaska_hidden: false
-  homebridge_hidden: false
-  icon: mdi:lightbulb
-
-input_boolean.master_bedroom_motion:
-  friendly_name: "Bedroom Motion"
-  haaska_hidden: false
-  homebridge_hidden: false
-  icon: mdi:walk
 
 input_boolean.night_mode:
   friendly_name: "Night Mode"
@@ -648,32 +346,9 @@ input_boolean.night_mode:
   homebridge_hidden: false
   icon: mdi:weather-night
 
-input_boolean.shower_mode:
-  friendly_name: "Shower Mode"
-  haaska_hidden: false
-  homebridge_hidden: false
-  icon: mdi:water-pump
-
-input_boolean.sunrise_lighting:
-  friendly_name: "Sunrise Lighting"
-  haaska_hidden: false
-  homebridge_hidden: false
-  icon: mdi:weather-sunset-up
-
-input_boolean.zwave_network:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Z-Wave Network"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 ################################################
 ## Input Slider
 ################################################
-
-input_slider.kitchen_timer:
-  friendly_name: "Kitchen Timer"
-  haaska_hidden: true
-  homebridge_hidden: true
 
 input_slider.nightlight_brightness:
   friendly_name: "Nightlight Brightness"
@@ -684,272 +359,17 @@ input_slider.nightlight_brightness:
 ## Light
 ################################################
 
-light.back_porch:
-  friendly_name: "Back Porch"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.back_porch_1:
-  friendly_name: "Back Porch 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.chandelier:
-  friendly_name: "Chandelier"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.chandelier_1:
-  friendly_name: "Chandelier 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.chandelier_2:
-  friendly_name: "Chandelier 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.chandelier_3:
-  friendly_name: "Chandelier 3"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.dining_room:
-  friendly_name: "Dining Room"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.dining_room_1:
-  friendly_name: "Dining Room 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.dining_room_2:
-  friendly_name: "Dining Room 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.entry:
-  friendly_name: "Entry"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.entry_lamp:
-  friendly_name: "Entry Lamp"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.entry_light_1:
-  friendly_name: "Entry Light 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.entry_light_2:
-  friendly_name: "Entry Light 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.front_porch:
-  friendly_name: "Front Porch"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.front_porch_1:
-  friendly_name: "Front Porch 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
 light.garage:
   friendly_name: "Garage"
   haaska_hidden: false
   homebridge_hidden: false
   persistent: true
 
-light.gateway_light_286c0785953a:
-  friendly_name: "Gateway Light"
-  haaska_hidden: false
-  homebridge_hidden: false
-
-light.guest_bathroom:
-  friendly_name: "Guest Bathroom"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.guest_bathroom_1:
-  friendly_name: "Guest Bathroom 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.guest_bathroom_2:
-  friendly_name: "Guest Bathroom 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.guest_bedroom:
-  friendly_name: "Guest Bedroom"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.guest_bedroom_1:
-  friendly_name: "Guest Bedroom 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.hallway:
-  friendly_name: "Hallway"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.hallway_1:
-  friendly_name: "Hallway 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.kitchen:
-  friendly_name: "Kitchen"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.laundry_room:
-  friendly_name: "Laundry Room"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.laundry_room_1:
-  friendly_name: "Laundry Room 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.living_room:
-  friendly_name: "Living Room"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.living_room_1:
-  friendly_name: "Living Room 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.living_room_2:
-  friendly_name: "Living Room 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.master_bathroom:
-  friendly_name: "Master Bathroom"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.master_bathroom_1:
-  friendly_name: "Master Bathroom 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.master_bathroom_2:
-  friendly_name: "Master Bathroom 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.master_bedroom:
-  friendly_name: "Master Bedroom"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.master_bedroom_1:
-  friendly_name: "Master Bedroom 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.master_bedroom_2:
-  friendly_name: "Master Bedroom 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.master_closet:
-  friendly_name: "Master Closet"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.master_closet_1:
-  friendly_name: "Master Closet 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.parker_bedroom:
-  friendly_name: "Parker Bedroom"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.parker_closet:
-  friendly_name: "Parker Closet"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.parker_lamp:
-  friendly_name: "Parker Lamp"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.parker_lamp_1:
-  friendly_name: "Parker Lamp 1"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-light.parker_lamp_2:
-  friendly_name: "Parker Lamp 2"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
 light.rack_light:
   friendly_name: "Rack Light"
   haaska_hidden: false
   homebridge_hidden: false
   persistent: true
-
-light.range:
-  friendly_name: "Range"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-light.sink:
-  friendly_name: "Sink"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-################################################
-## Lock
-################################################
-
-lock.front_door_locked_17_0:
-  friendly_name: "Front Door"
-  haaska_hidden: false
-  homebridge_hidden: false
 
 ################################################
 ## Media Player
@@ -1037,172 +457,12 @@ script.good_night:
   homebridge_hidden: false
   icon: mdi:weather-night
 
-script.master_bedroom_motion_helper:
-  friendly_name: "Master Bedroom Motion Helper"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-script.master_bedroom_motion_timer:
-  friendly_name: "Master Bedroom Motion Timer"
-  haaska_hidden: true
-  hidden: true
-  homebridge_hidden: true
-
-script.siren_autostop_120s:
-  friendly_name: "Siren Autostop 120s"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_autostop_30s:
-  friendly_name: "Siren Autostop 30s"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_autostop_60s:
-  friendly_name: "Siren Autostop 60s"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_autostop_never:
-  friendly_name: "Siren Autostop Never"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_mode_all:
-  friendly_name: "Siren Mode All"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_mode_siren:
-  friendly_name: "Siren Mode Siren"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-script.siren_mode_strobe:
-  friendly_name: "Siren Mode Strobe"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 ################################################
 ## Sensor
 ################################################
 
-sensor.dark_sky_cloud_coverage:
-  friendly_name: "Cloud Coverage"
-  homebridge_hidden: true
-  icon: mdi:weather-partlycloudy
-
-sensor.dark_sky_humidity:
-  friendly_name: "Humidity"
-  homebridge_hidden: true
-  icon: mdi:water-percent
-
-sensor.dark_sky_precip_probability:
-  friendly_name: "Precipitation"
-  homebridge_hidden: true
-  icon: mdi:weather-rainy
-
-sensor.dark_sky_temperature:
-  friendly_name: "Temperature"
-  homebridge_hidden: true
-  icon: mdi:thermometer
-
-sensor.dining_room_dimmer:
-  friendly_name: "Dining Room Dimmer"
-  homebridge_hidden: true
-
-sensor.dining_room_dimmer_cycle:
-  friendly_name: "Dining Room Dimmer Cycle"
-  homebridge_hidden: true
-
-sensor.front_door_access_control_3_9:
-  friendly_name: "Front Door Access Control"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_alarm_level_17_1:
-  friendly_name: "Front Door Alarm Level"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_alarm_level_3_1:
-  friendly_name: "Front Door Alarm Level"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_alarm_type_17_0:
-  friendly_name: "Front Door Alarm Type"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_alarm_type_3_0:
-  friendly_name: "Front Door Alarm Type"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_battery:
-  friendly_name: "Front Door Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.front_door_battery_level_17_0:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Front Door Battery Level"
-  homebridge_hidden: true
-
-sensor.front_door_battery_level_3_0:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Front Door Battery Level"
-  homebridge_hidden: true
-
-sensor.front_door_burglar_3_10:
-  friendly_name: "Front Door Burglar"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.front_door_lock_battery:
-  friendly_name: "Front Door Lock Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.front_door_sensor_battery:
-  friendly_name: "Front Door Sensor Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.front_door_sourcenodeid_3_2:
-  friendly_name: "Front Door SourceNodeId"
-  hidden: true
-  homebridge_hidden: true
-
 sensor.front_door_temperature:
   friendly_name: "Front Door Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.guest_bathroom_luminance:
-  friendly_name: "Guest Bathroom Luminance"
-  homebridge_hidden: true
-
-sensor.guest_bathroom_motion:
-  friendly_name: "Guest Bathroom Motion"
-  homebridge_hidden: false
-
-sensor.guest_bathroom_temperature:
-  friendly_name: "Guest Bathroom Temperature"
-  homebridge_hidden: false
-
-sensor.guest_bedroom_dimmer:
-  friendly_name: "Guest Bedroom Dimmer"
-  homebridge_hidden: true
-
-sensor.guest_bedroom_dimmer_cycle:
-  friendly_name: "Guest Bedroom Dimmer Cycle"
-  homebridge_hidden: true
-
-sensor.guest_bedroom_temperature:
-  friendly_name: "Guest Bedroom Temperature"
   homebridge_hidden: false
   icon: mdi:thermometer
 
@@ -1210,20 +470,6 @@ sensor.harmony_hub_activity:
   friendly_name: "Harmony Hub Activity"
   homebridge_hidden: true
   icon: mdi:mixcloud
-
-sensor.home_humidity:
-  friendly_name: "Home Humidity"
-  homebridge_hidden: false
-  icon: mdi:water-percent
-
-sensor.home_temperature:
-  friendly_name: "Home Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.iphone_battery:
-  friendly_name: "iPhone Battery"
-  homebridge_hidden: true
 
 sensor.iphone_battery_level:
   friendly_name: "iPhone Battery Level"
@@ -1237,292 +483,12 @@ sensor.iphone_battery_state:
   homebridge_hidden: true
   icon: mdi:battery-charging
 
-sensor.kitchen_alarm_level_5_1:
-  friendly_name: "Kitchen Alarm Level"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.kitchen_alarm_type_5_0:
-  friendly_name: "Kitchen Alarm Type"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.kitchen_battery_level_5_0:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Kitchen Battery Level"
-  homebridge_hidden: true
-
-sensor.kitchen_burglar_5_10:
-  friendly_name: "Kitchen Burglar"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.kitchen_luminance_5_3:
-  friendly_name: "Kitchen Luminance"
-  hidden: true
-  homebridge_hidden: true
-  icon: mdi:theme-light-dark
-
-sensor.kitchen_moisture_5_31:
-  device_class: moisture
-  friendly_name: "Kitchen Moisture"
-  homebridge_hidden: false
-  icon: mdi:water-percent
-
-sensor.kitchen_motion_battery:
-  friendly_name: "Kitchen Motion Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.kitchen_relative_humidity_5_5:
-  friendly_name: "Kitchen Humidity"
-  homebridge_hidden: false
-  icon: mdi:water-percent
-
-sensor.kitchen_sourcenodeid_5_2:
-  friendly_name: "Kitchen SourceNodeId"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.kitchen_temperature_5_1:
-  friendly_name: "Kitchen Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.kitchen_ultraviolet_5_27:
-  friendly_name: "Kitchen Ultraviolet"
-  hidden: true
-  homebridge_hidden: true
-  icon: mdi:sunglasses
-
-sensor.living_room_temperature:
-  friendly_name: "Living Room Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.master_bathroom_alarm_level_4_1:
-  friendly_name: "Master Bathroom Alarm Level"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.master_bathroom_alarm_type_4_0:
-  friendly_name: "Master Bathroom Alarm Type"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.master_bathroom_battery_level_4_0:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Master Bathroom Battery Level"
-  homebridge_hidden: true
-
-sensor.master_bathroom_burglar_4_10:
-  friendly_name: "Master Bathroom Burglar"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.master_bathroom_luminance_4_3:
-  friendly_name: "Master Bathroom Luminance"
-  hidden: true
-  homebridge_hidden: true
-  icon: mdi:theme-light-dark
-
-sensor.master_bathroom_motion_battery:
-  friendly_name: "Master Bathroom Motion Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.master_bathroom_relative_humidity_4_5:
-  friendly_name: "Master Bathroom Humidity"
-  homebridge_hidden: false
-  icon: mdi:water-percent
-
-sensor.master_bathroom_sourcenodeid_4_2:
-  friendly_name: "Master Bathroom SourceNodeId"
-  hidden: true
-  homebridge_hidden: true
-
-sensor.master_bathroom_temperature_4_1:
-  friendly_name: "Master Bathroom Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.master_bathroom_ultraviolet_4_27:
-  friendly_name: "Master Bathroom Ultraviolet"
-  hidden: true
-  homebridge_hidden: true
-  icon: mdi:sunglasses
-
-sensor.master_bedroom_dimmer:
-  friendly_name: "Master Bedroom Dimmer"
-  homebridge_hidden: true
-
-sensor.master_bedroom_dimmer_cycle:
-  friendly_name: "Master Bedroom Dimmer Cycle"
-  homebridge_hidden: true
-
-sensor.master_bedroom_temperature:
-  friendly_name: "Master Bedroom Temperature"
-  homebridge_hidden: false
-  icon: mdi:thermometer
-
-sensor.parker_bedroom_tap:
-  friendly_name: "Parker Bedroom Tap"
-  homebridge_hidden: true
-
-sensor.pws_feelslike_f:
-  friendly_name: "Feels Like"
-  homebridge_hidden: true
-  icon: mdi:thermometer
-
-sensor.pws_heat_index_f:
-  friendly_name: "Heat Index"
-  homebridge_hidden: true
-  icon: mdi:thermometer
-
-sensor.pws_precip_today_in:
-  friendly_name: "Precipitation"
-  homebridge_hidden: true
-  icon: mdi:weather-rainy
-
-sensor.pws_relative_humidity:
-  friendly_name: "Humidity"
-  homebridge_hidden: true
-  icon: mdi:water-percent
-
-sensor.pws_temp_f:
-  friendly_name: "Temperature"
-  homebridge_hidden: true
-  icon: mdi:thermometer
-
-sensor.pws_weather:
-  friendly_name: "Current Conditions"
-  homebridge_hidden: true
-
-sensor.season:
-  friendly_name: "Season"
-  homebridge_hidden: true
-  icon: mdi:weather-snowy-rainy
-
-sensor.siren_battery_level_16_0:
-  date_updated: '2017-03-14 02:54:46'
-  friendly_name: "Siren Battery Level"
-  homebridge_hidden: true
-
-sensor.toggle_apple_tv_battery:
-  friendly_name: "Toggle Apple TV Battery"
-  homebridge_hidden: true
-  icon: mdi:battery
-
-sensor.ups_battery:
-  friendly_name: "UPS Battery"
-  homebridge_hidden: true
-
-sensor.ups_input_voltage:
-  friendly_name: "UPS Input Voltage"
-  homebridge_hidden: true
-
-sensor.ups_last_self_test:
-  friendly_name: "UPS Last Self Test"
-  homebridge_hidden: true
-
-sensor.ups_load:
-  friendly_name: "UPS Load"
-  homebridge_hidden: true
-
-sensor.ups_nominal_input_voltage:
-  friendly_name: "UPS Nominal Input Voltage"
-  homebridge_hidden: true
-
-sensor.ups_nominal_output_power:
-  friendly_name: "UPS Nominal Output Power"
-  homebridge_hidden: true
-
-sensor.ups_output_voltage:
-  friendly_name: "UPS Output Voltage"
-  homebridge_hidden: true
-
-sensor.ups_startup_time:
-  friendly_name: "UPS Startup Time"
-  homebridge_hidden: true
-
-sensor.ups_status:
-  friendly_name: "UPS Status"
-  homebridge_hidden: true
-
-sensor.ups_status_date:
-  friendly_name: "UPS Status Date"
-  homebridge_hidden: true
-
-sensor.ups_time_left:
-  friendly_name: "UPS Time Left"
-  homebridge_hidden: true
-
-sensor.ups_time_on_battery:
-  friendly_name: "UPS Time on Battery"
-  homebridge_hidden: true
-
-sensor.ups_total_time_on_battery:
-  friendly_name: "UPS Total Time on Battery"
-  homebridge_hidden: true
-
-sensor.ups_transfer_count:
-  friendly_name: "UPS Transfer Count"
-  homebridge_hidden: true
-
-sensor.ups_transfer_from_battery:
-  friendly_name: "UPS Transfer from Battery"
-  homebridge_hidden: true
-
-sensor.ups_transfer_to_battery:
-  friendly_name: "UPS Transfer to Battery"
-  homebridge_hidden: true
-
-sensor.yr_cloudiness:
-  friendly_name: "Cloudiness"
-  homebridge_hidden: true
-  icon: mdi:weather-partlycloudy
-
-sensor.yr_condition:
-  friendly_name: "Condition"
-  homebridge_hidden: true
-  icon: mdi:weather-sunny
-
-sensor.yr_humidity:
-  friendly_name: "Humidity"
-  homebridge_hidden: true
-  icon: mdi:water-percent
-
-sensor.yr_precipitation:
-  friendly_name: "Precipitation"
-  homebridge_hidden: true
-  icon: mdi:weather-rainy
-
-sensor.yr_temperature:
-  friendly_name: "Temperature"
-  homebridge_hidden: true
-  icon: mdi:thermometer
-
 ################################################
 ## Sun
 ################################################
 
 sun.sun:
   friendly_name: "Sun"
-
-################################################
-## Switch
-################################################
-
-switch.plug_158d00013e7890:
-  friendly_name: "Xiaomi Plug"
-  haaska_hidden: true
-  homebridge_hidden: true
-  icon: mdi:power-plug
-
-switch.siren_switch_16_0:
-  friendly_name: "Siren"
-  haaska_hidden: true
-  homebridge_hidden: true
 
 ################################################
 ## Updater

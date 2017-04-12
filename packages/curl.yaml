@@ -32,6 +32,10 @@
 ##           key2: value2
 ################################################
 
+################################################
+## Shell Command
+################################################
+
 shell_command:
   curl: >-
     /usr/bin/curl {{ args|default('-sS') }} -X {{ method|default('get')|upper }} {%- for k in headers %} -H "{{ k }}: {{ headers[k] }}"{% endfor %} {{- (' -d \'' ~ payload|tojson ~ '\'') if payload }} {{ url }} > {{ stream|default('/dev/null') }}

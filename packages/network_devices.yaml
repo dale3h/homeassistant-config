@@ -2,12 +2,16 @@
 ## Packages / Network Devices
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.network_devices: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package_file: 'packages/network_devices.yaml'
+      package: 'network_devices'
 
     packages.network_devices_hidden: &customize_hidden
       <<: *customize
@@ -333,8 +337,13 @@ homeassistant:
       <<: *customize
       friendly_name: "Yamaha RX-V675"
 
+################################################
+## Group
+################################################
+
 group:
   network_devices_source:
+    control: hidden
     entities:
       - device_tracker.net_aladdin_connect
       - device_tracker.net_apple_tv_living_room
@@ -373,6 +382,7 @@ group:
       - device_tracker.net_yamaha_rxv675
 
   network_devices:
+    control: hidden
     entities:
       - sensor.net_aladdin_connect
       - sensor.net_apple_tv_living_room
@@ -409,6 +419,10 @@ group:
       - sensor.net_workshop
       - sensor.net_xbox_one
       - sensor.net_yamaha_rxv675
+
+################################################
+## Sensor
+################################################
 
 sensor:
   - platform: template

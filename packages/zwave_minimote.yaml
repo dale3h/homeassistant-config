@@ -1,0 +1,80 @@
+################################################################
+## Packages / Z-Wave Minimote
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.zwave_minimote: &customize
+      haaska_hidden: true
+      hidden: true
+      homebridge_hidden: true
+      package: 'zwave_minimote'
+
+    automation.minimote_button_pressed:
+      <<: *customize
+      friendly_name: "Minimote Button Pressed"
+
+    script.minimote_button_caller:
+      <<: *customize
+      friendly_name: "Minimote Button Caller"
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: minimote_button_pressed
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+    action:
+      - service: script.minimote_button_caller
+        data_template:
+          event_type: "{{ trigger.event.event_type }}"
+          origin: "{{ trigger.event.origin }}"
+          time_fired: "{{ trigger.event.time_fired }}"
+          entity_id: "{{ trigger.event.data.entity_id }}"
+          object_id: "{{ trigger.event.data.object_id }}"
+          scene_id: "{{ trigger.event.data.scene_id }}"
+          remote: "{{ trigger.event.data.object_id.split('_')[:-1]|join('_') }}"
+          button: "{{ (trigger.event.data.scene_id|int + 1) // 2 }}"
+          action: "{{ 'click' if trigger.event.data.scene_id|int is odd else 'hold' }}"
+      - condition: template
+        value_template: "{{ states.script.minimote_button is not none }}"
+      - service: script.minimote_button
+        data_template:
+          event_type: "{{ trigger.event.event_type }}"
+          origin: "{{ trigger.event.origin }}"
+          time_fired: "{{ trigger.event.time_fired }}"
+          entity_id: "{{ trigger.event.data.entity_id }}"
+          object_id: "{{ trigger.event.data.object_id }}"
+          scene_id: "{{ trigger.event.data.scene_id }}"
+          remote: "{{ trigger.event.data.object_id.split('_')[:-1]|join('_') }}"
+          button: "{{ (trigger.event.data.scene_id|int + 1) // 2 }}"
+          action: "{{ 'click' if trigger.event.data.scene_id|int is odd else 'hold' }}"
+
+################################################
+## Script
+################################################
+
+script:
+  minimote_button_caller:
+    sequence:
+      - condition: template
+        value_template: "{{ states.script[remote ~ '_' ~ button ~ '_' ~ action] is not none }}"
+      - service_template: "script.{{ remote }}_{{ button }}_{{ action }}"
+        data_template:
+          event_type: "{{ event_type }}"
+          origin: "{{ origin }}"
+          time_fired: "{{ time_fired }}"
+          entity_id: "{{ entity_id }}"
+          object_id: "{{ object_id }}"
+          scene_id: "{{ scene_id }}"
+          remote: "{{ remote }}"
+          button: "{{ button }}"
+          action: "{{ action }}"

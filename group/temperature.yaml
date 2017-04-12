@@ -3,6 +3,7 @@
 ################################################################
 
 temperature:
+  control: hidden
   entities:
     - sensor.closet_door_temperature
     - sensor.garage_entry_temperature
@@ -16,6 +17,7 @@ temperature:
     - sensor.master_bedroom_temperature
     - sensor.network_cabinet_temperature
     - sensor.parker_closet_door_temperature
+    - sensor.broadlink_sensor_temperature
 
     - sensor.home_humidity
     - sensor.kitchen_relative_humidity_5_5

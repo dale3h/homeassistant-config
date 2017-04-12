@@ -2,10 +2,14 @@
 ## Packages / SmartThings
 ################################################################
 
+################################################
+## Customize
+################################################
+
 homeassistant:
   customize:
     packages.smartthings: &customize
-      package_file: 'packages/smartthings.yaml'
+      package: 'smartthings'
 
     packages.smartthings_exposed: &customize_exposed
       <<: *customize
@@ -97,6 +101,10 @@ homeassistant:
       friendly_name: "Pepper Fan"
       icon: mdi:fan
 
+################################################
+## Binary Sensor
+################################################
+
 binary_sensor:
   - platform: mqtt
     name: closet_door_contact
@@ -121,6 +129,10 @@ binary_sensor:
     state_topic: smartthings/parker_closet_door/contact
     payload_on: 'open'
     payload_off: 'closed'
+
+################################################
+## Sensor
+################################################
 
 sensor:
   - platform: mqtt
@@ -177,6 +189,10 @@ sensor:
     name: pepper_fan_power
     state_topic: smartthings/pepper_fan/power
     unit_of_measurement: 'W'
+
+################################################
+## Switch
+################################################
 
 switch:
   - platform: mqtt

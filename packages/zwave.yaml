@@ -1,0 +1,182 @@
+################################################################
+## Packages / Z-Wave
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.zwave: &customize
+      package: 'zwave'
+
+    packages.zwave_exposed: &customize_exposed
+      <<: *customize
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    packages.zwave_contained: &customize_contained
+      <<: *customize
+      haaska_hidden: true
+      homebridge_hidden: true
+
+    binary_sensor.front_door_sensor_3_0:
+      <<: *customize_contained
+      friendly_name: "Front Door Sensor"
+      device_class: opening
+
+    binary_sensor.kitchen_sensor_5_0:
+      <<: *customize_contained
+      friendly_name: "Kitchen Motion"
+      device_class: motion
+
+    binary_sensor.master_bathroom_sensor_4_0:
+      <<: *customize_contained
+      friendly_name: "Master Bathroom Motion"
+      device_class: motion
+
+    lock.front_door_locked_17_0:
+      <<: *customize_exposed
+      friendly_name: "Front Door"
+
+    script.siren_autostop_120s:
+      <<: *customize_contained
+      friendly_name: "Siren Autostop 120s"
+
+    script.siren_autostop_30s:
+      <<: *customize_contained
+      friendly_name: "Siren Autostop 30s"
+
+    script.siren_autostop_60s:
+      <<: *customize_contained
+      friendly_name: "Siren Autostop 60s"
+
+    script.siren_autostop_never:
+      <<: *customize_contained
+      friendly_name: "Siren Autostop Never"
+
+    script.siren_mode_all:
+      <<: *customize_contained
+      friendly_name: "Siren Mode All"
+
+    script.siren_mode_siren:
+      <<: *customize_contained
+      friendly_name: "Siren Mode Siren"
+
+    script.siren_mode_strobe:
+      <<: *customize_contained
+      friendly_name: "Siren Mode Strobe"
+
+    sensor.front_door_access_control_3_9:
+      <<: *customize_contained
+      friendly_name: "Front Door Access Control"
+      hidden: true
+
+    sensor.kitchen_luminance_5_3:
+      <<: *customize_contained
+      friendly_name: "Kitchen Luminance"
+      hidden: true
+      icon: mdi:theme-light-dark
+
+    sensor.kitchen_moisture_5_31:
+      <<: *customize_exposed
+      friendly_name: "Kitchen Moisture"
+      device_class: moisture
+      icon: mdi:water-percent
+
+    sensor.kitchen_relative_humidity_5_5:
+      <<: *customize_exposed
+      friendly_name: "Kitchen Humidity"
+      icon: mdi:water-percent
+
+    sensor.kitchen_temperature_5_1:
+      <<: *customize_exposed
+      friendly_name: "Kitchen Temperature"
+      icon: mdi:thermometer
+
+    sensor.master_bathroom_luminance_4_3:
+      <<: *customize_contained
+      friendly_name: "Master Bathroom Luminance"
+      hidden: true
+      icon: mdi:theme-light-dark
+
+    sensor.master_bathroom_relative_humidity_4_5:
+      <<: *customize_exposed
+      friendly_name: "Master Bathroom Humidity"
+      icon: mdi:water-percent
+
+    sensor.master_bathroom_temperature_4_1:
+      <<: *customize_exposed
+      friendly_name: "Master Bathroom Temperature"
+      icon: mdi:thermometer
+
+################################################
+## Z-Wave
+################################################
+
+zwave:
+  config_path: !secret zwave_config_path
+  usb_path: !secret zwave_usb_path
+  device_config: !include ../zwave_device_config.yaml
+
+################################################
+## Script
+################################################
+
+script:
+  siren_mode_all:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 0
+          value: 0
+
+  siren_mode_siren:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 0
+          value: 1
+
+  siren_mode_strobe:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 0
+          value: 2
+
+  siren_autostop_30s:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 1
+          value: 0
+
+  siren_autostop_60s:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 1
+          value: 1
+
+  siren_autostop_120s:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 1
+          value: 2
+
+  siren_autostop_never:
+    sequence:
+      - service: zwave.set_config_parameter
+        data:
+          node_id: 16
+          parameter: 1
+          value: 3
