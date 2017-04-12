@@ -8,61 +8,58 @@
 
 homeassistant:
   customize:
-    automation.toggle_apple_tv:
-      friendly_name: "Toggle Apple TV"
+    packages.harmony: &customize
+      package: 'harmony'
+
+    packages.harmony_exposed: &customize_exposed
+      <<: *customize
+      haaska_hidden: false
+      homebridge_hidden: false
+
+    packages.harmony_contained: &customize_contained
+      <<: *customize
       haaska_hidden: true
       homebridge_hidden: true
-      package: 'harmony'
+
+    automation.toggle_apple_tv:
+      <<: *customize_contained
+      friendly_name: "Toggle Apple TV"
 
     remote.living_room:
+      <<: *customize_contained
       friendly_name: "Living Room"
-      haaska_hidden: true
       hidden: true
-      homebridge_hidden: true
       icon: mdi:remote
-      package: 'harmony'
 
     script.harmony_activity:
+      <<: *customize_contained
       friendly_name: "Harmony Activity"
-      haaska_hidden: true
-      homebridge_hidden: true
       icon: mdi:remote
-      package: 'harmony'
 
     switch.apple_tv:
+      <<: *customize_exposed
       friendly_name: "Apple TV"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:apple
-      package: 'harmony'
 
     switch.chromecast:
+      <<: *customize_exposed
       friendly_name: "Chromecast"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:google-chrome
-      package: 'harmony'
 
     switch.computer:
+      <<: *customize_exposed
       friendly_name: "Computer"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:windows
-      package: 'harmony'
 
     switch.fire_tv:
+      <<: *customize_exposed
       friendly_name: "Fire TV"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:amazon
-      package: 'harmony'
 
     switch.xbox:
+      <<: *customize_exposed
       friendly_name: "Xbox"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:xbox
-      package: 'harmony'
 
 ################################################
 ## Automation
