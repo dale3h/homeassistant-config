@@ -40,7 +40,7 @@ homeassistant:
 
 automation:
   - alias: toggle_security_monitor
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: mqtt
         topic: smartthings/network_cabinet/button
@@ -55,7 +55,7 @@ automation:
           entity_id: switch.eventghost_monitor
 
   - alias: smartthings_button_held
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: mqtt
         topic: smartthings/network_cabinet/button

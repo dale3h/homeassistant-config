@@ -41,7 +41,7 @@ group:
 
 automation:
   - alias: sunrise_lighting
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: time
         after: '06:30:00'

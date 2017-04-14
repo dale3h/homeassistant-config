@@ -38,6 +38,16 @@ homeassistant:
       friendly_name: "Garage Lighting"
       icon: mdi:lightbulb
 
+    automation.master_closet_lighting:
+      <<: *customize
+      friendly_name: "Closet Lighting"
+      icon: mdi:lightbulb
+
+    automation.parker_closet_lighting:
+      <<: *customize
+      friendly_name: "Parker Closet Lighting"
+      icon: mdi:lightbulb
+
 ################################################
 ## Automation
 ################################################
@@ -49,13 +59,15 @@ automation:
   ################################################
 
   - alias: dining_room_motion
-    # initial_state: 'on'
+    initial_state: 'off'
     trigger:
       - platform: state
         entity_id: !secret binary_sensor_dining_room_motion
+        from: 'off'
         to: 'on'
       - platform: state
         entity_id: !secret binary_sensor_dining_room_motion
+        from: 'on'
         to: 'off'
         for: '00:04:00'
     action:
@@ -65,13 +77,15 @@ automation:
           state: "{{ trigger.to_state.state }}"
 
   - alias: kitchen_motion
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: !secret binary_sensor_kitchen_motion
+        from: 'off'
         to: 'on'
       - platform: state
         entity_id: !secret binary_sensor_kitchen_motion
+        from: 'on'
         to: 'off'
         for: '00:04:00'
     action:
@@ -81,13 +95,15 @@ automation:
           state: "{{ trigger.to_state.state }}"
 
   - alias: master_bathroom_motion
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: !secret binary_sensor_master_bathroom_motion
+        from: 'off'
         to: 'on'
       - platform: state
         entity_id: !secret binary_sensor_master_bathroom_motion
+        from: 'on'
         to: 'off'
         for: '00:04:00'
     action:
@@ -97,13 +113,15 @@ automation:
           state: "{{ trigger.to_state.state }}"
 
   - alias: master_bedroom_motion
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.master_bedroom_motion
+        from: 'off'
         to: 'on'
       - platform: state
         entity_id: binary_sensor.master_bedroom_motion
+        from: 'on'
         to: 'off'
         for: '00:04:00'
     action:
@@ -117,17 +135,41 @@ automation:
   ################################################
 
   - alias: garage_lighting
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.garage_entry_contact
+        from: 'off'
         to: 'on'
       - platform: state
         entity_id: binary_sensor.garage_entry_contact
+        from: 'on'
         to: 'off'
         for: '00:05:00'
     action:
       - service: script.light_control
         data_template:
           entity_id: light.laundry_room, light.garage
+          state: "{{ trigger.to_state.state }}"
+
+  - alias: master_closet_lighting
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.closet_door_contact
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.master_closet
+          state: "{{ trigger.to_state.state }}"
+
+  - alias: parker_closet_lighting
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.parker_closet_door_contact
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.parker_closet
           state: "{{ trigger.to_state.state }}"

@@ -23,7 +23,7 @@ homeassistant:
 
 automation:
   - alias: alert_triggered
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: call_service

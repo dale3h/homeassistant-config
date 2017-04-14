@@ -45,7 +45,7 @@ homeassistant:
 
 automation:
   - alias: shower_mode_enabled
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_boolean.shower_mode
@@ -65,7 +65,7 @@ automation:
           entity_id: input_boolean.shower_mode
 
   - alias: shower_mode_disabled
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_boolean.shower_mode
@@ -83,7 +83,7 @@ automation:
           entity_id: light.master_bathroom
 
   - alias: toggle_shower_mode
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: mqtt
         topic: dash-button/ziploc

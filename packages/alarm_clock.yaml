@@ -47,7 +47,7 @@ homeassistant:
 
 automation:
   - alias: alarm_clock_disable
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_boolean.alarm_clock
@@ -63,7 +63,7 @@ automation:
           option: 'Disabled'
 
   - alias: alarm_clock_enable
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_select.alarm_clock
@@ -74,7 +74,7 @@ automation:
           entity_id: input_boolean.alarm_clock
 
   - alias: alarm_clock
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: sensor.time

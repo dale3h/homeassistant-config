@@ -13,6 +13,7 @@ homeassistant:
   packages: !include_dir_named packages
 
 config:
+conversation:
 frontend:
 history:
 sun:

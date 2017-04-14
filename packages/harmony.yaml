@@ -67,7 +67,7 @@ homeassistant:
 
 automation:
   - alias: toggle_apple_tv
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: event
         event_type: click

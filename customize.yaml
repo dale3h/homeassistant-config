@@ -36,16 +36,6 @@ automation.dining_room_remote_button_4_pressed:
   haaska_hidden: true
   homebridge_hidden: true
 
-automation.master_closet_light_off_when_door_is_closed:
-  friendly_name: "Master Closet Light OFF when Door is CLOSED"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.master_closet_light_on_when_door_is_open:
-  friendly_name: "Master Closet Light ON when Door is OPEN"
-  haaska_hidden: true
-  homebridge_hidden: true
-
 automation.media_lights_when_paused:
   friendly_name: "Plex Lights on Pause"
   haaska_hidden: true
@@ -55,25 +45,6 @@ automation.media_lights_when_playing:
   friendly_name: "Plex Lights on Play"
   haaska_hidden: true
   homebridge_hidden: true
-
-automation.parker_closet_light_off_when_door_is_closed:
-  friendly_name: "Parker Closet Light OFF when Door is CLOSED"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.parker_closet_light_on_when_door_is_open:
-  friendly_name: "Parker Closet Light ON when Door is OPEN"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-automation.server_load_notification:
-  friendly_name: "Server Load Notification"
-  haaska_hidden: true
-  homebridge_hidden: true
-
-################################################
-## Binary Sensor
-################################################
 
 ################################################
 ## Device Tracker
@@ -489,13 +460,6 @@ sensor.iphone_battery_state:
 
 sun.sun:
   friendly_name: "Sun"
-
-################################################
-## Updater
-################################################
-
-updater.updater:
-  friendly_name: "Update Available"
 
 ################################################
 ## Zone

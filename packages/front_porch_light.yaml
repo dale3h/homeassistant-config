@@ -43,7 +43,7 @@ homeassistant:
 
 automation:
   - alias: front_porch_timer
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: sensor.time

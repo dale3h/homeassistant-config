@@ -58,7 +58,7 @@ homeassistant:
 
 automation:
   - alias: projection_screen
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: input_select.projection_screen

@@ -68,7 +68,7 @@ group:
 
 automation:
   - alias: nightly_config_backup
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: time
         after: '03:00:00'
