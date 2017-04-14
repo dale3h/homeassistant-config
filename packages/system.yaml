@@ -42,15 +42,35 @@ homeassistant:
       friendly_name: "System Date"
       icon: mdi:calendar
 
-    sensor.startup_time:
+    sensor.ha_github_version:
+      <<: *customize
+      friendly_name: "GitHub Version"
+      icon: mdi:github-box
+
+    sensor.ha_pypi_version:
+      <<: *customize
+      friendly_name: "PyPi Version"
+      icon: mdi:language-python
+
+    sensor.ha_startup_time:
       <<: *customize
       friendly_name: "Startup Time"
       icon: mdi:clock-start
+
+    sensor.ha_version:
+      <<: *customize
+      friendly_name: "Installed Version"
+      icon: mdi:settings-box
 
     sensor.time:
       <<: *customize
       friendly_name: "System Time"
       icon: mdi:clock
+
+    updater.updater:
+      <<: *customize
+      friendly_name: "Update Available"
+
 
 ################################################
 ## Group
@@ -64,7 +84,10 @@ group:
       - sensor.date
       - sensor.time
       - binary_sensor.system_ready
-      - sensor.startup_time
+      - sensor.ha_startup_time
+      - sensor.ha_version
+      - sensor.ha_github_version
+      - sensor.ha_pypi_version
 
 ################################################
 ## Automation
@@ -72,17 +95,17 @@ group:
 
 automation:
   - alias: startup_notification
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: homeassistant
         event: start
     action:
       - service: notify.telegram
         data:
-          message: Home Assistant is now up and running.
+          message: "Home Assistant is now up and running."
 
   - alias: update_notification
-    # initial_state: 'on'
+    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: updater.updater
@@ -106,9 +129,9 @@ binary_sensor:
   - platform: template
     sensors:
       system_ready:
-        entity_id: sensor.startup_time
+        entity_id: sensor.ha_startup_time
         value_template: >-
-          {{ states('sensor.startup_time') != 'unknown' }}
+          {{ states('sensor.ha_startup_time') != 'unknown' }}
 
 ################################################
 ## Sensor
@@ -122,7 +145,28 @@ sensor:
 
   - platform: template
     sensors:
-      startup_time:
+      ha_startup_time:
         entity_id: automation.startup_notification
         value_template: >-
-          {{ (states.automation.startup_notification.attributes|default).last_triggered|default('unknown') }}
+          {{ as_timestamp((states.automation.startup_notification.attributes|default).last_triggered|default(None))|timestamp_custom("%b %d %X") or 'unknown' }}
+
+  - platform: command_line
+    name: ha_version
+    command: >-
+      cat $HASS_CONFIG/.HA_VERSION
+
+  - platform: rest
+    name: ha_github_version
+    resource: 'https://api.github.com/repos/home-assistant/home-assistant/releases/latest'
+    headers:
+      accept: application/vnd.github.v3+json
+      content-type: application/json
+      user-agent: home-assistant/rest-sensor
+    value_template: >-
+      {{ value_json.tag_name }}
+
+  - platform: rest
+    name: ha_pypi_version
+    resource: 'https://pypi.python.org/pypi/homeassistant/json'
+    value_template: >-
+      {{ value_json.info.version }}
