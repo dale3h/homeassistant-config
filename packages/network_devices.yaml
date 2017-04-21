@@ -17,6 +17,10 @@ homeassistant:
       <<: *customize
       hidden: true
 
+    ################################################
+    ## Group
+    ################################################
+
     group.network_devices_source:
       <<: *customize_hidden
       friendly_name: "Network Devices"
@@ -24,6 +28,10 @@ homeassistant:
     group.network_devices:
       <<: *customize
       friendly_name: "Network Devices"
+
+    ################################################
+    ## Device Tracker
+    ################################################
 
     device_tracker.net_aladdin_connect:
       <<: *customize_hidden
@@ -49,10 +57,6 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "Chromecast (Master Bedroom)"
 
-    device_tracker.net_echo_bathroom:
-      <<: *customize_hidden
-      friendly_name: "Bathroom Echo"
-
     device_tracker.net_echo_dot_garage:
       <<: *customize_hidden
       friendly_name: "Echo Dot (Garage)"
@@ -64,10 +68,6 @@ homeassistant:
     device_tracker.net_echo_dot_guest_bedroom:
       <<: *customize_hidden
       friendly_name: "Echo Dot (Guest Bedroom)"
-
-    device_tracker.net_echo_dot_jeep:
-      <<: *customize_hidden
-      friendly_name: "Echo Dot (Jeep)"
 
     device_tracker.net_echo_dot_kitchen:
       <<: *customize_hidden
@@ -81,10 +81,6 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "Echo (Entryway)"
 
-    device_tracker.net_echo_garage:
-      <<: *customize_hidden
-      friendly_name: "Echo (Garage)"
-
     device_tracker.net_echo_master_bathroom:
       <<: *customize_hidden
       friendly_name: "Echo (Master Bathroom)"
@@ -92,6 +88,38 @@ homeassistant:
     device_tracker.net_ecobee3:
       <<: *customize_hidden
       friendly_name: "ecobee3"
+
+    device_tracker.net_ecoplug_0556a2:
+      <<: *customize_hidden
+      friendly_name: "EcoPlug 0556A2"
+
+    device_tracker.net_esp_0b47b7:
+      <<: *customize_hidden
+      friendly_name: "ESP 0B47B7"
+
+    device_tracker.net_esp_0b51f1:
+      <<: *customize_hidden
+      friendly_name: "ESP 0B51F1"
+
+    device_tracker.net_esp_0b8672:
+      <<: *customize_hidden
+      friendly_name: "ESP 0B8672"
+
+    device_tracker.net_esp_0ba857:
+      <<: *customize_hidden
+      friendly_name: "ESP 0BA857"
+
+    device_tracker.net_esp_0bad77:
+      <<: *customize_hidden
+      friendly_name: "ESP 0BAD77"
+
+    device_tracker.net_esp_0c4b37:
+      <<: *customize_hidden
+      friendly_name: "ESP 0C4B37"
+
+    device_tracker.net_esp_0c4ca2:
+      <<: *customize_hidden
+      friendly_name: "ESP 0C4CA2"
 
     device_tracker.net_fire_tv:
       <<: *customize_hidden
@@ -113,10 +141,6 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "HTPC"
 
-    device_tracker.net_ipcam1:
-      <<: *customize_hidden
-      friendly_name: "IPCam1"
-
     device_tracker.net_ipcam_ac1:
       <<: *customize_hidden
       friendly_name: "IPCam AC1"
@@ -132,6 +156,10 @@ homeassistant:
     device_tracker.net_limitlessled:
       <<: *customize_hidden
       friendly_name: "Limitless LED"
+
+    device_tracker.net_poe_switch:
+      <<: *customize_hidden
+      friendly_name: "POE Switch"
 
     device_tracker.net_philips_hue:
       <<: *customize_hidden
@@ -177,9 +205,17 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "Xbox One"
 
+    device_tracker.net_xiaomi_gateway:
+      <<: *customize_hidden
+      friendly_name: "Xiaomi Gateway"
+
     device_tracker.net_yamaha_rxv675:
       <<: *customize_hidden
       friendly_name: "Yamaha RX-V675"
+
+    ################################################
+    ## Sensor
+    ################################################
 
     sensor.net_aladdin_connect:
       <<: *customize
@@ -205,10 +241,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Chromecast (Master Bedroom)"
 
-    sensor.net_echo_bathroom:
-      <<: *customize
-      friendly_name: "Bathroom Echo"
-
     sensor.net_echo_dot_garage:
       <<: *customize
       friendly_name: "Echo Dot (Garage)"
@@ -220,10 +252,6 @@ homeassistant:
     sensor.net_echo_dot_guest_bedroom:
       <<: *customize
       friendly_name: "Echo Dot (Guest Bedroom)"
-
-    sensor.net_echo_dot_jeep:
-      <<: *customize
-      friendly_name: "Echo Dot (Jeep)"
 
     sensor.net_echo_dot_kitchen:
       <<: *customize
@@ -237,10 +265,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Echo (Entryway)"
 
-    sensor.net_echo_garage:
-      <<: *customize
-      friendly_name: "Echo (Garage)"
-
     sensor.net_echo_master_bathroom:
       <<: *customize
       friendly_name: "Echo (Master Bathroom)"
@@ -248,6 +272,38 @@ homeassistant:
     sensor.net_ecobee3:
       <<: *customize
       friendly_name: "ecobee3"
+
+    sensor.net_ecoplug_0556a2:
+      <<: *customize
+      friendly_name: "EcoPlug 0556A2"
+
+    sensor.net_esp_0b47b7:
+      <<: *customize
+      friendly_name: "ESP 0B47B7"
+
+    sensor.net_esp_0b51f1:
+      <<: *customize
+      friendly_name: "ESP 0B51F1"
+
+    sensor.net_esp_0b8672:
+      <<: *customize
+      friendly_name: "ESP 0B8672"
+
+    sensor.net_esp_0ba857:
+      <<: *customize
+      friendly_name: "ESP 0BA857"
+
+    sensor.net_esp_0bad77:
+      <<: *customize
+      friendly_name: "ESP 0BAD77"
+
+    sensor.net_esp_0c4b37:
+      <<: *customize
+      friendly_name: "ESP 0C4B37"
+
+    sensor.net_esp_0c4ca2:
+      <<: *customize
+      friendly_name: "ESP 0C4CA2"
 
     sensor.net_fire_tv:
       <<: *customize
@@ -269,10 +325,6 @@ homeassistant:
       <<: *customize
       friendly_name: "HTPC"
 
-    sensor.net_ipcam1:
-      <<: *customize
-      friendly_name: "IPCam1"
-
     sensor.net_ipcam_ac1:
       <<: *customize
       friendly_name: "IPCam AC1"
@@ -288,6 +340,10 @@ homeassistant:
     sensor.net_limitlessled:
       <<: *customize
       friendly_name: "Limitless LED"
+
+    sensor.net_poe_switch:
+      <<: *customize
+      friendly_name: "POE Switch"
 
     sensor.net_philips_hue:
       <<: *customize
@@ -333,6 +389,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Xbox One"
 
+    sensor.net_xiaomi_gateway:
+      <<: *customize
+      friendly_name: "Xiaomi Gateway"
+
     sensor.net_yamaha_rxv675:
       <<: *customize
       friendly_name: "Yamaha RX-V675"
@@ -359,6 +419,14 @@ group:
       - device_tracker.net_echo_entryway
       - device_tracker.net_echo_master_bathroom
       - device_tracker.net_ecobee3
+      - device_tracker.net_ecoplug_0556a2
+      - device_tracker.net_esp_0b47b7
+      - device_tracker.net_esp_0b51f1
+      - device_tracker.net_esp_0b8672
+      - device_tracker.net_esp_0ba857
+      - device_tracker.net_esp_0bad77
+      - device_tracker.net_esp_0c4b37
+      - device_tracker.net_esp_0c4ca2
       - device_tracker.net_fire_tv
       - device_tracker.net_google_home
       - device_tracker.net_harmony_hub
@@ -368,6 +436,7 @@ group:
       - device_tracker.net_ipcam_hv1
       - device_tracker.net_ipcam_ptz1
       - device_tracker.net_limitlessled
+      - device_tracker.net_poe_switch
       - device_tracker.net_philips_hue
       - device_tracker.net_projector
       - device_tracker.net_rack_light
@@ -379,6 +448,7 @@ group:
       - device_tracker.net_web_power_switch
       - device_tracker.net_workshop
       - device_tracker.net_xbox_one
+      - device_tracker.net_xiaomi_gateway
       - device_tracker.net_yamaha_rxv675
 
   network_devices:
@@ -398,6 +468,14 @@ group:
       - sensor.net_echo_entryway
       - sensor.net_echo_master_bathroom
       - sensor.net_ecobee3
+      - sensor.net_ecoplug_0556a2
+      - sensor.net_esp_0b47b7
+      - sensor.net_esp_0b51f1
+      - sensor.net_esp_0b8672
+      - sensor.net_esp_0ba857
+      - sensor.net_esp_0bad77
+      - sensor.net_esp_0c4b37
+      - sensor.net_esp_0c4ca2
       - sensor.net_fire_tv
       - sensor.net_google_home
       - sensor.net_harmony_hub
@@ -407,6 +485,7 @@ group:
       - sensor.net_ipcam_hv1
       - sensor.net_ipcam_ptz1
       - sensor.net_limitlessled
+      - sensor.net_poe_switch
       - sensor.net_philips_hue
       - sensor.net_projector
       - sensor.net_rack_light
@@ -418,6 +497,7 @@ group:
       - sensor.net_web_power_switch
       - sensor.net_workshop
       - sensor.net_xbox_one
+      - sensor.net_xiaomi_gateway
       - sensor.net_yamaha_rxv675
 
 ################################################
@@ -429,140 +509,180 @@ sensor:
     sensors:
       net_aladdin_connect:
         value_template: "{{ 'online' if is_state('device_tracker.net_aladdin_connect', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_aladdin_connect', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_aladdin_connect', 'home') else 'mdi:alert-circle' }}"
 
       net_apple_tv_living_room:
         value_template: "{{ 'online' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'mdi:alert-circle' }}"
 
       net_apple_tv_master_bedroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_apple_tv_master_bedroom', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_apple_tv_master_bedroom', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_apple_tv_master_bedroom', 'home') else 'mdi:alert-circle' }}"
 
       net_broadlink_rmpro:
         value_template: "{{ 'online' if is_state('device_tracker.net_broadlink_rmpro', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_broadlink_rmpro', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_broadlink_rmpro', 'home') else 'mdi:alert-circle' }}"
 
       net_chromecast_living_room:
         value_template: "{{ 'online' if is_state('device_tracker.net_chromecast_living_room', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_chromecast_living_room', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_chromecast_living_room', 'home') else 'mdi:alert-circle' }}"
 
       net_chromecast_master_bedroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_chromecast_master_bedroom', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_chromecast_master_bedroom', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_chromecast_master_bedroom', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_dot_garage:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_garage', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_garage', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_garage', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_dot_guest_bathroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_guest_bathroom', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_guest_bathroom', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_guest_bathroom', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_dot_guest_bedroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_dot_kitchen:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_dot_parker:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_entryway:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_entryway', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_entryway', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_entryway', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_master_bathroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'mdi:alert-circle' }}"
 
       net_ecobee3:
         value_template: "{{ 'online' if is_state('device_tracker.net_ecobee3', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ecobee3', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ecobee3', 'home') else 'mdi:alert-circle' }}"
+
+      net_ecoplug_0556a2:
+        value_template: "{{ 'online' if is_state('device_tracker.net_ecoplug_0556a2', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ecoplug_0556a2', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0b47b7:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b47b7', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b47b7', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0b51f1:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b51f1', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b51f1', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0b8672:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b8672', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b8672', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0ba857:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0ba857', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0ba857', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0bad77:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0bad77', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0bad77', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0c4b37:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0c4b37', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0c4b37', 'home') else 'mdi:alert-circle' }}"
+
+      net_esp_0c4ca2:
+        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0c4ca2', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0c4ca2', 'home') else 'mdi:alert-circle' }}"
 
       net_fire_tv:
         value_template: "{{ 'online' if is_state('device_tracker.net_fire_tv', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_fire_tv', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_fire_tv', 'home') else 'mdi:alert-circle' }}"
 
       net_google_home:
         value_template: "{{ 'online' if is_state('device_tracker.net_google_home', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_google_home', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_google_home', 'home') else 'mdi:alert-circle' }}"
 
       net_harmony_hub:
         value_template: "{{ 'online' if is_state('device_tracker.net_harmony_hub', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_harmony_hub', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_harmony_hub', 'home') else 'mdi:alert-circle' }}"
 
       net_hp_printer:
         value_template: "{{ 'online' if is_state('device_tracker.net_hp_printer', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_hp_printer', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_hp_printer', 'home') else 'mdi:alert-circle' }}"
 
       net_htpc:
         value_template: "{{ 'online' if is_state('device_tracker.net_htpc', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_htpc', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_htpc', 'home') else 'mdi:alert-circle' }}"
 
       net_ipcam_ac1:
         value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'mdi:alert-circle' }}"
 
       net_ipcam_hv1:
         value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_hv1', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_hv1', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ipcam_hv1', 'home') else 'mdi:alert-circle' }}"
 
       net_ipcam_ptz1:
         value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_ptz1', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ipcam_ptz1', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ipcam_ptz1', 'home') else 'mdi:alert-circle' }}"
 
       net_limitlessled:
         value_template: "{{ 'online' if is_state('device_tracker.net_limitlessled', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_limitlessled', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_limitlessled', 'home') else 'mdi:alert-circle' }}"
+
+      net_poe_switch:
+        value_template: "{{ 'online' if is_state('device_tracker.net_poe_switch', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_poe_switch', 'home') else 'mdi:alert-circle' }}"
 
       net_philips_hue:
         value_template: "{{ 'online' if is_state('device_tracker.net_philips_hue', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_philips_hue', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_philips_hue', 'home') else 'mdi:alert-circle' }}"
 
       net_projector:
         value_template: "{{ 'online' if is_state('device_tracker.net_projector', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_projector', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_projector', 'home') else 'mdi:alert-circle' }}"
 
       net_rack_light:
         value_template: "{{ 'online' if is_state('device_tracker.net_rack_light', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_rack_light', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_rack_light', 'home') else 'mdi:alert-circle' }}"
 
       net_raspberry_pi:
         value_template: "{{ 'online' if is_state('device_tracker.net_raspberry_pi', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_raspberry_pi', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_raspberry_pi', 'home') else 'mdi:alert-circle' }}"
 
       net_smartthings:
         value_template: "{{ 'online' if is_state('device_tracker.net_smartthings', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_smartthings', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_smartthings', 'home') else 'mdi:alert-circle' }}"
 
       net_tablet_digiland:
         value_template: "{{ 'online' if is_state('device_tracker.net_tablet_digiland', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_tablet_digiland', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_tablet_digiland', 'home') else 'mdi:alert-circle' }}"
 
       net_tablet_insignia:
         value_template: "{{ 'online' if is_state('device_tracker.net_tablet_insignia', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_tablet_insignia', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_tablet_insignia', 'home') else 'mdi:alert-circle' }}"
 
       net_ubuntu:
         value_template: "{{ 'online' if is_state('device_tracker.net_ubuntu', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_ubuntu', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ubuntu', 'home') else 'mdi:alert-circle' }}"
 
       net_web_power_switch:
         value_template: "{{ 'online' if is_state('device_tracker.net_web_power_switch', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_web_power_switch', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_web_power_switch', 'home') else 'mdi:alert-circle' }}"
 
       net_workshop:
         value_template: "{{ 'online' if is_state('device_tracker.net_workshop', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_workshop', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_workshop', 'home') else 'mdi:alert-circle' }}"
 
       net_xbox_one:
         value_template: "{{ 'online' if is_state('device_tracker.net_xbox_one', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_xbox_one', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_xbox_one', 'home') else 'mdi:alert-circle' }}"
+
+      net_xiaomi_gateway:
+        value_template: "{{ 'online' if is_state('device_tracker.net_xiaomi_gateway', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_xiaomi_gateway', 'home') else 'mdi:alert-circle' }}"
 
       net_yamaha_rxv675:
         value_template: "{{ 'online' if is_state('device_tracker.net_yamaha_rxv675', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle' if is_state('device_tracker.net_yamaha_rxv675', 'home') else 'mdi:alert-circle-outline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_yamaha_rxv675', 'home') else 'mdi:alert-circle' }}"

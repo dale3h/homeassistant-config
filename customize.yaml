@@ -50,7 +50,7 @@ automation.media_lights_when_playing:
 ## Device Tracker
 ################################################
 
-device_tracker.android544012e4cb17d5e:
+device_tracker.galaxy_s3:
   friendly_name: "Galaxy S3"
   homebridge_hidden: true
   icon: mdi:cellphone-android
@@ -119,6 +119,16 @@ device_tracker.tonyia_kindle:
   friendly_name: "Tonyia (Kindle)"
   homebridge_hidden: true
   icon: mdi:tablet-android
+
+device_tracker.tracked:
+  friendly_name: "YAML Node Anchor"
+  hidden: true
+  homebridge_hidden: true
+
+device_tracker.tracked_hidden:
+  friendly_name: "YAML Node Anchor"
+  hidden: true
+  homebridge_hidden: true
 
 ################################################
 ## Group

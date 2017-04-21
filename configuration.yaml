@@ -14,10 +14,10 @@ homeassistant:
 
 config:
 conversation:
+# discovery:
 frontend:
 history:
 sun:
-updater:
 
 ################################################
 ## Components (Non-Includes)

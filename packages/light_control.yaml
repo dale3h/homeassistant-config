@@ -84,6 +84,11 @@ script:
             {% endif %}
           flash: "{{ flash }}"
           transition: "{{ transition }}"
+          # color_name: "{{ color_name|default(none) }}"
+          # profile: "{{ profile }}"
+          # rgb_color: "{{ rgb_color }}"
+          # white_value: "{{ white_value }}"
+          # xy_color: "{{ xy_color }}"
 
   light_control_on:
     sequence:
@@ -92,6 +97,11 @@ script:
           entity_id: "{{ entity_id }}"
           brightness: "{{ brightness }}"
           color_temp: "{{ color_temp }}"
+          # color_name: "{{ color_name }}"
+          # profile: "{{ profile }}"
+          # rgb_color: "{{ rgb_color }}"
+          # white_value: "{{ white_value }}"
+          # xy_color: "{{ xy_color }}"
 
   light_control_on_flash:
     sequence:

@@ -19,7 +19,10 @@ exclude:
     - automation.startup_notification
     - binary_sensor.system_ready
     - sensor.date
+    - sensor.ha_github_version
+    - sensor.ha_pypi_version
     - sensor.ha_startup_time
+    - sensor.ha_version
     - sensor.kitchen_alarm_level_5_1
     - sensor.kitchen_alarm_type_5_0
     - sensor.kitchen_burglar_5_10

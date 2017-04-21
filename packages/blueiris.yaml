@@ -13,49 +13,9 @@ homeassistant:
       homebridge_hidden: true
       package: 'blueiris'
 
-    camera.amcrest_ptz:
+    automation.notify_driveway_motion:
       <<: *customize
-      friendly_name: "Amcrest PTZ"
-
-    camera.backyard:
-      <<: *customize
-      friendly_name: "Backyard"
-
-    camera.driveway:
-      <<: *customize
-      friendly_name: "Driveway"
-
-    camera.front_yard:
-      <<: *customize
-      friendly_name: "Front Yard"
-
-    camera.garage:
-      <<: *customize
-      friendly_name: "Garage"
-
-    camera.kitchen:
-      <<: *customize
-      friendly_name: "Kitchen"
-
-    camera.living_room:
-      <<: *customize
-      friendly_name: "Living Room"
-
-    camera.master_bedroom:
-      <<: *customize
-      friendly_name: "Master Bedroom"
-
-    camera.parker_bedroom:
-      <<: *customize
-      friendly_name: "Parker Bedroom"
-
-    group.cameras_indoor:
-      <<: *customize
-      friendly_name: "Indoor Cameras"
-
-    group.cameras_outdoor:
-      <<: *customize
-      friendly_name: "Outdoor Cameras"
+      friendly_name: "Driveway Motion Light Notication"
 
     binary_sensor.amcrest_ptz_cam_motion:
       <<: *customize
@@ -107,6 +67,50 @@ homeassistant:
       friendly_name: "Parker Bedroom Cam Motion"
       device_class: motion
 
+    camera.amcrest_ptz:
+      <<: *customize
+      friendly_name: "Amcrest PTZ"
+
+    camera.backyard:
+      <<: *customize
+      friendly_name: "Backyard"
+
+    camera.driveway:
+      <<: *customize
+      friendly_name: "Driveway"
+
+    camera.front_yard:
+      <<: *customize
+      friendly_name: "Front Yard"
+
+    camera.garage:
+      <<: *customize
+      friendly_name: "Garage"
+
+    camera.kitchen:
+      <<: *customize
+      friendly_name: "Kitchen"
+
+    camera.living_room:
+      <<: *customize
+      friendly_name: "Living Room"
+
+    camera.master_bedroom:
+      <<: *customize
+      friendly_name: "Master Bedroom"
+
+    camera.parker_bedroom:
+      <<: *customize
+      friendly_name: "Parker Bedroom"
+
+    group.cameras_indoor:
+      <<: *customize
+      friendly_name: "Indoor Cameras"
+
+    group.cameras_outdoor:
+      <<: *customize
+      friendly_name: "Outdoor Cameras"
+
 ################################################
 ## Group
 ################################################
@@ -128,6 +132,26 @@ group:
     control: hidden
     entities:
       - camera.driveway
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: notify_driveway_motion
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.driveway_cam_motion
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: !secret light_gateway_light
+          state: "{{ trigger.to_state.state }}"
+          brightness: >-
+            {{ 255 if 'H' in states.binary_sensor.driveway_cam_motion.attributes.type else 3 }}
+          color_name: >-
+            {{ 'red' if 'H' in states.binary_sensor.driveway_cam_motion.attributes.type else 'green' }}
 
 ################################################
 ## Camera

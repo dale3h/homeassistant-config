@@ -49,9 +49,9 @@ automation:
         from: 'home'
         to: 'not_home'
     condition:
-      - condition: state
-        entity_id: binary_sensor.system_ready
-        state: 'on'
+      # - condition: state
+      #   entity_id: binary_sensor.system_ready
+      #   state: 'on'
       - condition: state
         entity_id: input_boolean.guest_mode
         state: 'off'
@@ -94,6 +94,11 @@ script:
         data:
           entity_id: climate.home
           hold_mode: 'home'
+      - service: switch.turn_on
+        data:
+          entity_id:
+            - switch.eventghost_blueiris
+            - switch.eventghost_monitor
 
   departure:
     sequence:
@@ -108,3 +113,6 @@ script:
         data:
           entity_id: climate.home
           hold_mode: 'away'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.eventghost_monitor

@@ -1,33 +1,94 @@
+{% set group_source = states.group.network_devices_source %}
+{% set group_target = 'network_devices' %}
+{% set entities = group_source.attributes.entity_id %}
 ################################################################
 ## Packages / Network Devices
 ################################################################
 
-{% set group = states.group.network_devices_source -%}
-{%- set templateGroup = 'network_devices' -%}
-{%- set entities = group.attributes.entity_id -%}
-group:
-  {{ group.entity_id.split('.')[1] }}:
-    name: "{{ group.name }}"
-    hidden: true
-    entities:
-      {% for entity_id in entities -%}
-        - {{ entity_id }}
-      {% endfor %}
-  {{ templateGroup }}:
-    name: "{{ group.name }}"
-    entities:
-      {% for entity_id in entities -%}
-        - {{ ('sensor.' ~ entity_id.split('.')[1]) if entity_id.split('.')[0] == 'device_tracker' else entity_id }}
-      {% endfor %}
+################################################
+## Customize
+################################################
 
-{%- set newline = joiner("\n      ") %}
+homeassistant:
+  customize:
+    packages.network_devices: &customize
+      haaska_hidden: true
+      homebridge_hidden: true
+      package: 'network_devices'
+
+    packages.network_devices_hidden: &customize_hidden
+      <<: *customize
+      hidden: true
+
+    ################################################
+    ## Group
+    ################################################
+
+    {{ group_source.entity_id }}:
+      <<: *customize_hidden
+      friendly_name: "Network Devices"
+
+    group.{{ group_target }}:
+      <<: *customize
+      friendly_name: "Network Devices"
+
+    ################################################
+    ## Device Tracker
+    ################################################
+
+    {% set newline = joiner("\n\n    ") -%}
+    {%- for entity_id in entities if entity_id.split('.')[0] == 'device_tracker' -%}
+      {%- set entity = states[entity_id.split('.')[0]][entity_id.split('.')[1]] -%}
+      {{ newline() -}}
+      {{ entity_id }}:
+      <<: *customize_hidden
+      friendly_name: "{{ entity.name }}"
+    {%- endfor %}
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    {% set newline = joiner("\n\n    ") -%}
+    {%- for entity_id in entities if entity_id.split('.')[0] == 'device_tracker' -%}
+      {%- set entity = states[entity_id.split('.')[0]][entity_id.split('.')[1]] -%}
+      {{ newline() -}}
+      sensor.{{ entity_id.split('.')[1] }}:
+      <<: *customize
+      friendly_name: "{{ entity.name }}"
+    {%- endfor %}
+
+################################################
+## Group
+################################################
+
+group:
+  {{ group_source.entity_id.split('.')[1] }}:
+    control: hidden
+    entities:
+      {%- for entity_id in entities -%}
+        {{- "\n      - " ~ entity_id }}
+      {%- endfor %}
+
+  {{ group_target }}:
+    control: hidden
+    entities:
+      {%- for entity_id in entities -%}
+        {{- "\n      - " ~ (('sensor.' ~ entity_id.split('.')[1]) if entity_id.split('.')[0] == 'device_tracker' else entity_id) }}
+      {%- endfor %}
+
+################################################
+## Sensor
+################################################
+
 sensor:
   - platform: template
     sensors:
-      {% for entity_id in entities if entity_id.split('.')[0] == 'device_tracker' -%}
-        {{ newline() }}
+      {% set newline = joiner("\n\n      ") -%}
+      {%- for entity_id in entities if entity_id.split('.')[0] == 'device_tracker' -%}
         {%- set entity = states[entity_id.split('.')[0]][entity_id.split('.')[1]] -%}
+        {{ newline() -}}
         {{- entity_id.split('.')[1] }}:
         value_template: "{{ '{{' }} 'online' if is_state('{{ entity_id }}', 'home') else 'offline' {{ '}}' }}"
-        icon_template: "{{ '{{' }} 'mdi:check-circle' if is_state('{{ entity_id }}', 'home') else 'mdi:alert-circle-outline' {{ '}}' }}"
-      {% endfor %}
+        icon_template: "{{ '{{' }} 'mdi:check-circle-outline' if is_state('{{ entity_id }}', 'home') else 'mdi:alert-circle' {{ '}}' }}"
+      {%- endfor %}
