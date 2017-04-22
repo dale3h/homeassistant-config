@@ -46,7 +46,7 @@ script:
     sequence:
       - condition: template
         value_template: >-
-          {{ state != 'ok' }}
+          {{ state != 'ok' and state != 'no_data' }}
       - service: notify.syslog
         data_template:
           message: >

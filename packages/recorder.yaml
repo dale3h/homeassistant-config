@@ -1,0 +1,42 @@
+################################################################
+## Packages / Recorder
+################################################################
+
+recorder:
+  purge_days: 14
+  db_url: !secret recorder_db_url
+  exclude:
+    domains:
+      - camera
+      - media_player
+      - sun
+    entities:
+      - !secret sensor_kitchen_moisture
+      - automation.persistence_enable_automations
+      - automation.persistence_publish
+      - automation.persistence_subscribe_binary
+      - automation.persistence_subscribe_select_option
+      - automation.persistence_subscribe_select_value
+      - automation.startup_notification
+      - binary_sensor.system_ready
+      - sensor.date
+      - sensor.ha_github_version
+      - sensor.ha_pypi_version
+      - sensor.ha_startup_time
+      - sensor.ha_version
+      - sensor.kitchen_alarm_level_5_1
+      - sensor.kitchen_alarm_type_5_0
+      - sensor.kitchen_burglar_5_10
+      - sensor.kitchen_luminance_5_3
+      - sensor.kitchen_sourcenodeid_5_2
+      - sensor.kitchen_ultraviolet_5_27
+      - sensor.master_bathroom_alarm_level_4_1
+      - sensor.master_bathroom_alarm_type_4_0
+      - sensor.master_bathroom_burglar_4_10
+      - sensor.master_bathroom_luminance_4_3
+      - sensor.master_bathroom_sourcenodeid_4_2
+      - sensor.master_bathroom_ultraviolet_4_27
+      - sensor.secrets
+      - sensor.time
+      - sensor.ups_status_date
+      - sensor.ups_time_left

@@ -2,6 +2,6 @@
 ## Packages / ZigBee
 ################################################################
 
-# zha:
-#   usb_path: /dev/ttyUSB0
-#   database_path: /home/homeassistant/.config/bellows/app.db
+zha:
+  usb_path: /dev/zigbee
+  database_path: /home/homeassistant/.config/bellows/app.db

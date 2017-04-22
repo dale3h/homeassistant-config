@@ -1,0 +1,12 @@
+################################################################
+## Packages / Logger
+################################################################
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+logger:
+  default: info
+  logs:
+    homeassistant.components.automation: debug
+    homeassistant.components.http: error
+    homeassistant.components.sensor.apcupsd: error
+    plexapi: critical

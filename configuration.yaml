@@ -41,13 +41,6 @@ logbook:
     domains:
       - sun
 
-# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
-logger:
-  default: info
-  logs:
-    homeassistant.components.sensor.apcupsd: error
-    homeassistant.components.automation: debug
-
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
@@ -68,7 +61,6 @@ tts:
 ################################################
 
 ios: !include ios.yaml
-recorder: !include recorder.yaml
 
 ################################################
 ## Component Includes (Named)

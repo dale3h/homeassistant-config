@@ -82,6 +82,8 @@ group:
       - sensor.ha_version
       - sensor.ha_github_version
       - sensor.ha_pypi_version
+      - switch.eventghost_blueiris
+      - switch.eventghost_monitor
 
 ################################################
 ## Automation
