@@ -4,10 +4,13 @@ After=network.target
 
 [Service]
 Type=simple
-User=pi
-ExecStart=/usr/local/bin/hass
+User=homeassistant
+Environment=HASS_CONFIG=/home/homeassistant/.homeassistant
+ExecStart=/srv/homeassistant/bin/hass -c "$HASS_CONFIG"
+ExecReload=/srv/homeassistant/bin/hass -c "$HASS_CONFIG" --script check_config
+ExecReload=/bin/kill -HUP $MAINPID
 SendSIGKILL=yes
-TimeoutStopSec=60
+TimeoutStopSec=15
 
 [Install]
 WantedBy=multi-user.target
