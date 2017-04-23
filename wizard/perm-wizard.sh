@@ -50,6 +50,11 @@ find "$HASS_CONFIG" -type d -exec chmod g+s {} \;
 echo "Removing public permissions"
 chmod -R o-rwx "$HASS_CONFIG"
 
+echo "Setting current facl mask"
+setfacl -R -m u::rwx "$HASS_CONFIG"
+setfacl -R -m g::rwx "$HASS_CONFIG"
+setfacl -R -m o::000 "$HASS_CONFIG"
+
 echo "Setting default facl mask"
 setfacl -R -d -m u::rwx "$HASS_CONFIG"
 setfacl -R -d -m g::rwx "$HASS_CONFIG"
