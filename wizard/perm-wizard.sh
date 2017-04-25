@@ -39,7 +39,7 @@ ME="$(/usr/bin/logname)"
 
 echo
 echo "Adding user to '$HASS_GROUP' group"
-usermod -G $HASS_GROUP $ME
+usermod -a -G $HASS_GROUP $ME
 
 echo "Setting group to '$HASS_GROUP'"
 chown -R $HASS_USER:$HASS_GROUP "$HASS_CONFIG"
