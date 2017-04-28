@@ -36,6 +36,10 @@ homeassistant:
       friendly_name: "Master Bathroom Motion"
       device_class: motion
 
+    input_select.siren_sound:
+      <<: *customize_contained
+      friendly_name: "Siren Sound"
+
     lock.front_door_locked_17_0:
       <<: *customize_exposed
       friendly_name: "Front Door"
@@ -119,6 +123,30 @@ zwave:
   config_path: !secret zwave_config_path
   usb_path: !secret zwave_usb_path
   device_config: !include ../zwave_device_config.yaml
+
+################################################
+## Input Select
+################################################
+
+input_select:
+  siren_sound:
+    initial: "Sound 1 - Low Volume"
+    options:
+      - "Sound 1 - Low Volume"
+      - "Sound 1 - Mid Volume"
+      - "Sound 1 - High Volume"
+      - "Sound 2 - Low Volume"
+      - "Sound 2 - Mid Volume"
+      - "Sound 2 - High Volume"
+      - "Sound 3 - Low Volume"
+      - "Sound 3 - Mid Volume"
+      - "Sound 3 - High Volume"
+      - "Sound 4 - Low Volume"
+      - "Sound 4 - Mid Volume"
+      - "Sound 4 - High Volume"
+      - "Sound 5 - Low Volume"
+      - "Sound 5 - Mid Volume"
+      - "Sound 5 - High Volume"
 
 ################################################
 ## Script

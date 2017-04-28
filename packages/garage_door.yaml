@@ -15,7 +15,11 @@ homeassistant:
 
     alert.garage_door_open:
       <<: *customize
-      friendly_name: Garage Door Open
+      friendly_name: "Garage Door Open"
+
+    automation.garage_door_lighting:
+      <<: *customize
+      friendly_name: "Garage Door Lighting"
 
     cover.garage_door:
       <<: *customize
@@ -40,6 +44,29 @@ alert:
     skip_first: false
     notifiers:
       - tts_alerts
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: garage_door_lighting
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: cover.garage_door
+        from: 'closed'
+        to: 'open'
+      - platform: state
+        entity_id: cover.garage_door
+        from: 'open'
+        to: 'closed'
+        for: '00:05:00'
+    action:
+      - service: script.light_control
+        data_template:
+          entity_id: light.garage
+          state: "{{ 'on' if trigger.to_state.state == 'open' else 'off' }}"
 
 ################################################
 ## Cover

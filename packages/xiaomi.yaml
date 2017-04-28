@@ -48,6 +48,10 @@ homeassistant:
       hidden: true
       icon: mdi:power-plug
 
+    input_slider.xiaomi_ringtone_volume:
+      <<: *customize_contained
+      friendly_name: "Xiaomi Ringtone Volume"
+
 ################################################
 ## Xiaomi
 ################################################
@@ -56,3 +60,34 @@ xiaomi:
   gateways:
     - sid: !secret xiaomi_gateway_sid
       key: !secret xiaomi_gateway_key
+
+################################################
+## Input Slider
+################################################
+
+input_slider:
+  xiaomi_ringtone_volume:
+    initial: 100
+    min: 1
+    max: 100
+    step: 1
+
+################################################
+## Script
+################################################
+
+script:
+  xiaomi_ringtone:
+    sequence:
+      - service: xiaomi.play_ringtone
+        data_template:
+          ringtone_id: "{{ ringtone|default(10000) }}"
+          ringtone_vol: "{{ volume|default(states('input_slider.xiaomi_ringtone_volume')|int(100)) }}"
+          gw_sid: >-
+            {% if gateway is defined %}
+              {{ gateway }}
+            {% else %}
+              {% for light in states.light if 'gateway_light_' in light.entity_id %}
+                {{ light.entity_id|replace('light.gateway_light_', '') if loop.index == 1 }}
+              {% endfor %}
+            {% endif %}

@@ -15,7 +15,7 @@ homeassistant:
 
     automation.notify_driveway_motion:
       <<: *customize
-      friendly_name: "Driveway Motion Light Notication"
+      friendly_name: "Driveway Motion Notication"
 
     binary_sensor.amcrest_ptz_cam_motion:
       <<: *customize
@@ -152,6 +152,14 @@ automation:
             {{ 255 if 'H' in states.binary_sensor.driveway_cam_motion.attributes.type else 3 }}
           color_name: >-
             {{ 'red' if 'H' in states.binary_sensor.driveway_cam_motion.attributes.type else 'green' }}
+      - service: script.xiaomi_ringtone
+        data_template:
+          ringtone: >-
+            {% if trigger.to_state.state == 'on' and 'H' in states.binary_sensor.driveway_cam_motion.attributes.type %}
+              7
+            {% else %}
+              10000
+            {% endif %}
 
 ################################################
 ## Camera

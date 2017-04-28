@@ -33,6 +33,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Light Control On"
 
+    script.light_control_on_color_name:
+      <<: *customize
+      friendly_name: "Light Control On Color Name"
+
     script.light_control_on_flash:
       <<: *customize
       friendly_name: "Light Control On Flash"
@@ -52,7 +56,7 @@ script:
           {% if state == 'off' %}
             script.light_control_off{{ '_flash' if flash is defined else ('_transition' if transition is defined) }}
           {% else %}
-            script.light_control_on{{ '_flash' if flash is defined else ('_transition' if transition is defined) }}
+            script.light_control_on{{ '_color_name' if color_name is defined else ('_flash' if flash is defined else ('_transition' if transition is defined)) }}
           {% endif %}
         data_template:
           entity_id: "{{ entity_id }}"
@@ -73,18 +77,14 @@ script:
               255
             {% endif %}
           color_temp: >-
-            {% if color_temp|lower == 'ww' %}
-              370
-            {% elif color_temp|lower == 'cw' %}
-              154
-            {% elif color_temp is defined and color_temp|int(-1) != -1 %}
+            {% if color_temp is defined and color_temp|int(-1) != -1 %}
               {{ color_temp|int }}
             {% else %}
               {{ (states.light[entity_id.split('.', 1)[1]].attributes|default).color_temp|default(370) }}
             {% endif %}
           flash: "{{ flash }}"
           transition: "{{ transition }}"
-          # color_name: "{{ color_name|default(none) }}"
+          color_name: "{{ color_name|default(none) }}"
           # profile: "{{ profile }}"
           # rgb_color: "{{ rgb_color }}"
           # white_value: "{{ white_value }}"
@@ -102,6 +102,13 @@ script:
           # rgb_color: "{{ rgb_color }}"
           # white_value: "{{ white_value }}"
           # xy_color: "{{ xy_color }}"
+
+  light_control_on_color_name:
+    sequence:
+      - service: light.turn_on
+        data_template:
+          <<: *light_control_on
+          color_name: "{{ color_name }}"
 
   light_control_on_flash:
     sequence:
