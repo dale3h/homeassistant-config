@@ -10,81 +10,114 @@ homeassistant:
   customize:
     packages.zwave_remotes: &customize
       haaska_hidden: true
+      hidden: true
       homebridge_hidden: true
       package: 'zwave_remotes'
+
+    script.blue_iris_remote_1_click:
+      <<: *customize
+      friendly_name: "Toggle Monitor Power"
+
+    script.blue_iris_remote_2_click:
+      <<: *customize
+      friendly_name: "Blue Iris: Toggle Focus"
+
+    script.blue_iris_remote_3_click:
+      <<: *customize
+      friendly_name: "Blue Iris: Previous Camera"
+
+    script.blue_iris_remote_3_hold:
+      <<: *customize
+      friendly_name: "Blue Iris: Show All Cameras"
+
+    script.blue_iris_remote_4_click:
+      <<: *customize
+      friendly_name: "Blue Iris: Next Camera"
+
+    script.blue_iris_remote_4_hold:
+      <<: *customize
+      friendly_name: "Blue Iris: Cycle Cameras"
 
 ################################################
 ## Script
 ################################################
 
 script:
-  minimote_button:
+  ################################################
+  ## Global Handler
+  ################################################
+
+  # minimote_button:
+  #   sequence:
+  #     - service: notify.syslog
+  #       data_template:
+  #         message: >-
+  #           event_type: {{ event_type }}
+  #           origin: {{ origin }}
+  #           time_fired: {{ time_fired }}
+  #           entity_id: {{ entity_id }}
+  #           object_id: {{ object_id }}
+  #           scene_id: {{ scene_id }}
+  #           remote: {{ remote }}
+  #           button: {{ button }}
+  #           action: {{ action }}
+
+  ################################################
+  ## Blue Iris Remote
+  ################################################
+
+  blue_iris_remote_1_click:
     sequence:
-      - service: notify.syslog
+      - service: switch.toggle
+        data:
+          entity_id: switch.eventghost_monitor
+
+  blue_iris_remote_2_click:
+    sequence:
+      - service: switch.toggle
+        data:
+          entity_id: switch.eventghost_blueiris
+
+  blue_iris_remote_3_click:
+    sequence:
+      - service: shell_command.curl
         data_template:
-          message: >-
-            event_type: {{ event_type }}
-            origin: {{ origin }}
-            time_fired: {{ time_fired }}
-            entity_id: {{ entity_id }}
-            object_id: {{ object_id }}
-            scene_id: {{ scene_id }}
-            remote: {{ remote }}
-            button: {{ button }}
-            action: {{ action }}
+          method: post
+          url: "{{ states.sensor.secrets.attributes.eventghost_url }}"
+          payload:
+            method: TriggerEvent
+            args:
+              - BlueIris.PreviousCam
 
-  dining_room_remote_1_click:
+  blue_iris_remote_3_hold:
     sequence:
-      - service: notify.syslog
-        data:
-          message: "button 1 click handler"
-#       - service: light.turn_on
-#         data:
-#           entity_id: light.living_room
-#           brightness: 255
+      - service: shell_command.curl
+        data_template:
+          method: post
+          url: "{{ states.sensor.secrets.attributes.eventghost_url }}"
+          payload:
+            method: TriggerEvent
+            args:
+              - BlueIris.AllCams
 
-  dining_room_remote_1_hold:
+  blue_iris_remote_4_click:
     sequence:
-      - service: notify.syslog
-        data:
-          message: "button 1 hold handler"
-#       - service: switch.turn_on
-#         data:
-#           entity_id: switch.apple_tv
+      - service: shell_command.curl
+        data_template:
+          method: post
+          url: "{{ states.sensor.secrets.attributes.eventghost_url }}"
+          payload:
+            method: TriggerEvent
+            args:
+              - BlueIris.NextCam
 
-  dining_room_remote_2_click:
+  blue_iris_remote_4_hold:
     sequence:
-      - service: notify.syslog
-        data:
-          message: "button 2 click handler"
-#       - service: light.turn_on
-#         data:
-#           entity_id: light.dining_room
-#           brightness: 255
-
-  dining_room_remote_3_click:
-    sequence:
-      - service: notify.syslog
-        data:
-          message: "button 3 click handler"
-#       - service: light.turn_off
-#         data:
-#           entity_id: light.living_room
-
-  dining_room_remote_3_hold:
-    sequence:
-      - service: notify.syslog
-        data:
-          message: "button 3 hold handler"
-#       - service: switch.turn_off
-#         data:
-#           entity_id: switch.apple_tv
-
-  dining_room_remote_4_click:
-    sequence:
-      - service: notify.syslog
-        data:
-          message: "button 4 click handler"
-#       - service: light.turn_off
-#         data:
-#           entity_id: light.dining_room
+      - service: shell_command.curl
+        data_template:
+          method: post
+          url: "{{ states.sensor.secrets.attributes.eventghost_url }}"
+          payload:
+            method: TriggerEvent
+            args:
+              - BlueIris.Cycle
