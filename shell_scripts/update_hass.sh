@@ -15,9 +15,6 @@ $VIRTUAL_ENV/bin/pip3 search homeassistant
 # Run the backup script
 $HASS_CONFIG/shell_scripts/backup_config.sh
 
-# Install everything in new requirements_all.txt
-$VIRTUAL_ENV/bin/pip3 install -r https://raw.githubusercontent.com/home-assistant/home-assistant/master/requirements_all.txt
-
 # Upgrade Home Assistant
 $VIRTUAL_ENV/bin/pip3 install --upgrade homeassistant
 

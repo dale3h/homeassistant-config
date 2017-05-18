@@ -2,50 +2,75 @@
 ## Z-Wave / Device Config
 ################################################################
 
+################################################
+## Front Door Lock
+################################################
+
 !secret sensor_front_door_lock_alarm_level:
   ignored: true
 
 !secret sensor_front_door_lock_alarm_type:
   ignored: true
 
-!secret sensor_front_door_sensor_alarm_level:
+################################################
+## Front Door Sensor
+################################################
+
+!secret sensor_front_door_access_control:
   ignored: true
 
-!secret sensor_front_door_sensor_alarm_type:
+!secret sensor_front_door_alarm_level:
   ignored: true
 
-!secret sensor_front_door_sensor_burglar:
+!secret sensor_front_door_alarm_type:
   ignored: true
 
-!secret sensor_front_door_sensor_sourcenodeid:
+!secret sensor_front_door_burglar:
   ignored: true
 
-!secret sensor_kitchen_motion_alarm_level:
+!secret sensor_front_door_sourcenodeid:
   ignored: true
 
-!secret sensor_kitchen_motion_alarm_type:
+################################################
+## Kitchen Motion Sensor
+################################################
+
+!secret sensor_kitchen_alarm_level:
   ignored: true
 
-!secret sensor_kitchen_motion_burglar:
+!secret sensor_kitchen_alarm_type:
   ignored: true
 
-!secret sensor_kitchen_motion_sourcenodeid:
+!secret sensor_kitchen_burglar:
   ignored: true
 
-!secret sensor_kitchen_motion_ultraviolet:
+!secret sensor_kitchen_general:
   ignored: true
 
-!secret sensor_master_bathroom_motion_alarm_level:
+!secret sensor_kitchen_power:
   ignored: true
 
-!secret sensor_master_bathroom_motion_alarm_type:
+!secret sensor_kitchen_sourcenodeid:
   ignored: true
 
-!secret sensor_master_bathroom_motion_burglar:
+!secret sensor_kitchen_ultraviolet:
   ignored: true
 
-!secret sensor_master_bathroom_motion_sourcenodeid:
+################################################
+## Master Bathroom Motion Sensor
+################################################
+
+!secret sensor_master_bathroom_alarm_level:
   ignored: true
 
-!secret sensor_master_bathroom_motion_ultraviolet:
+!secret sensor_master_bathroom_alarm_type:
+  ignored: true
+
+!secret sensor_master_bathroom_burglar:
+  ignored: true
+
+!secret sensor_master_bathroom_sourcenodeid:
+  ignored: true
+
+!secret sensor_master_bathroom_ultraviolet:
   ignored: true

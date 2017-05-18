@@ -78,9 +78,9 @@ kitchen:
     - sensor.kitchen_motion_battery
     - !secret binary_sensor_kitchen_motion
     - !secret sensor_kitchen_moisture
-    - sensor.kitchen_luminance_5_3
-    - sensor.kitchen_relative_humidity_5_5
-    - sensor.kitchen_temperature_5_1
+    - !secret sensor_kitchen_luminance
+    - !secret sensor_kitchen_humidity
+    - !secret sensor_kitchen_temperature
     - switch.pepper_fan
     - sensor.pepper_fan_power
     - automation.kitchen_motion

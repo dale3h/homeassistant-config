@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Garage Door
+## Packages / Garage
 ################################################################
 
 ################################################
@@ -8,24 +8,36 @@
 
 homeassistant:
   customize:
-    packages.garage_door: &customize
+    packages.garage: &customize
       haaska_hidden: true
       homebridge_hidden: true
-      package: 'garage_door'
+      package: 'garage'
 
     alert.garage_door_open:
       <<: *customize
       friendly_name: "Garage Door Open"
+      speech: "Hey you, your garage door is open."
 
     automation.garage_door_lighting:
       <<: *customize
       friendly_name: "Garage Door Lighting"
+
+    binary_sensor.garage_light_expected_state:
+      <<: *customize
+      friendly_name: "Garage Light Expected State"
+      device_class: light
+      hidden: true
 
     cover.garage_door:
       <<: *customize
       friendly_name: "Garage Door"
       homebridge_cover_type: garage_door
       icon: mdi:glassdoor
+
+    # input_boolean.garage_light:
+    #   <<: *customize
+    #   friendly_name: "Garage Light"
+    #   hidden: true
 
 ################################################
 ## Alert
@@ -37,9 +49,10 @@ alert:
     entity_id: cover.garage_door
     state: 'open'
     repeat:
+      - 5
+      - 10
       - 15
       - 30
-      - 60
     can_acknowledge: true
     skip_first: false
     notifiers:
@@ -66,7 +79,20 @@ automation:
       - service: script.light_control
         data_template:
           entity_id: light.garage
-          state: "{{ 'on' if trigger.to_state.state == 'open' else 'off' }}"
+
+################################################
+## Binary Sensor
+################################################
+
+binary_sensor:
+  - platform: template
+    sensors:
+      garage_light_expected_state:
+        value_template: >-
+          {{ true in (
+            is_state('cover.garage_door', 'open'),
+            is_state('input_boolean.garage_light', 'on')
+          ) }}
 
 ################################################
 ## Cover
@@ -83,3 +109,10 @@ cover:
     state_open: 'open'
     state_closed: 'closed'
     retain: true
+
+################################################
+## Input Boolean
+################################################
+
+# input_boolean:
+#   garage_light:

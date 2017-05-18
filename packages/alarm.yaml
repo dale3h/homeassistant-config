@@ -21,7 +21,7 @@ homeassistant:
       <<: *customize
       friendly_name: "Alarm System"
 
-    switch.siren_switch_16_0:
+    !secret switch_siren:
       <<: *customize
       friendly_name: "Siren"
 

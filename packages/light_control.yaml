@@ -53,6 +53,10 @@ script:
   light_control:
     sequence:
       - service_template: >-
+          {% if state is not defined %}
+            {% set state = 'off' if is_state('binary_sensor.' ~ entity_id.split('.', 1)[1] ~ '_expected_state', 'off') else 'on' %}
+          {% endif %}
+
           {% if state == 'off' %}
             script.light_control_off{{ '_flash' if flash is defined else ('_transition' if transition is defined) }}
           {% else %}

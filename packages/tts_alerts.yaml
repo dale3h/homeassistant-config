@@ -31,19 +31,11 @@ automation:
           domain: notify
           service: tts_alerts
     action:
-      - service: notify.syslog
-        data_template:
-          message: >-
-            {{ trigger|tojson(2) }}
       - service: script.say
         data_template:
           message: >-
-            {% set alert_name = trigger.event.data.service_data.message %}
-            {% set alert_map = {
-              'garage_door_open': 'The garage door is open.',
-              'Garage Door Open': 'Fix the garage door alert.'
-            } %}
-            {{ alert_map[alert_name]|default(alert_name) }}
+            {% set entity_id = trigger.event.data.service_data.message %}
+            {{ (states.alert[entity_id].attributes|default).speech|default(entity_id|replace('_', ' ')) }}
 
 ################################################
 ## Notify

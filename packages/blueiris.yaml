@@ -15,7 +15,7 @@ homeassistant:
 
     automation.notify_driveway_motion:
       <<: *customize
-      friendly_name: "Driveway Motion Notication"
+      friendly_name: "Driveway Motion Notification"
 
     binary_sensor.amcrest_ptz_cam_motion:
       <<: *customize
@@ -139,7 +139,7 @@ group:
 
 automation:
   - alias: notify_driveway_motion
-    initial_state: 'on'
+    initial_state: 'off'
     trigger:
       - platform: state
         entity_id: binary_sensor.driveway_cam_motion
