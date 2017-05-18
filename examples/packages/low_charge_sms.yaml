@@ -1,0 +1,30 @@
+################################################################
+## Packages / Low Charge SMS
+################################################################
+
+homeassistant:
+  customize:
+    automation.low_charge_sms:
+      friendly_name: "Geraldine's Low Battery SMS"
+
+    device_tracker.geraldine:
+      phone_number: !secret number_geraldine
+
+automation:
+  - alias: low_charge_sms
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.geraldine_iphone_battery
+        below: 30
+    action:
+      - service: shell_command.low_charge_sms
+        data_template:
+          numbers: >-
+            {% set space = joiner(' ') %}
+            {% for entity in states.device_tracker if entity.attributes.phone_number is defined and is_state(entity.entity_id, 'home') -%}
+              {{ space() }}{{ entity.attributes.phone_number }}
+            {%- endfor %}
+
+shell_command:
+  low_charge_sms: >-
+    /home/homeassistant/.homeassistant/shell_scripts/low_charge_sms.sh {{ numbers }}
