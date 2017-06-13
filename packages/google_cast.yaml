@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Google Cast
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'google_cast'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,39 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Media Player
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
+    media_player.bedroom_speakers:
       <<: *contained
-      friendly_name: "Alarm System"
+      friendly_name: "Bedroom Speakers"
+      icon: mdi:google-chrome
 
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
+    media_player.dining_room_home:
       <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Dining Room Home"
+      icon: mdi:google-chrome
+
+    media_player.living_room_speakers:
+      <<: *contained
+      friendly_name: "Living Room Speakers"
+      icon: mdi:google-chrome
 
 ################################################
-## Group
+## Media Player
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+media_player:
+  - platform: cast
+    name: dining_room_home
+    host: !secret google_cast_dining_room_host
 
-################################################
-## Alarm Control Panel
-################################################
+  - platform: cast
+    name: living_room_speakers
+    host: !secret google_cast_living_room_host
 
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+  - platform: cast
+    name: master_bedroom_speakers
+    host: !secret google_cast_master_bedroom_host
+
+  - platform: cast

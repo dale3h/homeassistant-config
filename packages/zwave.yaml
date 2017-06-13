@@ -115,6 +115,11 @@ homeassistant:
       friendly_name: "Master Bathroom Temperature"
       icon: mdi:thermometer
 
+  customize_domain:
+    zwave:
+      <<: *customize
+      hidden: true
+
 ################################################
 ## Z-Wave
 ################################################

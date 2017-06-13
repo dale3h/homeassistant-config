@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Zones
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'zones'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,32 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Zone
     ################################################
 
-    alarm_control_panel.alarm_system:
+    zone.home:
       <<: *customize
-      friendly_name: "Alarm System"
+      friendly_name: "Home"
 
-    ################################################
-    ## Group
-    ################################################
+    zone.office:
+      <<: *customize
+      friendly_name: "Office"
+      icon: mdi:city
 
-    group.alarm_system:
-      <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+    zone.parents:
+      <<: *customize
+      friendly_name: "Parents"
+      icon: mdi:cow
 
 ################################################
-## Group
+## Zone
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+zone:
+  - name: office
+    latitude: !secret office_latitude
+    longitude: !secret office_longitude
 
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+  - name: parents
+    latitude: !secret parents_latitude
+    longitude: !secret parents_longitude

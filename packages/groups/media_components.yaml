@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Groups / Media Components
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'groups/media_components'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,36 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
-    ################################################
-
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.media_components:
       <<: *contained
-      friendly_name: "Alarm System"
+      friendly_name: "Media Components"
 
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
+    group.media_players:
       <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Media Players"
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
+  media_components:
     control: hidden
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+      - switch.apple_tv
+      - switch.chromecast
+      - switch.computer
+      - switch.fire_tv
+      - switch.xbox
 
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+  media_players:
+    control: hidden
+    entities:
+      - media_player.apple_tv_bedroom
+      - media_player.apple_tv_living_room
+      - media_player.bedroom_speakers
+      - media_player.dining_room_home
+      - media_player.living_room_speakers

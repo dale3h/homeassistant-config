@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Media Lights
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'media_lights'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,65 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Automation
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
+    automation.media_lighting:
+      <<: *exposed
+      friendly_name: "Media Lighting"
+      icon: mdi:movie-roll
+
+    ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.media_lights_expected_state:
+      <<: *hidden
+      friendly_name: "Media Lights Expected State"
+      device_class: light
 
     ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.media_lights:
       <<: *contained
-      friendly_name: "Alarm System"
+      friendly_name: "Media Lights"
+      icon: mdi:lightbulb
 
-    ################################################
-    ## Switch
-    ################################################
+################################################
+## Automation
+################################################
 
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+automation:
+  - alias: media_lighting
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.media_lights_expected_state
+    action:
+      - service: script.light_control
+        data:
+          entity_id: group.media_lights
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
-    control: hidden
+  media_lights:
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+      - light.entry_lamp
+      - light.living_room
+      - light.dining_room
 
 ################################################
-## Alarm Control Panel
+## Binary Sensor
 ################################################
 
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+binary_sensor:
+  - platform: template
+    sensors:
+      media_lights_expected_state:
+        value_template: >-
+          {{ not is_state('media_player.apple_tv_living_room', 'playing') }}

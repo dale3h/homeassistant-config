@@ -8,42 +8,91 @@
 
 homeassistant:
   customize:
-    packages.light_control: &customize
-      haaska_hidden: true
-      hidden: true
-      package: 'light_control'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'light_control'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.light_control_reset:
+      <<: *hidden
+      friendly_name: "Reset Light Control"
+
+    ################################################
+    ## Script
+    ################################################
 
     script.light_control:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control"
 
     script.light_control_off:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control Off"
 
     script.light_control_off_flash:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control Off Flash"
 
     script.light_control_off_transition:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control Off Transition"
 
     script.light_control_on:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control On"
 
     script.light_control_on_color_name:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control On Color Name"
 
     script.light_control_on_flash:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control On Flash"
 
     script.light_control_on_transition:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Light Control On Transition"
+
+    script.light_control_reset:
+      <<: *contained
+      friendly_name: "Reset Light Control"
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: light_control_reset
+    trigger:
+      - platform: time
+        seconds: '/5'
+    condition:
+      - condition: state
+        entity_id: script.light_control
+        state: 'on'
+    action:
+      - service: script.light_control_reset
 
 ################################################
 ## Script
@@ -147,3 +196,17 @@ script:
         data_template:
           <<: *light_control_off
           transition: "{{ transition }}"
+
+  light_control_reset:
+    sequence:
+      - service: script.turn_off
+        data:
+          entity_id:
+            - script.light_control
+            - script.light_control_on
+            - script.light_control_on_color_name
+            - script.light_control_on_flash
+            - script.light_control_on_transition
+            - script.light_control_off
+            - script.light_control_off_flash
+            - script.light_control_off_transition

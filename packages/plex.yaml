@@ -8,14 +8,44 @@
 
 homeassistant:
   customize:
-    packages.plex: &customize
-      haaska_hidden: true
-      hidden: true
-      package: 'plex'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'plex'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Media Player
+    ################################################
+
+    media_player.plex_living_room:
+      <<: *contained
+      friendly_name: "Living Room (Plex)"
+      icon: mdi:plex
+
+    ################################################
+    ## Sensor
+    ################################################
 
     sensor.plex_activity:
-      <<: *customize
-      friendly_name: 'Plex Activity'
+      <<: *hidden
+      friendly_name: "Plex Activity"
 
 ################################################
 ## Media Player

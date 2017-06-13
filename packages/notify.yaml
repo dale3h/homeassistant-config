@@ -1,0 +1,39 @@
+################################################################
+## Packages / Notify
+################################################################
+
+notify:
+  ################################################
+  ## ecobee3
+  ################################################
+
+  - platform: ecobee
+    name: ecobee
+
+  ################################################
+  ## Pushover
+  ################################################
+
+  - platform: pushover
+    name: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+
+  ################################################
+  ## System Log
+  ################################################
+
+  - platform: syslog
+    name: syslog
+    facility: syslog
+    option: pid
+    priority: 4
+
+  ################################################
+  ## HTML5 Push Notifications
+  ################################################
+
+  # - platform: html5
+  #   name: html5
+  #   gcm_api_key: !secret html5_api_key
+  #   gcm_sender_id: !secret html5_sender_id

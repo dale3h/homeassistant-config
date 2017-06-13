@@ -1,0 +1,87 @@
+################################################################
+## Packages / iOS
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    packages.ios: &customize
+      hidden: true
+      package: 'ios'
+
+    automation.ios_action_open_garage:
+      <<: *customize
+      friendly_name: "iOS Action: Open Garage"
+
+    automation.ios_action_unlock_door:
+      <<: *customize
+      friendly_name: "iOS Action: Unlock Door"
+
+    script.ios_notify_arrival:
+      <<: *customize
+      friendly_name: "iOS Notify: Arrival"
+
+################################################
+## iOS
+################################################
+
+ios:
+  push:
+    categories:
+      - name: "Arrival"
+        identifier: ARRIVAL
+        actions:
+          - identifier: OPEN_GARAGE
+            title: "Open Garage"
+            authenticationRequired: true
+          - identifier: UNLOCK_DOOR
+            title: "Unlock Door"
+            authenticationRequired: true
+          - identifier: DISMISS
+            title: "Dismiss"
+            authenticationRequired: false
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: ios_action_open_garage
+    trigger:
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: OPEN_GARAGE
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.garage_door
+
+  - alias: ios_action_unlock_door
+    trigger:
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: UNLOCK_DOOR
+    action:
+      - service: lock.unlock
+        data:
+          entity_id: !secret lock_front_door
+
+################################################
+## Script
+################################################
+
+script:
+  ios_notify_arrival:
+    sequence:
+      - service: notify.ios_dale_iphone_ios
+        data:
+          message: "Welcome home!"
+          data:
+            push:
+              sound: 'US-EN-Alexa-Welcome-Home.wav'
+              category: ARRIVAL

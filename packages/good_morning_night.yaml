@@ -1,0 +1,104 @@
+################################################################
+## Packages / Good Morning/Night
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'good_morning_night'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Script
+    ################################################
+
+    script.good_morning:
+      <<: *exposed
+      friendly_name: "Good Morning"
+      icon: mdi:weather-sunny
+
+    script.good_night:
+      <<: *exposed
+      friendly_name: "Good Night"
+      icon: mdi:weather-night
+
+################################################
+## Script
+################################################
+
+script:
+  good_morning:
+    sequence:
+      - service: script.say
+        data_template:
+          message: !include ../phrases/good_morning.yaml
+
+      - service: automation.turn_on
+        data:
+          entity_id:
+            - automation.master_bedroom_motion
+            - automation.media_lighting
+
+      - service: script.light_control
+        data:
+          entity_id: light.master_bedroom
+          state: 'on'
+          brightness: 255
+          color_temp: 370
+          transition: 5
+
+      - service: climate.set_hold_mode
+        data:
+          entity_id: climate.home
+          hold_mode: 'home'
+
+  good_night:
+    sequence:
+      - service: script.say
+        data_template:
+          message: !include ../phrases/good_night.yaml
+
+      - service: automation.turn_off
+        data:
+          entity_id:
+            - automation.master_bedroom_motion
+            - automation.media_lighting
+
+      - service: climate.set_hold_mode
+        data:
+          entity_id: climate.home
+          hold_mode: 'sleep'
+
+      - service: script.light_control
+        data:
+          entity_id: group.all_lights
+          state: 'off'
+          transition: 5
+
+      - service: script.front_porch_light
+
+      - service: lock.lock
+        data:
+          entity_id: !secret lock_front_door

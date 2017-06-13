@@ -1,6 +1,6 @@
 ################################################################
-## Input Boolean / Night Mode
+## Packages / FFmpeg
 ################################################################
 
-night_mode:
-  initial: off
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg

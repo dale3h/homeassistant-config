@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Flux LED
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'flux_led'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,22 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Light
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
-      <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+    light.rack_light:
+      <<: *exposed
+      friendly_name: "Rack Light"
+      persistent: true
 
 ################################################
-## Group
+## Light
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
-
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+light:
+  - platform: flux_led
+    devices:
+      !secret flux_led_rack_light_host:
+        name: rack_light
+        protocol: 'ledenet'
+        mode: 'rgb'

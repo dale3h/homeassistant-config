@@ -1,0 +1,9 @@
+################################################################
+## Packages / MQTT
+################################################################
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password

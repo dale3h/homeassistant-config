@@ -28,10 +28,10 @@ homeassistant:
       friendly_name: "Media Server"
       icon: mdi:filmstrip
 
-    switch.rack_pe1850:
+    switch.rack_ikea_tradfri:
       <<: *customize
-      friendly_name: "PE1850"
-      icon: mdi:server
+      friendly_name: "IKEA Tradfri"
+      icon: mdi:lightbulb
 
     switch.rack_printer:
       <<: *customize
@@ -68,7 +68,7 @@ group:
     entities:
       - switch.rack_cable_modem
       - switch.rack_media_server
-      - switch.rack_pe1850
+      - switch.rack_ikea_tradfri
       - switch.rack_printer
       - switch.rack_projector
       - switch.rack_router

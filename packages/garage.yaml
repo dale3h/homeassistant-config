@@ -8,36 +8,80 @@
 
 homeassistant:
   customize:
-    packages.garage: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'garage'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'garage'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Alert
+    ################################################
 
     alert.garage_door_open:
-      <<: *customize
+      <<: *contained
       friendly_name: "Garage Door Open"
       speech: "Hey you, your garage door is open."
 
+    ################################################
+    ## Automation
+    ################################################
+
     automation.garage_door_lighting:
-      <<: *customize
+      <<: *exposed
       friendly_name: "Garage Door Lighting"
 
+    ################################################
+    ## Binary Sensor
+    ################################################
+
     binary_sensor.garage_light_expected_state:
-      <<: *customize
+      <<: *hidden
       friendly_name: "Garage Light Expected State"
       device_class: light
-      hidden: true
+
+    ################################################
+    ## Cover
+    ################################################
 
     cover.garage_door:
-      <<: *customize
+      <<: *exposed
       friendly_name: "Garage Door"
       homebridge_cover_type: garage_door
       icon: mdi:glassdoor
 
+    ################################################
+    ## Light
+    ################################################
+
+    light.garage:
+      <<: *exposed
+      friendly_name: "Garage"
+      persistent: true
+
+    ################################################
+    ## Input Boolean
+    ################################################
+
     # input_boolean.garage_light:
-    #   <<: *customize
+    #   <<: *hidden
     #   friendly_name: "Garage Light"
-    #   hidden: true
 
 ################################################
 ## Alert
@@ -99,16 +143,10 @@ binary_sensor:
 ################################################
 
 cover:
-  - platform: mqtt
-    name: garage_door
-    state_topic: home-assistant/cover/garage_door
-    command_topic: home-assistant/cover/garage_door/set
-    payload_open: 'open'
-    payload_close: 'close'
-    payload_stop: 'stop'
-    state_open: 'open'
-    state_closed: 'closed'
-    retain: true
+  - platform: myq
+    username: !secret myq_username
+    password: !secret myq_password
+    type: 'liftmaster'
 
 ################################################
 ## Input Boolean

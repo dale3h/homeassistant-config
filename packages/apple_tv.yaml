@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Apple TV
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'apple_tv'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,30 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Media Player
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
+    media_player.apple_tv_bedroom:
       <<: *contained
-      friendly_name: "Alarm System"
+      friendly_name: "Apple TV (Bedroom)"
+      icon: mdi:apple
 
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
+    media_player.apple_tv_living_room:
       <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Apple TV (Living Room)"
+      icon: mdi:apple
 
 ################################################
-## Group
+## Media Player
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+media_player:
+  - platform: apple_tv
+    name: apple_tv_living_room
+    host: !secret apple_tv_living_room_host
+    login_id: !secret apple_tv_living_room_login_id
 
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+  # - platform: apple_tv
+  #   name: apple_tv_bedroom
+  #   host: !secret apple_tv_bedroom_host
+  #   login_id: !secret apple_tv_bedroom_login_id

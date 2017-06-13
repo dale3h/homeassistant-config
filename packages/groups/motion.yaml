@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Groups / Motion
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'groups/motion'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,33 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
-    ################################################
-
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.motion:
       <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Motion"
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
+  motion:
     control: hidden
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
-
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+      - !secret binary_sensor_master_bathroom_motion
+      - !secret binary_sensor_kitchen_motion
+      - binary_sensor.master_bedroom_motion
+      - binary_sensor.amcrest_ptz_cam_motion
+      - binary_sensor.backyard_cam_motion
+      - binary_sensor.driveway_cam_motion
+      - binary_sensor.front_yard_cam_motion
+      - binary_sensor.garage_cam_motion
+      - binary_sensor.kitchen_cam_motion
+      - binary_sensor.living_room_cam_motion
+      - binary_sensor.living_room_fd_cam_motion
+      - binary_sensor.master_bedroom_cam_motion
+      - binary_sensor.parker_bedroom_cam_motion
+      - !secret binary_sensor_laundry_room_motion
+      - binary_sensor.guest_bathroom_motion

@@ -1,0 +1,14 @@
+################################################################
+## Packages / LimitlessLED
+################################################################
+
+light:
+  - platform: limitlessled
+    bridges:
+      - host: !secret limitlessled_host
+        version: 5
+        port: 8899
+        groups:
+        - number: 1
+          type: rgbw
+          name: garage

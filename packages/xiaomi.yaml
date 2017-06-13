@@ -26,9 +26,9 @@ homeassistant:
       friendly_name: "Doorbell"
       device_class: sound
 
-    !secret binary_sensor_dining_room_motion:
+    !secret binary_sensor_laundry_room_motion:
       <<: *customize_contained
-      friendly_name: "Dining Room Motion"
+      friendly_name: "Laundry Room Motion"
       device_class: motion
 
     !secret binary_sensor_xiaomi_button:
@@ -51,6 +51,11 @@ homeassistant:
     input_slider.xiaomi_ringtone_volume:
       <<: *customize_contained
       friendly_name: "Xiaomi Ringtone Volume"
+
+    script.xiaomi_ringtone:
+      <<: *customize_contained
+      friendly_name: "Xiaomi Ringtone"
+      hidden: true
 
 ################################################
 ## Xiaomi

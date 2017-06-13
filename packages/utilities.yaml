@@ -28,11 +28,6 @@ homeassistant:
       friendly_name: "Manual Config Backup"
       icon: mdi:backup-restore
 
-    script.rebuild_customize:
-      <<: *customize
-      friendly_name: "Rebuild Customize"
-      icon: mdi:settings
-
     script.reload_config:
       <<: *customize
       friendly_name: "Reload Configuration"
@@ -59,7 +54,6 @@ group:
       - script.manual_config_backup
       - script.reload_config
       - script.update_hass
-      - script.rebuild_customize
       - script.restart_hass
 
 ################################################
@@ -71,7 +65,7 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: time
-        after: '03:00:00'
+        at: '03:00:00'
     action:
       - service: shell_command.manual_config_backup
 
@@ -83,10 +77,6 @@ script:
   manual_config_backup:
     sequence:
       - service: shell_command.manual_config_backup
-
-  rebuild_customize:
-    sequence:
-      - service: shell_command.rebuild_customize
 
   reload_config:
     sequence:
@@ -107,9 +97,6 @@ script:
 shell_command:
   manual_config_backup: >-
     $HASS_CONFIG/shell_scripts/backup_config.sh
-
-  rebuild_customize: >-
-    /usr/local/bin/hass-customizer
 
   update_hass: >-
     /usr/bin/nohup $HASS_CONFIG/shell_scripts/update_hass.sh </dev/null >> $HASS_CONFIG/shell_scripts/update_hass.log 2>&1 &

@@ -12,11 +12,116 @@
 
 homeassistant:
   customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'brightness'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.update_global_brightness:
+      <<: *contained
+      friendly_name: "Update Global Brightness"
+
+    ################################################
+    ## Input Slider
+    ################################################
+
+    input_slider.global_brightness:
+      <<: *contained
+      friendly_name: "Global Brightness"
+
+    input_slider.nightlight_brightness:
+      <<: *contained
+      friendly_name: "Nightlight Brightness"
+
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.global_brightness:
-      friendly_name: Global Brightness
-      hidden: true
-      homebridge_hidden: true
-      package: 'brightness'
+      <<: *hidden
+      friendly_name: "Global Brightness"
+
+################################################
+## Automation
+################################################
+
+automation:
+  - alias: update_global_brightness
+    trigger:
+      - platform: time
+        hours: '/1'
+        minutes: '00'
+        seconds: '00'
+    action:
+      - service: input_slider.select_value
+        data_template:
+          entity_id: input_slider.global_brightness
+          value: >-
+            {% set brightness = {
+              0: 64,
+              1: 64,
+              2: 64,
+              3: 64,
+              4: 64,
+              5: 64,
+              6: 64,
+              7: 128,
+              8: 192,
+              9: 255,
+              10: 255,
+              11: 255,
+              12: 255,
+              13: 255,
+              14: 255,
+              15: 255,
+              16: 255,
+              17: 255,
+              18: 255,
+              19: 255,
+              20: 192,
+              21: 128,
+              22: 64,
+              23: 64,
+            } %}
+            {{ brightness[now().hour]|default(255) }}
+
+################################################
+## Input Slider
+################################################
+
+input_slider:
+  global_brightness:
+    initial: 255
+    min: 0
+    max: 255
+    step: 1
+
+  nightlight_brightness:
+    initial: 32
+    min: 0
+    max: 255
+    step: 16
 
 ################################################
 ## Sensor

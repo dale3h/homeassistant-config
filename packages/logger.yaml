@@ -2,56 +2,71 @@
 ## Packages / Logger
 ################################################################
 
-# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+# Log Severities: notset, debug, info, warn, warning, warn, fatal, critical
 logger:
   default: debug
   logs:
     bellows.uart: info
-    # homeassistant.components.automation: debug
-    homeassistant.components.websocket_api: info
-
-    botocore.vendored.requests.packages.urllib3.connectionpool: error
-    custom_components.xiaomi: error
-    dlipower.dlipower: error
-    homeassistant.components.api: error
-    homeassistant.components.climate.ecobee: error
-    homeassistant.components.device_tracker.asuswrt: error
-    homeassistant.components.ecobee: error
-    homeassistant.components.http: error
-    homeassistant.components.light.flux_led: error
-    homeassistant.components.media_player: error
-    homeassistant.components.media_player.plex: error
-    homeassistant.components.notify.telegram: error
+    botocore.args: warn
+    botocore.auth: warn
+    botocore.client: warn
+    botocore.endpoint: warn
+    botocore.hooks: warn
+    botocore.loaders: warn
+    botocore.parsers: warn
+    botocore.retryhandler: warn
+    botocore.vendored.requests.packages.urllib3.connectionpool: warn
+    custom_components.binary_sensor.xiaomi: info
+    custom_components.xiaomi: warn
+    dlipower.dlipower: warn
+    homeassistant.bootstrap: info
+    homeassistant.components.alarm_control_panel: warn
+    homeassistant.components.alert: warn
+    homeassistant.components.api: warn
+    homeassistant.components.automation: warn
+    homeassistant.components.binary_sensor: warn
+    homeassistant.components.camera: warn
+    homeassistant.components.climate.ecobee: warn
+    homeassistant.components.climate: warn
+    homeassistant.components.cover: warn
+    homeassistant.components.device_tracker.asuswrt: warn
+    homeassistant.components.device_tracker: warn
+    homeassistant.components.ecobee: warn
+    homeassistant.components.http: warn
+    homeassistant.components.light.flux_led: warn
+    homeassistant.components.light: warn
+    homeassistant.components.lock.zwave: warn
+    homeassistant.components.lock: warn
+    homeassistant.components.media_player.plex: warn
+    homeassistant.components.media_player: warn
+    homeassistant.components.mqtt: warn
+    homeassistant.components.notify.telegram: warn
+    homeassistant.components.notify: warn
+    homeassistant.components.recorder: warn
+    homeassistant.components.remote.harmony: warn
+    homeassistant.components.remote: warn
     homeassistant.components.sensor.apcupsd: error
-    homeassistant.components.sensor.command_line: error
-    homeassistant.components.switch.command_line: error
+    homeassistant.components.sensor.command_line: warn
+    homeassistant.components.sensor: warn
+    homeassistant.components.switch.command_line: warn
+    homeassistant.components.switch: warn
+    homeassistant.components.telegram_bot: warn
+    homeassistant.components.websocket_api: info
     homeassistant.components.zwave: error
-    homeassistant.helpers.entity: error
-    homeassistant.loader: error
-    openzwave: error
-    phue: error
-    plexapi: error
-    pychromecast: error
-    pyecobee: error
-    urllib3.connectionpool: error
-
-    # bellows.ezsp: error
-    # bellows.zigbee.appdb: error
-    botocore.args: error
-    botocore.auth: error
-    botocore.client: error
-    botocore.endpoint: error
-    botocore.hooks: error
-    botocore.loaders: error
-    botocore.parsers: error
-    botocore.retryhandler: error
-    homeassistant.components.alert: error
-    homeassistant.components.automation: error
-    homeassistant.components.lock.zwave: error
-    homeassistant.components.mqtt: error
-    homeassistant.components.recorder: error
-    homeassistant.components.remote.harmony: error
-    homeassistant.helpers.restore_state: error
-    libopenzwave: error
-    pytradfri.coap_cli: error
-    telegram.bot: error
+    homeassistant.core: info
+    homeassistant.helpers.entity: warn
+    homeassistant.helpers.restore_state: warn
+    homeassistant.helpers.script: info
+    homeassistant.loader: warn
+    libopenzwave: warn
+    openzwave: warn
+    phue: warn
+    plexapi: warn
+    pyatv.daap: warn
+    pyatv.internal.apple_tv: warn
+    pychromecast: warn
+    pyecobee: warn
+    pytradfri.coap_cli: warn
+    root: warn
+    telegram.bot: warn
+    urllib3.connectionpool: warn

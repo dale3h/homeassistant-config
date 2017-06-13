@@ -44,15 +44,16 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: time
-        after: '06:30:00'
+        at: '06:30:00'
     condition:
       - condition: state
         entity_id: group.person_dale
         state: 'home'
     action:
-      - service: light.turn_on
+      - service: script.light_control
         data:
           entity_id: group.sunrise_lights
+          state: 'on'
           brightness: 255
           color_temp: 154
           transition: 900

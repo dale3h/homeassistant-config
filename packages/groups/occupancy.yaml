@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Groups / Occupancy
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'groups/occupancy'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,22 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
-    ################################################
-
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.occupancy:
       <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Occupancy"
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
+  occupancy:
     control: hidden
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
-
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+      - binary_sensor.master_bedroom_occupancy
+      - binary_sensor.guest_bedroom_occupancy
+      - binary_sensor.home_occupancy
+      - binary_sensor.living_room_occupancy

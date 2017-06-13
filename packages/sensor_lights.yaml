@@ -13,9 +13,9 @@ homeassistant:
       homebridge_hidden: false
       package: 'sensor_lights'
 
-    automation.dining_room_motion:
+    automation.laundry_room_motion:
       <<: *customize
-      friendly_name: "Dining Room Motion"
+      friendly_name: "Laundry Room Motion"
       icon: mdi:walk
 
     automation.kitchen_motion:
@@ -58,22 +58,22 @@ automation:
   ## Motion Activated Lights
   ################################################
 
-  - alias: dining_room_motion
-    initial_state: 'off'
+  - alias: laundry_room_motion
+    initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: !secret binary_sensor_dining_room_motion
+        entity_id: !secret binary_sensor_laundry_room_motion
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: !secret binary_sensor_dining_room_motion
+        entity_id: !secret binary_sensor_laundry_room_motion
         from: 'on'
         to: 'off'
         for: '00:04:00'
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.dining_room
+          entity_id: light.laundry_room
           state: "{{ trigger.to_state.state }}"
 
   - alias: kitchen_motion

@@ -20,7 +20,6 @@ recorder:
       - automation.persistence_subscribe_select_option
       - automation.persistence_subscribe_select_value
       - automation.startup_notification
-      - binary_sensor.system_ready
       - sensor.date
       - sensor.ha_github_version
       - sensor.ha_pypi_version

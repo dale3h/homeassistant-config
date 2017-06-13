@@ -9,7 +9,6 @@ homeassistant:
   elevation: !secret home_elevation
   time_zone: America/Chicago
   unit_system: imperial
-  customize: !include customize.yaml
   packages: !include_dir_named packages
 
 config:
@@ -18,74 +17,3 @@ conversation:
 frontend:
 history:
 sun:
-
-################################################
-## Components (Non-Includes)
-################################################
-
-ffmpeg:
-
-http:
-  api_password: !secret http_api_password
-  base_url: !secret http_base_url
-  use_x_forwarded_for: true
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
-logbook:
-  exclude:
-    entities:
-      - sensor.time
-      - sensor.date
-      - sensor.ups_status_date
-    domains:
-      - sun
-
-mqtt:
-  broker: !secret mqtt_broker
-  port: !secret mqtt_port
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-
-tts:
-  - platform: google
-
-  - platform: amazon_polly
-    aws_access_key_id: !secret aws_access_key_id
-    aws_secret_access_key: !secret aws_secret_access_key
-    region_name: !secret aws_region_name
-    voice: Salli
-
-################################################
-## Component Includes (Single File)
-################################################
-
-ios: !include ios.yaml
-
-################################################
-## Component Includes (Named)
-################################################
-
-# alexa:
-#   intents: !include_dir_named alexa
-
-################################################
-## Component Includes (Merge List)
-################################################
-
-automation: !include_dir_merge_list automation
-device_tracker: !include_dir_merge_list device_tracker
-light: !include_dir_merge_list light
-media_player: !include_dir_merge_list media_player
-notify: !include_dir_merge_list notify
-zone: !include_dir_merge_list zone
-
-################################################
-## Component Includes (Merge Named)
-################################################
-
-group: !include_dir_merge_named group
-input_boolean: !include_dir_merge_named input_boolean
-input_slider: !include_dir_merge_named input_slider
-panel_iframe: !include_dir_merge_named panel_iframe
-script: !include_dir_merge_named script

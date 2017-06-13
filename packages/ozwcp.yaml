@@ -1,0 +1,9 @@
+################################################################
+## Packages / Open Z-Wave Control Panel
+################################################################
+
+panel_iframe:
+  ozwcp:
+    title: 'Open Z-Wave'
+    url: !secret panel_ozwcp_url
+    icon: mdi:radio-tower

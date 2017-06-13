@@ -8,62 +8,82 @@
 
 homeassistant:
   customize:
-    packages.system: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'system'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.system_hidden: &customize_hidden
-      <<: *customize
-      hidden: true
+    package.node_anchors:
+      customize: &customize
+        package: 'system'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.startup_notification:
-      <<: *customize
+      <<: *contained
       friendly_name: "Startup Notification"
       icon: mdi:message-text
 
     automation.update_notification:
-      <<: *customize
+      <<: *contained
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
-    binary_sensor.system_ready:
-      <<: *customize_hidden
-      friendly_name: "System Ready"
-      icon: mdi:flag-checkered
+    ################################################
+    ## Group
+    ################################################
 
     group.system:
-      <<: *customize
+      <<: *contained
       friendly_name: "System"
       icon: mdi:settings-box
 
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.date:
-      <<: *customize
+      <<: *contained
       friendly_name: "System Date"
       icon: mdi:calendar
 
     sensor.ha_github_version:
-      <<: *customize
+      <<: *contained
       friendly_name: "GitHub Version"
       icon: mdi:github-box
 
     sensor.ha_pypi_version:
-      <<: *customize
+      <<: *contained
       friendly_name: "PyPi Version"
       icon: mdi:language-python
 
     sensor.ha_startup_time:
-      <<: *customize
+      <<: *contained
       friendly_name: "Startup Time"
       icon: mdi:clock-start
 
     sensor.ha_version:
-      <<: *customize
+      <<: *contained
       friendly_name: "Installed Version"
       icon: mdi:settings-box
 
     sensor.time:
-      <<: *customize
+      <<: *contained
       friendly_name: "System Time"
       icon: mdi:clock
 
@@ -77,11 +97,11 @@ group:
     entities:
       - sensor.date
       - sensor.time
-      - binary_sensor.system_ready
       - sensor.ha_startup_time
       - sensor.ha_version
       - sensor.ha_github_version
       - sensor.ha_pypi_version
+      - sensor.vixen_vapors_cpu_load
       - switch.eventghost_blueiris
       - switch.eventghost_monitor
 
@@ -95,8 +115,8 @@ automation:
     trigger:
       - platform: homeassistant
         event: start
-      - platform: event
-        event_type: zwave.network_ready
+      - platform: time
+        seconds: '/5'
     action:
       - service: automation.turn_off
         data:
@@ -104,50 +124,32 @@ automation:
       - service: notify.telegram
         data:
           message: "Home Assistant is now up and running."
+      - service: automation.trigger
+        data:
+          entity_id: automation.update_global_brightness
 
   - alias: update_notification
     initial_state: 'on'
     trigger:
-      - platform: homeassistant
-        event: start
-      - platform: event
-        event_type: zwave.network_ready
       - platform: state
         entity_id: sensor.ha_github_version
       - platform: state
         entity_id: sensor.ha_pypi_version
     condition:
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: >-
-              {{ states('sensor.ha_github_version') != states('sensor.ha_version') }}
-          - condition: template
-            value_template: >-
-              {{ states('sensor.ha_pypi_version') != states('sensor.ha_version') }}
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.state }}
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.state != states('sensor.ha_version') }}
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.state != 'unknown' }}
     action:
       - service: notify.telegram
         data_template:
           message: >-
-            {% if trigger.platform == 'state' %}
-              Home Assistant {{ trigger.to_state.state }} is now available on {{ trigger.to_state.name.split(' ')[0] }}.
-            {% elif states('sensor.ha_pypi_version') != states('sensor.ha_version') %}
-              Home Assistant {{ states('sensor.ha_pypi_version') }} is now available on PyPi.
-            {% else %}
-              Home Assistant {{ states('sensor.ha_github_version') }} is now available on GitHub.
-            {% endif %}
-
-################################################
-## Binary Sensor
-################################################
-
-binary_sensor:
-  - platform: template
-    sensors:
-      system_ready:
-        entity_id: sensor.ha_startup_time
-        value_template: >-
-          {{ states('sensor.ha_startup_time') != 'unknown' }}
+            Home Assistant {{ trigger.to_state.state }} is now available on {{ trigger.to_state.name.split(' ')[0] }}.
 
 ################################################
 ## Sensor
@@ -164,7 +166,7 @@ sensor:
       ha_startup_time:
         entity_id: automation.startup_notification
         value_template: >-
-          {{ as_timestamp((states.automation.startup_notification.attributes|default).last_triggered|default(None))|timestamp_custom("%b %d %X") or 'unknown' }}
+          {{ as_timestamp((states.automation.startup_notification.attributes|default).last_triggered|default(None))|timestamp_local or 'unknown' }}
 
   - platform: command_line
     name: ha_version
@@ -180,7 +182,7 @@ sensor:
       content-type: application/json
       user-agent: home-assistant/rest-sensor
     value_template: >-
-      {{ value_json.tag_name }}
+      {{ value_json.tag_name if value_json.tag_name.split('.')|length != 2 else value_json.tag_name ~ '.0' }}
     scan_interval: 1800
 
   - platform: rest

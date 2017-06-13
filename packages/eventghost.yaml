@@ -8,31 +8,53 @@
 
 homeassistant:
   customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'eventghost'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
+
     automation.toggle_security_monitor:
-      friendly_name: Toggle Security Monitor
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'eventghost'
+      <<: *contained
+      friendly_name: "Toggle Security Monitor"
 
     automation.smartthings_button_held:
-      friendly_name: SmartThings Button Held
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'eventghost'
+      <<: *contained
+      friendly_name: "SmartThings Button Held"
+
+    ################################################
+    ## Switch
+    ################################################
 
     switch.eventghost_blueiris:
+      <<: *exposed
       friendly_name: "Blue Iris"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:camcorder
-      package: 'eventghost'
 
     switch.eventghost_monitor:
+      <<: *exposed
       friendly_name: "Security Monitor"
-      haaska_hidden: false
-      homebridge_hidden: false
       icon: mdi:monitor
-      package: 'eventghost'
 
 ################################################
 ## Automation
@@ -45,10 +67,6 @@ automation:
       - platform: mqtt
         topic: smartthings/network_cabinet/button
         payload: 'pushed'
-    condition:
-      - condition: state
-        entity_id: binary_sensor.system_ready
-        state: 'on'
     action:
       - service: switch.toggle
         data:
@@ -60,10 +78,6 @@ automation:
       - platform: mqtt
         topic: smartthings/network_cabinet/button
         payload: 'held'
-    condition:
-      - condition: state
-        entity_id: binary_sensor.system_ready
-        state: 'on'
     action:
       - service: notify.syslog
         data:

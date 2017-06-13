@@ -1,0 +1,12 @@
+################################################################
+## Packages / Logbook
+################################################################
+
+logbook:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.ups_status_date
+    domains:
+      - sun

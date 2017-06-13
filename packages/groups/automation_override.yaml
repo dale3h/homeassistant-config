@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Groups / Automation Override
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'groups/automation_override'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,27 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
-    ################################################
-
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.automation_override:
       <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
-      <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Automation Override"
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
+  automation_override:
     control: hidden
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
-
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+      - automation.sunrise_lighting
+      - automation.kitchen_motion
+      - automation.laundry_room_motion
+      - automation.master_bathroom_motion
+      - automation.master_bedroom_motion
+      - automation.garage_lighting
+      - automation.garage_door_lighting
+      - automation.media_lighting
+      - input_boolean.shower_mode

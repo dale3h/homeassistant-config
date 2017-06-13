@@ -55,10 +55,10 @@ automation:
       - service: automation.turn_off
         data:
           entity_id: automation.master_bathroom_motion
-      - service: light.turn_on
-        entity_id: light.master_bathroom
+      - service: script.light_control
         data_template:
-          brightness: "{{ states('sensor.global_brightness')|int }}"
+          entity_id: light.master_bathroom
+          state: 'on'
       - delay: '00:30:00'
       - service: input_boolean.turn_off
         data:
@@ -78,9 +78,10 @@ automation:
       - condition: state
         entity_id: !secret binary_sensor_master_bathroom_motion
         state: 'off'
-      - service: light.turn_off
+      - service: script.light_control
         data:
           entity_id: light.master_bathroom
+          state: 'off'
 
   - alias: toggle_shower_mode
     initial_state: 'on'

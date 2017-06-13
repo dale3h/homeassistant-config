@@ -141,6 +141,10 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "HTPC"
 
+    device_tracker.net_ikea_tradfri:
+      <<: *customize_hidden
+      friendly_name: "IKEA Tradfri"
+
     device_tracker.net_ipcam_ac1:
       <<: *customize_hidden
       friendly_name: "IPCam AC1"
@@ -156,6 +160,10 @@ homeassistant:
     device_tracker.net_limitlessled:
       <<: *customize_hidden
       friendly_name: "Limitless LED"
+
+    device_tracker.net_myq_gateway:
+      <<: *customize_hidden
+      friendly_name: "MyQ Gateway"
 
     device_tracker.net_poe_switch:
       <<: *customize_hidden
@@ -325,6 +333,10 @@ homeassistant:
       <<: *customize
       friendly_name: "HTPC"
 
+    sensor.net_ikea_tradfri:
+      <<: *customize
+      friendly_name: "IKEA Tradfri"
+
     sensor.net_ipcam_ac1:
       <<: *customize
       friendly_name: "IPCam AC1"
@@ -340,6 +352,10 @@ homeassistant:
     sensor.net_limitlessled:
       <<: *customize
       friendly_name: "Limitless LED"
+
+    sensor.net_myq_gateway:
+      <<: *customize
+      friendly_name: "MyQ Gateway"
 
     sensor.net_poe_switch:
       <<: *customize
@@ -432,10 +448,12 @@ group:
       - device_tracker.net_harmony_hub
       - device_tracker.net_hp_printer
       - device_tracker.net_htpc
+      - device_tracker.net_ikea_tradfri
       - device_tracker.net_ipcam_ac1
       - device_tracker.net_ipcam_hv1
       - device_tracker.net_ipcam_ptz1
       - device_tracker.net_limitlessled
+      - device_tracker.net_myq_gateway
       - device_tracker.net_poe_switch
       - device_tracker.net_philips_hue
       - device_tracker.net_projector
@@ -481,10 +499,12 @@ group:
       - sensor.net_harmony_hub
       - sensor.net_hp_printer
       - sensor.net_htpc
+      - sensor.net_ikea_tradfri
       - sensor.net_ipcam_ac1
       - sensor.net_ipcam_hv1
       - sensor.net_ipcam_ptz1
       - sensor.net_limitlessled
+      - sensor.net_myq_gateway
       - sensor.net_poe_switch
       - sensor.net_philips_hue
       - sensor.net_projector
@@ -615,6 +635,10 @@ sensor:
         value_template: "{{ 'online' if is_state('device_tracker.net_htpc', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_htpc', 'home') else 'mdi:alert-circle' }}"
 
+      net_ikea_tradfri:
+        value_template: "{{ 'online' if is_state('device_tracker.net_ikea_tradfri', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ikea_tradfri', 'home') else 'mdi:alert-circle' }}"
+
       net_ipcam_ac1:
         value_template: "{{ 'online' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ipcam_ac1', 'home') else 'mdi:alert-circle' }}"
@@ -630,6 +654,10 @@ sensor:
       net_limitlessled:
         value_template: "{{ 'online' if is_state('device_tracker.net_limitlessled', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_limitlessled', 'home') else 'mdi:alert-circle' }}"
+
+      net_myq_gateway:
+        value_template: "{{ 'online' if is_state('device_tracker.net_myq_gateway', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_myq_gateway', 'home') else 'mdi:alert-circle' }}"
 
       net_poe_switch:
         value_template: "{{ 'online' if is_state('device_tracker.net_poe_switch', 'home') else 'offline' }}"

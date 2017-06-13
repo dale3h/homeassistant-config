@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Groups / People
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'groups/people'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,66 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Device Tracker
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
+    device_tracker.dale_iphone:
+      <<: *contained
+      friendly_name: "Dale (iPhone)"
+      icon: mdi:cellphone-iphone
+
+    device_tracker.dale_iphone_bt:
+      <<: *contained
+      friendly_name: "Dale (BT)"
+      icon: mdi:cellphone-iphone
+
+    device_tracker.dale_iphone_ios:
+      <<: *contained
+      friendly_name: "Dale (iOS)"
+      icon: mdi:cellphone-iphone
+
+    device_tracker.meagan_android:
+      <<: *contained
+      friendly_name: "Meagan (Android)"
+      icon: mdi:cellphone-android
 
     ################################################
     ## Group
     ################################################
 
-    group.alarm_system:
+    group.guests:
       <<: *contained
-      friendly_name: "Alarm System"
+      friendly_name: "Guests"
+      icon: mdi:human-male-female
 
-    ################################################
-    ## Switch
-    ################################################
-
-    !secret switch_siren:
+    group.person_dale:
       <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Dale"
+      icon: mdi:human-male
+
+    group.person_meagan:
+      <<: *contained
+      friendly_name: "Meagan"
+      icon: mdi:human-female
 
 ################################################
 ## Group
 ################################################
 
 group:
-  alarm_system:
+  guests:
     control: hidden
     entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - !secret switch_siren
+      - group.person_meagan
 
-################################################
-## Alarm Control Panel
-################################################
+  person_dale:
+    control: hidden
+    entities:
+      - device_tracker.dale_iphone
+      - device_tracker.dale_iphone_bt
+      - device_tracker.dale_iphone_ios
 
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+  person_meagan:
+    control: hidden
+    entities:
+      - device_tracker.meagan_android

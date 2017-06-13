@@ -10,8 +10,7 @@ homeassistant:
   customize:
     script.grafana_webhook:
       friendly_name: "Grafana Webhook"
-      haaska_hidden: true
-      homebridge_hidden: true
+      hidden: true
       icon: mdi:webhook
       package: 'grafana'
 
