@@ -1,0 +1,101 @@
+################################################################
+## Packages / Climate
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'climate'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Climate
+    ################################################
+
+    climate.kitchen:
+      <<: *exposed
+      friendly_name: "Kitchen"
+
+    climate.living_room:
+      <<: *exposed
+      friendly_name: "Living Room"
+
+    climate.master_bathroom:
+      <<: *exposed
+      friendly_name: "Bathroom"
+
+    climate.master_bedroom:
+      <<: *exposed
+      friendly_name: "Bedroom"
+
+    climate.master_closet:
+      <<: *exposed
+      friendly_name: "Closet"
+
+    ################################################
+    ## Input Boolean
+    ################################################
+
+    input_booelan.climate_dummy:
+      <<: *hidden
+      friendly_name: "Climate Dummy Switch"
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean:
+  climate_dummy:
+    initial: off
+
+################################################
+## Climate
+################################################
+
+climate:
+  - platform: generic_thermostat
+    name: kitchen
+    heater: input_boolean.climate_dummy
+    target_sensor: !secret sensor_kitchen_temperature
+
+  - platform: generic_thermostat
+    name: living_room
+    heater: input_boolean.climate_dummy
+    target_sensor: sensor.living_room_temperature
+
+  - platform: generic_thermostat
+    name: master_bathroom
+    heater: input_boolean.climate_dummy
+    target_sensor: !secret sensor_master_bathroom_temperature
+
+  - platform: generic_thermostat
+    name: master_bedroom
+    heater: input_boolean.climate_dummy
+    target_sensor: sensor.master_bedroom_temperature
+
+  - platform: generic_thermostat
+    name: master_closet
+    heater: input_boolean.climate_dummy
+    target_sensor: sensor.closet_door_temperature
