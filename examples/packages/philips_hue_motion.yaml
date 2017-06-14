@@ -1,0 +1,93 @@
+# Description:
+#   Philips Hue Motion integration for Home Assistant using REST sensors
+#
+# Written for:
+#   @jamesbonanni_twitter
+#
+# Components:
+#   binary_sensor
+#   sensor
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+################################################################
+## Packages / Philips Hue Motion
+################################################################
+
+################################################################
+## Add the following to your secrets.yaml file:
+##
+##   hue_url_guest_bathroom_lux: 'http://YOUR_HUE_BRIDGE_IP/api/YOUR_HUE_USERNAME/sensors/LUX_SENSOR_ID'
+##   hue_url_guest_bathroom_motion: 'http://YOUR_HUE_BRIDGE_IP/api/YOUR_HUE_USERNAME/sensors/MOTION_SENSOR_ID'
+##   hue_url_guest_bathroom_temperature: 'http://YOUR_HUE_BRIDGE_IP/api/YOUR_HUE_USERNAME/sensors/TEMPERATURE_SENSOR_ID'
+##
+## To find the SENSOR_ID for each sensor, open this URL in your
+## browser:
+##
+##  http://YOUR_HUE_BRIDGE_IP/api/YOUR_HUE_USERNAME/sensors
+##
+## Be sure to replace "YOUR_HUE_BRIDGE_IP" with the IP address
+## of your Philips Hue bridge, and replace "YOUR_HUE_USERNAME"
+## with the username for your Philips Hue bridge. Both of these
+## items can be found in the phue.conf file in your config dir.
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Binary Sensor
+    ################################################
+
+    binary_sensor.guest_bathroom_motion:
+      friendly_name: "Guest Bathroom Motion"
+      device_class: motion
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.guest_bathroom_lux:
+      friendly_name: "Guest Bathroom Lux"
+
+    sensor.guest_bathroom_temperature:
+      friendly_name: "Guest Bathroom Temperature"
+
+################################################
+## Binary Sensor
+################################################
+
+binary_sensor:
+  - platform: rest
+    name: guest_bathroom_motion
+    resource: !secret hue_url_guest_bathroom_motion
+    value_template: '{{ value_json.state.presence }}'
+    scan_interval: 2
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: rest
+    name: guest_bathroom_lux
+    resource: !secret hue_url_guest_bathroom_lux
+    value_template: '{{ value_json.state.lightlevel }}'
+    unit_of_measurement: Lux
+    scan_interval: 10
+
+  - platform: rest
+    name: guest_bathroom_temperature
+    resource: !secret hue_url_guest_bathroom_temperature
+    value_template: '{{ value_json.state.temperature|float / 100 }}'
+    unit_of_measurement: '°C'
+    scan_interval: 60
