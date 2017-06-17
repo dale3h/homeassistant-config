@@ -46,8 +46,8 @@ group:
   motion:
     control: hidden
     entities:
-      - !secret binary_sensor_master_bathroom_motion
-      - !secret binary_sensor_kitchen_motion
+      - binary_sensor.master_bathroom_sensor
+      - binary_sensor.kitchen_sensor
       - binary_sensor.master_bedroom_motion
       - binary_sensor.amcrest_ptz_cam_motion
       - binary_sensor.backyard_cam_motion

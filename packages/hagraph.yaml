@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / HA Graph
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'hagraph'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,27 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Script
     ################################################
 
-    alarm_control_panel.alarm_system:
-      <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
+    script.generate_graph:
       <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    switch.siren_switch:
-      <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "Generate Graph"
+      icon: mdi:vector-polyline
 
 ################################################
-## Group
+## Script
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - switch.siren_switch
+script:
+  generate_graph:
+    sequence:
+      - service: shell_command.generate_graph
 
 ################################################
-## Alarm Control Panel
+## Shell Command
 ################################################
 
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+shell_command:
+  generate_graph: >-
+    python3 -m hagraph -i $HASS_CONFIG/configuration.yaml -o $HASS_CONFIG/www/img/graph.svg

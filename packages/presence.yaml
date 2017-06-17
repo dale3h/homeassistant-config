@@ -146,7 +146,7 @@ script:
     sequence:
       - service: lock.lock
         data:
-          entity_id: !secret lock_front_door
+          entity_id: lock.front_door_locked
       - service: script.light_control
         data:
           entity_id: group.all_lights

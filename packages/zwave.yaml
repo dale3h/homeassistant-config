@@ -21,17 +21,17 @@ homeassistant:
       haaska_hidden: true
       homebridge_hidden: true
 
-    !secret binary_sensor_front_door:
+    binary_sensor.front_door_sensor:
       <<: *customize_contained
       friendly_name: "Front Door Sensor"
       device_class: opening
 
-    !secret binary_sensor_kitchen_motion:
+    binary_sensor.kitchen_sensor:
       <<: *customize_contained
       friendly_name: "Kitchen Motion"
       device_class: motion
 
-    !secret binary_sensor_master_bathroom_motion:
+    binary_sensor.master_bathroom_sensor:
       <<: *customize_contained
       friendly_name: "Master Bathroom Motion"
       device_class: motion
@@ -40,7 +40,7 @@ homeassistant:
       <<: *customize_contained
       friendly_name: "Siren Sound"
 
-    !secret lock_front_door:
+    lock.front_door_locked:
       <<: *customize_exposed
       friendly_name: "Front Door"
 
@@ -72,45 +72,45 @@ homeassistant:
       <<: *customize_contained
       friendly_name: "Siren Mode Strobe"
 
-    !secret sensor_front_door_access_control:
+    sensor.front_door_access_control:
       <<: *customize_contained
       friendly_name: "Front Door Access Control"
       hidden: true
 
-    !secret sensor_kitchen_luminance:
+    sensor.kitchen_luminance:
       <<: *customize_contained
       friendly_name: "Kitchen Luminance"
       hidden: true
       icon: mdi:theme-light-dark
 
-    !secret sensor_kitchen_moisture:
+    sensor.kitchen_moisture:
       <<: *customize_exposed
       friendly_name: "Kitchen Moisture"
       device_class: moisture
       icon: mdi:water-percent
 
-    !secret sensor_kitchen_humidity:
+    sensor.kitchen_relative_humidity:
       <<: *customize_exposed
       friendly_name: "Kitchen Humidity"
       icon: mdi:water-percent
 
-    !secret sensor_kitchen_temperature:
+    sensor.kitchen_temperature:
       <<: *customize_exposed
       friendly_name: "Kitchen Temperature"
       icon: mdi:thermometer
 
-    !secret sensor_master_bathroom_luminance:
+    sensor.master_bathroom_luminance:
       <<: *customize_contained
       friendly_name: "Master Bathroom Luminance"
       hidden: true
       icon: mdi:theme-light-dark
 
-    !secret sensor_master_bathroom_humidity:
+    sensor.master_bathroom_relative_humidity:
       <<: *customize_exposed
       friendly_name: "Master Bathroom Humidity"
       icon: mdi:water-percent
 
-    !secret sensor_master_bathroom_temperature:
+    sensor.master_bathroom_temperature:
       <<: *customize_exposed
       friendly_name: "Master Bathroom Temperature"
       icon: mdi:thermometer
@@ -128,6 +128,7 @@ zwave:
   config_path: !secret zwave_config_path
   usb_path: !secret zwave_usb_path
   device_config: !include ../zwave_device_config.yaml
+  new_entity_ids: true
 
 ################################################
 ## Input Select

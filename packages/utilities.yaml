@@ -8,38 +8,67 @@
 
 homeassistant:
   customize:
-    packages.utilities: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'utilities'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'utilities'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.nightly_config_backup:
-      <<: *customize
+      <<: *contained
       friendly_name: "Nightly Config Backup"
       icon: mdi:backup-restore
 
+    ################################################
+    ## Group
+    ################################################
+
     group.utilities:
-      <<: *customize
+      <<: *contained
       friendly_name: "Utilities"
       icon: mdi:script
 
+    ################################################
+    ## Script
+    ################################################
+
     script.manual_config_backup:
-      <<: *customize
+      <<: *contained
       friendly_name: "Manual Config Backup"
       icon: mdi:backup-restore
 
     script.reload_config:
-      <<: *customize
+      <<: *contained
       friendly_name: "Reload Configuration"
       icon: mdi:refresh
 
     script.restart_hass:
-      <<: *customize
+      <<: *contained
       friendly_name: "Restart Home Assistant"
       icon: mdi:power
 
     script.update_hass:
-      <<: *customize
+      <<: *contained
       friendly_name: "Update Home Assistant"
       icon: mdi:upload
 
@@ -51,6 +80,7 @@ group:
   utilities:
     control: hidden
     entities:
+      - script.generate_graph
       - script.manual_config_backup
       - script.reload_config
       - script.update_hass

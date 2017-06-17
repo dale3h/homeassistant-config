@@ -80,11 +80,11 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: !secret binary_sensor_kitchen_motion
+        entity_id: binary_sensor.kitchen_sensor
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: !secret binary_sensor_kitchen_motion
+        entity_id: binary_sensor.kitchen_sensor
         from: 'on'
         to: 'off'
         for: '00:04:00'
@@ -98,11 +98,11 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: !secret binary_sensor_master_bathroom_motion
+        entity_id: binary_sensor.master_bathroom_sensor
         from: 'off'
         to: 'on'
       - platform: state
-        entity_id: !secret binary_sensor_master_bathroom_motion
+        entity_id: binary_sensor.master_bathroom_sensor
         from: 'on'
         to: 'off'
         for: '00:04:00'

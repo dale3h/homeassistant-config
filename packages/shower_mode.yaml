@@ -76,7 +76,7 @@ automation:
         data:
           entity_id: automation.master_bathroom_motion
       - condition: state
-        entity_id: !secret binary_sensor_master_bathroom_motion
+        entity_id: binary_sensor.master_bathroom_sensor
         state: 'off'
       - service: script.light_control
         data:

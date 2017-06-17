@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Alarm
+## Packages / Xbox Live
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'alarm'
+        package: 'xbox_live'
 
       contained: &contained
         <<: *customize
@@ -31,46 +31,19 @@ homeassistant:
         hidden: true
 
     ################################################
-    ## Alarm Control Panel
+    ## Sensor
     ################################################
 
-    alarm_control_panel.alarm_system:
+    sensor.gremlinjku:
       <<: *customize
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Group
-    ################################################
-
-    group.alarm_system:
-      <<: *contained
-      friendly_name: "Alarm System"
-
-    ################################################
-    ## Switch
-    ################################################
-
-    switch.siren_switch:
-      <<: *contained
-      friendly_name: "Siren"
+      friendly_name: "GremlinJKU"
 
 ################################################
-## Group
+## Sensor
 ################################################
 
-group:
-  alarm_system:
-    control: hidden
-    entities:
-      - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - switch.siren_switch
-
-################################################
-## Alarm Control Panel
-################################################
-
-alarm_control_panel:
-  - platform: manual
-    name: alarm_system
-    code: !secret alarm_code
+sensor:
+  - platform: xbox_live
+    api_key: !secret xbox_live_api_key
+    xuid:
+      - !secret xbox_live_xuid

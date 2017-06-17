@@ -78,7 +78,7 @@ climate:
   - platform: generic_thermostat
     name: kitchen
     heater: input_boolean.climate_dummy
-    target_sensor: !secret sensor_kitchen_temperature
+    target_sensor: sensor.kitchen_temperature
 
   - platform: generic_thermostat
     name: living_room
@@ -88,7 +88,7 @@ climate:
   - platform: generic_thermostat
     name: master_bathroom
     heater: input_boolean.climate_dummy
-    target_sensor: !secret sensor_master_bathroom_temperature
+    target_sensor: sensor.master_bathroom_temperature
 
   - platform: generic_thermostat
     name: master_bedroom

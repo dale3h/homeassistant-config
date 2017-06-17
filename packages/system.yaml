@@ -127,6 +127,7 @@ automation:
       - service: automation.trigger
         data:
           entity_id: automation.update_global_brightness
+      - service: shell_command.generate_graph
 
   - alias: update_notification
     initial_state: 'on'

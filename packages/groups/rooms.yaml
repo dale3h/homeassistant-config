@@ -105,10 +105,10 @@ group:
   entryway:
     control: hidden
     entities:
-      - !secret lock_front_door
+      - lock.front_door_locked
       - light.entry_lamp
       - light.entry_light
-      - !secret binary_sensor_front_door
+      - binary_sensor.front_door_sensor
       - !secret binary_sensor_doorbell
 
   front_porch:
@@ -164,11 +164,11 @@ group:
       - light.sink
       - switch.kitchen_overhead
       - sensor.kitchen_motion_battery
-      - !secret binary_sensor_kitchen_motion
-      - !secret sensor_kitchen_moisture
-      - !secret sensor_kitchen_luminance
-      - !secret sensor_kitchen_humidity
-      - !secret sensor_kitchen_temperature
+      - binary_sensor.kitchen_sensor
+      - sensor.kitchen_moisture
+      - sensor.kitchen_luminance
+      - sensor.kitchen_relative_humidity
+      - sensor.kitchen_temperature
       - switch.pepper_fan
       - sensor.pepper_fan_power
       - automation.kitchen_motion

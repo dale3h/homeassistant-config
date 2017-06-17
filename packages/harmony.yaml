@@ -8,56 +8,85 @@
 
 homeassistant:
   customize:
-    packages.harmony: &customize
-      package: 'harmony'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.harmony_exposed: &customize_exposed
-      <<: *customize
-      haaska_hidden: false
-      homebridge_hidden: false
+    package.node_anchors:
+      customize: &customize
+        package: 'harmony'
 
-    packages.harmony_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.toggle_apple_tv:
-      <<: *customize_contained
+      <<: *contained
       friendly_name: "Toggle Apple TV"
 
+    automation.toggle_xbox:
+      <<: *contained
+      friendly_name: "Toggle Xbox"
+
+    ################################################
+    ## Remote
+    ################################################
+
     remote.living_room:
-      <<: *customize_contained
+      <<: *contained
       friendly_name: "Living Room"
       hidden: true
       icon: mdi:remote
 
+    ################################################
+    ## Script
+    ################################################
+
     script.harmony_activity:
-      <<: *customize_contained
+      <<: *contained
       friendly_name: "Harmony Activity"
       icon: mdi:remote
 
+    ################################################
+    ## Switch
+    ################################################
+
     switch.apple_tv:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Apple TV"
       icon: mdi:apple
 
     switch.chromecast:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Chromecast"
       icon: mdi:google-chrome
 
     switch.computer:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Computer"
       icon: mdi:windows
 
     switch.fire_tv:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Fire TV"
       icon: mdi:amazon
 
     switch.xbox:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Xbox"
       icon: mdi:xbox
 
@@ -87,6 +116,28 @@ automation:
       - service: switch.toggle
         data:
           entity_id: switch.apple_tv
+
+  - alias: toggle_xbox
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: !secret binary_sensor_xiaomi_button
+          click_type: hold
+    condition:
+      - condition: template
+        value_template: "{{ states.automation.toggle_xbox.attributes is not none }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ states.automation.toggle_xbox.attributes.last_triggered is none }}"
+          - condition: template
+            value_template: "{{ as_timestamp(now()) - as_timestamp(states.automation.toggle_xbox.attributes.last_triggered) > 30 }}"
+    action:
+      - service: switch.toggle
+        data:
+          entity_id: switch.xbox
 
 ################################################
 ## Remote

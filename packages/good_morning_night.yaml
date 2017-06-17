@@ -101,4 +101,4 @@ script:
 
       - service: lock.lock
         data:
-          entity_id: !secret lock_front_door
+          entity_id: lock.front_door_locked

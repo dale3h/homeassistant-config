@@ -46,6 +46,7 @@ config
 custom_components
 deps
 icloud
+panels
 tts
 www
 __*

@@ -82,7 +82,7 @@ automation:
     action:
       - service: switch.turn_off
         data:
-          entity_id: !secret switch_siren
+          entity_id: switch.siren_switch
       - service: input_select.select_option
         data:
           entity_id: input_select.alarm_clock
@@ -116,12 +116,12 @@ automation:
 
       - service: switch.turn_on
         data:
-          entity_id: !secret switch_siren
+          entity_id: switch.siren_switch
 
       - delay: '00:00:15'
       - service: switch.turn_off
         data:
-          entity_id: !secret switch_siren
+          entity_id: switch.siren_switch
 
       - delay: '00:01:00'
       - condition: state
@@ -129,7 +129,7 @@ automation:
         state: 'on'
       - service: switch.turn_on
         data:
-          entity_id: !secret switch_siren
+          entity_id: switch.siren_switch
 
       - delay: '00:05:00'
       - condition: state
@@ -137,7 +137,7 @@ automation:
         state: 'on'
       - service: switch.turn_on
         data:
-          entity_id: !secret switch_siren
+          entity_id: switch.siren_switch
 
 ################################################
 ## Input Boolean

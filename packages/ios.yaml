@@ -69,7 +69,7 @@ automation:
     action:
       - service: lock.unlock
         data:
-          entity_id: !secret lock_front_door
+          entity_id: lock.front_door_locked
 
 ################################################
 ## Script
