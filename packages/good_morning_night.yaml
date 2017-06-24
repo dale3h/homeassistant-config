@@ -34,6 +34,11 @@ homeassistant:
     ## Script
     ################################################
 
+    script.bedtime_story:
+      <<: *exposed
+      friendly_name: "Bedtime Story"
+      icon: mdi:book-open-page-variant
+
     script.good_morning:
       <<: *exposed
       friendly_name: "Good Morning"
@@ -49,6 +54,14 @@ homeassistant:
 ################################################
 
 script:
+  bedtime_story:
+    sequence:
+      - service: script.say
+        data_template:
+          platform: google
+          entity_id: media_player.bedroom_speakers
+          message: !include ../phrases/bedtime_story.yaml
+
   good_morning:
     sequence:
       - service: script.say

@@ -68,3 +68,4 @@ home-assistant.*
 known_devices.yaml
 secrets.env
 secrets.yaml
+usps_cookies.pickle
