@@ -56,11 +56,20 @@ homeassistant:
 script:
   bedtime_story:
     sequence:
-      - service: script.say
-        data_template:
-          platform: google
+      - service: media_player.volume_set
+        data:
           entity_id: media_player.bedroom_speakers
-          message: !include ../phrases/bedtime_story.yaml
+          volume_level: 0.4
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.bedroom_speakers
+          media_content_id: !secret go_to_sleep_mp3
+          media_content_type: 'music'
+      - delay: '00:05:00'
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.bedroom_speakers
+          volume_level: 1.0
 
   good_morning:
     sequence:

@@ -2,6 +2,69 @@
 ## Packages / Telegram
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'telegram'
+
+      contained: &contained
+        <<: *customize
+        haaska_hidden: true
+        homebridge_hidden: true
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *contained
+        hidden: true
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.telegram_restart:
+      <<: *contained
+      friendly_name: "Telegram: Restart"
+      icon: mdi:power
+
+automation:
+  - alias: telegram_restart
+    trigger:
+      - platform: event
+        event_type: telegram_command
+        event_data:
+          command: '/restart'
+    action:
+      - service: notify.telegram
+        data:
+          message: "Restarting Home Assistant, please wait..."
+      - service: script.restart_hass
+
+  - alias: telegram_roll
+    trigger:
+      - platform: event
+        event_type: telegram_command
+        event_data:
+          command: '/roll'
+    action:
+      - service: notify.telegram
+        data_template:
+          message: >-
+            {% set sides = (trigger.event.data.args|default)[0]|default(6) %}
+            I rolled a {{ sides|string ~ '-sided die' if sides != 6 else 'die' }} and got {{ range(1, sides + 1)|random }}.
+
 telegram_bot:
   platform: webhooks
   api_key: !secret telegram_api_key

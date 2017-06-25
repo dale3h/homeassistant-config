@@ -69,4 +69,5 @@ logger:
     pytradfri.coap_cli: warn
     root: warn
     telegram.bot: warn
+    telegram.vendor.ptb_urllib3.urllib3.connectionpool: warn
     urllib3.connectionpool: warn

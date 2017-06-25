@@ -42,6 +42,10 @@ homeassistant:
       friendly_name: "Gateway Light"
       persistent: true
 
+    !secret sensor_gateway_lux:
+      <<: *customize_contained
+      friendly_name: "Gateway Lux"
+
     !secret switch_xiaomi_plug:
       <<: *customize_contained
       friendly_name: "Xiaomi Plug"
