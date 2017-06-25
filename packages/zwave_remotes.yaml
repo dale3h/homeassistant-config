@@ -55,9 +55,9 @@ script:
   #           event_type: {{ event_type }}
   #           origin: {{ origin }}
   #           time_fired: {{ time_fired }}
-  #           entity_id: {{ entity_id }}
-  #           object_id: {{ object_id }}
+  #           node_id: {{ node_id }}
   #           scene_id: {{ scene_id }}
+  #           entity_id: {{ entity_id }}
   #           remote: {{ remote }}
   #           button: {{ button }}
   #           action: {{ action }}
