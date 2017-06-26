@@ -1,0 +1,62 @@
+# Description:
+#   Pill tracker script and binary sensor to use with Dasher.
+#
+# Written for:
+#   @clemon79
+#
+# Components:
+#   binary_sensor
+#   logbook
+#   script
+#
+# License:
+#   MIT
+#
+# Author:
+#   Dale Higgs <@dale3h>
+#
+# PLEASE NOTE: THIS CONFIGURATION IS UNTESTED AND MAY CONTAIN ERRORS
+
+binary_sensor:
+  - platform: template
+    sensors:
+      took_my_pills:
+        friendly_name: "Took My Pills"
+        value_template: >-
+          {% set script = states.script.took_my_pills %}
+          {% set reset = 60 * 60 * 4 %}
+
+          {% if script and script.attributes.last_triggered %}
+            {% set time_now = utcnow().strftime('%s')|int %}
+            {% set time_ran = script.attributes.last_triggered.strftime('%s')|int %}
+
+            {{ time_now - time_ran < reset }}
+          {% else %}
+            {{ false }}
+          {% endif %}
+
+script:
+  took_my_pills:
+    alias: "Took My Pills"
+    sequence:
+      - service: logbook.log
+        data:
+          name: My Pills
+          message: were taken.
+
+################################################
+## Dasher Config Example
+################################################
+#
+# {"buttons":[
+#   {
+#     "name": "Took My Pills",
+#     "address": "00:11:22:33:44:55",
+#     "url": "http://yourdomain.com:8123/api/services/script/took_my_pills",
+#     "method": "POST",
+#     "headers": {
+#       "x-ha-access": "YOUR_HASS_PASSWORD"
+#     },
+#     "json": true
+#   }
+# ]}
