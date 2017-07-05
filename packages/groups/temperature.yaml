@@ -16,26 +16,17 @@ homeassistant:
       customize: &customize
         package: 'groups/temperature'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.temperature:
-      <<: *contained
+      <<: *customize
       friendly_name: "Temperature"
       icon: mdi:thermometer
 

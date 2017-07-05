@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'alarm'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -43,7 +38,7 @@ homeassistant:
     ################################################
 
     group.alarm_system:
-      <<: *contained
+      <<: *customize
       friendly_name: "Alarm System"
 
     ################################################
@@ -51,7 +46,7 @@ homeassistant:
     ################################################
 
     switch.siren_switch:
-      <<: *contained
+      <<: *customize
       friendly_name: "Siren"
 
 ################################################

@@ -8,112 +8,136 @@
 
 homeassistant:
   customize:
-    packages.zwave: &customize
-      package: 'zwave'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.zwave_exposed: &customize_exposed
-      <<: *customize
-      haaska_hidden: false
-      homebridge_hidden: false
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave'
 
-    packages.zwave_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Binary Sensor
+    ################################################
 
     binary_sensor.front_door_sensor:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Front Door Sensor"
       device_class: opening
 
     binary_sensor.kitchen_sensor:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Kitchen Motion"
       device_class: motion
 
     binary_sensor.master_bathroom_sensor:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Master Bathroom Motion"
       device_class: motion
 
+    ################################################
+    ## Input Select
+    ################################################
+
     input_select.siren_sound:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Sound"
 
+    ################################################
+    ## Lock
+    ################################################
+
     lock.front_door_locked:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Front Door"
 
+    ################################################
+    ## Script
+    ################################################
+
     script.siren_autostop_120s:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Autostop 120s"
 
     script.siren_autostop_30s:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Autostop 30s"
 
     script.siren_autostop_60s:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Autostop 60s"
 
     script.siren_autostop_never:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Autostop Never"
 
     script.siren_mode_all:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Mode All"
 
     script.siren_mode_siren:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Mode Siren"
 
     script.siren_mode_strobe:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Siren Mode Strobe"
 
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.front_door_access_control:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Front Door Access Control"
       hidden: true
 
     sensor.kitchen_luminance:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Kitchen Luminance"
       hidden: true
       icon: mdi:theme-light-dark
 
     sensor.kitchen_moisture:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Kitchen Moisture"
       device_class: moisture
       icon: mdi:water-percent
 
     sensor.kitchen_relative_humidity:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Kitchen Humidity"
       icon: mdi:water-percent
 
     sensor.kitchen_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Kitchen Temperature"
       icon: mdi:thermometer
 
     sensor.master_bathroom_luminance:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Master Bathroom Luminance"
       hidden: true
       icon: mdi:theme-light-dark
 
     sensor.master_bathroom_relative_humidity:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Master Bathroom Humidity"
       icon: mdi:water-percent
 
     sensor.master_bathroom_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Master Bathroom Temperature"
       icon: mdi:thermometer
+
+  ################################################
+  ## Customize Domain
+  ################################################
 
   customize_domain:
     zwave:
@@ -125,8 +149,8 @@ homeassistant:
 ################################################
 
 zwave:
-  config_path: !secret zwave_config_path
   usb_path: !secret zwave_usb_path
+  network_key: !secret zwave_network_key
   device_config: !include ../zwave_device_config.yaml
   new_entity_ids: true
 
@@ -157,6 +181,20 @@ input_select:
 ################################################
 ## Script
 ################################################
+
+# Add new input_select for:
+#   Siren
+#   Siren (30s)
+#   Siren (60s)
+#   Siren (120s)
+#   Strobe
+#   Strobe (30s)
+#   Strobe (60s)
+#   Strobe (120s)
+#   Siren + Strobe
+#   Siren + Strobe (30s)
+#   Siren + Strobe (60s)
+#   Siren + Strobe (120s)
 
 script:
   siren_mode_all:

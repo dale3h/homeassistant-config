@@ -8,58 +8,71 @@
 
 homeassistant:
   customize:
-    packages.xiaomi: &customize
-      package: 'xiaomi'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.xiaomi_exposed: &customize_exposed
-      <<: *customize
-      haaska_hidden: false
-      homebridge_hidden: false
+    package.node_anchors:
+      customize: &customize
+        package: 'xiaomi'
 
-    packages.xiaomi_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+
+    ################################################
+    ## Secrets
+    ################################################
 
     !secret binary_sensor_doorbell:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Doorbell"
       device_class: sound
 
     !secret binary_sensor_laundry_room_motion:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Laundry Room Motion"
       device_class: motion
 
     !secret binary_sensor_xiaomi_button:
-      <<: *customize_contained
+      <<: *hidden
       friendly_name: "Xiaomi Switch"
-      hidden: true
       icon: mdi:gamepad
 
     !secret light_gateway_light:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Gateway Light"
       persistent: true
 
     !secret sensor_gateway_lux:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Gateway Lux"
 
     !secret switch_xiaomi_plug:
-      <<: *customize_contained
+      <<: *hidden
       friendly_name: "Xiaomi Plug"
-      hidden: true
       icon: mdi:power-plug
 
+    ################################################
+    ## Input Slider
+    ################################################
+
     input_slider.xiaomi_ringtone_volume:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Xiaomi Ringtone Volume"
 
+    ################################################
+    ## Script
+    ################################################
+
     script.xiaomi_ringtone:
-      <<: *customize_contained
+      <<: *hidden
       friendly_name: "Xiaomi Ringtone"
-      hidden: true
 
 ################################################
 ## Xiaomi

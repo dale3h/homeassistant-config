@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'apple_tv'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,12 +30,12 @@ homeassistant:
     ################################################
 
     media_player.apple_tv_bedroom:
-      <<: *contained
+      <<: *customize
       friendly_name: "Apple TV (Bedroom)"
       icon: mdi:apple
 
     media_player.apple_tv_living_room:
-      <<: *contained
+      <<: *customize
       friendly_name: "Apple TV (Living Room)"
       icon: mdi:apple
 

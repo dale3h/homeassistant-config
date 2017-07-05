@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Sunrise Lights
+## Packages / Morning Lights
 ################################################################
 
 ################################################
@@ -8,18 +8,34 @@
 
 homeassistant:
   customize:
-    packages.sunrise_lights: &customize
-      haaska_hidden: false
-      homebridge_hidden: false
-      package: 'sunrise_lights'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    automation.sunrise_lighting:
-      <<: *customize
-      friendly_name: "Sunrise Lighting"
+    package.node_anchors:
+      customize: &customize
+        package: 'morning_lights'
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.morning_lighting:
+      <<: *exposed
+      friendly_name: "Morning Lighting"
       icon: mdi:weather-sunset-up
 
-    group.sunrise_lights:
-      <<: *customize
+    ################################################
+    ## Group
+    ################################################
+
+    group.morning_lights:
+      <<: *exposed
       friendly_name: "Morning Lights"
       icon: mdi:weather-sunset-up
 
@@ -28,8 +44,7 @@ homeassistant:
 ################################################
 
 group:
-  sunrise_lights:
-    control: hidden
+  morning_lights:
     entities:
       - light.dining_room
       - light.entry_lamp
@@ -40,7 +55,7 @@ group:
 ################################################
 
 automation:
-  - alias: sunrise_lighting
+  - alias: morning_lighting
     initial_state: 'on'
     trigger:
       - platform: time
@@ -52,7 +67,7 @@ automation:
     action:
       - service: script.light_control
         data:
-          entity_id: group.sunrise_lights
+          entity_id: group.morning_lights
           state: 'on'
           brightness: 255
           color_temp: 154

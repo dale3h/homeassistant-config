@@ -16,19 +16,10 @@ homeassistant:
       customize: &customize
         package: 'media_lights'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Automation
@@ -44,16 +35,17 @@ homeassistant:
     ################################################
 
     binary_sensor.media_lights_expected_state:
-      <<: *hidden
+      <<: *customize
       friendly_name: "Media Lights Expected State"
       device_class: light
+      hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.media_lights:
-      <<: *contained
+      <<: *customize
       friendly_name: "Media Lights"
       icon: mdi:lightbulb
 
@@ -63,7 +55,6 @@ homeassistant:
 
 automation:
   - alias: media_lighting
-    initial_state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.media_lights_expected_state

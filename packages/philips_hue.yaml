@@ -137,10 +137,10 @@ homeassistant:
       friendly_name: "Master Bedroom 2"
       hidden: true
 
-    light.master_closet_1:
-      <<: *customize
-      friendly_name: "Master Closet 1"
-      hidden: true
+    # light.master_closet_1:
+    #   <<: *customize
+    #   friendly_name: "Master Closet 1"
+    #   hidden: true
 
     light.parker_bedroom:
       <<: *customize
@@ -213,7 +213,7 @@ homeassistant:
       <<: *customize
       friendly_name: "Master Bedroom"
 
-    light.master_closet:
+    light.master_closet_light:
       <<: *customize
       friendly_name: "Master Closet"
 

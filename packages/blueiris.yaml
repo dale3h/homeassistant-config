@@ -8,14 +8,30 @@
 
 homeassistant:
   customize:
-    packages.blueiris: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'blueiris'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'blueiris'
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.notify_driveway_motion:
       <<: *customize
       friendly_name: "Driveway Motion Notification"
+
+    ################################################
+    ## Binary Sensor
+    ################################################
 
     binary_sensor.amcrest_ptz_cam_motion:
       <<: *customize
@@ -67,6 +83,10 @@ homeassistant:
       friendly_name: "Parker Bedroom Cam Motion"
       device_class: motion
 
+    ################################################
+    ## Camera
+    ################################################
+
     camera.amcrest_ptz:
       <<: *customize
       friendly_name: "Amcrest PTZ"
@@ -76,7 +96,7 @@ homeassistant:
       friendly_name: "Backyard"
 
     camera.driveway:
-      <<: *customize
+      <<: *exposed
       friendly_name: "Driveway"
 
     camera.front_yard:
@@ -102,6 +122,10 @@ homeassistant:
     camera.parker_bedroom:
       <<: *customize
       friendly_name: "Parker Bedroom"
+
+    ################################################
+    ## Group
+    ################################################
 
     group.cameras_indoor:
       <<: *customize

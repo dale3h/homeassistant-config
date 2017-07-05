@@ -16,26 +16,17 @@ homeassistant:
       customize: &customize
         package: 'groups/batteries'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.batteries:
-      <<: *contained
+      <<: *customize
       friendly_name: "Batteries"
 
     ################################################
@@ -43,15 +34,16 @@ homeassistant:
     ################################################
 
     sensor.iphone_battery_level:
-      <<: *hidden
+      <<: *customize
       friendly_name: "iPhone Battery Level"
+      hidden: true
       icon: mdi:battery
 
     sensor.iphone_battery_state:
-      <<: *hidden
+      <<: *customize
       friendly_name: "iPhone Battery State"
+      hidden: true
       icon: mdi:battery-charging
-
 
 ################################################
 ## Group

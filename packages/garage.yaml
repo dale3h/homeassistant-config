@@ -16,26 +16,17 @@ homeassistant:
       customize: &customize
         package: 'garage'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Alert
     ################################################
 
     alert.garage_door_open:
-      <<: *contained
+      <<: *customize
       friendly_name: "Garage Door Open"
       speech: "Hey you, your garage door is open."
 
@@ -52,9 +43,10 @@ homeassistant:
     ################################################
 
     binary_sensor.garage_light_expected_state:
-      <<: *hidden
+      <<: *customize
       friendly_name: "Garage Light Expected State"
       device_class: light
+      hidden: true
 
     ################################################
     ## Cover
@@ -80,8 +72,9 @@ homeassistant:
     ################################################
 
     # input_boolean.garage_light:
-    #   <<: *hidden
+    #   <<: *customize
     #   friendly_name: "Garage Light"
+    #   hidden: true
 
 ################################################
 ## Alert

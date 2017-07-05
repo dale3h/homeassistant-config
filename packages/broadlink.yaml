@@ -8,22 +8,46 @@
 
 homeassistant:
   customize:
-    packages.broadlink: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'broadlink'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'broadlink'
+
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.projection_screen:
       <<: *customize
       friendly_name: "Projection Screen"
 
+    ################################################
+    ## Input Select
+    ################################################
+
     input_select.projection_screen:
       <<: *customize
       friendly_name: "Projection Screen"
 
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.broadlink_sensor_temperature:
       <<: *customize
       friendly_name: "Broadlink Temperature"
+
+    ################################################
+    ## Switch
+    ################################################
 
     switch.projection_screen_down:
       <<: *customize

@@ -65,6 +65,7 @@ __*
 .uuid
 home-assistant.*
 !home-assistant.service
+ip_bans.yaml
 known_devices.yaml
 secrets.env
 secrets.yaml

@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'batteries'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,27 +30,27 @@ homeassistant:
     ################################################
 
     sensor.front_door_lock_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "Front Door Lock Battery"
 
     sensor.front_door_sensor_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "Front Door Sensor Battery"
 
     sensor.iphone_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "iPhone Battery"
 
     sensor.kitchen_motion_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "Kitchen Motion Battery"
 
     sensor.master_bathroom_motion_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "Master Bathroom Motion Battery"
 
     sensor.siren_battery:
-      <<: *contained
+      <<: *customize
       friendly_name: "Siren Battery"
 
 ################################################

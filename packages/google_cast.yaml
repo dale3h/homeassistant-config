@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'google_cast'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,17 +30,17 @@ homeassistant:
     ################################################
 
     media_player.bedroom_speakers:
-      <<: *contained
+      <<: *customize
       friendly_name: "Bedroom Speakers"
       icon: mdi:google-chrome
 
     media_player.dining_room_home:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dining Room Home"
       icon: mdi:google-chrome
 
     media_player.living_room_speakers:
-      <<: *contained
+      <<: *customize
       friendly_name: "Living Room Speakers"
       icon: mdi:google-chrome
 

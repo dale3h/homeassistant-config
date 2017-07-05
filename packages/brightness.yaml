@@ -20,18 +20,13 @@ homeassistant:
       customize: &customize
         package: 'brightness'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -39,7 +34,7 @@ homeassistant:
     ################################################
 
     automation.update_global_brightness:
-      <<: *contained
+      <<: *customize
       friendly_name: "Update Global Brightness"
 
     ################################################
@@ -47,11 +42,11 @@ homeassistant:
     ################################################
 
     input_slider.global_brightness:
-      <<: *contained
+      <<: *customize
       friendly_name: "Global Brightness"
 
     input_slider.nightlight_brightness:
-      <<: *contained
+      <<: *customize
       friendly_name: "Nightlight Brightness"
 
     ################################################
@@ -59,8 +54,9 @@ homeassistant:
     ################################################
 
     sensor.global_brightness:
-      <<: *hidden
+      <<: *customize
       friendly_name: "Global Brightness"
+      hidden: true
 
 ################################################
 ## Automation

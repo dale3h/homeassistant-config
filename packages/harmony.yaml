@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'harmony'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,11 +30,11 @@ homeassistant:
     ################################################
 
     automation.toggle_apple_tv:
-      <<: *contained
+      <<: *customize
       friendly_name: "Toggle Apple TV"
 
     automation.toggle_xbox:
-      <<: *contained
+      <<: *customize
       friendly_name: "Toggle Xbox"
 
     ################################################
@@ -47,7 +42,7 @@ homeassistant:
     ################################################
 
     remote.living_room:
-      <<: *contained
+      <<: *customize
       friendly_name: "Living Room"
       hidden: true
       icon: mdi:remote
@@ -57,7 +52,7 @@ homeassistant:
     ################################################
 
     script.harmony_activity:
-      <<: *contained
+      <<: *customize
       friendly_name: "Harmony Activity"
       icon: mdi:remote
 

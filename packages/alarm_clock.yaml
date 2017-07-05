@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'alarm_clock'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,17 +30,17 @@ homeassistant:
     ################################################
 
     automation.alarm_clock:
-      <<: *contained
+      <<: *customize
       friendly_name: "Alarm Clock"
       icon: mdi:alarm
 
     automation.alarm_clock_disable:
-      <<: *contained
+      <<: *customize
       friendly_name: "Alarm Clock Disabled"
       icon: mdi:alarm
 
     automation.alarm_clock_enable:
-      <<: *contained
+      <<: *customize
       friendly_name: "Alarm Clock Enabled"
       icon: mdi:alarm
 
@@ -54,7 +49,7 @@ homeassistant:
     ################################################
 
     input_boolean.alarm_clock:
-      <<: *contained
+      <<: *customize
       friendly_name: "Alarm Clock"
       icon: mdi:alarm
 

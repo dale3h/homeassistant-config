@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'utilities'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,7 +30,7 @@ homeassistant:
     ################################################
 
     automation.nightly_config_backup:
-      <<: *contained
+      <<: *customize
       friendly_name: "Nightly Config Backup"
       icon: mdi:backup-restore
 
@@ -44,7 +39,7 @@ homeassistant:
     ################################################
 
     group.utilities:
-      <<: *contained
+      <<: *customize
       friendly_name: "Utilities"
       icon: mdi:script
 
@@ -53,22 +48,22 @@ homeassistant:
     ################################################
 
     script.manual_config_backup:
-      <<: *contained
+      <<: *customize
       friendly_name: "Manual Config Backup"
       icon: mdi:backup-restore
 
     script.reload_config:
-      <<: *contained
+      <<: *customize
       friendly_name: "Reload Configuration"
       icon: mdi:refresh
 
     script.restart_hass:
-      <<: *contained
+      <<: *customize
       friendly_name: "Restart Home Assistant"
       icon: mdi:power
 
     script.update_hass:
-      <<: *contained
+      <<: *customize
       friendly_name: "Update Home Assistant"
       icon: mdi:upload
 

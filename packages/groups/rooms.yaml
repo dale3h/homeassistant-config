@@ -16,74 +16,65 @@ homeassistant:
       customize: &customize
         package: 'groups/rooms'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.back_porch:
-      <<: *contained
+      <<: *customize
       friendly_name: "Back Porch"
 
     group.dining_room:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dining Room"
 
-    group.entryway:
-      <<: *contained
-      friendly_name: "Entryway"
+    group.entry:
+      <<: *customize
+      friendly_name: "Entry"
 
     group.front_porch:
-      <<: *contained
+      <<: *customize
       friendly_name: "Front Porch"
 
     group.garage:
-      <<: *contained
+      <<: *customize
       friendly_name: "Garage"
 
     group.guest_bathroom:
-      <<: *contained
+      <<: *customize
       friendly_name: "Guest Bathroom"
 
     group.guest_bedroom:
-      <<: *contained
+      <<: *customize
       friendly_name: "Guest Bedroom"
 
     group.hallway:
-      <<: *contained
+      <<: *customize
       friendly_name: "Hallway"
 
     group.kitchen:
-      <<: *contained
+      <<: *customize
       friendly_name: "Kitchen"
 
     group.laundry_room:
-      <<: *contained
+      <<: *customize
       friendly_name: "Laundry Room"
 
     group.living_room:
-      <<: *contained
+      <<: *customize
       friendly_name: "Living Room"
 
     group.master_bedroom:
-      <<: *contained
+      <<: *customize
       friendly_name: "Master Bedroom"
 
     group.parker_bedroom:
-      <<: *contained
+      <<: *customize
       friendly_name: "Parker Bedroom"
 
 ################################################
@@ -102,7 +93,7 @@ group:
       - light.dining_room
       - media_player.dining_room_home
 
-  entryway:
+  entry:
     control: hidden
     entities:
       - lock.front_door_locked
@@ -197,7 +188,7 @@ group:
     entities:
       - light.master_bedroom
       - light.master_bathroom
-      - light.master_closet
+      - light.master_closet_light
       - binary_sensor.master_bedroom_occupancy
       - binary_sensor.master_bedroom_motion
       - binary_sensor.closet_door_contact

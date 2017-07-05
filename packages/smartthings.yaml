@@ -8,96 +8,112 @@
 
 homeassistant:
   customize:
-    packages.smartthings: &customize
-      package: 'smartthings'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.smartthings_exposed: &customize_exposed
-      <<: *customize
-      haaska_hidden: false
-      homebridge_hidden: false
+    package.node_anchors:
+      customize: &customize
+        package: 'smartthings'
 
-    packages.smartthings_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+
+    ################################################
+    ## Binary Sensor
+    ################################################
 
     binary_sensor.closet_door_contact:
-      <<: *customize_exposed
+      <<: *exposed
       device_class: opening
       friendly_name: "Closet Door"
 
     binary_sensor.garage_entry_contact:
-      <<: *customize_exposed
+      <<: *exposed
       device_class: opening
       friendly_name: "Garage Entry Door"
 
     binary_sensor.master_bedroom_motion:
-      <<: *customize_exposed
+      <<: *exposed
       device_class: motion
       friendly_name: "Master Bedroom Motion"
 
     binary_sensor.parker_closet_door_contact:
-      <<: *customize_exposed
+      <<: *exposed
       device_class: opening
       friendly_name: "Parker Closet Door"
 
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.closet_door_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Closet Door Battery"
       icon: mdi:battery
 
     sensor.closet_door_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Closet Door Temperature"
       icon: mdi:thermometer
 
     sensor.garage_entry_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Garage Entry Battery"
       icon: mdi:battery
 
     sensor.garage_entry_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Garage Entry Temperature"
       icon: mdi:thermometer
 
     sensor.master_bedroom_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Master Bedroom Battery"
       icon: mdi:battery
 
     sensor.master_bedroom_motion_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Master Bedroom Temperature"
       icon: mdi:thermometer
 
     sensor.network_cabinet_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Network Cabinet Battery"
       icon: mdi:battery
 
     sensor.network_cabinet_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Network Cabinet Temperature"
       icon: mdi:thermometer
 
     sensor.parker_closet_door_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Parker Closet Door Battery"
       icon: mdi:battery
 
     sensor.parker_closet_door_temperature:
-      <<: *customize_exposed
+      <<: *exposed
       friendly_name: "Parker Closet Door Temperature"
       icon: mdi:thermometer
 
     sensor.pepper_fan_power:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Pepper Fan Power"
       icon: mdi:flash
 
+    ################################################
+    ## Switch
+    ################################################
+
     switch.pepper_fan:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Pepper Fan"
       icon: mdi:fan
 

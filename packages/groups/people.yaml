@@ -16,41 +16,32 @@ homeassistant:
       customize: &customize
         package: 'groups/people'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Device Tracker
     ################################################
 
     device_tracker.dale_iphone:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dale (iPhone)"
       icon: mdi:cellphone-iphone
 
     device_tracker.dale_iphone_bt:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dale (BT)"
       icon: mdi:cellphone-iphone
 
     device_tracker.dale_iphone_ios:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dale (iOS)"
       icon: mdi:cellphone-iphone
 
     device_tracker.meagan_android:
-      <<: *contained
+      <<: *customize
       friendly_name: "Meagan (Android)"
       icon: mdi:cellphone-android
 
@@ -59,17 +50,17 @@ homeassistant:
     ################################################
 
     group.guests:
-      <<: *contained
+      <<: *customize
       friendly_name: "Guests"
       icon: mdi:human-male-female
 
     group.person_dale:
-      <<: *contained
+      <<: *customize
       friendly_name: "Dale"
       icon: mdi:human-male
 
     group.person_meagan:
-      <<: *contained
+      <<: *customize
       friendly_name: "Meagan"
       icon: mdi:human-female
 

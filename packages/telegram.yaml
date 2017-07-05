@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'telegram'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,7 +30,7 @@ homeassistant:
     ################################################
 
     automation.telegram_restart:
-      <<: *contained
+      <<: *customize
       friendly_name: "Telegram: Restart"
       icon: mdi:power
 

@@ -16,11 +16,6 @@ homeassistant:
       haaska_hidden: false
       homebridge_hidden: false
 
-    packages.ecobee_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
-
     binary_sensor.guest_bedroom_occupancy:
       <<: *customize_exposed
       friendly_name: "Guest Bedroom Occupancy"

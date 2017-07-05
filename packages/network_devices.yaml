@@ -77,9 +77,9 @@ homeassistant:
       <<: *customize_hidden
       friendly_name: "Echo Dot (Parker)"
 
-    device_tracker.net_echo_entryway:
+    device_tracker.net_echo_entry:
       <<: *customize_hidden
-      friendly_name: "Echo (Entryway)"
+      friendly_name: "Echo (Entry)"
 
     device_tracker.net_echo_master_bathroom:
       <<: *customize_hidden
@@ -269,9 +269,9 @@ homeassistant:
       <<: *customize
       friendly_name: "Echo Dot (Parker)"
 
-    sensor.net_echo_entryway:
+    sensor.net_echo_entry:
       <<: *customize
-      friendly_name: "Echo (Entryway)"
+      friendly_name: "Echo (Entry)"
 
     sensor.net_echo_master_bathroom:
       <<: *customize
@@ -432,7 +432,7 @@ group:
       - device_tracker.net_echo_dot_guest_bedroom
       - device_tracker.net_echo_dot_kitchen
       - device_tracker.net_echo_dot_parker
-      - device_tracker.net_echo_entryway
+      - device_tracker.net_echo_entry
       - device_tracker.net_echo_master_bathroom
       - device_tracker.net_ecobee3
       - device_tracker.net_ecoplug_0556a2
@@ -483,7 +483,7 @@ group:
       - sensor.net_echo_dot_guest_bedroom
       - sensor.net_echo_dot_kitchen
       - sensor.net_echo_dot_parker
-      - sensor.net_echo_entryway
+      - sensor.net_echo_entry
       - sensor.net_echo_master_bathroom
       - sensor.net_ecobee3
       - sensor.net_ecoplug_0556a2
@@ -571,9 +571,9 @@ sensor:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'mdi:alert-circle' }}"
 
-      net_echo_entryway:
-        value_template: "{{ 'online' if is_state('device_tracker.net_echo_entryway', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_entryway', 'home') else 'mdi:alert-circle' }}"
+      net_echo_entry:
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_entry', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_entry', 'home') else 'mdi:alert-circle' }}"
 
       net_echo_master_bathroom:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'offline' }}"

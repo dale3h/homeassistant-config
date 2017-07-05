@@ -8,86 +8,98 @@
 
 homeassistant:
   customize:
-    packages.ups: &customize
-      package: 'ups'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.ups_exposed: &customize_exposed
-      <<: *customize
-      haaska_hidden: false
-      homebridge_hidden: false
+    package.node_anchors:
+      customize: &customize
+        package: 'ups'
 
-    packages.ups_contained: &customize_contained
-      <<: *customize
-      haaska_hidden: true
-      homebridge_hidden: true
+      exposed: &exposed
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+
+    ################################################
+    ## Group
+    ################################################
 
     group.ups:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "Battery Backup"
       icon: mdi:car-battery
 
+    ################################################
+    ## Sensor
+    ################################################
+
     sensor.ups_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Battery"
 
     sensor.ups_input_voltage:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Input Voltage"
 
     sensor.ups_last_self_test:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Last Self Test"
 
     sensor.ups_load:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Load"
 
     sensor.ups_nominal_input_voltage:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Nominal Input Voltage"
 
     sensor.ups_nominal_output_power:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Nominal Output Power"
 
     sensor.ups_output_voltage:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Output Voltage"
 
     sensor.ups_startup_time:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Startup Time"
 
     sensor.ups_status:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Status"
 
     sensor.ups_status_date:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Status Date"
 
     sensor.ups_time_left:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Time Left"
 
     sensor.ups_time_on_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Time on Battery"
 
     sensor.ups_total_time_on_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Total Time on Battery"
 
     sensor.ups_transfer_count:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Transfer Count"
 
     sensor.ups_transfer_from_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Transfer from Battery"
 
     sensor.ups_transfer_to_battery:
-      <<: *customize_contained
+      <<: *customize
       friendly_name: "UPS Transfer to Battery"
 
 ################################################

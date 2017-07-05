@@ -16,18 +16,13 @@ homeassistant:
       customize: &customize
         package: 'eventghost'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
       hidden: &hidden
-        <<: *contained
+        <<: *customize
         hidden: true
 
     ################################################
@@ -35,11 +30,11 @@ homeassistant:
     ################################################
 
     automation.toggle_security_monitor:
-      <<: *contained
+      <<: *customize
       friendly_name: "Toggle Security Monitor"
 
     automation.smartthings_button_held:
-      <<: *contained
+      <<: *customize
       friendly_name: "SmartThings Button Held"
 
     ################################################

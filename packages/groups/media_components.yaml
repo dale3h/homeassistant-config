@@ -16,30 +16,21 @@ homeassistant:
       customize: &customize
         package: 'groups/media_components'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Group
     ################################################
 
     group.media_components:
-      <<: *contained
+      <<: *customize
       friendly_name: "Media Components"
 
     group.media_players:
-      <<: *contained
+      <<: *customize
       friendly_name: "Media Players"
 
 ################################################

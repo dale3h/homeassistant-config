@@ -63,7 +63,7 @@ group:
     entities:
       - group.back_porch
       - group.dining_room
-      - group.entryway
+      - group.entry
       - group.front_porch
       - group.garage
       - group.guest_bedroom

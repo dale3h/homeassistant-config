@@ -16,31 +16,22 @@ homeassistant:
       customize: &customize
         package: 'system'
 
-      contained: &contained
-        <<: *customize
-        haaska_hidden: true
-        homebridge_hidden: true
-
       exposed: &exposed
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *contained
-        hidden: true
 
     ################################################
     ## Automation
     ################################################
 
     automation.startup_notification:
-      <<: *contained
+      <<: *customize
       friendly_name: "Startup Notification"
       icon: mdi:message-text
 
     automation.update_notification:
-      <<: *contained
+      <<: *customize
       friendly_name: "Update Notification"
       icon: mdi:message-text
 
@@ -49,7 +40,7 @@ homeassistant:
     ################################################
 
     group.system:
-      <<: *contained
+      <<: *customize
       friendly_name: "System"
       icon: mdi:settings-box
 
@@ -58,32 +49,32 @@ homeassistant:
     ################################################
 
     sensor.date:
-      <<: *contained
+      <<: *customize
       friendly_name: "System Date"
       icon: mdi:calendar
 
     sensor.ha_github_version:
-      <<: *contained
+      <<: *customize
       friendly_name: "GitHub Version"
       icon: mdi:github-box
 
     sensor.ha_pypi_version:
-      <<: *contained
+      <<: *customize
       friendly_name: "PyPi Version"
       icon: mdi:language-python
 
     sensor.ha_startup_time:
-      <<: *contained
+      <<: *customize
       friendly_name: "Startup Time"
       icon: mdi:clock-start
 
     sensor.ha_version:
-      <<: *contained
+      <<: *customize
       friendly_name: "Installed Version"
       icon: mdi:settings-box
 
     sensor.time:
-      <<: *contained
+      <<: *customize
       friendly_name: "System Time"
       icon: mdi:clock
 

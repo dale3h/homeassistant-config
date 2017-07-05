@@ -7,4 +7,4 @@ http:
   base_url: !secret http_base_url
   use_x_forwarded_for: true
   ip_ban_enabled: true
-  login_attempts_threshold: 5
+  login_attempts_threshold: 3
