@@ -100,13 +100,16 @@ automation:
           click_type: single
     condition:
       - condition: template
-        value_template: "{{ states.automation.toggle_apple_tv.attributes is not none }}"
+        value_template: >-
+          {{ states.automation.toggle_apple_tv.attributes is not none }}
       - condition: or
         conditions:
           - condition: template
-            value_template: "{{ states.automation.toggle_apple_tv.attributes.last_triggered is none }}"
+            value_template: >-
+              {{ states.automation.toggle_apple_tv.attributes.last_triggered is none }}
           - condition: template
-            value_template: "{{ as_timestamp(now()) - as_timestamp(states.automation.toggle_apple_tv.attributes.last_triggered) > 30 }}"
+            value_template: >-
+              {{ as_timestamp(now()) - as_timestamp(states.automation.toggle_apple_tv.attributes.last_triggered) > 30 }}
     action:
       - service: switch.toggle
         data:
@@ -122,13 +125,16 @@ automation:
           click_type: hold
     condition:
       - condition: template
-        value_template: "{{ states.automation.toggle_xbox.attributes is not none }}"
+        value_template: >-
+          {{ states.automation.toggle_xbox.attributes is not none }}
       - condition: or
         conditions:
           - condition: template
-            value_template: "{{ states.automation.toggle_xbox.attributes.last_triggered is none }}"
+            value_template: >-
+              {{ states.automation.toggle_xbox.attributes.last_triggered is none }}
           - condition: template
-            value_template: "{{ as_timestamp(now()) - as_timestamp(states.automation.toggle_xbox.attributes.last_triggered) > 30 }}"
+            value_template: >-
+              {{ as_timestamp(now()) - as_timestamp(states.automation.toggle_xbox.attributes.last_triggered) > 30 }}
     action:
       - service: switch.toggle
         data:
@@ -151,9 +157,15 @@ remote:
 script:
   harmony_activity:
     sequence:
-      - service: switch.turn_on
-        data_template:
-          entity_id: "switch.projection_screen_{{ screen|default('up') }}"
+      # Hacky work-around for inverting open/close
+      - service_template: >-
+          {% if screen|default('up') == 'down' %}
+            cover.close_cover
+          {% else %}
+            cover.open_cover
+          {% endif %}
+        data:
+          entity_id: cover.projection_screen
       - service: remote.turn_on
         data_template:
           entity_id: "{{ entity_id|default('remote.living_room') }}"
@@ -167,7 +179,8 @@ switch:
   - platform: template
     switches:
       apple_tv:
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or False }}"
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or False }}
         turn_on:
           - service: script.harmony_activity
             data:
@@ -177,7 +190,8 @@ switch:
           - service: script.harmony_activity
 
       chromecast:
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Music') or False }}"
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Music') or False }}
         turn_on:
           - service: script.harmony_activity
             data:
@@ -187,7 +201,8 @@ switch:
           - service: script.harmony_activity
 
       computer:
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch PC') or False }}"
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch PC') or False }}
         turn_on:
           - service: script.harmony_activity
             data:
@@ -197,7 +212,8 @@ switch:
           - service: script.harmony_activity
 
       fire_tv:
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Watch Fire TV') or False }}"
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Fire TV') or False }}
         turn_on:
           - service: script.harmony_activity
             data:
@@ -207,7 +223,8 @@ switch:
           - service: script.harmony_activity
 
       xbox:
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Play a Game') or False }}"
+        value_template: >-
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Play a Game') or False }}
         turn_on:
           - service: script.harmony_activity
             data:

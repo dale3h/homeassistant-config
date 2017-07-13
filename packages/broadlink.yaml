@@ -22,20 +22,24 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
-    ## Automation
+    ## Cover
     ################################################
 
-    automation.projection_screen:
+    cover.projection_screen:
+      <<: *exposed
+      friendly_name: "Projection Screen"
+      icon: mdi:projector-screen
+
+    ################################################
+    ## Input Boolean
+    ################################################
+
+    input_boolean.projection_screen:
       <<: *customize
       friendly_name: "Projection Screen"
-
-    ################################################
-    ## Input Select
-    ################################################
-
-    input_select.projection_screen:
-      <<: *customize
-      friendly_name: "Projection Screen"
+      hidden: true
+      icon: mdi:projector-screen
+      persistent: true
 
     ################################################
     ## Sensor
@@ -51,68 +55,49 @@ homeassistant:
 
     switch.headboard_light:
       <<: *exposed
-
-    switch.projection_screen_down:
-      <<: *customize
-
-    switch.projection_screen_stop:
-      <<: *customize
-
-    switch.projection_screen_up:
-      <<: *customize
-
-    # switch.rf_outlet_b1:
-    #   <<: *customize
-    #
-    # switch.rf_outlet_b2:
-    #   <<: *customize
-    #
-    # switch.rf_outlet_b3:
-    #   <<: *customize
-    #
-    # switch.rf_outlet_d1:
-    #   <<: *customize
-    #
-    # switch.rf_outlet_d2:
-    #   <<: *customize
-    #
-    # switch.rf_outlet_d3:
-    #   <<: *customize
+      friendly_name: "Headboard Light"
+      icon: mdi:lightbulb
 
 ################################################
-## Automation
+## Cover
 ################################################
 
-automation:
-  - alias: projection_screen
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: input_select.projection_screen
-    condition:
-      - condition: template
-        value_template: "{{ trigger.to_state.state|lower != 'idle' }}"
-    action:
-      - service: switch.turn_on
-        data_template:
-          entity_id: "switch.projection_screen_{{ trigger.to_state.state|lower }}"
-      - service: input_select.select_option
-        data_template:
-          entity_id: "{{ trigger.to_state.entity_id }}"
-          option: Idle
+cover:
+  - platform: template
+    covers:
+      projection_screen:
+        # Open/close are inverted for the up/down icons to work as they appear
+        value_template: >-
+          {{ is_state('input_boolean.projection_screen', 'off') }}
+        open_cover:
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.projection_screen
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
+        close_cover:
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.projection_screen
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
+        stop_cover:
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
 
 ################################################
-## Input Select
+## Input Boolean
 ################################################
 
-input_select:
+input_boolean:
   projection_screen:
-    initial: Idle
-    options:
-      - Idle
-      - Stop
-      - Down
-      - Up
+    initial: 'off'
 
 ################################################
 ## Sensor
@@ -135,52 +120,6 @@ switch:
     host: !secret broadlink_host
     mac: !secret broadlink_mac
     switches:
-      projection_screen_stop:
-        friendly_name: "Projection Screen Stop"
-        command_on: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
-        command_off: 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
-
-      projection_screen_down:
-        friendly_name: "Projection Screen Down"
-        command_on: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
-        command_off: 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
-
-      projection_screen_up:
-        friendly_name: "Projection Screen Up"
-        command_on: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
-        command_off: 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
-
       headboard_light:
-        friendly_name: "Headboard Light"
         command_on: 'sgAuAQcREwUHERMFBhITBQcREwUHERMFBxETBQcREwUHERMFBxIHERIFEwUHERMGBxETBQe5BxETBQcSEgYGEhMECBETBQYSEgYHERMFBxETBQcREwUHEQcREwUTBgYSEgUHEhIGBroHERMFBxETBQcREwYGERMGBhISBgYSEgYGEhMFBhITBQcRBxETBRMFBxETBQcREwUHugcREwUHERMFBxESBgcREwUHERMFBxETBgYSEgUHEhIFBxIGEhMFEgYGEhIGBxETBQe5BxETBgYSEwUGEhMFBhISBgcREwUHERMFBxETBQcREwUHEQcSEgYSBgYSEgYGERMGBroHERMFBxETBQcREwYGEhIGBhETBgcREwUHERIGBhITBQcRBxESBhMFBxETBQcREwUHAAXcAAAAAAAAAAAAAA=='
         command_off: 'sgAsARIGBhISBgYSEwUGEhIGBhITBQcREwUHEhIGBhETBRMFEwYGEgYRBxISBgYSEwUGugcSEgYGERMFBxISBgYSEgYGEhIGBhITBQcREgYGEhIGEwUTBQcRBxEHEhIFBxETBQe6BhITBQYSEwUHERMFBxETBQYTEgUHERMFBxISBgYSEgYSBhIGBhIGEgcREgYGEhIGBroHERMGBhISBgYSEgYGEhIGBhITBQYSEgYGEhIGBxETBRMFEwUHEQcRBxISBgYREwUHugcREgYGEhMFBxETBQcREwUHERMFBxISBgYSEgYGEhIGEgYSBgYSBhIGEhIGBhITBQa7BhETBQcREwUHEhIFBxETBgYSEgYGEhIGBxESBgYSEgYSBhIGBxEGEgcREwUHERMFBwAF3AAAAAAAAAAAAAAAAA=='
-
-      # rf_outlet_b1:
-      #   friendly_name: "RF Outlet B1"
-      #   command_on: 'eADaAAcHBwYHBwcHBwcHBwcHBgcHBwcHBwcHBwcHBgcIBgcHBwcHBggHBwYHBwcHBwcHBwcGCAYIBgcHBwcHBwcGCAYHBwcHBwcHBggHBwYHBwcHBwcHBwcHB44HFRUHFAgHFRQHCBQHFQcVFQcHFQcVBxUHFBYGCBQInAcVFQcVBwcVFAgHFQcUCBQVBwcVBxUHFQcVFQcHFAicCBUVBhUHBxUVBwcVBxQIFRQHCBQIFAgUBxUVBwcVB50HFRUGFQcHFRUHBxUHFQcVFQYIFAgUCBQIFBUHBxUHAAXcAAAAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADaAAYHBwcHBwcHBwcHBwYHCAYIBgcHBwcHBwcHBgcHBwcHBwcHBwcGCAYHBwcHBwcHBggHBwcGBwcHBwcHBwcHBggHBgcHBwcHBwcHBgcIBgcHBwcHBwcHB44HFRUHFQcHFRQHCBUHFAgUCBQVBwcVBxUHFRUHBxUHnQcVFQYVBwgUFQcHFQcVBxUHFRUGBxUIFAcVFQcHFQedBxUVBxQIBxUVBggUCBQHFQcVFQcHFQcVBxUVBwcVB50HFBUHFQcHFRUHBxQIFQcUBxYVBgcVBxUHFRUHBxUHAAXcAAAAAAAAAAAAAAAAAAA='
-      #
-      # rf_outlet_b2:
-      #   friendly_name: "RF Outlet B2"
-      #   command_on: 'eADaAAcHBggGCAYHBwcHBwcHBwcGBwcHBwcHBwcHBwcGCAYHBwcHBwcHBwcHBwYHBwcHBwcHBwcGCAYHBwcHBwcHBwcGCAYIBgcHBwcHBwcGCAYHBwcHBwcHB48HFBUHFQcHFRUHBxUHFQcVBhYGFhQIBhUHFRUHBxUHnQcVFAgUBwcVFQcHFQcVBxUHFQcVFAcHFQcVFQcHFQedBxUVBxQIBxUUBwcVBxUHFQcVBxUVBwcVBxUUCAYWBp0HFRUHFQcHFRQIBhUHFQcVBxUHFRUHBxUHFRQIBhYGAAXcAAAAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADaAAcHBwcHBwcHBgcHBwcHBwcHBwcHBwYHBwcHBwcHBwcHBwcGBwcHBwcHBwcHBwcGBwcHBwcHBwcHBgcHBwcHBwcHBwcHBgcHBwcHBwcHBwYIBwYHBwcHB48HFRQHFQcHFRUHBxUHFQcVBxUHFAgUFQcHFRUHBxUHnQcVFAgUBwcVFQcHFQcVBxUHFQcVBxUUCAYVFQcHFQedBxUVBxQIBxQVBwcVBxUHFQcVBxUHFRUHBxUUCAcUB50HFRUHFQcHFRQIBhUIFQcUCBQHFQcVFQcHFRUHBxUHAAXcAAAAAAAAAAAAAAAAAAA='
-      #
-      # rf_outlet_b3:
-      #   friendly_name: "RF Outlet B3"
-      #   command_on: 'eADaAAcHBwcHBwcHBggGBwcHBwcGCAcHBgcHBwcHBwcHBwYIBggGBwcHBwcHBwcHBggGBwcHBwcHBwcHBwcGCAYHBwcHBwcHBggGBwcHBwcHBwcHBggGBwcHB48HFRQIFAcHFRUHBxUHFRUHBxUHFQcVBxUGFhQIBhUHnQcVFQcVBwcVFAgGFgYWFAcHFQcVBxUHFQcVFQcHFQedBxUUCBQHBxUVBwcVBxUUCAYWBhYGFgYWBhUVBwcVB50HFRQIFAgHFRQHBxUHFRUHBxUHFQcVBxUHFRQIBhYGAAXcAAAAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADaAAcHBwcGBwcHBwcHBwcHBwcHBwYHBwcHBwcHBwcGCAYHBwcHBwcHBwcGCAYIBgcHBwcHBwcHBggHBgcHBwcHBwcHBwYHBwcHBwcHBwcGCAYHBwgGBwcHB48HFBUHFQcHFRUHBxUVBwYWBhYGFQgVBhUHFRUHBxUHnQcVFAgUCAcVFAcHFRUHBxUHFQcVBxUHFQcVFAgGFQedBxUVBxUHBxUUCAcVFAgGFQcVBxUHFQcVBxUVBwcVB50HFRQIFAcHFRUHBxUUCAcVBxUGFgYWBhYGFRUHBxUHAAXcAAAAAAAAAAAAAAAAAAA='
-      #
-      # rf_outlet_d1:
-      #   friendly_name: "RF Outlet D1"
-      #   command_on: 'eADaAAYIBgcGCAYIBggGBwYIBggGBwYIBggGCAYHBggGCAYIBggFCAYIBggFCAYIBggGBwYIBggGCAYIBQgGCAYIBggFCAYIBggFCAYIBggGCAYHBggGCAYHBo8GFhMIFAgGFhMIBhYGFgYVFAgGFgYWBhUGFgYWBhUUjwYWEwkTCAYWEwgHFQYWBhYTCAYWBhYGFQYWBhYGFhOPBhYUCBMIBhYUCAYWBRYGFhQIBhUGFgYWBhUHFQYWFI8GFRQIFAgGFhMIBhYGFQcVFAgGFQcVBhYGFgYVBhYUAAXcAAAAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADaAAYIBggFCAYIBggGCAUIBggGCAUJBQgGCAYIBQgGCAYIBQkFCQUIBggGCAUIBggGCAYHBgkFCAYIBQgGCAYIBggFCAYIBggGCAUIBggGCAYIBQgGCAYIBo4GFhMJEwgGFhMJBRYGFgYWBhUUCAYWBhUGFgYWBhYTjwYWFAgTCAYWFAcGFgYWBhYGFhMIBhYGFgYVBhYGFhSOBxUUCBMIBhYUCAYVBhYGFgYVFAgGFgYWBhUGFgYWE48GFhQIEwgGFhMJBRYGFgYWBhUUCAYWBhUGFgYWBhYTAAXcAAAAAAAAAAAAAAAAAAA='
-      #
-      # rf_outlet_d2:
-      #   friendly_name: "RF Outlet D2"
-      #   command_on: 'eADcAAYIBggFCQUIBggGCAUJBQgGCAUJBQkFCAYIBQkFCQUIBggFCQUJBQgGCAUJBQgGCAYIBQkFCQUIBQkFCQUJBAkFCQUIBggFCQUJBQgGCAUJBQkFCAYIBggFjwYWEwkTCAYWEwgGFgYWBRcFFgYWEwkFFwUWBhYFFxOPBhYTCRMIBhYTCAYWBhYFFwUXBRYTCQUXBRYGFgUXE48GFhMIFAgGFhMIBhYGFgYWBRYGFhMJBRYGFgYWBRcTjwYWEwkTCAYWEwgGFgYWBRYGFgYWEwkFFgYWBhYFFxMABdwAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADcAAYIBQgGCAYIBggFCAYIBggGBwYIBggGCAYIBQgGCAYIBQgGCAYIBggFCAYIBggGCAUIBggGCAYIBgcGCAYIBggFCAYIBggFCAYIBggGCAUIBggGCAYIBQgGjwYVFAgUCAYVFAgGFgYWBhUGFgYWBhUUCAYWBhYGFhOPBhYTCBQIBhYTCAYWBhYGFQYWBhYGFhMIBhYGFgYVFI8GFhMIFAgGFhMIBhYGFgYVBxUGFgYWEwgGFgYWBhYTjwYWEwgUCAYWEwgGFgYWBhUGFgYWBhYTCAYWBhYGFRQABdwAAAAAAAAAAAAAAAA='
-      #
-      # rf_outlet_d3:
-      #   friendly_name: "RF Outlet D3"
-      #   command_on: 'eADaAAYIBggFCQUIBggGCAUJBQgGCAYIBQgGCAYIBQkFCAYIBggFCAYIBggFCQUJBQgGCAYHBggGCAYIBggFCAYIBggFCQUIBggGCAUIBggGCAYIBQkFCAYIBY8GFhMJEwgGFhMJBRYGFhMIBhYGFgYWBhYFFgYWBhYTjwYWEwkTCAYWEwkFFgYWEwkFFgYWBhYGFgUWBhYGFhOPBhYTCRMIBhYTCQYWBRYUCAYVBhYGFgYWBRYGFgYWE48GFhMJEwkFFhMJBhYFFhQIBhYFFwUWBhYFFwUWBhYTAAXcAAAAAAAAAAAAAAAAAAA='
-      #   command_off: 'eADaAAYHBwcGCAYIBgcGCAYIBggGBwYIBggGCAUIBggGCAUIBggGCAYIBggFCAYIBggFCAYIBggGCAUIBggGCAYHBggGCAYIBgcGCAYIBggFCAYIBggGCAYHBo8GFhMIFAgGFhMIBhYTCAYWBhYGFgYVBhYGFgYVBhYUjwYWEwgUCAYWEwgGFhMIBhYGFgYWBhUGFgYWBhUGFhSPBhUUCBQIBhYTCAYWFAcGFgYWBhYGFQYWBhYGFgUWFI8GFRQIFAgGFRQIBhYTCAYWBhYGFgYVBhYGFgYVBhYUAAXcAAAAAAAAAAAAAAAAAAA='
