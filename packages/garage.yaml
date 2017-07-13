@@ -37,16 +37,7 @@ homeassistant:
     automation.garage_door_lighting:
       <<: *exposed
       friendly_name: "Garage Door Lighting"
-
-    ################################################
-    ## Binary Sensor
-    ################################################
-
-    binary_sensor.garage_light_expected_state:
-      <<: *customize
-      friendly_name: "Garage Light Expected State"
-      device_class: light
-      hidden: true
+      icon: mdi:garage
 
     ################################################
     ## Cover
@@ -55,8 +46,8 @@ homeassistant:
     cover.garage_door:
       <<: *exposed
       friendly_name: "Garage Door"
+      device_class: garage
       homebridge_cover_type: garage_door
-      icon: mdi:glassdoor
 
     ################################################
     ## Light
@@ -66,15 +57,6 @@ homeassistant:
       <<: *exposed
       friendly_name: "Garage"
       persistent: true
-
-    ################################################
-    ## Input Boolean
-    ################################################
-
-    # input_boolean.garage_light:
-    #   <<: *customize
-    #   friendly_name: "Garage Light"
-    #   hidden: true
 
 ################################################
 ## Alert
@@ -118,20 +100,6 @@ automation:
           entity_id: light.garage
 
 ################################################
-## Binary Sensor
-################################################
-
-binary_sensor:
-  - platform: template
-    sensors:
-      garage_light_expected_state:
-        value_template: >-
-          {{ true in (
-            is_state('cover.garage_door', 'open'),
-            is_state('input_boolean.garage_light', 'on')
-          ) }}
-
-################################################
 ## Cover
 ################################################
 
@@ -140,10 +108,3 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
     type: 'liftmaster'
-
-################################################
-## Input Boolean
-################################################
-
-# input_boolean:
-#   garage_light:

@@ -17,34 +17,34 @@ homeassistant:
     ## Hidden Lights
     ################################################
 
-    light.back_porch_1:
+    light.back_porch_light:
       <<: *customize
-      friendly_name: "Back Porch 1"
+      friendly_name: "Back Porch Light"
       hidden: true
 
-    light.chandelier_1:
+    light.chandelier_light_1:
       <<: *customize
-      friendly_name: "Chandelier 1"
+      friendly_name: "Chandelier Light 1"
       hidden: true
 
-    light.chandelier_2:
+    light.chandelier_light_2:
       <<: *customize
-      friendly_name: "Chandelier 2"
+      friendly_name: "Chandelier Light 2"
       hidden: true
 
-    light.chandelier_3:
+    light.chandelier_light_3:
       <<: *customize
-      friendly_name: "Chandelier 3"
+      friendly_name: "Chandelier Light 3"
       hidden: true
 
-    light.dining_room_1:
+    light.dining_room_light_1:
       <<: *customize
-      friendly_name: "Dining Room 1"
+      friendly_name: "Dining Room Light 1"
       hidden: true
 
-    light.dining_room_2:
+    light.dining_room_light_2:
       <<: *customize
-      friendly_name: "Dining Room 2"
+      friendly_name: "Dining Room Light 2"
       hidden: true
 
     light.entry:
@@ -62,39 +62,39 @@ homeassistant:
       friendly_name: "Entry Light 2"
       hidden: true
 
-    light.front_porch_1:
+    light.front_porch_light:
       <<: *customize
-      friendly_name: "Front Porch 1"
+      friendly_name: "Front Porch Light"
       hidden: true
 
-    light.garage_opener_1:
+    light.garage_opener_light_1:
       <<: *customize
-      friendly_name: "Garage Opener 1"
+      friendly_name: "Garage Opener Light 1"
       hidden: true
 
-    light.garage_opener_2:
+    light.garage_opener_light_2:
       <<: *customize
-      friendly_name: "Garage Opener 2"
+      friendly_name: "Garage Opener Light 2"
       hidden: true
 
-    light.guest_bathroom_1:
+    light.guest_bathroom_light_1:
       <<: *customize
-      friendly_name: "Guest Bathroom 1"
+      friendly_name: "Guest Bathroom Light 1"
       hidden: true
 
-    light.guest_bathroom_2:
+    light.guest_bathroom_light_2:
       <<: *customize
-      friendly_name: "Guest Bathroom 2"
+      friendly_name: "Guest Bathroom Light 2"
       hidden: true
 
-    light.guest_bedroom_1:
+    light.guest_bedroom_light:
       <<: *customize
-      friendly_name: "Guest Bedroom 1"
+      friendly_name: "Guest Bedroom Light"
       hidden: true
 
-    light.hallway_1:
+    light.hallway_light:
       <<: *customize
-      friendly_name: "Hallway 1"
+      friendly_name: "Hallway Light"
       hidden: true
 
     light.kitchen:
@@ -102,45 +102,45 @@ homeassistant:
       friendly_name: "Kitchen"
       hidden: true
 
-    light.laundry_room_1:
+    light.laundry_room_light:
       <<: *customize
-      friendly_name: "Laundry Room 1"
+      friendly_name: "Laundry Room Light"
       hidden: true
 
-    light.living_room_1:
+    light.living_room_light_1:
       <<: *customize
-      friendly_name: "Living Room 1"
+      friendly_name: "Living Room Light 1"
       hidden: true
 
-    light.living_room_2:
+    light.living_room_light_2:
       <<: *customize
-      friendly_name: "Living Room 2"
+      friendly_name: "Living Room Light 2"
       hidden: true
 
-    light.master_bathroom_1:
+    light.master_bathroom_light_1:
       <<: *customize
-      friendly_name: "Master Bathroom 1"
+      friendly_name: "Master Bathroom Light 1"
       hidden: true
 
-    light.master_bathroom_2:
+    light.master_bathroom_light_2:
       <<: *customize
-      friendly_name: "Master Bathroom 2"
+      friendly_name: "Master Bathroom Light 2"
       hidden: true
 
-    light.master_bedroom_1:
+    light.master_bedroom_light_1:
       <<: *customize
-      friendly_name: "Master Bedroom 1"
+      friendly_name: "Master Bedroom Light 1"
       hidden: true
 
-    light.master_bedroom_2:
+    light.master_bedroom_light_2:
       <<: *customize
-      friendly_name: "Master Bedroom 2"
+      friendly_name: "Master Bedroom Light 2"
       hidden: true
 
-    # light.master_closet_1:
-    #   <<: *customize
-    #   friendly_name: "Master Closet 1"
-    #   hidden: true
+    light.master_closet_light:
+      <<: *customize
+      friendly_name: "Master Closet Light"
+      hidden: true
 
     light.parker_bedroom:
       <<: *customize
@@ -213,7 +213,7 @@ homeassistant:
       <<: *customize
       friendly_name: "Master Bedroom"
 
-    light.master_closet_light:
+    light.master_closet:
       <<: *customize
       friendly_name: "Master Closet"
 

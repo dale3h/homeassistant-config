@@ -45,11 +45,13 @@ homeassistant:
       <<: *exposed
       friendly_name: "Blue Iris"
       icon: mdi:camcorder
+      persistent: true
 
     switch.eventghost_monitor:
       <<: *exposed
       friendly_name: "Security Monitor"
       icon: mdi:monitor
+      persistent: true
 
 ################################################
 ## Automation
