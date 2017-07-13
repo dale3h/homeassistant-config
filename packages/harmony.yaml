@@ -165,7 +165,7 @@ script:
             cover.open_cover
           {% endif %}
         data:
-          entity_id: cover.projection_screen
+          entity_id: cover.projector_screen
       - service: remote.turn_on
         data_template:
           entity_id: "{{ entity_id|default('remote.living_room') }}"

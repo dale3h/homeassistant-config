@@ -25,18 +25,19 @@ homeassistant:
     ## Cover
     ################################################
 
-    cover.projection_screen:
+    cover.projector_screen:
       <<: *exposed
-      friendly_name: "Projection Screen"
+      friendly_name: "Projector Screen"
+      device_class: window
       icon: mdi:projector-screen
 
     ################################################
     ## Input Boolean
     ################################################
 
-    input_boolean.projection_screen:
+    input_boolean.projector_screen:
       <<: *customize
-      friendly_name: "Projection Screen"
+      friendly_name: "Projector Screen"
       hidden: true
       icon: mdi:projector-screen
       persistent: true
@@ -65,14 +66,14 @@ homeassistant:
 cover:
   - platform: template
     covers:
-      projection_screen:
+      projector_screen:
         # Open/close are inverted for the up/down icons to work as they appear
         value_template: >-
-          {{ is_state('input_boolean.projection_screen', 'off') }}
+          {{ is_state('input_boolean.projector_screen', 'off') }}
         open_cover:
           - service: input_boolean.turn_off
             data:
-              entity_id: input_boolean.projection_screen
+              entity_id: input_boolean.projector_screen
           - service: broadlink.send_packet_192_168_1_7
             data:
               packet:
@@ -80,7 +81,7 @@ cover:
         close_cover:
           - service: input_boolean.turn_on
             data:
-              entity_id: input_boolean.projection_screen
+              entity_id: input_boolean.projector_screen
           - service: broadlink.send_packet_192_168_1_7
             data:
               packet:
@@ -96,7 +97,7 @@ cover:
 ################################################
 
 input_boolean:
-  projection_screen:
+  projector_screen:
     initial: 'off'
 
 ################################################
