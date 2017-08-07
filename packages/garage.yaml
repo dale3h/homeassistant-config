@@ -53,9 +53,9 @@ homeassistant:
     ## Light
     ################################################
 
-    light.garage:
+    light.garage_light:
       <<: *exposed
-      friendly_name: "Garage"
+      friendly_name: "Garage Light"
       persistent: true
 
 ################################################
@@ -97,7 +97,7 @@ automation:
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.garage
+          entity_id: light.garage_light
 
 ################################################
 ## Cover

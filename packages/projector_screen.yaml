@@ -1,0 +1,111 @@
+################################################################
+## Packages / Projector Screen
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'projector_screen'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Cover
+    ################################################
+
+    cover.projector_screen:
+      <<: *expose
+      friendly_name: "Projector Screen"
+      device_class: window
+      icon: mdi:projector-screen
+
+    ################################################
+    ## Input Boolean
+    ################################################
+
+    input_boolean.projector_screen:
+      <<: *customize
+      friendly_name: "Projector Screen"
+      hidden: true
+      icon: mdi:projector-screen
+      persistent: true
+
+    ################################################
+    ## Script
+    ################################################
+
+    script.projector_screen:
+      <<: *customize
+      friendly_name: "Projector Screen"
+      hidden: true
+      icon: mdi:projector-screen
+
+################################################
+## Cover
+################################################
+
+cover:
+  - platform: template
+    covers:
+      projector_screen:
+        # Open/close are inverted for the up/down icons to work as they appear
+        value_template: >-
+          {{ is_state('input_boolean.projector_screen', 'off') }}
+        open_cover:
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.projector_screen
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
+        close_cover:
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.projector_screen
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
+        stop_cover:
+          - service: broadlink.send_packet_192_168_1_7
+            data:
+              packet:
+                - 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean:
+  projector_screen:
+    initial: 'off'
+
+################################################
+## Script
+################################################
+
+script:
+  projector_screen:
+    sequence:
+      # Hacky work-around for inverting open/close
+      - service_template: >-
+          {% if state|default('up') == 'down' %}
+            cover.close_cover
+          {% else %}
+            cover.open_cover
+          {% endif %}
+        data:
+          entity_id: cover.projector_screen

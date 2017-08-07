@@ -21,10 +21,6 @@ homeassistant:
         haaska_hidden: false
         homebridge_hidden: false
 
-      hidden: &hidden
-        <<: *customize
-        hidden: true
-
     ################################################
     ## Automation
     ################################################
@@ -33,6 +29,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Telegram: Restart"
       icon: mdi:power
+
+    automation.telegram_roll:
+      <<: *customize
+      friendly_name: "Telegram: Roll"
+      icon: mdi:dice-multiple
 
 automation:
   - alias: telegram_restart

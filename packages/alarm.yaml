@@ -16,14 +16,10 @@ homeassistant:
       customize: &customize
         package: 'alarm'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Alarm Control Panel
@@ -45,9 +41,13 @@ homeassistant:
     ## Switch
     ################################################
 
-    switch.siren_switch:
+    switch.dining_room_siren_switch:
       <<: *customize
-      friendly_name: "Siren"
+      friendly_name: "Dining Room Siren"
+
+    switch.master_bedroom_siren_switch:
+      <<: *customize
+      friendly_name: "Master Bedroom Siren"
 
 ################################################
 ## Group
@@ -58,8 +58,10 @@ group:
     control: hidden
     entities:
       - alarm_control_panel.alarm_system
-      - sensor.siren_battery
-      - switch.siren_switch
+      - switch.dining_room_siren_switch
+      - sensor.dining_room_siren_battery
+      - switch.master_bedroom_siren_switch
+      - sensor.master_bedroom_siren_battery
 
 ################################################
 ## Alarm Control Panel

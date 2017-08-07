@@ -16,39 +16,16 @@ homeassistant:
       customize: &customize
         package: 'alarm_clock'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Automation
     ################################################
 
     automation.alarm_clock:
-      <<: *customize
-      friendly_name: "Alarm Clock"
-      icon: mdi:alarm
-
-    automation.alarm_clock_disable:
-      <<: *customize
-      friendly_name: "Alarm Clock Disabled"
-      icon: mdi:alarm
-
-    automation.alarm_clock_enable:
-      <<: *customize
-      friendly_name: "Alarm Clock Enabled"
-      icon: mdi:alarm
-
-    ################################################
-    ## Input Boolean
-    ################################################
-
-    input_boolean.alarm_clock:
       <<: *customize
       friendly_name: "Alarm Clock"
       icon: mdi:alarm
@@ -61,86 +38,38 @@ homeassistant:
       <<: *customize
       friendly_name: "Alarm Clock"
       icon: mdi:alarm
+      persistent: true
 
 ################################################
 ## Automation
 ################################################
 
 automation:
-  - alias: alarm_clock_disable
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: input_boolean.alarm_clock
-        from: 'on'
-        to: 'off'
-    action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.siren_switch
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.alarm_clock
-          option: 'Disabled'
-
-  - alias: alarm_clock_enable
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: input_select.alarm_clock
-        from: 'Disabled'
-    action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.alarm_clock
-
   - alias: alarm_clock
     initial_state: 'on'
     trigger:
       - platform: state
         entity_id: sensor.time
     condition:
-      - condition: state
-        entity_id: input_boolean.alarm_clock
-        state: 'on'
       - condition: template
-        value_template: "{{ is_state('input_select.alarm_clock', trigger.to_state.state) }}"
+        value_template: >-
+          {{ is_state('input_select.alarm_clock', trigger.to_state.state) }}
     action:
-      - service: script.siren_autostop_120s
-      - service: script.siren_mode_all
-
       - service: switch.turn_on
         data:
-          entity_id: switch.siren_switch
+          entity_id:
+            - switch.dining_room_siren_switch
+            - switch.master_bedroom_siren_switch
 
-      - delay: '00:00:15'
+      - wait_template: >-
+          {{ is_state('input_select.alarm_clock', 'Disabled') }}
+        timeout: '00:30:00'
+
       - service: switch.turn_off
         data:
-          entity_id: switch.siren_switch
-
-      - delay: '00:01:00'
-      - condition: state
-        entity_id: input_boolean.alarm_clock
-        state: 'on'
-      - service: switch.turn_on
-        data:
-          entity_id: switch.siren_switch
-
-      - delay: '00:05:00'
-      - condition: state
-        entity_id: input_boolean.alarm_clock
-        state: 'on'
-      - service: switch.turn_on
-        data:
-          entity_id: switch.siren_switch
-
-################################################
-## Input Boolean
-################################################
-
-input_boolean:
-  alarm_clock:
-    initial: off
+          entity_id:
+            - switch.dining_room_siren_switch
+            - switch.master_bedroom_siren_switch
 
 ################################################
 ## Input Select
@@ -151,6 +80,30 @@ input_select:
     initial: 'Disabled'
     options:
       - 'Disabled'
+      - '00:00'
+      - '00:15'
+      - '00:30'
+      - '00:45'
+      - '01:00'
+      - '01:15'
+      - '01:30'
+      - '01:45'
+      - '02:00'
+      - '02:15'
+      - '02:30'
+      - '02:45'
+      - '03:00'
+      - '03:15'
+      - '03:30'
+      - '03:45'
+      - '04:00'
+      - '04:15'
+      - '04:30'
+      - '04:45'
+      - '05:00'
+      - '05:15'
+      - '05:30'
+      - '05:45'
       - '06:00'
       - '06:15'
       - '06:30'
@@ -166,6 +119,60 @@ input_select:
       - '09:00'
       - '09:15'
       - '09:30'
+      - '09:45'
+      - '10:00'
+      - '10:15'
+      - '10:30'
+      - '10:45'
+      - '11:00'
+      - '11:15'
+      - '11:30'
+      - '11:45'
+      - '12:00'
+      - '12:15'
+      - '12:30'
+      - '12:45'
+      - '13:00'
+      - '13:15'
+      - '13:30'
+      - '13:45'
+      - '14:00'
+      - '14:15'
+      - '14:30'
+      - '14:45'
+      - '15:00'
+      - '15:15'
+      - '15:30'
+      - '15:45'
+      - '16:00'
+      - '16:15'
+      - '16:30'
+      - '16:45'
       - '17:00'
       - '17:15'
       - '17:30'
+      - '17:45'
+      - '18:00'
+      - '18:15'
+      - '18:30'
+      - '18:45'
+      - '19:00'
+      - '19:15'
+      - '19:30'
+      - '19:45'
+      - '20:00'
+      - '20:15'
+      - '20:30'
+      - '20:45'
+      - '21:00'
+      - '21:15'
+      - '21:30'
+      - '21:45'
+      - '22:00'
+      - '22:15'
+      - '22:30'
+      - '22:45'
+      - '23:00'
+      - '23:15'
+      - '23:30'
+      - '23:45'

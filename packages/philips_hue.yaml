@@ -67,6 +67,11 @@ homeassistant:
       friendly_name: "Front Porch Light"
       hidden: true
 
+    light.garage:
+      <<: *customize
+      friendly_name: "Garage"
+      hidden: true
+
     light.garage_opener_light_1:
       <<: *customize
       friendly_name: "Garage Opener Light 1"
@@ -142,19 +147,9 @@ homeassistant:
       friendly_name: "Master Closet Light"
       hidden: true
 
-    light.parker_bedroom:
+    light.parker_closet_light:
       <<: *customize
-      friendly_name: "Parker Bedroom"
-      hidden: true
-
-    light.parker_lamp_1:
-      <<: *customize
-      friendly_name: "Parker Lamp 1"
-      hidden: true
-
-    light.parker_lamp_2:
-      <<: *customize
-      friendly_name: "Parker Lamp 2"
+      friendly_name: "Parker Closet Light"
       hidden: true
 
     ################################################
@@ -221,15 +216,11 @@ homeassistant:
       <<: *customize
       friendly_name: "Parker Closet"
 
-    light.parker_lamp:
-      <<: *customize
-      friendly_name: "Parker Lamp"
-
-    light.range:
+    light.range_light:
       <<: *customize
       friendly_name: "Range"
 
-    light.sink:
+    light.sink_light:
       <<: *customize
       friendly_name: "Sink"
 

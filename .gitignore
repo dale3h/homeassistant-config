@@ -63,6 +63,7 @@ __*
 *.backup
 .HA_VERSION
 .uuid
+configurator.py
 home-assistant.*
 !home-assistant.service
 ip_bans.yaml

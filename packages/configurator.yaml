@@ -1,0 +1,9 @@
+################################################################
+## Packages / Configurator Panel
+################################################################
+
+panel_iframe:
+  configurator:
+    title: 'Configurator'
+    url: !secret panel_configurator_url
+    icon: mdi:wrench

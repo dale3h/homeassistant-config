@@ -29,27 +29,58 @@ homeassistant:
     ## Media Player
     ################################################
 
-    media_player.apple_tv_bedroom:
-      <<: *customize
-      friendly_name: "Apple TV (Bedroom)"
-      icon: mdi:apple
-
     media_player.apple_tv_living_room:
       <<: *customize
       friendly_name: "Apple TV (Living Room)"
       icon: mdi:apple
 
+    media_player.apple_tv_master_bedroom:
+      <<: *customize
+      friendly_name: "Apple TV (Master Bedroom)"
+      icon: mdi:apple
+
+    ################################################
+    ## Remote
+    ################################################
+
+    remote.apple_tv_living_room:
+      <<: *customize
+      friendly_name: "Apple TV (Living Room)"
+      icon: mdi:apple
+
+    remote.apple_tv_master_bedroom:
+      <<: *customize
+      friendly_name: "Apple TV (Master Bedroom)"
+      icon: mdi:apple
+
+################################################
+## Apple TV
+################################################
+
+apple_tv:
+  - name: apple_tv_living_room
+    host: !secret apple_tv_living_room_host
+    login_id: !secret apple_tv_living_room_login_id
+    start_off: true
+    # credentials: !secret apple_tv_living_room_credentials
+
+  - name: apple_tv_master_bedroom
+    host: !secret apple_tv_master_bedroom_host
+    login_id: !secret apple_tv_master_bedroom_login_id
+    start_off: true
+    # credentials: !secret apple_tv_master_bedroom_credentials
+
 ################################################
 ## Media Player
 ################################################
 
-media_player:
-  - platform: apple_tv
-    name: apple_tv_living_room
-    host: !secret apple_tv_living_room_host
-    login_id: !secret apple_tv_living_room_login_id
+# media_player:
+#   - platform: apple_tv
+#     name: apple_tv_living_room
+#     host: !secret apple_tv_living_room_host
+#     login_id: !secret apple_tv_living_room_login_id
 
   # - platform: apple_tv
-  #   name: apple_tv_bedroom
-  #   host: !secret apple_tv_bedroom_host
-  #   login_id: !secret apple_tv_bedroom_login_id
+  #   name: apple_tv_master_bedroom
+  #   host: !secret apple_tv_master_bedroom_host
+  #   login_id: !secret apple_tv_master_bedroom_login_id

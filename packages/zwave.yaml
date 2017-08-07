@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'zwave'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -53,40 +53,8 @@ homeassistant:
     ################################################
 
     lock.front_door_locked:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Front Door"
-
-    ################################################
-    ## Script
-    ################################################
-
-    script.siren_autostop_120s:
-      <<: *customize
-      friendly_name: "Siren Autostop 120s"
-
-    script.siren_autostop_30s:
-      <<: *customize
-      friendly_name: "Siren Autostop 30s"
-
-    script.siren_autostop_60s:
-      <<: *customize
-      friendly_name: "Siren Autostop 60s"
-
-    script.siren_autostop_never:
-      <<: *customize
-      friendly_name: "Siren Autostop Never"
-
-    script.siren_mode_all:
-      <<: *customize
-      friendly_name: "Siren Mode All"
-
-    script.siren_mode_siren:
-      <<: *customize
-      friendly_name: "Siren Mode Siren"
-
-    script.siren_mode_strobe:
-      <<: *customize
-      friendly_name: "Siren Mode Strobe"
 
     ################################################
     ## Sensor
@@ -104,18 +72,18 @@ homeassistant:
       icon: mdi:theme-light-dark
 
     sensor.kitchen_moisture:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Kitchen Moisture"
       device_class: moisture
       icon: mdi:water-percent
 
     sensor.kitchen_relative_humidity:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Kitchen Humidity"
       icon: mdi:water-percent
 
     sensor.kitchen_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Kitchen Temperature"
       icon: mdi:thermometer
 
@@ -126,12 +94,12 @@ homeassistant:
       icon: mdi:theme-light-dark
 
     sensor.master_bathroom_relative_humidity:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Master Bathroom Humidity"
       icon: mdi:water-percent
 
     sensor.master_bathroom_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Master Bathroom Temperature"
       icon: mdi:thermometer
 
@@ -142,7 +110,7 @@ homeassistant:
   customize_domain:
     zwave:
       <<: *customize
-      hidden: true
+      # hidden: true
 
 ################################################
 ## Z-Wave
@@ -152,103 +120,3 @@ zwave:
   usb_path: !secret zwave_usb_path
   network_key: !secret zwave_network_key
   device_config: !include ../zwave_device_config.yaml
-  new_entity_ids: true
-
-################################################
-## Input Select
-################################################
-
-input_select:
-  siren_sound:
-    initial: "Sound 1 - Low Volume"
-    options:
-      - "Sound 1 - Low Volume"
-      - "Sound 1 - Mid Volume"
-      - "Sound 1 - High Volume"
-      - "Sound 2 - Low Volume"
-      - "Sound 2 - Mid Volume"
-      - "Sound 2 - High Volume"
-      - "Sound 3 - Low Volume"
-      - "Sound 3 - Mid Volume"
-      - "Sound 3 - High Volume"
-      - "Sound 4 - Low Volume"
-      - "Sound 4 - Mid Volume"
-      - "Sound 4 - High Volume"
-      - "Sound 5 - Low Volume"
-      - "Sound 5 - Mid Volume"
-      - "Sound 5 - High Volume"
-
-################################################
-## Script
-################################################
-
-# Add new input_select for:
-#   Siren
-#   Siren (30s)
-#   Siren (60s)
-#   Siren (120s)
-#   Strobe
-#   Strobe (30s)
-#   Strobe (60s)
-#   Strobe (120s)
-#   Siren + Strobe
-#   Siren + Strobe (30s)
-#   Siren + Strobe (60s)
-#   Siren + Strobe (120s)
-
-script:
-  siren_mode_all:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 0
-          value: 0
-
-  siren_mode_siren:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 0
-          value: 1
-
-  siren_mode_strobe:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 0
-          value: 2
-
-  siren_autostop_30s:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 1
-          value: 0
-
-  siren_autostop_60s:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 1
-          value: 1
-
-  siren_autostop_120s:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 1
-          value: 2
-
-  siren_autostop_never:
-    sequence:
-      - service: zwave.set_config_parameter
-        data:
-          node_id: 16
-          parameter: 1
-          value: 3

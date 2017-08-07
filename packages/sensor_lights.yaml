@@ -144,7 +144,7 @@ automation:
     action:
       - service: script.light_control
         data_template:
-          entity_id: light.laundry_room, light.garage
+          entity_id: light.laundry_room, light.garage_light
           state: "{{ trigger.to_state.state }}"
 
   - alias: master_closet_lighting

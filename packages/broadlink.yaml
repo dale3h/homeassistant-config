@@ -16,31 +16,18 @@ homeassistant:
       customize: &customize
         package: 'broadlink'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
     ################################################
-    ## Cover
+    ## Light
     ################################################
 
-    cover.projector_screen:
-      <<: *exposed
-      friendly_name: "Projector Screen"
-      device_class: window
-      icon: mdi:projector-screen
-
-    ################################################
-    ## Input Boolean
-    ################################################
-
-    input_boolean.projector_screen:
-      <<: *customize
-      friendly_name: "Projector Screen"
-      hidden: true
-      icon: mdi:projector-screen
-      persistent: true
+    light.headboard:
+      <<: *expose
+      friendly_name: "Headboard"
 
     ################################################
     ## Sensor
@@ -50,55 +37,24 @@ homeassistant:
       <<: *customize
       friendly_name: "Broadlink Temperature"
 
-    ################################################
-    ## Switch
-    ################################################
-
-    switch.headboard_light:
-      <<: *exposed
-      friendly_name: "Headboard Light"
-      icon: mdi:lightbulb
-
 ################################################
-## Cover
+## Light
 ################################################
 
-cover:
+light:
   - platform: template
-    covers:
-      projector_screen:
-        # Open/close are inverted for the up/down icons to work as they appear
-        value_template: >-
-          {{ is_state('input_boolean.projector_screen', 'off') }}
-        open_cover:
-          - service: input_boolean.turn_off
-            data:
-              entity_id: input_boolean.projector_screen
+    lights:
+      headboard:
+        turn_on:
           - service: broadlink.send_packet_192_168_1_7
             data:
               packet:
-                - 'si40AA0kJAwkDCQMJAwkDA0kDSQNJCQMDCQNJAwkDCQNJA0kDSQNJA0kJAwNAAFuJAwkDCQMDSQAAAAA'
-        close_cover:
-          - service: input_boolean.turn_on
-            data:
-              entity_id: input_boolean.projector_screen
+                - 'sgAuAQcREwUHERMFBhITBQcREwUHERMFBxETBQcREwUHERMFBxIHERIFEwUHERMGBxETBQe5BxETBQcSEgYGEhMECBETBQYSEgYHERMFBxETBQcREwUHEQcREwUTBgYSEgUHEhIGBroHERMFBxETBQcREwYGERMGBhISBgYSEgYGEhMFBhITBQcRBxETBRMFBxETBQcREwUHugcREwUHERMFBxESBgcREwUHERMFBxETBgYSEgUHEhIFBxIGEhMFEgYGEhIGBxETBQe5BxETBgYSEwUGEhMFBhISBgcREwUHERMFBxETBQcREwUHEQcSEgYSBgYSEgYGERMGBroHERMFBxETBQcREwYGEhIGBhETBgcREwUHERIGBhITBQcRBxESBhMFBxETBQcREwUHAAXcAAAAAAAAAAAAAA=='
+        turn_off:
           - service: broadlink.send_packet_192_168_1_7
             data:
               packet:
-                - 'sjc0ACQMJQwkDA0kDSMlDCQMJAwkDCQMDSQNJA0kJQwNJA0kDSQNJA0kDSMNJCQMDSMNJA0AAW4AAAAA'
-        stop_cover:
-          - service: broadlink.send_packet_192_168_1_7
-            data:
-              packet:
-                - 'sh00AAwkJAwkDCQMJA0kDQwkDCQMJCQMDCQMJA0kDCQMJA0kDSQMJCQMDCQMAAFvJA0kDSQNDCQAAAAA'
-
-################################################
-## Input Boolean
-################################################
-
-input_boolean:
-  projector_screen:
-    initial: 'off'
+                - 'sgAsARIGBhISBgYSEwUGEhIGBhITBQcREwUHEhIGBhETBRMFEwYGEgYRBxISBgYSEwUGugcSEgYGERMFBxISBgYSEgYGEhIGBhITBQcREgYGEhIGEwUTBQcRBxEHEhIFBxETBQe6BhITBQYSEwUHERMFBxETBQYTEgUHERMFBxISBgYSEgYSBhIGBhIGEgcREgYGEhIGBroHERMGBhISBgYSEgYGEhIGBhITBQYSEgYGEhIGBxETBRMFEwUHEQcRBxISBgYREwUHugcREgYGEhMFBxETBQcREwUHERMFBxISBgYSEgYGEhIGEgYSBgYSBhIGEhIGBhITBQa7BhETBQcREwUHEhIFBxETBgYSEgYGEhIGBxESBgYSEgYSBhIGBxEGEgcREwUHERMFBwAF3AAAAAAAAAAAAAAAAA=='
 
 ################################################
 ## Sensor
@@ -120,7 +76,3 @@ switch:
   - platform: broadlink
     host: !secret broadlink_host
     mac: !secret broadlink_mac
-    switches:
-      headboard_light:
-        command_on: 'sgAuAQcREwUHERMFBhITBQcREwUHERMFBxETBQcREwUHERMFBxIHERIFEwUHERMGBxETBQe5BxETBQcSEgYGEhMECBETBQYSEgYHERMFBxETBQcREwUHEQcREwUTBgYSEgUHEhIGBroHERMFBxETBQcREwYGERMGBhISBgYSEgYGEhMFBhITBQcRBxETBRMFBxETBQcREwUHugcREwUHERMFBxESBgcREwUHERMFBxETBgYSEgUHEhIFBxIGEhMFEgYGEhIGBxETBQe5BxETBgYSEwUGEhMFBhISBgcREwUHERMFBxETBQcREwUHEQcSEgYSBgYSEgYGERMGBroHERMFBxETBQcREwYGEhIGBhETBgcREwUHERIGBhITBQcRBxESBhMFBxETBQcREwUHAAXcAAAAAAAAAAAAAA=='
-        command_off: 'sgAsARIGBhISBgYSEwUGEhIGBhITBQcREwUHEhIGBhETBRMFEwYGEgYRBxISBgYSEwUGugcSEgYGERMFBxISBgYSEgYGEhIGBhITBQcREgYGEhIGEwUTBQcRBxEHEhIFBxETBQe6BhITBQYSEwUHERMFBxETBQYTEgUHERMFBxISBgYSEgYSBhIGBhIGEgcREgYGEhIGBroHERMGBhISBgYSEgYGEhIGBhITBQYSEgYGEhIGBxETBRMFEwUHEQcRBxISBgYREwUHugcREgYGEhMFBxETBQcREwUHERMFBxISBgYSEgYGEhIGEgYSBgYSBhIGEhIGBhITBQa7BhETBQcREwUHEhIFBxETBgYSEgYGEhIGBxESBgYSEgYSBhIGBxEGEgcREwUHERMFBwAF3AAAAAAAAAAAAAAAAA=='

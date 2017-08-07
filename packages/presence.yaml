@@ -103,7 +103,7 @@ group:
       - light.entry_lamp
       - light.laundry_room
       - light.dining_room
-      - light.garage
+      - light.garage_light
 
 ################################################
 ## Input Boolean
@@ -120,9 +120,15 @@ input_boolean:
 script:
   arrival:
     sequence:
-      - service: script.ios_notify_arrival
+      # - service: script.ios_notify_arrival
+      - service: cover.open_cover
+        data:
+          entity_id: cover.garage_door
+      - service: lock.unlock
+        data:
+          entity_id: lock.front_door_locked
       - service: script.light_control
-        data_template:
+        data:
           # entity_id for light_control currently does not handle lists
           entity_id: group.arrival_lights
           state: 'on'

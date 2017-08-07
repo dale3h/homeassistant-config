@@ -33,11 +33,6 @@ homeassistant:
     ## Binary Sensor
     ################################################
 
-    binary_sensor.amcrest_ptz_cam_motion:
-      <<: *customize
-      friendly_name: "Amcrest Ptz Cam Motion"
-      device_class: motion
-
     binary_sensor.backyard_cam_motion:
       <<: *customize
       friendly_name: "Backyard Cam Motion"
@@ -48,9 +43,9 @@ homeassistant:
       friendly_name: "Driveway Cam Motion"
       device_class: motion
 
-    binary_sensor.front_yard_cam_motion:
+    binary_sensor.front_porch_cam_motion:
       <<: *customize
-      friendly_name: "Front Yard Cam Motion"
+      friendly_name: "Front Porch Cam Motion"
       device_class: motion
 
     binary_sensor.garage_cam_motion:
@@ -83,13 +78,14 @@ homeassistant:
       friendly_name: "Parker Bedroom Cam Motion"
       device_class: motion
 
+    binary_sensor.safe_cam_motion:
+      <<: *customize
+      friendly_name: "Safe Cam Motion"
+      device_class: motion
+
     ################################################
     ## Camera
     ################################################
-
-    camera.amcrest_ptz:
-      <<: *customize
-      friendly_name: "Amcrest PTZ"
 
     camera.backyard:
       <<: *customize
@@ -99,9 +95,9 @@ homeassistant:
       <<: *exposed
       friendly_name: "Driveway"
 
-    camera.front_yard:
+    camera.front_porch:
       <<: *customize
-      friendly_name: "Front Yard"
+      friendly_name: "Front Porch"
 
     camera.garage:
       <<: *customize
@@ -123,6 +119,10 @@ homeassistant:
       <<: *customize
       friendly_name: "Parker Bedroom"
 
+    camera.safe:
+      <<: *customize
+      friendly_name: "Safe"
+
     ################################################
     ## Group
     ################################################
@@ -143,19 +143,19 @@ group:
   cameras_indoor:
     control: hidden
     entities:
-      - camera.amcrest_ptz
-      - camera.backyard
-      - camera.front_yard
-      - camera.garage
       - camera.kitchen
       - camera.living_room
       - camera.master_bedroom
       - camera.parker_bedroom
+      - camera.safe
 
   cameras_outdoor:
     control: hidden
     entities:
       - camera.driveway
+      - camera.front_porch
+      - camera.backyard
+      - camera.garage
 
 ################################################
 ## Automation
@@ -191,13 +191,6 @@ automation:
 
 camera:
   - platform: mjpeg
-    name: amcrest_ptz
-    mjpeg_url: !secret blueiris_amcrest_ptz_url
-    username: !secret blueiris_username
-    password: !secret blueiris_password
-    authentication: basic
-
-  - platform: mjpeg
     name: backyard
     mjpeg_url: !secret blueiris_backyard_url
     username: !secret blueiris_username
@@ -212,8 +205,8 @@ camera:
     authentication: basic
 
   - platform: mjpeg
-    name: front_yard
-    mjpeg_url: !secret blueiris_front_yard_url
+    name: front_porch
+    mjpeg_url: !secret blueiris_front_porch_url
     username: !secret blueiris_username
     password: !secret blueiris_password
     authentication: basic
@@ -249,6 +242,13 @@ camera:
   - platform: mjpeg
     name: parker_bedroom
     mjpeg_url: !secret blueiris_parker_bedroom_url
+    username: !secret blueiris_username
+    password: !secret blueiris_password
+    authentication: basic
+
+  - platform: mjpeg
+    name: safe
+    mjpeg_url: !secret blueiris_safe_url
     username: !secret blueiris_username
     password: !secret blueiris_password
     authentication: basic

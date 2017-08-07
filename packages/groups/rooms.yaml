@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'groups/rooms'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -117,7 +117,7 @@ group:
     control: hidden
     entities:
       - alert.garage_door_open
-      - light.garage
+      - light.garage_light
       - cover.garage_door
       - binary_sensor.garage_entry_contact
       - sensor.garage_entry_battery
@@ -152,8 +152,8 @@ group:
     control: hidden
     entities:
       - light.chandelier
-      - light.range
-      - light.sink
+      - light.range_light
+      - light.sink_light
       - switch.kitchen_overhead
       - sensor.kitchen_motion_battery
       - binary_sensor.kitchen_sensor
@@ -182,6 +182,7 @@ group:
       - cover.projector_screen
       - remote.living_room
       - media_player.apple_tv_living_room
+      - remote.apple_tv_living_room
       - media_player.living_room_speakers
       - media_player.plex_living_room
 
@@ -191,8 +192,8 @@ group:
       - light.master_bedroom
       - light.master_bathroom
       - light.master_closet
-      - switch.headboard_light
-      - switch.aeotec_zw080_siren_gen5_switch
+      - light.headboard
+      - switch.master_bedroom_siren
       - binary_sensor.master_bedroom_occupancy
       - binary_sensor.master_bedroom_motion
       - binary_sensor.closet_door_contact
@@ -204,7 +205,6 @@ group:
   parker_bedroom:
     control: hidden
     entities:
-      - light.parker_lamp
       - light.parker_closet
       - binary_sensor.parker_closet_door_contact
       - sensor.parker_closet_door_battery

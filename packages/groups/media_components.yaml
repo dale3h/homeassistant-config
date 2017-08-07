@@ -43,15 +43,16 @@ group:
     entities:
       - switch.apple_tv
       - switch.chromecast
-      - switch.computer
       - switch.fire_tv
       - switch.xbox
 
   media_players:
     control: hidden
     entities:
-      - media_player.apple_tv_bedroom
       - media_player.apple_tv_living_room
+      - remote.apple_tv_living_room
+      - media_player.apple_tv_master_bedroom
+      - remote.apple_tv_master_bedroom
       - media_player.bedroom_speakers
       - media_player.dining_room_home
       - media_player.living_room_speakers

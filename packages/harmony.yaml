@@ -16,18 +16,18 @@ homeassistant:
       customize: &customize
         package: 'harmony'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
-      hidden: &hidden
-        <<: *customize
-        hidden: true
-
     ################################################
     ## Automation
     ################################################
+
+    automation.harmony_activity_changed:
+      <<: *customize
+      friendly_name: "Harmony Activity Changed"
 
     automation.toggle_apple_tv:
       <<: *customize
@@ -44,16 +44,7 @@ homeassistant:
     remote.living_room:
       <<: *customize
       friendly_name: "Living Room"
-      hidden: true
-      icon: mdi:remote
-
-    ################################################
-    ## Script
-    ################################################
-
-    script.harmony_activity:
-      <<: *customize
-      friendly_name: "Harmony Activity"
+      # hidden: true
       icon: mdi:remote
 
     ################################################
@@ -61,27 +52,22 @@ homeassistant:
     ################################################
 
     switch.apple_tv:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Apple TV"
       icon: mdi:apple
 
     switch.chromecast:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Chromecast"
       icon: mdi:google-chrome
 
-    switch.computer:
-      <<: *exposed
-      friendly_name: "Computer"
-      icon: mdi:windows
-
     switch.fire_tv:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Fire TV"
       icon: mdi:amazon
 
     switch.xbox:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Xbox"
       icon: mdi:xbox
 
@@ -90,6 +76,28 @@ homeassistant:
 ################################################
 
 automation:
+  - alias: harmony_activity_changed
+    trigger:
+      - platform: state
+        entity_id: remote.living_room
+    condition:
+      - condition: template
+        value_template: >-
+          {{ trigger.from_state.attributes.current_activity is not none }}
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.attributes.current_activity != trigger.from_state.attributes.current_activity }}
+    action:
+      - service: script.projector_screen
+        data_template:
+          state: >-
+            {% set activity = trigger.to_state.attributes.current_activity|default('PowerOff') %}
+            {% if activity in ['Watch Apple TV', 'Watch Fire TV', 'Play a Game']  %}
+              down
+            {% else %}
+              up
+            {% endif %}
+
   - alias: toggle_apple_tv
     initial_state: 'on'
     trigger:
@@ -151,27 +159,6 @@ remote:
     activity: !secret harmony_activity_watch_apple_tv
 
 ################################################
-## Script
-################################################
-
-script:
-  harmony_activity:
-    sequence:
-      # Hacky work-around for inverting open/close
-      - service_template: >-
-          {% if screen|default('up') == 'down' %}
-            cover.close_cover
-          {% else %}
-            cover.open_cover
-          {% endif %}
-        data:
-          entity_id: cover.projector_screen
-      - service: remote.turn_on
-        data_template:
-          entity_id: "{{ entity_id|default('remote.living_room') }}"
-          activity: "{{ activity|default(-1) }}"
-
-################################################
 ## Switch
 ################################################
 
@@ -180,55 +167,64 @@ switch:
     switches:
       apple_tv:
         value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or False }}
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Apple TV') or false }}
         turn_on:
-          - service: script.harmony_activity
+          - service: script.projector_screen
             data:
+              state: 'down'
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
               activity: !secret harmony_activity_watch_apple_tv
-              screen: 'down'
         turn_off:
-          - service: script.harmony_activity
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room
 
       chromecast:
         value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Music') or False }}
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Listen to Music') or false }}
         turn_on:
-          - service: script.harmony_activity
+          - service: script.projector_screen
             data:
+              state: 'up'
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
               activity: !secret harmony_activity_listen_to_music
-              screen: 'up'
         turn_off:
-          - service: script.harmony_activity
-
-      computer:
-        value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch PC') or False }}
-        turn_on:
-          - service: script.harmony_activity
+          - service: remote.turn_off
             data:
-              activity: !secret harmony_activity_watch_pc
-              screen: 'down'
-        turn_off:
-          - service: script.harmony_activity
+              entity_id: remote.living_room
 
       fire_tv:
         value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Fire TV') or False }}
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Watch Fire TV') or false }}
         turn_on:
-          - service: script.harmony_activity
+          - service: script.projector_screen
             data:
+              state: 'down'
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
               activity: !secret harmony_activity_watch_fire_tv
-              screen: 'down'
         turn_off:
-          - service: script.harmony_activity
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room
 
       xbox:
         value_template: >-
-          {{ is_state_attr('remote.living_room', 'current_activity', 'Play a Game') or False }}
+          {{ is_state_attr('remote.living_room', 'current_activity', 'Play a Game') or false }}
         turn_on:
-          - service: script.harmony_activity
+          - service: script.projector_screen
             data:
+              state: 'down'
+          - service: remote.turn_on
+            data:
+              entity_id: remote.living_room
               activity: !secret harmony_activity_play_a_game
-              screen: 'down'
         turn_off:
-          - service: script.harmony_activity
+          - service: remote.turn_off
+            data:
+              entity_id: remote.living_room

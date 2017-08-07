@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'groups/batteries'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -57,7 +57,6 @@ group:
       - sensor.front_door_sensor_battery
       - sensor.kitchen_motion_battery
       - sensor.master_bathroom_motion_battery
-      - sensor.siren_battery
       - sensor.closet_door_battery
       - sensor.garage_entry_battery
       - sensor.iphone_battery
@@ -65,3 +64,5 @@ group:
       - sensor.parker_closet_door_battery
       - sensor.network_cabinet_battery
       - sensor.ups_battery
+      - sensor.dining_room_siren_battery
+      - sensor.master_bedroom_siren_battery
