@@ -1,0 +1,66 @@
+################################################################
+## Packages / Have I Been Pwned
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'haveibeenpwned'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.haveibeenpwned:
+      <<: *customize
+      friendly_name: "Email Breaches"
+      icon: mdi:email-alert
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    !secret haveibeenpwned_personal_sensor:
+      <<: *customize
+      friendly_name: "Breaches (Personal)"
+      icon: mdi:email-alert
+
+    !secret haveibeenpwned_work_sensor:
+      <<: *customize
+      friendly_name: "Breaches (Work)"
+      icon: mdi:email-alert
+
+################################################
+## Group
+################################################
+
+group:
+  haveibeenpwned:
+    control: hidden
+    entities:
+      - !secret haveibeenpwned_personal_sensor
+      - !secret haveibeenpwned_work_sensor
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  platform: haveibeenpwned
+  email:
+    - !secret haveibeenpwned_personal
+    - !secret haveibeenpwned_work

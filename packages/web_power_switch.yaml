@@ -83,4 +83,5 @@ switch:
   - platform: digitalloggers
     name: rack
     host: !secret digitalloggers_host
+    username: !secret digitalloggers_username
     password: !secret digitalloggers_password

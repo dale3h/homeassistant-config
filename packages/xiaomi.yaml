@@ -80,7 +80,7 @@ homeassistant:
 
 xiaomi:
   gateways:
-    - sid: !secret xiaomi_gateway_sid
+    - mac: !secret xiaomi_gateway_mac
       key: !secret xiaomi_gateway_key
 
 ################################################
@@ -105,7 +105,7 @@ script:
         data_template:
           ringtone_id: "{{ ringtone|default(10000) }}"
           ringtone_vol: "{{ volume|default(states('input_slider.xiaomi_ringtone_volume')|int(100)) }}"
-          gw_sid: >-
+          gw_mac: >-
             {% if gateway is defined %}
               {{ gateway }}
             {% else %}

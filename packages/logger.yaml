@@ -16,8 +16,6 @@ logger:
     botocore.parsers: warn
     botocore.retryhandler: warn
     botocore.vendored.requests.packages.urllib3.connectionpool: warn
-    custom_components.binary_sensor.xiaomi: info
-    custom_components.xiaomi: warn
     dlipower.dlipower: warn
     homeassistant.bootstrap: info
     homeassistant.components.alarm_control_panel: warn
@@ -52,6 +50,7 @@ logger:
     homeassistant.components.switch: warn
     homeassistant.components.telegram_bot: warn
     homeassistant.components.websocket_api: info
+    homeassistant.components.xiaomi: warn
     homeassistant.components.zwave: error
     homeassistant.core: info
     homeassistant.helpers.entity: warn
@@ -67,6 +66,7 @@ logger:
     pychromecast: warn
     pyecobee: warn
     pytradfri.coap_cli: warn
+    PyXiaomiGateway: warn
     root: warn
     telegram.bot: warn
     telegram.vendor.ptb_urllib3.urllib3.connectionpool: warn

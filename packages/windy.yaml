@@ -1,0 +1,9 @@
+################################################################
+## Packages / Windy
+################################################################
+
+panel_iframe:
+  windy:
+    title: 'Windy'
+    url: !secret panel_windy_url
+    icon: mdi:weather-windy

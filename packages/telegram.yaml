@@ -25,6 +25,11 @@ homeassistant:
     ## Automation
     ################################################
 
+    automation.forward_persistent_notifications:
+      <<: *customize
+      friendly_name: "Forward Persistent Notifications"
+      icon: mdi:message-text
+
     automation.telegram_restart:
       <<: *customize
       friendly_name: "Telegram: Restart"
@@ -35,7 +40,30 @@ homeassistant:
       friendly_name: "Telegram: Roll"
       icon: mdi:dice-multiple
 
+################################################
+## Automation
+################################################
+
 automation:
+  - alias: forward_persistent_notifications
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: persistent_notification
+          service: create
+    action:
+      - service: notify.telegram
+        data_template:
+          message: >-
+            {% set message = trigger.event.data.service_data.message %}
+            {% if 'invalid authentication' in message or 'login attempts' in message %}
+              {{ message }}: http://www.ip-tracker.org/locator/ip-lookup.php?ip={{ message.split('from ')[1] }}
+            {% else %}
+              {{ message }}
+            {% endif %}
+
   - alias: telegram_restart
     trigger:
       - platform: event
@@ -61,11 +89,19 @@ automation:
             {% set sides = (trigger.event.data.args|default)[0]|default(6) %}
             I rolled a {{ sides|string ~ '-sided die' if sides != 6 else 'die' }} and got {{ range(1, sides + 1)|random }}.
 
+################################################
+## Telegram Bot
+################################################
+
 telegram_bot:
   platform: webhooks
   api_key: !secret telegram_api_key
   allowed_chat_ids:
     - !secret telegram_chat_id
+
+################################################
+## Notify
+################################################
 
 notify:
   - platform: telegram
