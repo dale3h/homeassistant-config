@@ -14,7 +14,9 @@ homeassistant:
 config:
 conversation:
 # discovery:
-frontend:
 history:
 python_script:
 sun:
+
+frontend:
+  themes: !include_dir_named themes

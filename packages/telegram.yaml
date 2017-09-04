@@ -58,7 +58,7 @@ automation:
         data_template:
           message: >-
             {% set message = trigger.event.data.service_data.message %}
-            {% if 'invalid authentication' in message or 'login attempts' in message %}
+            {% if 'login attempt' in message|lower %}
               {{ message }}: http://www.ip-tracker.org/locator/ip-lookup.php?ip={{ message.split('from ')[1] }}
             {% else %}
               {{ message }}

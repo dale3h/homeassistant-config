@@ -1,0 +1,29 @@
+################################################################
+## Themes / Dark Orange
+##
+## Author: @ludeeus
+## Original: https://github.com/ludeeus/hass-config/blob/Configuration/packages/frontend_themes.yaml
+################################################################
+
+font-size: '4px'
+disabled-text-color: 'rgba(255, 255, 255, 0.5)'
+divider-color: 'rgba(255, 255, 255, 0.12)'
+paper-card-background-color: '#424242'
+paper-card-header-color: '#ffffff'
+paper-grey-200: '#616161'
+paper-item-icon-color: '#ffa500'
+paper-listbox-background-color: '#424242'
+paper-listbox-color: '#ffffff'
+paper-slider-active-color: '#ffa500'
+paper-slider-knob-color: '#ffa500'
+paper-slider-knob-start-color: '#ffa500'
+paper-slider-pin-color: '#ffa500'
+paper-slider-secondary-color: '#33f2d8'
+paper-toggle-button-checked-bar-color: '#ffa500'
+paper-toggle-button-checked-button-color: '#ffa500'
+paper-toggle-button-checked-ink-color: '#ffa500'
+primary-background-color: '#303030'
+primary-color: '#ffa500'
+primary-text-color: '#ffffff'
+secondary-background-color: '#303030'
+secondary-text-color: 'rgba(255, 255, 255, 0.7)'
