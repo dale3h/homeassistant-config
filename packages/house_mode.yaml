@@ -1,0 +1,96 @@
+################################################################
+## Packages / House Mode
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'house_mode'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.house_mode:
+      <<: *customize
+      friendly_name: "House Mode"
+      icon: mdi:home-variant
+
+    ################################################
+    ## Input Boolean
+    ################################################
+
+    input_boolean.guest_mode:
+      <<: *customize
+      friendly_name: "Guest Mode"
+      icon: mdi:account
+
+    input_boolean.vacation_mode:
+      <<: *customize
+      friendly_name: "Vacation Mode"
+      icon: mdi:beach
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.house_mode:
+      <<: *customize
+      friendly_name: "House Mode"
+      icon: mdi:home-variant
+
+################################################
+## Group
+################################################
+
+group:
+  house_mode:
+    control: hidden
+    entities:
+      - sensor.house_mode
+      - input_boolean.guest_mode
+      - input_boolean.vacation_mode
+
+################################################
+## Input Boolean
+################################################
+
+input_boolean:
+  guest_mode:
+    initial: off
+
+  vacation_mode:
+    initial: off
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: template
+    sensors:
+      house_mode:
+        value_template: >-
+          {% if is_state('input_boolean.guest_mode', 'on') %}
+            guest
+          {% elif is_state('group.household', 'home') %}
+            home
+          {% elif is_state('input_boolean.vacation_mode', 'on') %}
+            vacation
+          {% else %}
+            away
+          {% endif %}
