@@ -8,15 +8,27 @@
 
 homeassistant:
   customize:
-    packages.speech: &customize
-      haaska_hidden: true
-      hidden: true
-      homebridge_hidden: true
-      package: 'speech'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'speech'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Script
+    ################################################
 
     script.say:
       <<: *customize
       friendly_name: "Say"
+      hidden: true
       icon: mdi:microphone
 
 ################################################

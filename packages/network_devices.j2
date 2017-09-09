@@ -11,22 +11,27 @@
 
 homeassistant:
   customize:
-    packages.network_devices: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'network_devices'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.network_devices_hidden: &customize_hidden
-      <<: *customize
-      hidden: true
+    package.node_anchors:
+      customize: &customize
+        package: 'network_devices'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
 
     ################################################
     ## Group
     ################################################
 
     {{ group_source.entity_id }}:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Network Devices"
+      hidden: true
 
     group.{{ group_target }}:
       <<: *customize
@@ -41,8 +46,9 @@ homeassistant:
       {%- set entity = states[entity_id.split('.')[0]][entity_id.split('.')[1]] -%}
       {{ newline() -}}
       {{ entity_id }}:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "{{ entity.name }}"
+      hidden: true
     {%- endfor %}
 
     ################################################

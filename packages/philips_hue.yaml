@@ -8,10 +8,18 @@
 
 homeassistant:
   customize:
-    packages.philips_hue: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'philips_hue'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'philips_hue'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
 
     ################################################
     ## Hidden Lights
@@ -228,13 +236,13 @@ homeassistant:
     ## Automation
     ################################################
 
-    # automation.hue_master_bedroom_dimmer_good_morning_good_night:
-    #   <<: *customize
-    #   friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
-    #
-    # automation.hue_master_bedroom_dimmer_motion_on_motion_off:
-    #   <<: *customize
-    #   friendly_name: "Hue Master Bedroom Dimmer Motion On Motion Off"
+    automation.hue_master_bedroom_dimmer_good_morning_good_night:
+      <<: *customize
+      friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
+
+    automation.hue_master_bedroom_dimmer_motion_on_motion_off:
+      <<: *customize
+      friendly_name: "Hue Master Bedroom Dimmer Motion On Motion Off"
 
     ################################################
     ## Binary Sensor
@@ -257,30 +265,18 @@ homeassistant:
       <<: *customize
       friendly_name: "Guest Bathroom Temperature"
 
-    # sensor.dining_room_dimmer:
-    #   <<: *customize
-    #   friendly_name: "Dining Room Dimmer"
-    #
-    # sensor.dining_room_dimmer_cycle:
-    #   <<: *customize
-    #   friendly_name: "Dining Room Dimmer Cycle"
-    #
-    # sensor.guest_bedroom_dimmer:
-    #   <<: *customize
-    #   friendly_name: "Guest Bedroom Dimmer"
-    #
-    # sensor.guest_bedroom_dimmer_cycle:
-    #   <<: *customize
-    #   friendly_name: "Guest Bedroom Dimmer Cycle"
-    #
-    # sensor.master_bedroom_dimmer:
-    #   <<: *customize
-    #   friendly_name: "Master Bedroom Dimmer"
-    #
-    # sensor.master_bedroom_dimmer_cycle:
-    #   <<: *customize
-    #   friendly_name: "Master Bedroom Dimmer Cycle"
-    #
+    sensor.dining_room_dimmer:
+      <<: *customize
+      friendly_name: "Dining Room Dimmer"
+
+    sensor.guest_bedroom_dimmer:
+      <<: *customize
+      friendly_name: "Guest Bedroom Dimmer"
+
+    sensor.master_bedroom_dimmer:
+      <<: *customize
+      friendly_name: "Master Bedroom Dimmer"
+
     # sensor.parker_bedroom_tap:
     #   <<: *customize
     #   friendly_name: "Parker Bedroom Tap"
@@ -300,42 +296,36 @@ light:
 ## Automation
 ################################################
 
-# automation:
-#   - alias: hue_master_bedroom_dimmer_good_morning_good_night
-#     initial_state: 'on'
-#     trigger:
-#       - platform: state
-#         entity_id: sensor.master_bedroom_dimmer
-#         to: '1003'
-#       - platform: state
-#         entity_id: sensor.master_bedroom_dimmer
-#         to: '4003'
-#     action:
-#       - service: script.turn_on
-#         data_template:
-#           entity_id: "script.good_{{ 'night' if trigger.to_state.state == '4003' else 'morning' }}"
-#       - service: mqtt.publish
-#         data:
-#           topic: hue/master_bedroom_dimmer/buttonevent
-#           payload: 'inactive'
-#
-#   - alias: hue_master_bedroom_dimmer_motion_on_motion_off
-#     initial_state: 'on'
-#     trigger:
-#       - platform: state
-#         entity_id: sensor.master_bedroom_dimmer
-#         to: '2003'
-#       - platform: state
-#         entity_id: sensor.master_bedroom_dimmer
-#         to: '3003'
-#     action:
-#       - service_template: "automation.turn_{{ 'off' if trigger.to_state.state == '3003' else 'on' }}"
-#         data:
-#           entity_id: automation.master_bedroom_motion
-#       - service: mqtt.publish
-#         data:
-#           topic: hue/master_bedroom_dimmer/buttonevent
-#           payload: 'inactive'
+automation:
+  - alias: hue_master_bedroom_dimmer_good_morning_good_night
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: sensor.master_bedroom_dimmer
+        to: 'hold_1'
+      - platform: state
+        entity_id: sensor.master_bedroom_dimmer
+        to: 'hold_4'
+    action:
+      - service: script.turn_on
+        data_template:
+          entity_id: >-
+            script.good_{{ 'night' if trigger.to_state.state == 'hold_4' else 'morning' }}
+
+  - alias: hue_master_bedroom_dimmer_motion_on_motion_off
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: sensor.master_bedroom_dimmer
+        to: 'hold_2'
+      - platform: state
+        entity_id: sensor.master_bedroom_dimmer
+        to: 'hold_3'
+    action:
+      - service_template: >-
+          automation.turn_{{ 'on' if trigger.to_state.state == 'hold_2' else 'off' }}
+        data:
+          entity_id: automation.master_bedroom_motion
 
 ################################################
 ## Binary Sensor
@@ -345,8 +335,9 @@ binary_sensor:
   - platform: rest
     name: guest_bathroom_motion
     resource: !secret hue_url_guest_bathroom_motion
-    value_template: '{{ value_json.state.presence }}'
     scan_interval: 2
+    value_template: >-
+      {{ value_json.state.presence }}
 
 ################################################
 ## Sensor
@@ -357,13 +348,18 @@ sensor:
   ## Dining Room
   ################################################
 
-  # - platform: mqtt
-  #   name: dining_room_dimmer
-  #   state_topic: hue/dining_room_dimmer/buttonevent
-  #
-  # - platform: mqtt
-  #   name: dining_room_dimmer_cycle
-  #   state_topic: hue/dimmer_switch_9_scenecycle/status
+  - platform: rest
+    name: dining_room_dimmer
+    resource: !secret hue_url_dining_room_dimmer
+    scan_interval: 2
+    value_template: >-
+      {% set last_updated = as_timestamp(value_json.state.lastupdated ~ '-00:00')|int %}
+      {% if as_timestamp(now())|int - last_updated > 10 %}
+        idle
+      {% else %}
+        {% set button_event = value_json.state.buttonevent|string %}
+        {{ ('hold' if button_event[3]|int % 2 == 1 else 'click') ~ '_' ~ button_event[0] }}
+      {% endif %}
 
   ################################################
   ## Guest Bathroom
@@ -372,40 +368,52 @@ sensor:
   - platform: rest
     name: guest_bathroom_lux
     resource: !secret hue_url_guest_bathroom_lux
-    value_template: '{{ value_json.state.lightlevel }}'
-    unit_of_measurement: Lux
     scan_interval: 10
+    unit_of_measurement: Lux
+    value_template: >-
+      {{ value_json.state.lightlevel }}
 
   - platform: rest
     name: guest_bathroom_temperature
     resource: !secret hue_url_guest_bathroom_temperature
-    value_template: '{{ value_json.state.temperature|float / 100 }}'
-    unit_of_measurement: '°C'
     scan_interval: 60
+    unit_of_measurement: '°C'
+    value_template: >-
+      {{ value_json.state.temperature|float / 100 }}
 
   ################################################
   ## Guest Bedroom
   ################################################
 
-  # - platform: mqtt
-  #   name: guest_bedroom_dimmer
-  #   state_topic: hue/guest_bedroom_dimmer/buttonevent
-  #
-  # - platform: mqtt
-  #   name: guest_bedroom_dimmer_cycle
-  #   state_topic: hue/dimmer_switch_11_scenecycle/status
+  - platform: rest
+    name: guest_bedroom_dimmer
+    resource: !secret hue_url_guest_bedroom_dimmer
+    scan_interval: 2
+    value_template: >-
+      {% set last_updated = as_timestamp(value_json.state.lastupdated ~ '-00:00')|int %}
+      {% if as_timestamp(now())|int - last_updated > 10 %}
+        idle
+      {% else %}
+        {% set button_event = value_json.state.buttonevent|string %}
+        {{ ('hold' if button_event[3]|int % 2 == 1 else 'click') ~ '_' ~ button_event[0] }}
+      {% endif %}
 
   ################################################
   ## Master Bedroom
   ################################################
 
-  # - platform: mqtt
-  #   name: master_bedroom_dimmer
-  #   state_topic: hue/master_bedroom_dimmer/buttonevent
-  #
-  # - platform: mqtt
-  #   name: master_bedroom_dimmer_cycle
-  #   state_topic: hue/dimmer_switch_2_scenecycle/status
+  - platform: rest
+    name: master_bedroom_dimmer
+    resource: !secret hue_url_master_bedroom_dimmer
+    scan_interval: 2
+    value_template: >-
+      {% set last_updated = as_timestamp(value_json.state.lastupdated ~ '-00:00')|int %}
+      {% if as_timestamp(now())|int - last_updated > 10 %}
+        idle
+      {% else %}
+        {% set button_event = value_json.state.buttonevent|string %}
+        {{ ('hold' if button_event[3]|int % 2 == 1 else 'click') ~ '_' ~ button_event[0] }}
+      {% endif %}
 
   ################################################
   ## Parker's Bedroom

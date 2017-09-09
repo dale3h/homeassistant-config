@@ -16,37 +16,33 @@ homeassistant:
       customize: &customize
         package: 'shower_mode'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Automation
     ################################################
 
     automation.shower_mode_disabled:
-      <<: *hidden
       friendly_name: "Shower Mode Disabled"
+      hidden: true
 
     automation.shower_mode_enabled:
-      <<: *hidden
       friendly_name: "Shower Mode Enabled"
+      hidden: true
 
     automation.toggle_shower_mode:
-      <<: *hidden
       friendly_name: "Toggle Shower Mode"
+      hidden: true
 
     ################################################
     ## Input Boolean
     ################################################
 
     input_boolean.shower_mode:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Shower Mode"
       icon: mdi:water-pump
 

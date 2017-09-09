@@ -16,14 +16,10 @@ homeassistant:
       customize: &customize
         package: 'sun'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Sun
@@ -32,3 +28,10 @@ homeassistant:
     sun.sun:
       <<: *customize
       friendly_name: "Sun"
+
+################################################
+## Sun
+################################################
+
+sun:
+  elevation: !secret home_elevation

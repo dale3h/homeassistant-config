@@ -2,6 +2,29 @@
 ## Packages / Recorder
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'recorder'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+################################################
+## Recorder
+################################################
+
 recorder:
   purge_days: 14
   db_url: !secret recorder_db_url

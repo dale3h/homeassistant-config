@@ -8,11 +8,28 @@
 
 homeassistant:
   customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'grafana'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Script
+    ################################################
+
     script.grafana_webhook:
+      <<: *customize
       friendly_name: "Grafana Webhook"
       hidden: true
       icon: mdi:webhook
-      package: 'grafana'
 
 ################################################
 ## InfluxDB

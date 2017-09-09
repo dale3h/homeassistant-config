@@ -2,6 +2,29 @@
 ## Packages / Configurator Panel
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'configurator'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+################################################
+## Panel Iframe
+################################################
+
 panel_iframe:
   configurator:
     title: 'Configurator'

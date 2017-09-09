@@ -8,22 +8,27 @@
 
 homeassistant:
   customize:
-    packages.network_devices: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'network_devices'
+    ################################################
+    ## Node Anchors
+    ################################################
 
-    packages.network_devices_hidden: &customize_hidden
-      <<: *customize
-      hidden: true
+    package.node_anchors:
+      customize: &customize
+        package: 'network_devices'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
 
     ################################################
     ## Group
     ################################################
 
     group.network_devices_source:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Network Devices"
+      hidden: true
 
     group.network_devices:
       <<: *customize
@@ -33,201 +38,199 @@ homeassistant:
     ## Device Tracker
     ################################################
 
-    device_tracker.net_aladdin_connect:
-      <<: *customize_hidden
-      friendly_name: "Aladdin Connect"
-
     device_tracker.net_apple_tv_living_room:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Apple TV (Living Room)"
+      hidden: true
 
     device_tracker.net_apple_tv_master_bedroom:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Apple TV (Master Bedroom)"
+      hidden: true
 
     device_tracker.net_broadlink_rmpro:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Broadlink RM Pro"
+      hidden: true
 
     device_tracker.net_chromecast_living_room:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Chromecast (Living Room)"
+      hidden: true
 
     device_tracker.net_chromecast_master_bedroom:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Chromecast (Master Bedroom)"
+      hidden: true
 
     device_tracker.net_echo_dot_garage:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo Dot (Garage)"
+      hidden: true
 
     device_tracker.net_echo_dot_guest_bathroom:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo Dot (Guest Bathroom)"
+      hidden: true
 
     device_tracker.net_echo_dot_guest_bedroom:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo Dot (Guest Bedroom)"
-
-    device_tracker.net_echo_dot_kitchen:
-      <<: *customize_hidden
-      friendly_name: "Echo Dot (Kitchen)"
+      hidden: true
 
     device_tracker.net_echo_dot_parker:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo Dot (Parker)"
+      hidden: true
 
     device_tracker.net_echo_entry:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo (Entry)"
+      hidden: true
 
     device_tracker.net_echo_master_bathroom:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Echo (Master Bathroom)"
+      hidden: true
+
+    device_tracker.net_echo_show_dining_room:
+      <<: *customize
+      friendly_name: "Echo Show (Dining Room)"
+      hidden: true
 
     device_tracker.net_ecobee3:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "ecobee3"
-
-    device_tracker.net_ecoplug_0556a2:
-      <<: *customize_hidden
-      friendly_name: "EcoPlug 0556A2"
-
-    device_tracker.net_esp_0b47b7:
-      <<: *customize_hidden
-      friendly_name: "ESP 0B47B7"
-
-    device_tracker.net_esp_0b51f1:
-      <<: *customize_hidden
-      friendly_name: "ESP 0B51F1"
-
-    device_tracker.net_esp_0b8672:
-      <<: *customize_hidden
-      friendly_name: "ESP 0B8672"
-
-    device_tracker.net_esp_0ba857:
-      <<: *customize_hidden
-      friendly_name: "ESP 0BA857"
-
-    device_tracker.net_esp_0bad77:
-      <<: *customize_hidden
-      friendly_name: "ESP 0BAD77"
-
-    device_tracker.net_esp_0c4b37:
-      <<: *customize_hidden
-      friendly_name: "ESP 0C4B37"
-
-    device_tracker.net_esp_0c4ca2:
-      <<: *customize_hidden
-      friendly_name: "ESP 0C4CA2"
+      hidden: true
 
     device_tracker.net_fire_tv:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Fire TV Stick"
+      hidden: true
 
     device_tracker.net_google_home:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Google Home"
+      hidden: true
 
     device_tracker.net_harmony_hub:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Harmony Hub"
+      hidden: true
 
     device_tracker.net_hp_printer:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "HP Printer"
+      hidden: true
 
     device_tracker.net_htpc:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "HTPC"
+      hidden: true
 
     device_tracker.net_ikea_tradfri:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "IKEA Tradfri"
+      hidden: true
 
     device_tracker.net_ipcam_ac1:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "IPCam AC1"
+      hidden: true
 
     device_tracker.net_ipcam_hv1:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "IPCam HV1"
+      hidden: true
 
     device_tracker.net_ipcam_ptz1:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "IP Cam PTZ1"
+      hidden: true
 
     device_tracker.net_limitlessled:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Limitless LED"
+      hidden: true
 
     device_tracker.net_myq_gateway:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "MyQ Gateway"
+      hidden: true
 
     device_tracker.net_poe_switch:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "POE Switch"
+      hidden: true
 
     device_tracker.net_philips_hue:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Philips Hue"
+      hidden: true
 
     device_tracker.net_projector:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Projector"
+      hidden: true
 
     device_tracker.net_rack_light:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Rack Light"
+      hidden: true
 
     device_tracker.net_raspberry_pi:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Raspberry Pi"
+      hidden: true
 
     device_tracker.net_smartthings:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "SmartThings"
+      hidden: true
 
     device_tracker.net_tablet_digiland:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Tablet (DigiLand)"
+      hidden: true
 
     device_tracker.net_tablet_insignia:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Tablet (Insignia)"
+      hidden: true
 
     device_tracker.net_ubuntu:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Ubuntu"
+      hidden: true
 
     device_tracker.net_web_power_switch:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Web Power Switch"
+      hidden: true
 
     device_tracker.net_workshop:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Workshop"
+      hidden: true
 
     device_tracker.net_xbox_one:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Xbox One"
+      hidden: true
 
     device_tracker.net_xiaomi_gateway:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Xiaomi Gateway"
+      hidden: true
 
     device_tracker.net_yamaha_rxv675:
-      <<: *customize_hidden
+      <<: *customize
       friendly_name: "Yamaha RX-V675"
+      hidden: true
 
     ################################################
     ## Sensor
     ################################################
-
-    sensor.net_aladdin_connect:
-      <<: *customize
-      friendly_name: "Aladdin Connect"
 
     sensor.net_apple_tv_living_room:
       <<: *customize
@@ -261,10 +264,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Echo Dot (Guest Bedroom)"
 
-    sensor.net_echo_dot_kitchen:
-      <<: *customize
-      friendly_name: "Echo Dot (Kitchen)"
-
     sensor.net_echo_dot_parker:
       <<: *customize
       friendly_name: "Echo Dot (Parker)"
@@ -277,41 +276,13 @@ homeassistant:
       <<: *customize
       friendly_name: "Echo (Master Bathroom)"
 
+    sensor.net_echo_show_dining_room:
+      <<: *customize
+      friendly_name: "Echo Show (Dining Room)"
+
     sensor.net_ecobee3:
       <<: *customize
       friendly_name: "ecobee3"
-
-    sensor.net_ecoplug_0556a2:
-      <<: *customize
-      friendly_name: "EcoPlug 0556A2"
-
-    sensor.net_esp_0b47b7:
-      <<: *customize
-      friendly_name: "ESP 0B47B7"
-
-    sensor.net_esp_0b51f1:
-      <<: *customize
-      friendly_name: "ESP 0B51F1"
-
-    sensor.net_esp_0b8672:
-      <<: *customize
-      friendly_name: "ESP 0B8672"
-
-    sensor.net_esp_0ba857:
-      <<: *customize
-      friendly_name: "ESP 0BA857"
-
-    sensor.net_esp_0bad77:
-      <<: *customize
-      friendly_name: "ESP 0BAD77"
-
-    sensor.net_esp_0c4b37:
-      <<: *customize
-      friendly_name: "ESP 0C4B37"
-
-    sensor.net_esp_0c4ca2:
-      <<: *customize
-      friendly_name: "ESP 0C4CA2"
 
     sensor.net_fire_tv:
       <<: *customize
@@ -421,7 +392,6 @@ group:
   network_devices_source:
     control: hidden
     entities:
-      - device_tracker.net_aladdin_connect
       - device_tracker.net_apple_tv_living_room
       - device_tracker.net_apple_tv_master_bedroom
       - device_tracker.net_broadlink_rmpro
@@ -430,19 +400,11 @@ group:
       - device_tracker.net_echo_dot_garage
       - device_tracker.net_echo_dot_guest_bathroom
       - device_tracker.net_echo_dot_guest_bedroom
-      - device_tracker.net_echo_dot_kitchen
       - device_tracker.net_echo_dot_parker
       - device_tracker.net_echo_entry
       - device_tracker.net_echo_master_bathroom
+      - device_tracker.net_echo_show_dining_room
       - device_tracker.net_ecobee3
-      - device_tracker.net_ecoplug_0556a2
-      - device_tracker.net_esp_0b47b7
-      - device_tracker.net_esp_0b51f1
-      - device_tracker.net_esp_0b8672
-      - device_tracker.net_esp_0ba857
-      - device_tracker.net_esp_0bad77
-      - device_tracker.net_esp_0c4b37
-      - device_tracker.net_esp_0c4ca2
       - device_tracker.net_fire_tv
       - device_tracker.net_google_home
       - device_tracker.net_harmony_hub
@@ -472,7 +434,6 @@ group:
   network_devices:
     control: hidden
     entities:
-      - sensor.net_aladdin_connect
       - sensor.net_apple_tv_living_room
       - sensor.net_apple_tv_master_bedroom
       - sensor.net_broadlink_rmpro
@@ -481,19 +442,11 @@ group:
       - sensor.net_echo_dot_garage
       - sensor.net_echo_dot_guest_bathroom
       - sensor.net_echo_dot_guest_bedroom
-      - sensor.net_echo_dot_kitchen
       - sensor.net_echo_dot_parker
       - sensor.net_echo_entry
       - sensor.net_echo_master_bathroom
+      - sensor.net_echo_show_dining_room
       - sensor.net_ecobee3
-      - sensor.net_ecoplug_0556a2
-      - sensor.net_esp_0b47b7
-      - sensor.net_esp_0b51f1
-      - sensor.net_esp_0b8672
-      - sensor.net_esp_0ba857
-      - sensor.net_esp_0bad77
-      - sensor.net_esp_0c4b37
-      - sensor.net_esp_0c4ca2
       - sensor.net_fire_tv
       - sensor.net_google_home
       - sensor.net_harmony_hub
@@ -527,10 +480,6 @@ group:
 sensor:
   - platform: template
     sensors:
-      net_aladdin_connect:
-        value_template: "{{ 'online' if is_state('device_tracker.net_aladdin_connect', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_aladdin_connect', 'home') else 'mdi:alert-circle' }}"
-
       net_apple_tv_living_room:
         value_template: "{{ 'online' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_apple_tv_living_room', 'home') else 'mdi:alert-circle' }}"
@@ -563,10 +512,6 @@ sensor:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_guest_bedroom', 'home') else 'mdi:alert-circle' }}"
 
-      net_echo_dot_kitchen:
-        value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_kitchen', 'home') else 'mdi:alert-circle' }}"
-
       net_echo_dot_parker:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_dot_parker', 'home') else 'mdi:alert-circle' }}"
@@ -579,41 +524,13 @@ sensor:
         value_template: "{{ 'online' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_master_bathroom', 'home') else 'mdi:alert-circle' }}"
 
+      net_echo_show_dining_room:
+        value_template: "{{ 'online' if is_state('device_tracker.net_echo_show_dining_room', 'home') else 'offline' }}"
+        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_echo_show_dining_room', 'home') else 'mdi:alert-circle' }}"
+
       net_ecobee3:
         value_template: "{{ 'online' if is_state('device_tracker.net_ecobee3', 'home') else 'offline' }}"
         icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ecobee3', 'home') else 'mdi:alert-circle' }}"
-
-      net_ecoplug_0556a2:
-        value_template: "{{ 'online' if is_state('device_tracker.net_ecoplug_0556a2', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_ecoplug_0556a2', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0b47b7:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b47b7', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b47b7', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0b51f1:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b51f1', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b51f1', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0b8672:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0b8672', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0b8672', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0ba857:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0ba857', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0ba857', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0bad77:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0bad77', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0bad77', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0c4b37:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0c4b37', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0c4b37', 'home') else 'mdi:alert-circle' }}"
-
-      net_esp_0c4ca2:
-        value_template: "{{ 'online' if is_state('device_tracker.net_esp_0c4ca2', 'home') else 'offline' }}"
-        icon_template: "{{ 'mdi:check-circle-outline' if is_state('device_tracker.net_esp_0c4ca2', 'home') else 'mdi:alert-circle' }}"
 
       net_fire_tv:
         value_template: "{{ 'online' if is_state('device_tracker.net_fire_tv', 'home') else 'offline' }}"

@@ -8,19 +8,36 @@
 
 homeassistant:
   customize:
-    packages.zwave_minimote: &customize
-      haaska_hidden: true
-      hidden: true
-      homebridge_hidden: true
-      package: 'zwave_minimote'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave_minimote'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.minimote_button_pressed:
       <<: *customize
       friendly_name: "Minimote Button Pressed"
+      hidden: true
+
+    ################################################
+    ## Script
+    ################################################
 
     script.minimote_button_caller:
       <<: *customize
       friendly_name: "Minimote Button Caller"
+      hidden: true
 
 ################################################
 ## Automation

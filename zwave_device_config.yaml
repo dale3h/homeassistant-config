@@ -44,13 +44,25 @@ sensor.kitchen_alarm_type:
 sensor.kitchen_burglar:
   ignored: true
 
+sensor.kitchen_dew_point:
+  ignored: true
+
 sensor.kitchen_general:
+  ignored: true
+
+sensor.kitchen_moisture:
   ignored: true
 
 sensor.kitchen_power:
   ignored: true
 
+sensor.kitchen_seismic_magnitude:
+  ignored: true
+
 sensor.kitchen_sourcenodeid:
+  ignored: true
+
+sensor.kitchen_tank_capacity:
   ignored: true
 
 sensor.kitchen_ultraviolet:
@@ -69,7 +81,25 @@ sensor.master_bathroom_alarm_type:
 sensor.master_bathroom_burglar:
   ignored: true
 
+sensor.master_bathroom_dew_point:
+  ignored: true
+
+sensor.master_bathroom_general:
+  ignored: true
+
+sensor.master_bathroom_moisture:
+  ignored: true
+
+sensor.master_bathroom_power:
+  ignored: true
+
+sensor.master_bathroom_seismic_magnitude:
+  ignored: true
+
 sensor.master_bathroom_sourcenodeid:
+  ignored: true
+
+sensor.master_bathroom_tank_capacity:
   ignored: true
 
 sensor.master_bathroom_ultraviolet:

@@ -16,14 +16,10 @@ homeassistant:
       customize: &customize
         package: 'xiaomi'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Secrets
@@ -40,12 +36,12 @@ homeassistant:
       device_class: motion
 
     !secret binary_sensor_xiaomi_button:
-      <<: *hidden
       friendly_name: "Xiaomi Switch"
       icon: mdi:gamepad
+      hidden: true
 
     !secret light_gateway_light:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Gateway Light"
       persistent: true
 
@@ -54,9 +50,9 @@ homeassistant:
       friendly_name: "Gateway Lux"
 
     !secret switch_xiaomi_plug:
-      <<: *hidden
       friendly_name: "Xiaomi Plug"
       icon: mdi:power-plug
+      hidden: true
 
     ################################################
     ## Input Slider
@@ -71,8 +67,8 @@ homeassistant:
     ################################################
 
     script.xiaomi_ringtone:
-      <<: *hidden
       friendly_name: "Xiaomi Ringtone"
+      hidden: true
 
 ################################################
 ## Xiaomi

@@ -2,6 +2,29 @@
 ## Packages / Open Z-Wave Control Panel
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'ozwcp'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+################################################
+## Panel Iframe
+################################################
+
 panel_iframe:
   ozwcp:
     title: 'Open Z-Wave'

@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'garage'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -35,7 +35,7 @@ homeassistant:
     ################################################
 
     automation.garage_door_lighting:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Garage Door Lighting"
       icon: mdi:garage
 
@@ -44,7 +44,7 @@ homeassistant:
     ################################################
 
     cover.garage_door:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Garage Door"
       device_class: garage
       homebridge_cover_type: garage_door
@@ -54,7 +54,7 @@ homeassistant:
     ################################################
 
     light.garage_light:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Garage Light"
       persistent: true
 

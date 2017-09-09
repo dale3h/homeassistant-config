@@ -8,10 +8,22 @@
 
 homeassistant:
   customize:
-    packages.speech: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'nap_time'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'nap_time'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Script
+    ################################################
 
     script.nap_time:
       <<: *customize

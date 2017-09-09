@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'media_lights'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -26,7 +26,7 @@ homeassistant:
     ################################################
 
     automation.media_lighting:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Media Lighting"
       icon: mdi:movie-roll
 

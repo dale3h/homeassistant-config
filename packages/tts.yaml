@@ -14,12 +14,16 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'system'
+        package: 'tts'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
+
+################################################
+## TTS
+################################################
 
 tts:
   - platform: google
@@ -28,4 +32,4 @@ tts:
     aws_access_key_id: !secret aws_access_key_id
     aws_secret_access_key: !secret aws_secret_access_key
     region_name: !secret aws_region_name
-    voice: Salli
+    voice: !secret aws_voice

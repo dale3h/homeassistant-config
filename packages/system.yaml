@@ -36,6 +36,18 @@ homeassistant:
       icon: mdi:message-text
 
     ################################################
+    ## Device Tracker
+    ################################################
+
+    device_tracker.tracked:
+      <<: *customize
+      hidden: true
+
+    device_tracker.tracked_hidden:
+      <<: *customize
+      hidden: true
+
+    ################################################
     ## Group
     ################################################
 

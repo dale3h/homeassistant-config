@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'morning_lights'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -26,7 +26,7 @@ homeassistant:
     ################################################
 
     automation.morning_lighting:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Morning Lighting"
       icon: mdi:weather-sunset-up
 
@@ -35,7 +35,7 @@ homeassistant:
     ################################################
 
     group.morning_lights:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Morning Lights"
       icon: mdi:weather-sunset-up
 

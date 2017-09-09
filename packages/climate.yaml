@@ -16,37 +16,33 @@ homeassistant:
       customize: &customize
         package: 'climate'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Climate
     ################################################
 
     climate.kitchen:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Kitchen"
 
     climate.living_room:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Living Room"
 
     climate.master_bathroom:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Bathroom"
 
     climate.master_bedroom:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Bedroom"
 
     climate.master_closet:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Closet"
 
     ################################################

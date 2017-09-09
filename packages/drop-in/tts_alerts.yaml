@@ -1,5 +1,5 @@
 ################################################################
-## Packages / Plex
+## Packages / TTS Alerts
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'plex'
+        package: 'tts_alerts'
 
       expose: &expose
         <<: *customize
@@ -22,44 +22,39 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
-    ## Media Player
+    ## Automation
     ################################################
 
-    media_player.plex_living_room:
+    automation.alert_triggered:
       <<: *customize
-      friendly_name: "Living Room (Plex)"
-      icon: mdi:plex
-
-    ################################################
-    ## Sensor
-    ################################################
-
-    sensor.plex_activity:
-      <<: *customize
-      friendly_name: "Plex Activity"
-      hidden: true
+      friendly_name: "Alert Triggered"
 
 ################################################
-## Media Player
+## Automation
 ################################################
 
-media_player:
-  - platform: plex
-    entity_namespace: 'plex'
-    include_non_clients: false
-    scan_interval: 5
-    show_all_controls: false
-    use_custom_entity_ids: false
-    use_episode_art: true
+automation:
+  - alias: alert_triggered
+    initial_state: 'on'
+    trigger:
+      - platform: event
+        event_type: call_service
+        event_data:
+          domain: notify
+          service: tts_alerts
+    action:
+      - service: script.say
+        data_template:
+          message: >-
+            {% set entity_id = trigger.event.data.service_data.message %}
+            {{ (states.alert[entity_id].attributes|default).speech|default(entity_id|replace('_', ' ')) }}
 
 ################################################
-## Sensor
+## Notify
 ################################################
 
-sensor:
-  - platform: plex
-    name: plex_activity
-    host: !secret plex_host
-    port: !secret plex_port
-    username: !secret plex_username
-    password: !secret plex_password
+notify:
+  - platform: file
+    name: tts_alerts
+    filename: tts_alerts.log
+    timestamp: true

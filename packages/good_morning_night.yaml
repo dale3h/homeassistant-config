@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'good_morning_night'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -26,17 +26,17 @@ homeassistant:
     ################################################
 
     script.bedtime_story:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Bedtime Story"
       icon: mdi:book-open-page-variant
 
     script.good_morning:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Good Morning"
       icon: mdi:weather-sunny
 
     script.good_night:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Good Night"
       icon: mdi:weather-night
 

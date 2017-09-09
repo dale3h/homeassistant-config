@@ -9,6 +9,7 @@ homeassistant:
   elevation: !secret home_elevation
   time_zone: America/Chicago
   unit_system: imperial
+  customize: !include customize.yaml
   packages: !include_dir_named packages
 
 config:
@@ -16,7 +17,6 @@ conversation:
 # discovery:
 history:
 python_script:
-sun:
 
 frontend:
   themes: !include_dir_named themes

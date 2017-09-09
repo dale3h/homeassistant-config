@@ -8,35 +8,52 @@
 
 homeassistant:
   customize:
-    packages.zwave_remotes: &customize
-      haaska_hidden: true
-      hidden: true
-      homebridge_hidden: true
-      package: 'zwave_remotes'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'zwave_remotes'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Script
+    ################################################
 
     script.blue_iris_remote_1_click:
       <<: *customize
       friendly_name: "Toggle Monitor Power"
+      hidden: true
 
     script.blue_iris_remote_2_click:
       <<: *customize
       friendly_name: "Blue Iris: Toggle Focus"
+      hidden: true
 
     script.blue_iris_remote_3_click:
       <<: *customize
       friendly_name: "Blue Iris: Previous Camera"
+      hidden: true
 
     script.blue_iris_remote_3_hold:
       <<: *customize
       friendly_name: "Blue Iris: Show All Cameras"
+      hidden: true
 
     script.blue_iris_remote_4_click:
       <<: *customize
       friendly_name: "Blue Iris: Next Camera"
+      hidden: true
 
     script.blue_iris_remote_4_hold:
       <<: *customize
       friendly_name: "Blue Iris: Cycle Cameras"
+      hidden: true
 
 ################################################
 ## Script

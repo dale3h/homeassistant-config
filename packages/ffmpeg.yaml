@@ -2,5 +2,28 @@
 ## Packages / FFmpeg
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'ffmpeg'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+################################################
+## FFmpeg
+################################################
+
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg

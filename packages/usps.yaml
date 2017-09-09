@@ -1,5 +1,5 @@
 ################################################################
-## Packages / TTS Alerts
+## Packages / USPS
 ################################################################
 
 ################################################
@@ -14,51 +14,57 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'tts_alerts'
+        package: 'usps'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
 
-      hidden: &hidden
-        <<: *customize
-        hidden: true
-
     ################################################
-    ## Automation
+    ## Camera
     ################################################
 
-    automation.alert_triggered:
+    camera.usps_mail:
       <<: *customize
-      friendly_name: "Alert Triggered"
+      friendly_name: "USPS Mail"
+      hidden: true
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.usps_mail:
+      <<: *expose
+      friendly_name: "USPS Mail"
+      icon: mdi:mailbox
+
+    ################################################
+    ## Sensor
+    ################################################
+
+    sensor.usps_mail:
+      <<: *customize
+      friendly_name: "USPS Mail"
+
+    sensor.usps_packages:
+      <<: *customize
+      friendly_name: "USPS Packages"
 
 ################################################
-## Automation
+## Group
 ################################################
 
-automation:
-  - alias: alert_triggered
-    initial_state: 'on'
-    trigger:
-      - platform: event
-        event_type: call_service
-        event_data:
-          domain: notify
-          service: tts_alerts
-    action:
-      - service: script.say
-        data_template:
-          message: >-
-            {% set entity_id = trigger.event.data.service_data.message %}
-            {{ (states.alert[entity_id].attributes|default).speech|default(entity_id|replace('_', ' ')) }}
+group:
+  usps_mail:
+    entities:
+      - sensor.usps_mail
+      - sensor.usps_packages
 
 ################################################
-## Notify
+## USPS
 ################################################
 
-notify:
-  - platform: file
-    name: tts_alerts
-    filename: tts_alerts.log
-    timestamp: true
+usps:
+    username: !secret usps_username
+    password: !secret usps_password

@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'telegram'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false

@@ -8,21 +8,41 @@
 
 homeassistant:
   customize:
-    packages.ios: &customize
-      hidden: true
-      package: 'ios'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'ios'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.ios_action_open_garage:
       <<: *customize
       friendly_name: "iOS Action: Open Garage"
+      hidden: true
 
     automation.ios_action_unlock_door:
       <<: *customize
       friendly_name: "iOS Action: Unlock Door"
+      hidden: true
+
+    ################################################
+    ## Script
+    ################################################
 
     script.ios_notify_arrival:
       <<: *customize
       friendly_name: "iOS Notify: Arrival"
+      hidden: true
 
 ################################################
 ## iOS

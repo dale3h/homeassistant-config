@@ -16,21 +16,17 @@ homeassistant:
       customize: &customize
         package: 'presence'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Automation
     ################################################
 
     automation.presence_detection:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Presence Detection"
       icon: mdi:map-marker
 
@@ -39,29 +35,21 @@ homeassistant:
     ################################################
 
     group.arrival_lights:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Arrival Lights"
       icon: mdi:lightbulb
-
-    ################################################
-    ## Input Boolean
-    ################################################
-
-    input_boolean.guest_mode:
-      friendly_name: "Guest Mode"
-      icon: mdi:account
 
     ################################################
     ## Script
     ################################################
 
     script.arrival:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Arrival"
       icon: mdi:map-marker
 
     script.departure:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Departure"
       icon: mdi:map-marker-off
 
@@ -81,10 +69,10 @@ automation:
         entity_id: group.household
         from: 'home'
         to: 'not_home'
-    condition:
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
+    # condition:
+    #   - condition: state
+    #     entity_id: input_boolean.guest_mode
+    #     state: 'off'
     action:
       - service_template: >-
           {% if trigger.to_state.state == 'home' %}
@@ -104,14 +92,6 @@ group:
       - light.laundry_room
       - light.dining_room
       - light.garage_light
-
-################################################
-## Input Boolean
-################################################
-
-input_boolean:
-  guest_mode:
-    initial: off
 
 ################################################
 ## Script

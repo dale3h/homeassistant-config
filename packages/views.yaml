@@ -8,10 +8,22 @@
 
 homeassistant:
   customize:
-    packages.views: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'views'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'views'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
 
     group.automation:
       <<: *customize

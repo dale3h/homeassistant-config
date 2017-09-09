@@ -16,7 +16,7 @@ homeassistant:
       customize: &customize
         package: 'groups/motion'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
@@ -52,3 +52,5 @@ group:
       - binary_sensor.parker_bedroom_cam_motion
       - !secret binary_sensor_laundry_room_motion
       - binary_sensor.guest_bathroom_motion
+      - binary_sensor.front_porch_cam_motion
+      - binary_sensor.safe_cam_motion

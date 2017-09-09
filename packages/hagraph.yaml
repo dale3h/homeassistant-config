@@ -16,14 +16,10 @@ homeassistant:
       customize: &customize
         package: 'hagraph'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Script

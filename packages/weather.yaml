@@ -8,10 +8,22 @@
 
 homeassistant:
   customize:
-    packages.weather: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'weather'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'weather'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
 
     group.weather_darksky:
       <<: *customize
@@ -28,6 +40,10 @@ homeassistant:
     group.weather_yr:
       <<: *customize
       friendly_name: "YR"
+
+    ################################################
+    ## Sensor
+    ################################################
 
     sensor.dark_sky_cloud_coverage:
       <<: *customize
@@ -175,21 +191,5 @@ sensor:
       - precipitation
       - temperature
 
-  - platform: template
-    sensors:
-      season:
-        value_template: >-
-          {% set temp_entity = 'sensor.pws_temp_f' %}
-          {% set temp = states(temp_entity)|float(none) %}
-          {% set temp_min = states.input_slider.season_winter.state|default(68)|float %}
-          {% set temp_max = states.input_slider.season_summer.state|default(84)|float %}
-
-          {% if temp is none %}
-            {{ states(temp_entity) }}
-          {% elif temp < temp_min %}
-            Winter
-          {% elif temp > temp_max %}
-            Summer
-          {% else %}
-            Awesome
-          {% endif %}
+  - platform: season
+    type: astronomical

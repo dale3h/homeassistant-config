@@ -8,43 +8,55 @@
 
 homeassistant:
   customize:
-    packages.sensor_lights: &customize
-      haaska_hidden: false
-      homebridge_hidden: false
-      package: 'sensor_lights'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'sensor_lights'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.laundry_room_motion:
-      <<: *customize
+      <<: *expose
       friendly_name: "Laundry Room Motion"
       icon: mdi:walk
 
     automation.kitchen_motion:
-      <<: *customize
+      <<: *expose
       friendly_name: "Kitchen Motion"
       icon: mdi:walk
 
     automation.master_bathroom_motion:
-      <<: *customize
+      <<: *expose
       friendly_name: "Bathroom Motion"
       icon: mdi:walk
 
     automation.master_bedroom_motion:
-      <<: *customize
+      <<: *expose
       friendly_name: "Bedroom Motion"
       icon: mdi:walk
 
     automation.garage_lighting:
-      <<: *customize
+      <<: *expose
       friendly_name: "Garage Lighting"
       icon: mdi:lightbulb
 
     automation.master_closet_lighting:
-      <<: *customize
+      <<: *expose
       friendly_name: "Closet Lighting"
       icon: mdi:lightbulb
 
     automation.parker_closet_lighting:
-      <<: *customize
+      <<: *expose
       friendly_name: "Parker Closet Lighting"
       icon: mdi:lightbulb
 
@@ -53,7 +65,6 @@ homeassistant:
 ################################################
 
 automation:
-
   ################################################
   ## Motion Activated Lights
   ################################################

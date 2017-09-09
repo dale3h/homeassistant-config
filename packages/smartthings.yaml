@@ -16,36 +16,32 @@ homeassistant:
       customize: &customize
         package: 'smartthings'
 
-      exposed: &exposed
+      expose: &expose
         <<: *customize
         haaska_hidden: false
         homebridge_hidden: false
-
-      hidden: &hidden
-        <<: *customize
-        hidden: true
 
     ################################################
     ## Binary Sensor
     ################################################
 
     binary_sensor.closet_door_contact:
-      <<: *exposed
+      <<: *expose
       device_class: opening
       friendly_name: "Closet Door"
 
     binary_sensor.garage_entry_contact:
-      <<: *exposed
+      <<: *expose
       device_class: opening
       friendly_name: "Garage Entry Door"
 
     binary_sensor.master_bedroom_motion:
-      <<: *exposed
+      <<: *expose
       device_class: motion
       friendly_name: "Master Bedroom Motion"
 
     binary_sensor.parker_closet_door_contact:
-      <<: *exposed
+      <<: *expose
       device_class: opening
       friendly_name: "Parker Closet Door"
 
@@ -59,7 +55,7 @@ homeassistant:
       icon: mdi:battery
 
     sensor.closet_door_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Closet Door Temperature"
       icon: mdi:thermometer
 
@@ -69,7 +65,7 @@ homeassistant:
       icon: mdi:battery
 
     sensor.garage_entry_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Garage Entry Temperature"
       icon: mdi:thermometer
 
@@ -79,7 +75,7 @@ homeassistant:
       icon: mdi:battery
 
     sensor.master_bedroom_motion_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Master Bedroom Temperature"
       icon: mdi:thermometer
 
@@ -89,7 +85,7 @@ homeassistant:
       icon: mdi:battery
 
     sensor.network_cabinet_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Network Cabinet Temperature"
       icon: mdi:thermometer
 
@@ -99,7 +95,7 @@ homeassistant:
       icon: mdi:battery
 
     sensor.parker_closet_door_temperature:
-      <<: *exposed
+      <<: *expose
       friendly_name: "Parker Closet Door Temperature"
       icon: mdi:thermometer
 

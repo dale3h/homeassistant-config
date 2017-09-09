@@ -2,6 +2,29 @@
 ## Packages / Logger
 ################################################################
 
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'logger'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+################################################
+## Logger
+################################################
+
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 logger:
   default: debug
@@ -40,9 +63,11 @@ logger:
     homeassistant.components.sensor: warn
     homeassistant.components.switch: warn
     homeassistant.components.telegram_bot: warn
+    homeassistant.components.usps: warn
     homeassistant.components.xiaomi: warn
     homeassistant.helpers: warn
     homeassistant.loader: warn
+    myusps: warn
     libopenzwave: warn
     openzwave: warn
     phue: warn

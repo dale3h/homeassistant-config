@@ -8,15 +8,31 @@
 
 homeassistant:
   customize:
-    packages.web_power_switch: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'web_power_switch'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'web_power_switch'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
 
     group.web_power_switch:
       <<: *customize
       friendly_name: "Web Power Switch"
       icon: mdi:power-settings
+
+    ################################################
+    ## Switch
+    ################################################
 
     switch.rack_cable_modem:
       <<: *customize

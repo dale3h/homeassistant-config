@@ -8,20 +8,40 @@
 
 homeassistant:
   customize:
-    packages.front_porch_light: &customize
-      haaska_hidden: true
-      homebridge_hidden: true
-      package: 'front_porch_light'
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'front_porch_light'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
 
     automation.front_porch_timer:
       <<: *customize
       friendly_name: "Front Porch Timer"
+
+    ################################################
+    ## Binary Sensor
+    ################################################
 
     binary_sensor.front_porch_expected_state:
       <<: *customize
       friendly_name: "Front Porch Expected State"
       device_class: light
       hidden: true
+
+    ################################################
+    ## Input Select
+    ################################################
 
     input_select.front_porch_time_off:
       <<: *customize
@@ -30,6 +50,10 @@ homeassistant:
     input_select.front_porch_time_on:
       <<: *customize
       friendly_name: "Front Porch Time On"
+
+    ################################################
+    ## Script
+    ################################################
 
     script.front_porch_light:
       <<: *customize
