@@ -48,10 +48,13 @@ homeassistant:
     ## Sensor
     ################################################
 
+    sensor.household:
+      <<: *customize
+      friendly_name: "Household"
+
     sensor.house_mode:
       <<: *customize
       friendly_name: "House Mode"
-      icon: mdi:home-variant
 
 ################################################
 ## Group
@@ -64,6 +67,7 @@ group:
       - sensor.house_mode
       - input_boolean.guest_mode
       - input_boolean.vacation_mode
+      - sensor.household
 
 ################################################
 ## Input Boolean
@@ -83,14 +87,43 @@ input_boolean:
 sensor:
   - platform: template
     sensors:
+      household:
+        entity_id: group.household
+        value_template: >-
+          {% if is_state('group.household', 'home') %}
+            home
+          {% else %}
+            away
+          {% endif %}
+        icon_template: >-
+          {% if is_state('group.household', 'home') %}
+            mdi:home
+          {% else %}
+            mdi:home-outline
+          {% endif %}
+
       house_mode:
+        entity_id:
+          - input_boolean.guest_mode
+          - input_boolean.vacation_mode
+          - sensor.household
         value_template: >-
           {% if is_state('input_boolean.guest_mode', 'on') %}
             guest
-          {% elif is_state('group.household', 'home') %}
+          {% elif is_state('sensor.household', 'home') %}
             home
           {% elif is_state('input_boolean.vacation_mode', 'on') %}
             vacation
           {% else %}
             away
+          {% endif %}
+        icon_template: >-
+          {% if is_state('input_boolean.guest_mode', 'on') %}
+            mdi:account
+          {% elif is_state('sensor.household', 'home') %}
+            mdi:home
+          {% elif is_state('input_boolean.vacation_mode', 'on') %}
+            mdi:beach
+          {% else %}
+            mdi:home-outline
           {% endif %}
