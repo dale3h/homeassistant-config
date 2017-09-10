@@ -1,0 +1,155 @@
+################################################################
+## Example use of YAML Node Anchors and Merge Key Tag
+################################################################
+
+################################################
+## Without Node Anchors and Merge Key Tags
+################################################
+
+homeassistant:
+  customize:
+    light.back_porch:
+      friendly_name: "Back Porch"
+      package: 'philips_hue'
+
+    light.chandelier:
+      friendly_name: "Chandelier"
+      package: 'philips_hue'
+
+    light.dining_room:
+      friendly_name: "Dining Room"
+      package: 'philips_hue'
+
+    light.entry_lamp:
+      friendly_name: "Entry Lamp"
+      package: 'philips_hue'
+
+    light.front_porch:
+      friendly_name: "Front Porch"
+      package: 'philips_hue'
+
+    light.garage_opener:
+      friendly_name: "Garage Opener"
+      package: 'philips_hue'
+
+    light.guest_bathroom:
+      friendly_name: "Guest Bathroom"
+      package: 'philips_hue'
+
+    light.guest_bedroom:
+      friendly_name: "Guest Bedroom"
+      package: 'philips_hue'
+
+    light.hallway:
+      friendly_name: "Hallway"
+      package: 'philips_hue'
+
+    light.laundry_room:
+      friendly_name: "Laundry Room"
+      package: 'philips_hue'
+
+    light.living_room:
+      friendly_name: "Living Room"
+      package: 'philips_hue'
+
+    light.master_bathroom:
+      friendly_name: "Master Bathroom"
+      package: 'philips_hue'
+
+    light.master_bedroom:
+      friendly_name: "Master Bedroom"
+      package: 'philips_hue'
+
+    light.master_closet:
+      friendly_name: "Master Closet"
+      package: 'philips_hue'
+
+    light.parker_closet:
+      friendly_name: "Parker Closet"
+      package: 'philips_hue'
+
+    light.range_light:
+      friendly_name: "Range"
+      package: 'philips_hue'
+
+    light.sink_light:
+      friendly_name: "Sink"
+      package: 'philips_hue'
+
+################################################
+## With Node Anchors and Merge Key Tags
+################################################
+
+homeassistant:
+  customize:
+    package.node_anchors: # This is just a dummy entry
+      customize: &customize # Also a dummy entry that allows us to define the node anchor
+        package: 'philips_hue'
+
+    light.back_porch:
+      <<: *customize # This merges the keys/values from "&customize"
+      friendly_name: "Back Porch"
+
+    light.chandelier:
+      <<: *customize
+      friendly_name: "Chandelier"
+
+    light.dining_room:
+      <<: *customize
+      friendly_name: "Dining Room"
+
+    light.entry_lamp:
+      <<: *customize
+      friendly_name: "Entry Lamp"
+
+    light.front_porch:
+      <<: *customize
+      friendly_name: "Front Porch"
+
+    light.garage_opener:
+      <<: *customize
+      friendly_name: "Garage Opener"
+
+    light.guest_bathroom:
+      <<: *customize
+      friendly_name: "Guest Bathroom"
+
+    light.guest_bedroom:
+      <<: *customize
+      friendly_name: "Guest Bedroom"
+
+    light.hallway:
+      <<: *customize
+      friendly_name: "Hallway"
+
+    light.laundry_room:
+      <<: *customize
+      friendly_name: "Laundry Room"
+
+    light.living_room:
+      <<: *customize
+      friendly_name: "Living Room"
+
+    light.master_bathroom:
+      <<: *customize
+      friendly_name: "Master Bathroom"
+
+    light.master_bedroom:
+      <<: *customize
+      friendly_name: "Master Bedroom"
+
+    light.master_closet:
+      <<: *customize
+      friendly_name: "Master Closet"
+
+    light.parker_closet:
+      <<: *customize
+      friendly_name: "Parker Closet"
+
+    light.range_light:
+      <<: *customize
+      friendly_name: "Range"
+
+    light.sink_light:
+      <<: *customize
+      friendly_name: "Sink"
