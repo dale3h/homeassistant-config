@@ -1,0 +1,81 @@
+################################################################
+## Packages / Philips Hue Dimmers
+################################################################
+
+################################################
+## Automation
+################################################
+
+automation:
+  # Automation triggers when dimmer 1 button 1 is pressed once
+  - alias: Dimmer 1 Button 1 Clicked
+    trigger:
+      - platform: state
+        entity_id: sensor.philips_hue_dimmer_1
+        to: 'click_1'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.living_room
+
+  # Automation triggers when dimmer 1 button 1 is held for about 2+ seconds
+  - alias: Dimmer 1 Button 1 Held
+    trigger:
+      - platform: state
+        entity_id: sensor.philips_hue_dimmer_1
+        to: 'hold_1'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.dining_room
+
+  # Automation triggers when dimmer 1 button 4 is pressed once
+  - alias: Dimmer 1 Button 4 Clicked
+    trigger:
+      - platform: state
+        entity_id: sensor.philips_hue_dimmer_1
+        to: 'click_4'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.living_room
+
+  # Automation triggers when dimmer 1 button 4 is held for about 2+ seconds
+  - alias: Dimmer 1 Button 4 Held
+    trigger:
+      - platform: state
+        entity_id: sensor.philips_hue_dimmer_1
+        to: 'hold_4'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.dining_room
+
+################################################
+## Sensor
+################################################
+
+sensor:
+  - platform: rest
+    name: Philips Hue Dimmer 1
+    resource: http://<bridge ip address>/api/<username>/sensors/1
+    # If you notice errors in your log, increase scan_interval to 2
+    scan_interval: 1
+    value_template: >-
+      {# Grab the lastupdated time and convert it to a timestamp #}
+      {% set lastupdated = as_timestamp(value_json.state.lastupdated ~ '-00:00')|int %}
+      {# Compare the lastupdated against the current timestamps #}
+      {% if as_timestamp(now())|int - lastupdated > 5 %}
+        {# If no events have happened in the past 5 seconds, show 'idle' as state #}
+        idle
+      {% else %}
+        {# Get the buttonevent that was triggered #}
+        {% set buttonevent = value_json.state.buttonevent|string %}
+        {# Example button event: 4003 #}
+        {# buttonevent[0] = 4 = button number #}
+        {# buttonevent[3] = 3 = button event #}
+        {# If buttonevent[3] is even (X000 or X002), the button was clicked #}
+        {# If buttonevent[3] is odd (X001 or X003), the button was held #}
+        {# The ~ operator is used to concatenate strings #}
+        {{ ('hold' if buttonevent[3]|int is odd else 'click') ~ '_' ~ buttonevent[0] }}
+      {% endif %}
