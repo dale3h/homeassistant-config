@@ -268,14 +268,17 @@ homeassistant:
     sensor.dining_room_dimmer:
       <<: *customize
       friendly_name: "Dining Room Dimmer"
+      hidden: true
 
     sensor.guest_bedroom_dimmer:
       <<: *customize
       friendly_name: "Guest Bedroom Dimmer"
+      hidden: true
 
     sensor.master_bedroom_dimmer:
       <<: *customize
       friendly_name: "Master Bedroom Dimmer"
+      hidden: true
 
     # sensor.parker_bedroom_tap:
     #   <<: *customize
