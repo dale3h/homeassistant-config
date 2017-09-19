@@ -37,7 +37,7 @@ group:
   automation_override:
     control: hidden
     entities:
-      - automation.sunrise_lighting
+      - automation.morning_lighting
       - automation.kitchen_motion
       - automation.laundry_room_motion
       - automation.master_bathroom_motion

@@ -42,7 +42,7 @@ group:
       - sensor.garage_entry_temperature
       - sensor.guest_bedroom_temperature
       - sensor.guest_bathroom_temperature
-      - sensor.home_temperature
+      - sensor.ecobee3_temperature
       - sensor.kitchen_temperature
       - sensor.living_room_temperature
       - sensor.master_bathroom_temperature
@@ -52,6 +52,6 @@ group:
       - sensor.parker_closet_door_temperature
       - sensor.broadlink_sensor_temperature
 
-      - sensor.home_humidity
+      - sensor.ecobee3_humidity
       - sensor.kitchen_relative_humidity
       - sensor.master_bathroom_relative_humidity

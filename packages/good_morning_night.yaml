@@ -84,7 +84,7 @@ script:
 
       - service: climate.set_hold_mode
         data:
-          entity_id: climate.home
+          entity_id: climate.ecobee3
           hold_mode: 'home'
 
   good_night:
@@ -101,7 +101,7 @@ script:
 
       - service: climate.set_hold_mode
         data:
-          entity_id: climate.home
+          entity_id: climate.ecobee3
           hold_mode: 'sleep'
 
       - service: script.light_control

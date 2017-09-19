@@ -1,5 +1,5 @@
 ################################################################
-## Packages / USPS
+## Packages / SABnzbd
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'usps'
+        package: 'sabnzbd'
 
       expose: &expose
         <<: *customize
@@ -22,49 +22,69 @@ homeassistant:
         homebridge_hidden: false
 
     ################################################
-    ## Camera
-    ################################################
-
-    camera.usps_mail:
-      <<: *customize
-      friendly_name: "USPS Mail"
-      hidden: true
-
-    ################################################
     ## Group
     ################################################
 
-    group.usps_mail:
+    group.sabnzbd:
       <<: *customize
-      friendly_name: "USPS Mail"
-      icon: mdi:mailbox
+      friendly_name: "SABnzbd"
+      icon: mdi:download
 
     ################################################
     ## Sensor
     ################################################
 
-    sensor.usps_mail:
+    sensor.sabnzbd_disk:
       <<: *customize
-      friendly_name: "USPS Mail"
+      friendly_name: "SABnzbd Disk"
 
-    sensor.usps_packages:
+    sensor.sabnzbd_disk_free:
       <<: *customize
-      friendly_name: "USPS Packages"
+      friendly_name: "SABnzbd Disk Free"
+
+    sensor.sabnzbd_left:
+      <<: *customize
+      friendly_name: "SABnzbd Left"
+
+    sensor.sabnzbd_queue:
+      <<: *customize
+      friendly_name: "SABnzbd Queue"
+
+    sensor.sabnzbd_speed:
+      <<: *customize
+      friendly_name: "SABnzbd Speed"
+
+    sensor.sabnzbd_status:
+      <<: *customize
+      friendly_name: "SABnzbd Status"
 
 ################################################
 ## Group
 ################################################
 
 group:
-  usps_mail:
+  sabnzbd:
+    control: hidden
     entities:
-      - sensor.usps_mail
-      - sensor.usps_packages
+      - sensor.sabnzbd_disk
+      - sensor.sabnzbd_disk_free
+      - sensor.sabnzbd_left
+      - sensor.sabnzbd_queue
+      - sensor.sabnzbd_speed
+      - sensor.sabnzbd_status
 
 ################################################
-## USPS
+## Sensor
 ################################################
 
-usps:
-    username: !secret usps_username
-    password: !secret usps_password
+sensor:
+  - platform: sabnzbd
+    host: !secret sabnzbd_host
+    api_key: !secret sabnzbd_api_key
+    monitored_variables:
+      - 'current_status'
+      - 'speed'
+      - 'queue_size'
+      - 'queue_remaining'
+      - 'disk_size'
+      - 'disk_free'

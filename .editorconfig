@@ -7,6 +7,18 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.sh]
+indent_style = space
+indent_size = 2
+
+[*.xml]
+indent_style = tab
+indent_size = 4
+
 [*.yaml]
 indent_style = space
 indent_size = 2

@@ -61,6 +61,7 @@ __*
 *.sqlite
 *.xml
 *.backup
+.ftpconfig
 .HA_VERSION
 .uuid
 configurator.py

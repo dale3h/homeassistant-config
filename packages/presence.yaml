@@ -115,7 +115,7 @@ script:
       - service: script.front_porch_light
       - service: climate.set_hold_mode
         data:
-          entity_id: climate.home
+          entity_id: climate.ecobee3
           hold_mode: 'home'
       - service: switch.turn_on
         data:
@@ -135,7 +135,7 @@ script:
       - service: script.front_porch_light
       - service: climate.set_hold_mode
         data:
-          entity_id: climate.home
+          entity_id: climate.ecobee3
           hold_mode: 'away'
       - service: switch.turn_off
         data:

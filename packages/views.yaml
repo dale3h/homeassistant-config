@@ -133,5 +133,5 @@ group:
     entities:
       - group.weather_general
       - group.weather_darksky
-      - group.weather_wunderground
+      # - group.weather_wunderground
       - group.weather_yr

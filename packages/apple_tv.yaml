@@ -60,23 +60,8 @@ apple_tv:
     start_off: true
     # credentials: !secret apple_tv_living_room_credentials
 
-  - name: apple_tv_master_bedroom
-    host: !secret apple_tv_master_bedroom_host
-    login_id: !secret apple_tv_master_bedroom_login_id
-    start_off: true
-    # credentials: !secret apple_tv_master_bedroom_credentials
-
-################################################
-## Media Player
-################################################
-
-# media_player:
-#   - platform: apple_tv
-#     name: apple_tv_living_room
-#     host: !secret apple_tv_living_room_host
-#     login_id: !secret apple_tv_living_room_login_id
-
-  # - platform: apple_tv
-  #   name: apple_tv_master_bedroom
+  # - name: apple_tv_master_bedroom
   #   host: !secret apple_tv_master_bedroom_host
   #   login_id: !secret apple_tv_master_bedroom_login_id
+  #   start_off: true
+  #   # credentials: !secret apple_tv_master_bedroom_credentials

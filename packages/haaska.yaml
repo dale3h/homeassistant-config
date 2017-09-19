@@ -11,29 +11,32 @@ homeassistant:
     alert:
       haaska_hidden: false
 
-    automation:
-      haaska_hidden: true
+    # automation:
+    #   haaska_hidden: true
 
-    climate:
-      haaska_hidden: true
+    # camera:
+    #   haaska_hidden: true
+
+    # climate:
+    #   haaska_hidden: true
 
     cover:
       haaska_hidden: false
 
-    fan:
-      haaska_hidden: true
+    # fan:
+    #   haaska_hidden: true
 
-    group:
-      haaska_hidden: true
+    # group:
+    #   haaska_hidden: true
 
-    input_boolean:
-      haaska_hidden: true
+    # input_boolean:
+    #   haaska_hidden: true
 
-    input_slider:
-      haaska_hidden: true
+    # input_slider:
+    #   haaska_hidden: true
 
-    light:
-      haaska_hidden: true
+    # light:
+    #   haaska_hidden: true
 
     lock:
       haaska_hidden: false
@@ -41,11 +44,11 @@ homeassistant:
     media_player:
       haaska_hidden: false
 
-    scene:
-      haaska_hidden: true
+    # scene:
+    #   haaska_hidden: true
 
-    script:
-      haaska_hidden: true
+    # script:
+    #   haaska_hidden: true
 
-    switch:
-      haaska_hidden: true
+    # switch:
+    #   haaska_hidden: true

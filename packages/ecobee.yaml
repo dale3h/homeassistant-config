@@ -30,7 +30,7 @@ homeassistant:
       friendly_name: "Guest Bedroom Occupancy"
       device_class: occupancy
 
-    binary_sensor.home_occupancy:
+    binary_sensor.ecobee3_occupancy:
       <<: *expose
       friendly_name: "Hallway Occupancy"
       device_class: occupancy
@@ -49,9 +49,9 @@ homeassistant:
     ## Climate
     ################################################
 
-    climate.home:
+    climate.ecobee3:
       <<: *expose
-      friendly_name: "Home"
+      friendly_name: "ecobee3"
       icon: mdi:nest-thermostat
 
     ################################################
@@ -63,14 +63,14 @@ homeassistant:
       friendly_name: "Guest Bedroom Temperature"
       icon: mdi:thermometer
 
-    sensor.home_humidity:
+    sensor.ecobee3_humidity:
       <<: *expose
-      friendly_name: "Home Humidity"
+      friendly_name: "Hallway Humidity"
       icon: mdi:water-percent
 
-    sensor.home_temperature:
+    sensor.ecobee3_temperature:
       <<: *expose
-      friendly_name: "Home Temperature"
+      friendly_name: "Hallway Temperature"
       icon: mdi:thermometer
 
     sensor.living_room_temperature:

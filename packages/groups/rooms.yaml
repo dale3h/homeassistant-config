@@ -143,10 +143,10 @@ group:
     control: hidden
     entities:
       - light.hallway
-      - binary_sensor.home_occupancy
-      - sensor.home_temperature
-      - sensor.home_humidity
-      - climate.home
+      - binary_sensor.ecobee3_occupancy
+      - sensor.ecobee3_temperature
+      - sensor.ecobee3_humidity
+      - climate.ecobee3
 
   kitchen:
     control: hidden
