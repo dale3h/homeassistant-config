@@ -9,7 +9,7 @@ USER_HOME=/home/$me
 HOMEBRIDGE_CONF=$USER_HOME/.homebridge/config.json
 
 echo "Homebridge Installer for Home Assistant"
-echo "Copyright(c) 2016 Dale Higgs <https://gitter.im/dale3h>"
+echo "Copyright(c) 2016-2017 Dale Higgs <@dale3h>"
 echo
 
 echo "Running apt-get preparation"
@@ -17,8 +17,8 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install -y git make
 
-echo "Installing Node.js 4.x"
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+echo "Installing Node.js 8.x"
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Installing dependencies"
