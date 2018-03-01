@@ -89,12 +89,12 @@ script:
 
             {% if brightness is defined and brightness|int(-1) != -1 %}
               {{ brightness|int }}
-            {% elif states.input_slider[brightness_entity] is not none %}
-              {{ states('input_slider.' ~ brightness_entity)|int }}
+            {% elif states.input_number[brightness_entity] is not none %}
+              {{ states('input_number.' ~ brightness_entity)|int }}
             {% elif states.sensor[brightness_entity] is not none %}
               {{ states('sensor.' ~ brightness_entity)|int }}
-            {% elif states.input_slider.global_brightness is not none %}
-              {{ states('input_slider.global_brightness')|int }}
+            {% elif states.input_number.global_brightness is not none %}
+              {{ states('input_number.global_brightness')|int }}
             {% elif states.sensor.global_brightness is not none %}
               {{ states('sensor.global_brightness')|int }}
             {% else %}
