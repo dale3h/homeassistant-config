@@ -34,14 +34,14 @@ homeassistant:
       friendly_name: "Update Global Brightness"
 
     ################################################
-    ## Input Slider
+    ## Input Number
     ################################################
 
-    input_slider.global_brightness:
+    input_number.global_brightness:
       <<: *customize
       friendly_name: "Global Brightness"
 
-    input_slider.nightlight_brightness:
+    input_number.nightlight_brightness:
       <<: *customize
       friendly_name: "Nightlight Brightness"
 
@@ -66,9 +66,9 @@ automation:
         minutes: '00'
         seconds: '00'
     action:
-      - service: input_slider.select_value
+      - service: input_number.select_value
         data_template:
-          entity_id: input_slider.global_brightness
+          entity_id: input_number.global_brightness
           value: >-
             {% set brightness = {
               0: 64,
@@ -102,7 +102,7 @@ automation:
 ## Input Slider
 ################################################
 
-input_slider:
+input_number:
   global_brightness:
     initial: 255
     min: 0
