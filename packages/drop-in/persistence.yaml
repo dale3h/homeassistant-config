@@ -7,7 +7,7 @@
 ##   persistence on an entity.
 ##
 ## This currently supports: automation, input_boolean,
-##   input_select, input_number, light, and switch.
+##   input_select, input_number, input_text, light, and switch.
 ##
 ## Example Configuration:
 ##
@@ -23,6 +23,9 @@
 ##       persistent: true
 ##
 ##     input_number.bedroom_brightness:
+##       persistent: true
+##
+##     input_text.device_status:
 ##       persistent: true
 ##
 ##     light.bedroom:
@@ -114,6 +117,8 @@ automation:
           - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_number' }}"
           - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_text' }}"
+          - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'light' }}"
           - condition: template
             value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'switch' }}"
@@ -169,6 +174,8 @@ automation:
     trigger:
       - platform: mqtt
         topic: home-assistant/input_number/+
+      - platform: mqtt
+        topic: home-assistant/input_text/+
     condition: *subscribe_condition
     action:
       - service_template: "{{ trigger.topic.split('/')[1] }}.set_value"
